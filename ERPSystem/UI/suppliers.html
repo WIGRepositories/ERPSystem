@@ -1,29 +1,27 @@
-﻿
+﻿cu
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home | Configuration | Master Data Groups </title>
+    <title>Home | Configuration | Customers</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
+
     <!--Loading bootstrap css-->
     <link type="text/css" rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css">
     <!--LOADING STYLESHEET FOR PAGE--><!--Loading style vendors-->
-
+    <!--<link type="text/css" rel="stylesheet" href="vendors/jquery-pace/pace.css">-->
     <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">
     <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">
     <link rel="stylesheet" type="text/css" href="css/treasure-overlay-spinner.css">
 
     <!--Loading style-->
-    <link type="text/css" rel="stylesheet" href="css/themes/style2/iliad-custom.css" id="theme-change" class="style-change color-change">
+    <link type="text/css" rel="stylesheet" href="css/themes/Custom.css" id="theme-change" class="style-change color-change">
     <link type="text/css" rel="stylesheet" href="css/style-responsive.css">
+
 </head>
-<body ng-app="myApp" ng-controller="myCtrl" ng-model="TypeGroups" ng-init="GetTypeGroups();">
+
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="GetCustomers();">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -39,14 +37,15 @@
                             <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
-                        <li class="divider"></li>-->
+                                <li class="divider"></li>-->
                                 <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
-                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
+                                <li><a href="../Login.html"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </nav>
+
         </div>
         <!--END TOPBAR-->
         <div id="wrapper">
@@ -133,17 +132,17 @@
                             </ul>
                         </li>
                         <!--<li>
-                     <a href="UI/#">
-                         <i class="fa fa-book fa-fw">
-                             <div class="icon-bg bg-violet"></div>
-                         </i><span class="menu-title">Help</span><span class="fa arrow"></span>
-                     </a>
-                     <ul class="nav nav-second-level">
-                         <li><a href="UI/HelpResources.html"><i class="fa fa-columns"></i><span class="submenu-title"></span>Resources</a></li>
-                         <li><a href="UI/HelpSupport.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Support</a></li>
-                         <li><a href="UI/HelpFAQs.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>FAQs</a></li>
-                     </ul>
-                 </li>-->
+                            <a href="UI/#">
+                                <i class="fa fa-book fa-fw">
+                                    <div class="icon-bg bg-violet"></div>
+                                </i><span class="menu-title">Help</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="UI/HelpResources.html"><i class="fa fa-columns"></i><span class="submenu-title"></span>Resources</a></li>
+                                <li><a href="UI/HelpSupport.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Support</a></li>
+                                <li><a href="UI/HelpFAQs.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>FAQs</a></li>
+                            </ul>
+                        </li>-->
                         <li>
                             <a href="PPDocuments.html" data-toggle="tooltip" data-placement="right" title="Common document repository for documents across company.">
                                 <i class=" fa fa-file-text-o">
@@ -167,10 +166,10 @@
                                 <!--<li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>-->
                                 <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
                                 <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
-                                 <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">suppliers</span></a></li>
+                                <li><a href="suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all supliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">suppliers</span></a></li>
                                 <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
-                        <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
-                        <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
+                                <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
+                                <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
                             </ul>
                         </li>
                     </ul>
@@ -183,46 +182,64 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">Master Data Gruops</div>
+                            <div class="page-title">Suppliers</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i><a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and Jobs">Home</a><i class="fa fa-angle-right"></i></li>
                             <li><a href="#">Configuration</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="TypeGroup.html">Master Data Gruops</a></li>
+                            <li><a href="suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers">Suppliers</a></li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-                    <div class="page-content" id="typegroups-content" style="display:none;">
+                    <div class="page-content" id="customers-content" style="display:none;">
                         <div id="table-action" class="row">
+
+
                             <div id="tableactionTabContent" class="tab-content">
                                 <div id="table-table-tab" class="tab-pane fade in active">
                                     <div class="row">
                                         <div class="col-lg-12">
+
+
                                             <div class="table-container">
                                                 <div class="row mbm">
+
+
                                                     <div class="actions">
                                                         <!----   <button  type="button" data-target="#modal-header-primary" data-toggle="modal" class="btn btn-info btn-sm" style="float:right;margin:10px;">  Add TypeGroup</button>--->
-                                                        <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="TGInit()">Add Master Data Groups</button>
+                                                        <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add Supplier</button>
                                                     </div>
+
                                                 </div>
                                                 <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                     <thead>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Description</th>
+                                                            <th>Client</th>
+                                                            <th>Contact</th>
+                                                            <th>Phone No</th>
+                                                            <th>Email</th>
+                                                            <!--<th>Contact Role</th>
+                                                            <th>Service Description</th>
+                                                            <th>PTS POC</th>-->
                                                             <th>Active</th>
                                                             <th>Update</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr ng-repeat="T in TypeGroups" class="gradeA">
-                                                            <td>{{T.Name}}</td>
-                                                            <td>{{T.Description}}</td>
-                                                            <td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-model="T.Active" ng-true-value="1" ng-false-value="0" disabled></td>
-                                                            <!--<td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-checked="getChecked(T)"></td>-->
+                                                        <tr ng-repeat="T in Customers" class="gradeA">
+                                                            <td>{{T.Client}}</td>
+                                                            <td>{{T.Contact}}</td>
+                                                            <td>{{T.PhoneNo}}</td>
+                                                            <td>{{T.Email}}</td>
+                                                            <!--<td>{{T.ContactRole}}</td>
+                                                            <td>{{T.ServiceDescription}}</td>
+                                                            <td>{{T.PTSPOC}}</td>-->
+
+
+                                                            <td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-model="T.act" ng-true-value="1" ng-false-value="0" disabled></td>
                                                             <td>
-                                                                <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setTypeGroup(T);">
+                                                                <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
                                                                     <i class="fa fa-edit"></i>&nbsp;
                                                                     Edit
                                                                 </button>
@@ -230,6 +247,8 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -237,101 +256,189 @@
                             </div>
                         </div>
                     </div>
+
+
                     <!--END CONTENT--><!--BEGIN FOOTER-->
                     <div id="footer">
-                        <div class="copyright">2018 © EES - Equipment Management Portal</div>
+                        <div class="copyright">2018 © ERPSystem</div>
                     </div>
                     <!--END FOOTER-->
+
                 </div>
             </treasure-overlay-spinner>
         </div>
     </div>
+
     <div id="Modal-header-primary" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Edit Master data</h4>
+                    <h4 id="modal-header-primary-label" class="modal-title">Edit Supplier</h4>
                 </div>
-                <div class="modal-body" ng-model="currGroup">
+                <div class="modal-body" ng-model="Customers1">
+
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group has-success" style="text-align:right">
-                                <label for="inputFirstName" class="control-label" style="color:red;">Name:<span class='require'>*</span></label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <div class="input-icon right"><input type="text" class="form-control" id="cName" ng-model="currGroup.Name" /></div>
-                            </div>
-                        </div>
+
+                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Client<span class='require'>*</span>:</label>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.Client" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Contact:</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Customers1.Contact" class="form-control" /><span class="help-block"></span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group has-success" style="text-align:right">
-                                <label for="inputFirstName" class="control-label">Description:</label>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <div class="input-icon right"><input type="text" class="form-control" id="Desc" ng-model="currGroup.Description" /></div>
-                            </div>
-                        </div>
+
+                        <label for="PhoneNo" class="col-md-3 control-label"> Phone No:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.PhoneNo" class="form-control" /><span class="help-block"></span></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group has-success" style="text-align:right">
-                                <label for="inputFirstName" class="control-label">Active:</label>
-                            </div>
+
+                        <label for="Email" class="col-md-3 control-label"> Email Address:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="email" ng-model="Customers1.Email" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <!--<div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label" style="color:red;">Contact Role:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.ContactRole" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label" style="color:red;">Service Description:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Description" class="col-md-3 control-label">PTS POC:</label>
+
+                        <div class="col-md-6">
+                            <select ng-options="poc.Name for poc in Users track by poc.Id" ng-model="poc" style="width:100%">
+                                <option value="">Select PTS POC</option>
+                            </select>
                         </div>
+                    </div>-->
+                    <div class="row">
+                        <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
+
+                        <!--<div class="col-md-6">
+                            <input type="checkbox" class="col-md-4 " id="cactive" ng-true-value="1" ng-false-value="0" ng-checked="Customer1.act" />
+                        </div>-->
+
                         <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="input-icon right"><input type="checkbox" class="form-control icheckbox_minimal-grey activeCheckbox" id="cactive" ng-model="currGroup.Active" ng-true-value="1" ng-false-value="0" ng-checked="currGroup.Active==1" /></div>
-                            </div>
+
+                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive" ng-model="Customers1.act" ng-true-value="1" ng-false-value="0" ng-checked="Customers1.act" />
+
                         </div>
+
                     </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(currGroup, 'U');" ng-disabled="isSuperUser == 0">Save</button>
-                    <button type="reset" data-dismiss="modal" class="btn btn-default">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal" ng-model="tGroup">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-header-primary">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Add Master Data Groups </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Name <span class='require'>*</span></label>
-                        <div class="col-md-4"><input id="inputFirstName" type="text" ng-model="tGroup.Name" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-                    <div class="row">
-                        <label for="Description" class="col-md-3 control-label"> Description <span class='require'></span></label>
-                        <div class="col-md-4"><input id="Description" type="text" ng-model="tGroup.Description" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-                    <div class="row">
-                        <label for="Active" class="col-md-3 control-label">Active</label>
-                        <div class="col-md-4">
-                            <input type="checkbox" class="form-control icheckbox_minimal-grey activeCheckbox" ng-model="tGroupActive" ng-true-value="1" ng-false-value="0" />
-                        </div>
-                    </div>
-                    <div class="form-actions">
-                        <div style="text-align:center">
-                            <button class="btn btn-primary" data-dismiss="modal" type="button" ng-click="saveNew(tGroup);">Save</button>
-                            <button type="reset" data-dismiss="modal" class="btn btn-default">Cancel</button>
-                        </div>
-                    </div>
+
+                    <button ng-disabled="isSuperUser == 0" type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(Customers1, 'U');">Save</button>
+                    <button data-dismiss="modal" class="btn btn-default">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:999999">
+
+    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Add Supplier</h4>
+                </div>
+                <div class="modal-body" ng-model="Customer">
+                    <div class="row">
+
+                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Client<span class='require'>*</span>:</label>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Client" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Contact:</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.Contact" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="PhoneNo" class="col-md-3 control-label"> Phone No:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.PhoneNo" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Email" class="col-md-3 control-label"> Email Address:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Email" class="form-control" /><span class="help-block"></span></div>
+                        <label style="color:red;margin-top:6px;">{{mssg}}</label>
+                    </div>
+
+                    <!--<div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label">Contact Role:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ContactRole" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label">Service Description:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Description" class="col-md-3 control-label">PTS POC:</label>
+
+                        <div class="col-md-6">
+                            <select ng-options="ju.Name for ju in Users track by ju.Id" ng-model="ju" style="width:100%">
+                                <option value="">Select PTS POC</option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
+
+                        <div class="col-md-6">
+
+                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive1" ng-model="Customeract" ng-true-value="1" ng-false-value="0" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <div style="text-align:center">
+                            <button ng-disabled="isSuperUser == 0" class="btn btn-primary" type="button" ng-click="saveNew(Customer);">Save</button>
+                            <button data-dismiss="modal" class="btn btn-default">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static">
+
         <div class="modal-header">
             <h3 class="modal-title">Save confirmation!</h3>
         </div>
@@ -348,6 +455,7 @@
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
+
     </script>
     <script type="text/ng-template" id="myModalContent1.html" data-backdrop="static" style="z-index:1055">
         <div class="modal-header">
@@ -375,12 +483,13 @@
     <script src="vendors/bootstrap/js/bootstrap.js"></script>
     <script src="vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
 
+
     <script src="vendors/metisMenu/jquery.metisMenu.js"></script>
     <script src="vendors/slimScroll/jquery.slimscroll.js"></script>
     <script src="vendors/jquery-cookie/jquery.cookie.js"></script>
     <script src="vendors/iCheck/icheck.min.js"></script>
     <script src="vendors/iCheck/custom.min.js"></script>
-    <script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
+    <!--<script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>-->
     <script src="js/jquery.menu.js"></script>
     <script src="vendors/jquery-pace/pace.min.js"></script>
     <script src="vendors/holder/holder.js"></script>
@@ -390,14 +499,14 @@
     <!--CORE JAVASCRIPT-->
     <script src="js/main.js"></script>
     <script src="js/angular.js"></script>
-    <!--<script src="js/adal.js"></script>
-    <script src="js/adal-angular.js"></script>-->
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
     <script src="js/ngStorage.js"></script>
-
-    <script src="js/TypeGroups.js"></script>
-    <!--<script src="js/AdalCommon.js"></script>-->
+    <script src="js/Suppliers.js"></script>
+    <!--<script src="js/adal.js"></script>
+    <script src="js/adal-angular.js"></script>
+    <script src="js/AdalCommon.js"></script>-->
     <script src="js/angular-animate.js"></script>
-    <script src="js/treasure-overlay-spinner.js"></script>  
+    <script src="js/treasure-overlay-spinner.js"></script>
+  
 </body>
 </html>

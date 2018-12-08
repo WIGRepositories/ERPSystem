@@ -52,7 +52,7 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
 
     $scope.ValidateCredentials = function () {
 
-        $rootScope.spinner.on();
+       // $rootScope.spinner.on();
 
         if (userinfor == null) {
           // // window.location.href = "../login.html";
