@@ -95,7 +95,7 @@
                             <div class="clearfix"></div>
                         </li>
                         <li class="active">
-                            <a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and Jobs">
+                            <a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and RFQs">
                                 <i class="fa fa-tachometer fa-fw">
                                     <div class="icon-bg bg-orange"></div>
                                 </i><span class="menu-title">Dashboard</span>
@@ -123,15 +123,15 @@
                             <a href="#">
                                 <i class="fa fa-list fa-fw">
                                     <div class="icon-bg bg-violet"></div>
-                                </i><span class="menu-title">Jobs</span><span class="fa arrow"></span>
+                                </i><span class="menu-title">RFQs</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="JobsList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending jobs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Job List</span></a></li>
-                                <li><a href="JobDetails.html" data-toggle="tooltip" data-placement="right" title="Job specific details: Equipment, Personnel, 3rd Party, and Job Documents"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Job Details</span></a></li>
-                                <li><a href="CompletedJobList.html" data-toggle="tooltip" data-placement="right" title="Jobs marked as completed"><i class=" fa fa-list fa-fw"></i><span class="submenu-title">Completed Jobs</span></a></li>
-                                <li><a href="JobPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all jobs, by location, customer status"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>Job Personnel</a></li>
-                                <li><a href="JobEquipment.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all jobs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Job Equipment</a></li>
-                                <li><a href="JobDocuments.html" data-toggle="tooltip" data-placement="right" title="Job specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Job Documents</a></li>
+                                <li><a href="RFQList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending RFQs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">RFQ List</span></a></li>
+                                <li><a href="RFQDetails.html" data-toggle="tooltip" data-placement="right" title="RFQ specific details: Equipment, Personnel, 3rd Party, and RFQ Documents"><i class=" fa fa-file-text-o"></i><span class="submenu-title">RFQ Details</span></a></li>
+                                <li><a href="CompletedRFQsList.html" data-toggle="tooltip" data-placement="right" title="RFQs marked as completed"><i class=" fa fa-list fa-fw"></i><span class="submenu-title">Completed RFQs</span></a></li>
+                                <li><a href="RFQPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all RFQs, by location, customer status"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>RFQ Personnel</a></li>
+                                <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
+                                <li><a href="RFQDocuments.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Documents</a></li>
                                 <!--<li><a href="Jobs.html"><i class="fa fa-exclamation"></i><span class="submenu-title"></span>Job Alerts</a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-cloud-upload"></i><span class="submenu-title">Job Reports</span></a></li>-->
@@ -295,14 +295,14 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <h3 style="margin-left:10px">Jobs</h3>
+                                            <h3 style="margin-left:10px">RFQs</h3>
                                             <div class="alert alert-danger" ng-show="dashboardDS.Table2.length == 0">
-                                                No Jobs to show
+                                                No RFQs to show
                                                 <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-newJob" data-toggle="modal" class="btn btn-info" style="float:right;padding:3px" ng-click="GetCustomers();">New Job</button>
                                             </div>
                                             <div class="portlet box portlet-green" ng-hide="dashboardDS.Table2.length == 0">
                                                 <div class="portlet-header">
-                                                    <div class="caption">Jobs</div>
+                                                    <div class="caption">RFQs</div>
                                                     <div class="tools">
                                                         <span class="badge badge-warning" ng-click="GoToJobsList(a,$event);">{{dashboardDS.Table2.length}}</span>
                                                         <i ng-show="expandJ == false" class="fa fa-chevron-down" ng-click="expandJ = !expandJ"></i>
@@ -311,8 +311,8 @@
                                                 </div>
                                                 <div class="list-group portlet-body slide" ng-show="expandJ" style="padding: 0px;">
                                                     <div class="alert alert-danger slide" ng-show="dashboardDS.Table2.length == 0" style="text-align:center">
-                                                        No Jobs to show
-                                                        <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-newJob" data-toggle="modal" class="btn btn-info" style="float:right;padding:3px" ng-click="GetCustomers();">New Job</button>
+                                                        No RFQs to show
+                                                        <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-newJob" data-toggle="modal" class="btn btn-info" style="float:right;padding:3px" ng-click="GetCustomers();">New RFQ</button>
                                                     </div>
                                                     <a ng-hide="dashboardDS.Table2.length == 0" href="#" ng-click="GoToJobDetails(j.ID)" class="list-group-item " ng-repeat="j in dashboardDS.Table2"
                                                        style="padding:4px">{{j.JobID}}</a>
@@ -391,13 +391,13 @@
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">
                         <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                        <h4 id="modal-header-primary-label" class="modal-title">Add New Job</h4>
+                        <h4 id="modal-header-primary-label" class="modal-title">Add New RFQ</h4>
                     </div>
                     <div class="modal-body" ng-model="newJob">
                         <div class="row mbm">
                             <div class="col-md-12">
                                 <div class="col-md-6">
-                                    <label for="Description" class="col-md-5 control-label" style="color:red;">Job #:<span class='require'>*</span></label>
+                                    <label for="Description" class="col-md-5 control-label" style="color:red;">RFQ #:<span class='require'>*</span></label>
                                     <div class="col-md-6">
                                         <input id="inputJobID" disabled type="text" class="form-control" /><span class="help-block"></span>
                                     </div>
@@ -415,7 +415,7 @@
                         <div class="row mbm margt">
                             <div class="col-md-12">
                                 <div class="col-md-6">
-                                    <label for="selCountry" class="col-md-5 control-label" style="color:red;">Job Status:<span class='require'>*</span></label>
+                                    <label for="selCountry" class="col-md-5 control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
                                     <div class="col-md-6">
                                         <!----select ng-options="dt.Name for dt in DataTypes track by dt.Name" ng-model="dt">-->
                                         <select disabled class="form-control">

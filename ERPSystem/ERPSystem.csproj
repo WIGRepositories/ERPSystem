@@ -191,15 +191,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBScripts\County.sql" />
-    <Content Include="DBScripts\Customers.sql" />
-    <Content Include="DBScripts\DBScripts_Sprocs.sql" />
     <Content Include="DBScripts\DBScripts_Tables.sql" />
-    <Content Include="DBScripts\States.sql" />
-    <Content Include="DBScripts\users.sql" />
+    <Content Include="DBScripts\DBScripts_SP.sql" />
     <Content Include="Login.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="UI\CompletedRFQsList.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
@@ -236,6 +233,9 @@
     <Content Include="UI\Jobs.html" />
     <Content Include="UI\JobsList.html" />
     <Content Include="UI\JobsView.html" />
+    <Content Include="UI\js\adal-angular.js" />
+    <Content Include="UI\js\adal.js" />
+    <Content Include="UI\js\AdalCommon.js" />
     <Content Include="UI\js\angular-route.js" />
     <Content Include="UI\js\angular-sanitize.js" />
     <Content Include="UI\js\AssetDetails.js" />
@@ -278,6 +278,11 @@
     <Content Include="UI\ObjectTypes.html" />
     <Content Include="UI\PPDocuments.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQDetails.html" />
+    <Content Include="UI\RFQDocuments.html" />
+    <Content Include="UI\RFQItem.html" />
+    <Content Include="UI\RFQList.html" />
+    <Content Include="UI\RFQPersonnel.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
     <Content Include="UI\ThirdParty.html" />
@@ -303,6 +308,7 @@
     <Content Include="UI\vendors\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="UI\vendors\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="UI\vendors\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="UI\vendors\holder\holder.js" />
     <Content Include="UI\vendors\iCheck\demo\css\custom.styl" />
     <Content Include="UI\vendors\iCheck\demo\css\montserrat-bold.eot" />
     <Content Include="UI\vendors\iCheck\demo\css\montserrat-bold.ttf" />
@@ -312,8 +318,6 @@
     <Content Include="UI\vendors\iCheck\demo\css\montserrat-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBScripts\Init.sql" />
-    <Content Include="DBScripts\RolesInit.sql" />
     <Content Include="Global.asax" />
     <Content Include="UI\AddNewUser.html" />
     <Content Include="UI\Company.html" />
@@ -514,7 +518,6 @@
     <Content Include="UI\vendors\font-awesome\css\font-awesome.css" />
     <Content Include="UI\vendors\font-awesome\css\font-awesome.min.css" />
     <Content Include="UI\vendors\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="UI\vendors\holder\holder.js" />
     <Content Include="UI\vendors\iCheck\custom.min.js" />
     <Content Include="UI\vendors\iCheck\demo\css\banner.jpg" />
     <Content Include="UI\vendors\iCheck\demo\css\custom.css" />
@@ -651,6 +654,7 @@
     <Content Include="UI\vendors\iCheck\skins\square\yellow.css" />
     <Content Include="UI\vendors\iCheck\skins\square\yellow.png" />
     <Content Include="UI\vendors\jquery-cookie\jquery.cookie.js" />
+    <Content Include="UI\vendors\jquery-news-ticker\jquery.news-ticker.js" />
     <Content Include="UI\vendors\jquery-pace\pace.min.js" />
     <Content Include="UI\vendors\jquery-treetable\javascripts\src\jquery.treetable.js" />
     <Content Include="UI\vendors\jquery-treetable\stylesheets\jquery.treetable.css" />
