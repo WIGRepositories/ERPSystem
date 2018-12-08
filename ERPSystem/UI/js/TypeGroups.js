@@ -2,7 +2,7 @@
 var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner'])
 
 
-var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '$uibModal', 'adalAuthenticationService','$rootScope', function ($scope, $http, $localStorage, $uibModal, $rootScope) {
+var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '$uibModal','$rootScope', function ($scope, $http, $localStorage, $uibModal, $rootScope) {
     if ($localStorage.uname == null) {
        // window.location.href = "../login.html";
     }
