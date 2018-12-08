@@ -1,4 +1,4 @@
-﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ngRoute', 'ui.bootstrap', 'ngSanitize', 'treasure-overlay-spinner'])
+﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ngRoute', 'ui.bootstrap', 'ngSanitize'])
 
 myapp1.animation('.ng-slide-down', function () {
     return {
@@ -52,7 +52,7 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
 
     $scope.ValidateCredentials = function () {
 
-        $rootScope.spinner.on();
+       // $rootScope.spinner.on();
 
         if (userinfor == null) {
           // // window.location.href = "../login.html";

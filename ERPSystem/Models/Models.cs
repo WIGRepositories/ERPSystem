@@ -494,7 +494,7 @@ namespace ERPSystem.Models
         public Asset Asset { get; set; }
 
         public List<Asset> FieldAssetsList { get; set; }
-
+       
         public List<Asset> DocAssetsList { get; set; }
 
         public List<AssetValues> AssetValues { get; set; }
@@ -716,6 +716,28 @@ namespace ERPSystem.Models
     }
 
     public class Customers
+    {
+        public int ID { get; set; }
+        public string Client { get; set; }
+        public string Contact { get; set; }
+
+        public string Email { get; set; }
+
+        public string ContactRole { get; set; }
+
+        public string PhoneNo { get; set; }
+
+
+        public string ServiceDesc { get; set; }
+        public string PTSPOC { get; set; }
+
+        public int PTSPOCId { get; set; }
+
+        public int Active { get; set; }
+
+        public string insupddelflag { get; set; }
+    }
+    public class Suppliers
     {
         public int ID { get; set; }
         public string Client { get; set; }
