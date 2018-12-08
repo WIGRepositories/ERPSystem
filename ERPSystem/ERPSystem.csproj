@@ -219,10 +219,10 @@
     <Content Include="UI\JobPersonnel.html" />
     <Content Include="scripts\cloud.common.js" />
     <Content Include="UI\Alerts.html" />
-    <Content Include="UI\AssetDetails.html" />
+    <Content Include="UI\ItemDetails.html" />
     <Content Include="UI\AssetModelDetails.html" />
-    <Content Include="UI\AssetModels.html" />
-    <Content Include="UI\Assets.html" />
+    <Content Include="UI\ItemType.html" />
+    <Content Include="UI\ItemList.html" />
     <Content Include="UI\AssetsView.html" />
     <Content Include="UI\CompletedJobList.html" />
     <Content Include="UI\css\ng-tree-dnd.css" />
@@ -238,10 +238,10 @@
     <Content Include="UI\JobsView.html" />
     <Content Include="UI\js\angular-route.js" />
     <Content Include="UI\js\angular-sanitize.js" />
-    <Content Include="UI\js\AssetDetails.js" />
-    <Content Include="UI\js\AssetModel.js" />
+    <Content Include="UI\js\ItemDetails.js" />
+    <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\AssetModelDetails.js" />
-    <Content Include="UI\js\Assets.js" />
+    <Content Include="UI\js\ItemList.js" />
     <Content Include="UI\js\AssetsView.js" />
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\Customers.js" />
@@ -281,7 +281,6 @@
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
     <Content Include="UI\ThirdParty.html" />
-    <Content Include="UI\UserDetails.html" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - Web Deploy.pubxml" />
@@ -290,6 +289,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="UI\Content\test1.pdf" />
+    <Content Include="UI\UserDetails.html" />
     <Content Include="UI\vendors\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="UI\vendors\bootstrap\css\bootstrap.css.map" />
     <Content Include="UI\vendors\bootstrap\fonts\glyphicons-halflings-regular.eot" />

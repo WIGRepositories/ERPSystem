@@ -28,6 +28,7 @@ namespace ERPSystem.Controllers
                 cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
                 cmd.CommandText = "GetUsers";
                 cmd.Connection = conn;
+
                 SqlParameter cmpid = new SqlParameter("@cmpId", SqlDbType.Int);
                 cmpid.Value = cmpId;
                 cmd.Parameters.Add(cmpid);
@@ -336,6 +337,9 @@ namespace ERPSystem.Controllers
             // int found = 0;
             return Tbl;
         }
+
+
+
 
         public void Options()
         {

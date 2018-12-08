@@ -1,6 +1,6 @@
 ﻿// JavaScript source code
 //var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'angularFileUpload',  'treasure-overlay-spinner']);
-var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'angularFileUpload', 'AdalAngular']);
+var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'angularFileUpload']);
 
 myapp1.directive("ngFileSelect", function () {
 

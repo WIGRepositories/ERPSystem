@@ -1,4 +1,4 @@
-var myapp1 = angular.module('myApp1', ['ngStorage', 'ngAnimate', 'treasure-overlay-spinner', 'ui.bootstrap'])
+var myapp1 = angular.module('myApp1', ['ngStorage', 'ngAnimate', 'ui.bootstrap'])
 //var myapp1 = angular.module('myApp', ['ngStorage'])
 
 var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $rootScope, $uibModal) {

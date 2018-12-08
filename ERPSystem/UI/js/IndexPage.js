@@ -1,4 +1,4 @@
-﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ngRoute', 'ui.bootstrap', 'ngSanitize', 'treasure-overlay-spinner'])
+﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ngRoute', 'ui.bootstrap', 'ngSanitize'])
 
 myapp1.animation('.ng-slide-down', function () {
     return {
