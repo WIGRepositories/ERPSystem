@@ -13,7 +13,7 @@ namespace ERPSystem.Models
         public string DeliveryTicketId { get; set; }
         public int SequenceNo { get; set; }
         public DateTime? DeliveryDate { get; set; }
-        public DateTime? ReturnDate { get; set; }    
+        public DateTime? ReturnDate { get; set; }
         public int JobID { get; set; }
         public string CoMan { get; set; }
         public string PhoneNo { get; set; }
@@ -26,9 +26,10 @@ namespace ERPSystem.Models
         public int IsVoid { get; set; }
 
         public List<DeliveryTickeItems> DTItems { get; set; }
-        public List<DeliveryTickeItemss> DTpersonnel { get; set; }  
+        public List<DeliveryTickeItemss> DTpersonnel { get; set; }
     }
-    public class DeliveryTickeItemss {
+    public class DeliveryTickeItemss
+    {
         public string Personnelid { get; set; }
         public int SequenceNo { get; set; }
         public string DTId { get; set; }
@@ -37,13 +38,13 @@ namespace ERPSystem.Models
     }
     public class DeliveryTickeItems
     {
-         public string DTId { get; set; }
-         public int seqNo { get; set; }
-         public DateTime? usageDate { get; set; }
+        public string DTId { get; set; }
+        public int seqNo { get; set; }
+        public DateTime? usageDate { get; set; }
         public DateTime? usagDate { get; set; }
         public int AssetId { get; set; }
         public int changedById { get; set; }
-         public string insupddelflag { get; set; }
+        public string insupddelflag { get; set; }
     }
 
     public class locatinlist
@@ -420,10 +421,10 @@ namespace ERPSystem.Models
         public string LostLIHDamaged { get; set; }
         public DateTime? LocationDate { get; set; }
         public string Notes { get; set; }
-        public string  InspectionVendor { get; set; }
+        public string InspectionVendor { get; set; }
         public string MaintenanceVendor { get; set; }
         public string StatusId { get; set; }
-       
+
 
 
     }
@@ -494,7 +495,7 @@ namespace ERPSystem.Models
         public Asset Asset { get; set; }
 
         public List<Asset> FieldAssetsList { get; set; }
-       
+
         public List<Asset> DocAssetsList { get; set; }
 
         public List<AssetValues> AssetValues { get; set; }
@@ -623,7 +624,7 @@ namespace ERPSystem.Models
 
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }
-        
+
         public int createdById { get; set; }
         public int UpdatedById { get; set; }
         public string insupddelflag { get; set; }
@@ -1133,6 +1134,81 @@ namespace ERPSystem.Models
         public string Description { get; set; }
         public string flag { get; set; }
 
+
+    }
+    public class RFQDocs
+    {
+        public int RFQDocsID { get; set; }
+
+        public int DocId { get; set; }
+        public int RFQId { get; set; }
+
+    }
+    public class QuoteRequestDoc
+    {
+        public int QRDocsID { get; set; }
+
+        public int DocId { get; set; }
+        public int QRID { get; set; }
+
+
+    }
+    public class QuoteResponse
+    {
+        public int QuoteResponseID { get; set; }
+        public int RFQDetailID { get; set; }
+        public DateTime ?ReceivedOn { get; set; }
+        public string ReceivedFrom { get; set; }
+        public string IsReplyReceived { get; set; }
+        public int RFQID { get; set; }
+        public int SupplierID { get; set; }
+        public double UnitPrice { get; set; }
+        public double Total { get; set; }
+        public string CommType { get; set; }
+        public string Priority { get; set; }
+        public string IsSelected { get; set; }
+        public string IsApproved { get; set; }
+        public string SentEmailtoCustomer { get; set; }
+        public int QRID { get; set; }
+    
+    }
+    public class RFQEstimation
+    {
+
+        
+        public int RFQEstimationID { get; set; }
+        public int RFQID { get; set; }
+        public int RFQDetailID { get; set; }
+        public int DocID { get; set; }
+        public int QuoteResponseID { get; set; }
+        public int ItemPricingID { get; set; }
+        public int CustomerID { get; set; }
+      
+    }
+    public class ItemPricing
+    {
+
+
+        public int ItemPricingID { get; set; }
+        public int RFQID { get; set; }
+        public int RFQDetailID { get; set; }
+        public int QuoteResponseID { get; set; }
+        public double SupplierUnitPrice { get; set; }
+        public double SupplierTotal { get; set; }
+        public double UnitPriceMargin { get; set; }
+        public double TotalMargin { get; set; }
+    }
+    public class OrderConfirmation
+    {
+
+
+        public int OrderConfirmationID { get; set; }
+        public int RFQID { get; set; }
+        public int CustomerID { get; set; }
+        public DateTime ?ConfirmedOn { get; set; }
+        public string CommType { get; set; }
+        public int Active { get; set; }
+    
 
     }
 }
