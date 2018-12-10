@@ -1,6 +1,6 @@
 
 // JavaScript source code
-var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'angularFileUpload',  'treasure-overlay-spinner']);
+var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap']);
 
 app.directive('file-input', function ($parse) {
     return {
