@@ -1,4 +1,4 @@
-﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner']);
+﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap']);
 
 myapp1.directive('onFinishRender', function ($timeout) {
     return {

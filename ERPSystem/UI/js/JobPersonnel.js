@@ -1,4 +1,4 @@
-﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner']);
+﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap']);
 
 myapp1.directive('onFinishRender', function ($timeout) {
     return {
@@ -13,10 +13,10 @@ myapp1.directive('onFinishRender', function ($timeout) {
     }
 });
 
-var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $rootScope) {
+var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, adalAuthenticationService, $rootScope) {
 
     if ($localStorage.uname == null) {
-       // window.location.href = "../login.html";
+        window.location.href = "../login.html";
     }
     $scope.uname = $localStorage.uname;
     $scope.userdetails = $localStorage.userdetails;
@@ -74,14 +74,4 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $("#example-advanced").treetable({ expandable: true }, true);
     });
 
-    $scope.GoToJobDetails = function (aid) {
-        $localStorage.nJobId = aid;
-        window.location.href = "JobDetails.html";
-    }
-
-
-    $scope.GoToUserDetails = function (userID) {
-        $localStorage.navUserId = userID;
-        window.location.href = "Userdetails.html";
-    }
 });

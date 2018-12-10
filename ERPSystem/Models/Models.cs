@@ -486,6 +486,15 @@ namespace ERPSystem.Models
 
     }
 
+    public class RFQItems
+    {
+        public int Id { get; set; }
+        public string flag { get; set; }
+        public int RFQId { get; set; }
+        public int AssetId { get; set; }
+        public string UserName { get; set; }
+    }
+
     public class AssetHierarchy
     {
 

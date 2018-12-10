@@ -37,13 +37,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.Locations = res.data;
         });
 
-        $http.get('/api/AssetModel/GetAssetModels?locId=-1').then(function (res, data) {
-            $scope.Models = res.data;          
-        });
-
-        $scope.GetJobEquipment();
+        $scope.GetJobPersonnel();
     }
-
     $rootScope.spinner = {
         active: false,
         on: function () {
@@ -56,16 +51,15 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     $rootScope.spinner.on();
 
-    $scope.GetJobEquipment = function () {
+    $scope.GetJobPersonnel = function () {
         var mid = ($scope.s == null) ? -1 : $scope.s.Id;
         var lid = ($scope.l == null) ? -1 : $scope.l.id;
         var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
-        var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
 
-        $http.get('/api/Jobs/GetJobEquipment?locationId=' + lid + '&statusId=' + mid + '&customerId=' + custId + '&AssetModelId=' + modelId).then(function (res, data) {
-            $scope.JobEquipment = res.data;
+        $http.get('/api/Jobs/GetJobPersonnel?locationId=' + lid + '&statusId=' + mid + '&customerId=' + custId).then(function (res, data) {
+            $scope.JobPersonnel = res.data;
             $rootScope.spinner.off();
-            $("#jobequipment-content").show();
+            $("#jobpersonnel-content").show();
         });
     }
 
@@ -85,8 +79,9 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         window.location.href = "JobDetails.html";
     }
 
-    $scope.GotToAssetDetails = function (aid) {
-        $localStorage.assetDetailsId = aid;
-        window.location.href = "AssetDetails.html";
+
+    $scope.GoToUserDetails = function (userID) {
+        $localStorage.navUserId = userID;
+        window.location.href = "Userdetails.html";
     }
 });

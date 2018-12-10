@@ -211,9 +211,6 @@
     <Content Include="UI\images\ees-logo.jpg" />
     <Content Include="UI\images\ees-logo.png" />
     <Content Include="UI\images\pts-white.png" />
-    <Content Include="UI\JobDocuments.html" />
-    <Content Include="UI\JobEquipment.html" />
-    <Content Include="UI\JobPersonnel.html" />
     <Content Include="scripts\cloud.common.js" />
     <Content Include="UI\Alerts.html" />
     <Content Include="UI\ItemDetails.html" />
@@ -230,6 +227,9 @@
     <Content Include="UI\images\PTSImg2.jpg" />
     <Content Include="UI\index.html" />
     <Content Include="UI\JobDetails.html" />
+    <Content Include="UI\JobDocuments.html" />
+    <Content Include="UI\JobEquipment.html" />
+    <Content Include="UI\JobPersonnel.html" />
     <Content Include="UI\Jobs.html" />
     <Content Include="UI\JobsList.html" />
     <Content Include="UI\JobsView.html" />
@@ -244,6 +244,8 @@
     <Content Include="UI\js\ItemList.js" />
     <Content Include="UI\js\AssetsView.js" />
     <Content Include="UI\js\CompletedJobList.js" />
+    <Content Include="UI\js\JobPersonnel%281%29.js" />
+    <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
     <Content Include="UI\js\DataLoad.js" />
@@ -267,6 +269,7 @@
     <Content Include="UI\js\ReportsList.js" />
     <Content Include="UI\js\RoleDetails.js" />
     <Content Include="UI\js\roles.js" />
+    <Content Include="UI\js\testing.js" />
     <Content Include="UI\js\ThirdParty.js" />
     <Content Include="UI\js\TreeView\main.js" />
     <Content Include="UI\js\TreeView\ng-tree-dnd.js" />
@@ -283,10 +286,13 @@
     <Content Include="UI\RFQDocuments.html" />
     <Content Include="UI\RFQItem.html" />
     <Content Include="UI\RFQList.html" />
+    <Content Include="UI\RFQPersonal.html" />
     <Content Include="UI\RFQPersonnel.html" />
+    <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
     <Content Include="UI\Suppliers.html" />
+    <Content Include="UI\Testing.html" />
     <Content Include="UI\ThirdParty.html" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - FTP.pubxml" />
@@ -677,6 +683,7 @@
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />

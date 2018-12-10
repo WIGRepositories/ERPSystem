@@ -1,12 +1,12 @@
 ﻿// JavaScript source code
-var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner']);
+var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'AdalAngular', 'treasure-overlay-spinner']);
 var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal,$filter, $rootScope) {
-    if ($localStorage.uname == null) {
-       // window.location.href = "../login.html";
-    }
-    $scope.uname = $localStorage.uname;
-    $scope.userdetails = $localStorage.userdetails;
-    $scope.isSuperUser = $localStorage.isSuperUser;
+    //if ($localStorage.uname == null) {
+    //   window.location.href = "../login.html";
+    //}
+    //$scope.uname = $localStorage.uname;
+    //$scope.userdetails = $localStorage.userdetails;
+    //$scope.isSuperUser = $localStorage.isSuperUser;
     $scope.CanCreate = 0;
     $scope.selectedvalue = '10';
     $scope.selectgoto = 1;
@@ -16,8 +16,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     var ttloc = '';
     var tlloc = '';
     //$scope.s = ['-1'];
-    $scope.roleLocations = $localStorage.roleLocation;
-    $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
+    //$scope.roleLocations = $localStorage.roleLocation;
+    //$scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
 
     $rootScope.spinner = {
         active: false,

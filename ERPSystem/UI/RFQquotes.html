@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en" ng-app="myApp" ng-controller="myCtrl">
 <head>
-    <title>ERPSystem | Dashboard</title>
+    <title>ERPSystem | RFQ Quotes</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,11 +17,9 @@
     <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">
     <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">
     <link rel="stylesheet" type="text/css" href="css/treasure-overlay-spinner.css">
-
     <link type="text/css" rel="stylesheet" href="vendors/jstree/dist/themes/default/style.min.css">
     <link type="text/css" rel="stylesheet" href="vendors/jquery-treetable/stylesheets/jquery.treetable.css">
     <link type="text/css" rel="stylesheet" href="vendors/jquery-treetable/stylesheets/jquery.treetable.theme.custom.css">
-
     <!--Loading style-->
     <link type="text/css" rel="stylesheet" href="css/themes/style2/iliad-custom.css" id="theme-change" class="style-change color-change">
     <link type="text/css" rel="stylesheet" href="css/style-responsive.css">
@@ -42,7 +40,7 @@
                             <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
-                        <li class="divider"></li>-->
+                                <li class="divider"></li>-->
                                 <li ng-controller="logoutCtrl"><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
                                 <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
@@ -50,7 +48,6 @@
                     </ul>
                 </div>
             </nav>
-
         </div>
         <!--END TOPBAR-->
         <div id="wrapper">
@@ -76,25 +73,29 @@
                                 </i><span class="menu-title">Dashboard</span>
                             </a>
                         </li>
+                        <!--2.Items-->
                         <li>
                             <a href="#">
                                 <i class="fa fa-cubes fa-fw">
                                     <div class="icon-bg bg-pink"></div>
-                                </i><span class="menu-title">Equipment</span><span class="fa arrow"></span>
+                                </i><span class="menu-title">Items</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li ng-hide="isSuperUser == 0">
-                                    <a href="AssetModels.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipment Type</span></a>
+                                    <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
                                 </li>
-                                <li ng-hide="isSuperUser == 0">
-                                    <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
-                                </li>
-                                <li><a href="Assets.html" data-toggle="tooltip" data-placement="right" title="Manage list of equipment across locations"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments List</span></a></li>
+                                <!-- <li ng-hide="isSuperUser == 0">
+                             <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
+                         </li> -->
+
+                                <li><a href="ItemList.html" data-toggle="tooltip" data-placement="right" title="Manage list of equipment across locations"><i class="fa fa-align-left"></i><span class="submenu-title">Item List</span></a></li>
                                 <!--<li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>-->
-                                <li><a href="AssetDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa-cubes"></i><span class="submenu-title">Equipment Details</span></a></li>
+                                <li><a href="ItemDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa-cubes"></i><span class="submenu-title">Item Details</span></a></li>
                             </ul>
                         </li>
-                        <li>
+
+                        <!--3.jobs-->
+                        <li class="active">
                             <a href="#">
                                 <i class="fa fa-list fa-fw">
                                     <div class="icon-bg bg-violet"></div>
@@ -107,12 +108,14 @@
                                 <li><a href="RFQPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all RFQs, by location, customer status"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>RFQ Personnel</a></li>
                                 <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
                                 <li><a href="RFQDocuments.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Documents</a></li>
+                                <li class="active"><a href="RFQquotes.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Quotes</a></li>
                                 <!--<li><a href="Jobs.html"><i class="fa fa-exclamation"></i><span class="submenu-title"></span>Job Alerts</a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-cloud-upload"></i><span class="submenu-title">Job Reports</span></a></li>-->
                             </ul>
                         </li>
 
+                        <!--4.Reports-->
                         <li ng-hide="hidereports=1">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o fa-fw">
@@ -124,6 +127,7 @@
                             </ul>
                         </li>
 
+                        <!--5.user roles-->
                         <li ng-hide="isSuperUser == 0">
                             <a href="#">
                                 <i class="fa fa-group fa-fw">
@@ -136,18 +140,8 @@
                                 <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class=" fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
                             </ul>
                         </li>
-                        <!--<li>
-                     <a href="UI/#">
-                         <i class="fa fa-book fa-fw">
-                             <div class="icon-bg bg-violet"></div>
-                         </i><span class="menu-title">Help</span><span class="fa arrow"></span>
-                     </a>
-                     <ul class="nav nav-second-level">
-                         <li><a href="UI/HelpResources.html"><i class="fa fa-columns"></i><span class="submenu-title"></span>Resources</a></li>
-                         <li><a href="UI/HelpSupport.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Support</a></li>
-                         <li><a href="UI/HelpFAQs.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>FAQs</a></li>
-                     </ul>
-                 </li>-->
+
+                        <!--6.Procedure Document-->
                         <li>
                             <a href="PPDocuments.html" data-toggle="tooltip" data-placement="right" title="Common document repository for documents across company.">
                                 <i class=" fa fa-file-text-o">
@@ -155,6 +149,8 @@
                                 </i><span class="menu-title">Procedure Documents</span>
                             </a>
                         </li>
+
+                        <!--7.administration-->
                         <li>
                             <a href="#">
                                 <i class="fa fa-edit fa-fw">
@@ -163,17 +159,18 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li><a href="TypeGroups.html" data-toggle="tooltip" data-placement="right" title="Common groups used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data Groups</a></li>
-                                <li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>
-                                <li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>
+                                <!--<li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>-->
+                                <!--<li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>-->
                                 <li><a href="Types.html" data-toggle="tooltip" data-placement="right" title="Common data used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data</a></li>
-                                <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>
+                                <!--<li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>-->
                                 <!--<li><a href="ThirdParty.html"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Third Party Resources</a></li>-->
-                                <li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>
+                                <!--<li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>-->
                                 <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
                                 <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
-                                <li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
-                                <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
-                                <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>
+                                <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>
+                                <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
+                        <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
+                        <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
                             </ul>
                         </li>
                     </ul>
@@ -186,17 +183,17 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">RFQ Items</div>
+                            <div class="page-title">RFQ Quotes</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="active">Dashboard</li>
+                            <li class="active"><a href="#">RFQs</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                            <li class="active">RFQ Quotes</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-                    <div class="page-content" id="jobequipment-content" style="display:none;">
+                    <div class="page-content" id="jobequipment-content">
                         <div id="table-action" class="row">
                             <div class="col-lg-12">
                                 <div id="tableactionTabContent" class="tab-content">
@@ -204,61 +201,61 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="table-container">
-                                                    <div class="row mbm">
+                                                    <div class="row">
                                                         <!--<div class="col-md-2 pull-left" style="text-align:left">
-                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" ng-click="setLocation();">New Equipment</button>
-                                                </div>-->
-                                                        <div class="col-md-3">
-                                                            Location: <select ng-options="l.name for l in Locations track by l.id" ng-model="l" ng-change="GetJobEquipment()" style="width:70%">
-                                                                <option value="">All</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-3" style="text-align:left">
-                                                            Customer: <select ng-options="c.Client  for c in Customers track by c.Id" ng-model="c" ng-change="GetJobEquipment()" style="width:60%">
+                                            <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" ng-click="setLocation();">New Equipment</button>
+                                        </div>-->
+                                                        <div class="col-md-2">
+                                                            RFQ: <select ng-options="l.JobID for l in rfqlist track by l.ID" ng-model="l" ng-change="GetJobEquipment()" style="width:60%">
                                                                 <option value="">All</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            RFQ Status: <select ng-options="s.Name for s in jobStatus track by s.Id" ng-model="s" ng-change="GetJobEquipment()" style="width:60%">
+                                                            Status: <select ng-options="s.Name for s in jobStatus track by s.Id" ng-model="s" ng-change="GetJobEquipment()" style="width:50%">
                                                                 <option value="">All</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-md-4" style="text-align:left">
-                                                            Item Type: <select ng-options="e.name for e in Models track by e.id" ng-model="e" ng-change="GetJobEquipment()" style="width:60%">
-                                                                <option value="">Select</option>
-                                                            </select>
+                                                        <div class="col-md-2" style="margin-left:-30px;">
+                                                            From Date: <input id="inputActStartDt" type="date" ng-model="fromdate" class="form-control" style="width:160px;"/>
                                                         </div>
-
-
+                                                       
+                                                        <div class="col-md-1" style="margin-left:-30px;">
+                                                            To Date:                                                               
+                                                            <input id="inputActStartDt" type="date" ng-model="todate" class="form-control" style="width:160px;"/>
+                                                        </div>
+                                                       
+                                                            <button type="button" style="float: right; margin: 25px; width:80px;" class="btn btn-info btn-sm" >Search</button>
+                                                       
                                                     </div>
                                                     <div id="treetable-tab" class="tab-pane fade in active">
                                                         <div class="row mbl">
                                                             <div class="col-lg-12">
-                                                                <h4>List of all RFQs and their equipment </h4>
-
+                                                                <h4>List of all Products and their Suppliers </h4>
                                                                 <table id="example-advanced">
                                                                     <!--<caption class="mbl mtl"><a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>&nbsp; | &nbsp;<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a></caption>-->
                                                                     <thead>
                                                                         <tr ng-hide="JobEquipment.length == 0">
-                                                                            <th>RFQ/Item Name</th>
-                                                                            <th>Item Type</th>
-                                                                            <th>Location</th>
-                                                                            <th>Customer</th>
-                                                                            <th>Start Date</th>
-                                                                            <th>Return Date</th>
+                                                                            <th>RFQ</th>
+                                                                            <th>Unit</th>
+                                                                            <th>Unit Price</th>
+                                                                            <th>Tax</th>
+                                                                            <th>Discount</th>
+                                                                            <th>Total</th>
+                                                                            <th>Send Email</th>
+                                                                            <th>Add</th>
                                                                             <!--<th>Update</th>-->
                                                                             <!--<th>Delete</th>-->
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-
                                                                         <tr ng-repeat="a in JobEquipment" data-tt-id="{{a.ID}}" data-tt-parent-id="{{a.ParentId}}" on-finish-render
                                                                             ng-style="(a.IsExpired == '1') ? {'background-color':'#F2DEDE'}:(a.IsExpired == '2') ?{'background-color':'#FCF8E3'}:''">
                                                                             <td>
                                                                                 <span ng-if="a.isDoc == 0" class="folder">
-                                                                                    <a href="JobDetails.html?jobId={{a.ID}}"><font color="blue"> <u> {{a.Name}}</u></font></a>
+                                                                                    <a href="#"><font color="blue"> <u> {{a.JobID}}</u></font></a>
                                                                                 </span>
-                                                                                <span ng-if="a.isDoc == 1" class="fa fa-cubes"><a href="AssetDetails.html?assetId={{a.AssetId}}"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 1" class="folder"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>
                                                                             </td>
                                                                             <td>{{a.eType}}</td>
                                                                             <td>{{a.location}}</td>
@@ -266,26 +263,87 @@
                                                                             <td><span ng-if="a.isDoc == 1">{{a.fromdate | date:'MM-dd-yyyy'}}</span></td>
                                                                             <td><span ng-if="a.isDoc == 1">{{a.todate | date:'MM-dd-yyyy'}}</span></td>
                                                                             <!--<td>
-                                                                        <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCompany(T);" ng-if="a.isDoc == 1">
-                                                                            <i class="fa fa-edit"></i>&nbsp;
-                                                                            Preview
-                                                                        </button>
-                                                                    </td>-->
-                                                                            <!--<td>
-                                                                        <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCompany(T);" ng-if="a.isDoc == 1">
-                                                                            <i class="fa fa-edit"></i>&nbsp;
-                                                                            Preview
-                                                                        </button>
-                                                                    </td>-->
-
+                                                                <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCompany(T);" ng-if="a.isDoc == 1">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                    Preview
+                                                                </button>
+                                                            </td>-->
+                                                            <td>
+                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.isDoc == 0">                                                                   
+                                                                    Send
+                                                                </button>
+                                                            </td>
+                                                                <td>
+                                                                    <button type="button" data-toggle="modal" data-target="#Modal-header-suppliers" class="btn-default" style="width:20px;" ng-if="a.isDoc == 1">
+                                                                        +
+                                                                    </button>
+                                                                </td>
                                                                         </tr>
-
                                                                     </tbody>
                                                                 </table>
+                                                                <div class="form-actions">
+                                                                    <div style="text-align:center">
+                                                                        <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddCust();">Save</button>
+                                                                        <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Modal-header-suppliers" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header modal-header-primary">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Enquiry</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-6">
+                                                        Name:<select ng-options="Cust.JobID for Cust in rfqlist track by Cust.ID" ng-model="cc" style="width:60%" ng-change="GetRFQPersonnal(cc)">
+                                                            <option value="">All</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <table class="table table-bordered" style="background-color: white;">
+                                                        <thead>
+                                                            <tr style="height:50px">
+                                                                <th width="50%" style="text-align:center;">
+                                                                    <input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetCustlist()"/>
+                                                                Select All</th>
+                                                                <th style="text-align:center;">Item</th>                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="a in custlist">
+                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)"/></td>
+                                                                <td style="text-align:center;">
+                                                                    {{a.UserName}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>                                                        
+                                                    </table>
+                                                    <div class="form-actions">
+                                                        <div style="text-align:center">
+                                                            <button class="btn btn-green" ng-click="AddCust();">Save</button>
+                                                            <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -301,8 +359,7 @@
                     <!--END PAGE WRAPPER-->
                 </div>
             </treasure-overlay-spinner>
-
-</div>
+        </div>
     </div>
     <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1055">
         <div class="modal-header">
@@ -340,37 +397,39 @@
     <script src="vendors/jquery-pace/pace.min.js"></script>
     <script src="vendors/holder/holder.js"></script>
     <script src="vendors/responsive-tabs/responsive-tabs.js"></script>
-
-    <!--<script src="vendors/jstree/dist/jstree.min.js"></script>
-    <script src="vendors/jquery-treetable/javascripts/src/jquery.treetable.js"></script>
-    <script>-->
+    <script src="vendors/jstree/dist/jstree.min.js"></script>
+    <script src="vendors/jquery-treetable/javascripts/src/jquery.treetable.js"></script>   
+    <script>
         $("#example-advanced tbody").on("mousedown", "tr", function () {
             $(".selected").not(this).removeClass("selected");
             $(this).toggleClass("selected");
         });
     </script>
     <!--LOADING SCRIPTS FOR PAGE-->
-
     <script src="js/index.js"></script>
     <!--CORE JAVASCRIPT-->
     <script src="js/main.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
     <script src="js/ngStorage.js"></script>
-    <!--<script src="js/TreeView/nd.js"></script>-->
-    <!--<script src="js/TreeView/nd.js"></script>-->
+    <!--<script src="js/TreeView/nd.js"></script>
+    <script src="js/TreeView/nd.js"></script>-->
     <!--<script src="js/JobEquipment.js"></script>-->
 
-    <script src="js/JobEquipment.js"></script>
+    <script src="js/RFQquotes.js"></script>
 
-
-
-    <!--<script src="js/adal.js"></script>
+    <script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>
     <script src="js/AdalCommon.js"></script>
     <script src="js/angular-animate.js"></script>
     <script src="js/treasure-overlay-spinner.js"></script>
-     AI CORE JAVASCRIPT 
-    <script src="/scripts/cloud.common.js"></script>-->
+    <script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $('.datepicker-filter').datepicker({
+            autoclose: true
+        });
+    </script>
+     <!--AI CORE JAVASCRIPT-->
+    <script src="/scripts/cloud.common.js"></script>
 </body>
 </html>
