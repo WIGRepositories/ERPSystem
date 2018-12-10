@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="DBScripts\DBScripts_Tables.sql" />
     <Content Include="DBScripts\DBScripts_SP.sql" />
+    <Content Include="DBScripts\users.sql" />
     <Content Include="Login.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
@@ -677,6 +678,12 @@
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\OrderConfirmationDocsController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
+    <Compile Include="Controllers\QuoteRequestController.cs" />
+    <Compile Include="Controllers\ShippingOrderController.cs" />
+    <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
@@ -689,8 +696,8 @@
     <Compile Include="Controllers\ObjectTypesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
+    <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
-    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

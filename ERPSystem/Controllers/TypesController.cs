@@ -239,17 +239,17 @@ namespace ERPSystem.Controllers
         {
             DataTable Tbl = new DataTable();
             //connect to database
-                SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPSystem"].ToString();
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetStates";
-                cmd.Connection = conn;
-                            
-                SqlDataAdapter db = new SqlDataAdapter(cmd);
-                db.Fill(Tbl);
-             
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "GetStates";
+            cmd.Connection = conn;
+
+            SqlDataAdapter db = new SqlDataAdapter(cmd);
+            db.Fill(Tbl);
+
             return Tbl;
         }
 

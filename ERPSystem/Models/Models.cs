@@ -8,6 +8,7 @@ namespace ERPSystem.Models
 {
     public class DeliveryTicket
     {
+        internal object DID;
 
         public int Id { get; set; }
         public string DeliveryTicketId { get; set; }
@@ -26,7 +27,9 @@ namespace ERPSystem.Models
         public int IsVoid { get; set; }
 
         public List<DeliveryTickeItems> DTItems { get; set; }
-        public List<DeliveryTickeItemss> DTpersonnel { get; set; }  
+        public List<DeliveryTickeItemss> DTpersonnel { get; set; }
+        public object OID { get; internal set; }
+        public object CID { get; internal set; }
     }
     public class DeliveryTickeItemss {
         public string Personnelid { get; set; }
@@ -1135,4 +1138,142 @@ namespace ERPSystem.Models
 
 
     }
+    public class OrderConfirmationDocs
+    {
+
+        public int OrderConfirmationDocsID { set; get; }
+
+        public int OrderConfirmationID { set; get; }
+        public int DocID { set; get; }
+     }
+
+
+    public class PurchaseOrder
+    {
+
+        public int PurchaseOrderID { set; get; }
+
+        public int RFQID { set; get; }
+
+        public int RFQDetailID { set; get; }
+
+        
+
+        public int SupplierID { set; get; }
+
+
+        public string RFQEstimation { set; get; }
+
+        public DateTime ?Date { set; get; }
+        public DateTime ?Time { set; get; }
+
+        public DateTime EstimatedStart { set; get; }
+
+        public DateTime EstimatedEnd { set; get; }
+        public int Active { set; get; }
+
+
+
+    }
+    public class SupplierInvoice
+    {
+
+        public int SupplierInvoiceID { set; get; }
+        public int RFQID { set; get; }
+        public int RFQDetailID { set; get; }
+        
+        public int SupplierID { set; get; }
+        public DateTime Date { set; get; }
+        public DateTime Time { set; get; }
+        public string CommType { set; get; }
+        public int DocID { set; get; }
+    }
+
+
+    public class ShippingOrder
+    {
+   
+
+        public int ShippingOrderID { set; get; }
+
+        public int SupplierInvoiceID { set; get; }
+
+        public string FromAddress { set; get; }
+
+        public string ToAddress { set; get; }
+
+        public DateTime Date { set; get; }
+
+        public DateTime Time { set; get; }
+
+        public DateTime ArrivedOn { set; get; }
+
+        public DateTime DeliveredOn { set; get; }
+        public int RFQID { set; get; }
+
+        public int Active { set; get; }
+
+    }
+    public class TransactionMaster
+    {
+
+        public int TransactionMasterID { set; get; }
+
+        public double Amount { set; get; }
+
+        public string Type { set; get; }
+
+        public string RFQDetail { set; get; }
+        public int RFQID { set; get; }
+        public int Active { set; get; }
+        }
+
+    public class Paymentmodel
+
+    {
+        public int PaymentID { set; get; }
+
+        public int InvoiceID { set; get; }
+
+        public int SupplierID { set; get; }
+
+        public double Amount { set; get; }
+        public string ModeofPayment { set; get; }
+        public DateTime ?Date { set; get; }
+        public DateTime ?Time { set; get; }
+        public string ReceiptDoc { set; get; }
+        public string PaymentVoucher { set; get; }
+        public string Status { set; get; }
+    }
+
+
+
+
+    public class QuoteRequest
+
+    {
+        public int RFQDetailID { set; get; }
+
+        public string SentOn { set; get; }
+
+        public string SentTo { set; get; }
+
+        public string IsReplyReceived { set; get; }
+        public DateTime  ?ReceivedOn { set; get; }
+        public int RFQID { set; get; }
+        public int SupplierID { set; get; }
+        public double UnitPrice { set; get; }
+        public double Total { set; get; }
+        public string CommType { set; get; }
+        public string Priority { set; get; }
+        public string IsSelected { set; get; }
+        public string IsApproved { set; get; }
+        public string SentEmailtoCustomer { set; get; }
+        public int DocID { set; get; }
+
+    }
+
+
+
+
 }
