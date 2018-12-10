@@ -14,7 +14,7 @@ namespace ERPSystem.Models
         public string DeliveryTicketId { get; set; }
         public int SequenceNo { get; set; }
         public DateTime? DeliveryDate { get; set; }
-        public DateTime? ReturnDate { get; set; }    
+        public DateTime? ReturnDate { get; set; }
         public int JobID { get; set; }
         public string CoMan { get; set; }
         public string PhoneNo { get; set; }
@@ -31,7 +31,8 @@ namespace ERPSystem.Models
         public object OID { get; internal set; }
         public object CID { get; internal set; }
     }
-    public class DeliveryTickeItemss {
+    public class DeliveryTickeItemss
+    {
         public string Personnelid { get; set; }
         public int SequenceNo { get; set; }
         public string DTId { get; set; }
@@ -40,13 +41,13 @@ namespace ERPSystem.Models
     }
     public class DeliveryTickeItems
     {
-         public string DTId { get; set; }
-         public int seqNo { get; set; }
-         public DateTime? usageDate { get; set; }
+        public string DTId { get; set; }
+        public int seqNo { get; set; }
+        public DateTime? usageDate { get; set; }
         public DateTime? usagDate { get; set; }
         public int AssetId { get; set; }
         public int changedById { get; set; }
-         public string insupddelflag { get; set; }
+        public string insupddelflag { get; set; }
     }
 
     public class locatinlist
@@ -423,10 +424,10 @@ namespace ERPSystem.Models
         public string LostLIHDamaged { get; set; }
         public DateTime? LocationDate { get; set; }
         public string Notes { get; set; }
-        public string  InspectionVendor { get; set; }
+        public string InspectionVendor { get; set; }
         public string MaintenanceVendor { get; set; }
         public string StatusId { get; set; }
-       
+
 
 
     }
@@ -497,7 +498,7 @@ namespace ERPSystem.Models
         public Asset Asset { get; set; }
 
         public List<Asset> FieldAssetsList { get; set; }
-       
+
         public List<Asset> DocAssetsList { get; set; }
 
         public List<AssetValues> AssetValues { get; set; }
@@ -626,7 +627,7 @@ namespace ERPSystem.Models
 
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }
-        
+
         public int createdById { get; set; }
         public int UpdatedById { get; set; }
         public string insupddelflag { get; set; }
