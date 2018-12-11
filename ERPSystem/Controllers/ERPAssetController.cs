@@ -93,7 +93,7 @@ namespace ERPSystem.Controllers
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    
+                    itemsList.Append(m.des);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
@@ -150,5 +150,77 @@ namespace ERPSystem.Controllers
                         #endregion send email with details
 
         }
+
+        [HttpPost]
+        [Route("api/ERPAsset/PaySupplier")]
+        public void PaySupplier(PaySupplier ps)
+        {
+
+            #region send email with details
+
+            try
+            {
+                string emailaddress =ps.email;
+                string customer = ps.customername;
+
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Payment Invoice:" + customer;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment("D:\\tt.txt"));
+                StringBuilder itemsList = new StringBuilder();
+                DateTime dtime = DateTime.Now;
+                dtime.AddDays(5);
+
+               
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4> Payment Invoice</h4>
+                                                <span>Please find the attachment of Payment Invoice</span>
+                                                   <p> Thank You,</p>
+                                                    <p> Sales Manager of  TSOM,</p>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+
+            }
+
+            //update if email is sent
+
+            #endregion send email with details
+
+        }
+
+
     }
 }
