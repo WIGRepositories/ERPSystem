@@ -14,7 +14,7 @@ namespace ERPSystem.Controllers
     public class PurchaseOrderControllerController : ApiController
     {
         [HttpGet]
-        [Route("api/PurchaseOrder/SaveLocationsimport")]
+        [Route("api/PurchaseOrder/Getdata")]
 
         public DataTable PurchaseOrderController()
         {
@@ -29,7 +29,7 @@ namespace ERPSystem.Controllers
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spPurchaseOrder";
+                cmd.CommandText = "spGetPurchaseOrder";
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
@@ -44,7 +44,7 @@ namespace ERPSystem.Controllers
 
 
         [HttpPost]
-        [Route("api/PurchaseOrder/SaveLocationsimport1")]
+        [Route("api/PurchaseOrder/SaveLocations")]
 
         public DataTable PurchaseOrderController1(PurchaseOrder K)
         {
@@ -62,6 +62,10 @@ namespace ERPSystem.Controllers
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spPurchaseOrder";
+
+                SqlParameter fl = new SqlParameter("@flag", SqlDbType.VarChar);
+                fl.Value = K.flag;
+                cmd.Parameters.Add(fl);
 
                 SqlParameter PID = new SqlParameter("@PurchaseOrderID", SqlDbType.Int);
                 PID.Value = K.PurchaseOrderID;
@@ -103,10 +107,6 @@ namespace ERPSystem.Controllers
                 SqlParameter ac = new SqlParameter("@Active", SqlDbType.Int);
                 ac.Value = K.Active;
                 cmd.Parameters.Add(ac);
-
-
-
-
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
