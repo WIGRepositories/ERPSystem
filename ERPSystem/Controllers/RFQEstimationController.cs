@@ -27,7 +27,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spRFQEstimation1";
+                cmd.CommandText = "getRFQEstimation";
                 cmd.Connection = conn;
 
                 SqlDataAdapter db = new SqlDataAdapter(cmd);

@@ -22,7 +22,7 @@
 
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl" ng-init="GetCustomers();">
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="getCustomers();">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -215,10 +215,14 @@
                                                 <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                     <thead>
                                                         <tr>
-                                                            <th>Client</th>
-                                                            <th>Contact</th>
-                                                            <th>Phone No</th>
-                                                            <th>Email</th>
+                                                            <th>CustomerID</th>
+                                                            <th>CustomerName</th>
+                                                            <th>CustomerCode</th>
+                                                            <th>CustomerAddress</th>
+                                                            <th>CustomerContact1</th>
+                                                            <th>CustomerContact2</th>
+                                                            <th>CustomerEmail</th>
+                                                            <th>Active</th>
                                                             <!--<th>Contact Role</th>
                                                     <th>Service Description</th>
                                                     <th>PTS POC</th>-->
@@ -228,10 +232,14 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr ng-repeat="T in Customers" class="gradeA">
-                                                            <td>{{T.Client}}</td>
-                                                            <td>{{T.Contact}}</td>
-                                                            <td>{{T.PhoneNo}}</td>
-                                                            <td>{{T.Email}}</td>
+                                                            <td>{{T.CustomerID}}</td>
+                                                            <td>{{T.CustomerName}}</td>
+                                                            <td>{{T.CustomerCode}}</td>
+                                                            <td>{{T.CustomerAddress}}</td>
+                                                            <td>{{T.CustomerContact1}}</td>
+                                                            <td>{{T.CustomerContact2}}</td>
+                                                            <td>{{T.CustomerEmail}}</td>
+                                                            <td>{{T.Active}}</td>
                                                             <!--<td>{{T.ContactRole}}</td>
                                                     <td>{{T.ServiceDescription}}</td>
                                                     <td>{{T.PTSPOC}}</td>-->
@@ -362,73 +370,90 @@
                 </div>
                 <div class="modal-body" ng-model="Customer">
                     <div class="row">
-
-                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Client<span class='require'>*</span>:</label>
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Client" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-
-
-                    <div class="row">
-                        <label for="Name" class="col-md-3 control-label"> Contact:</label>
-
-
+                        <label for="ID" class="col-md-3 control-label"> ID:</label>
                         <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.Contact" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-                    <div class="row">
 
-                        <label for="PhoneNo" class="col-md-3 control-label"> Phone No:</label>
+                        <div class="row">
 
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.PhoneNo" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-                    <div class="row">
-
-                        <label for="Email" class="col-md-3 control-label"> Email Address:</label>
-
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Email" class="form-control" /><span class="help-block"></span></div>
-                        <label style="color:red;margin-top:6px;">{{mssg}}</label>
-                    </div>
-
-                    <!--<div class="row">
-
-                        <label for="LocaitonID" class="col-md-3 control-label">Contact Role:</label>
-
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ContactRole" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-
-                    <div class="row">
-
-                        <label for="LocaitonID" class="col-md-3 control-label">Service Description:</label>
-
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-                    <div class="row">
-
-                        <label for="Description" class="col-md-3 control-label">PTS POC:</label>
-
-                        <div class="col-md-6">
-                            <select ng-options="ju.Name for ju in Users track by ju.Id" ng-model="ju" style="width:100%">
-                                <option value="">Select PTS POC</option>
-                            </select>
+                            <label for="CustomerName" class="col-md-3 control-label" style="color:red;">CustomerName:<span class='require'>*</span>:</label>
+                            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.CustomerName" class="form-control" /><span class="help-block"></span></div>
                         </div>
-                    </div>-->
-                    <div class="row">
-                        <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
 
-                        <div class="col-md-6">
 
-                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive1" ng-model="Customeract" ng-true-value="1" ng-false-value="0"  />
+                        <div class="row">
+                            <label for="Name" class="col-md-3 control-label"> Customer Code:</label>
 
+
+                            <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.CustomerCode" class="form-control" /><span class="help-block"></span></div>
+                        </div>
+                        <div class="row">
+
+                            <label for="CustomerAddress" class="col-md-3 control-label" style="color:red;"> CustomerAddress:<span class='require'>*</span>:</label>
+                            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.CustomerAddress" class="form-control" /><span class="help-block"></span></div>
+                        </div>
+                        <div class="row">
+
+                            <label for="PhoneNo" class="col-md-3 control-label"> Customer Contact1:</label>
+
+                            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.CustomerContact1" class="form-control" /><span class="help-block"></span></div>
+                        </div>
+
+                        <div class="row">
+
+                            <label for="PhoneNo" class="col-md-3 control-label"> Customer Contact2:</label>
+
+                            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.CustomerContact2" class="form-control" /><span class="help-block"></span></div>
+                        </div>
+
+                        <div class="row">
+
+                            <label for="Email" class="col-md-3 control-label"> Customer Email:</label>
+
+                            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.CustomerEmail" class="form-control" /><span class="help-block"></span></div>
+                            <label style="color:red;margin-top:6px;">{{mssg}}</label>
+                        </div>
+                      
+                        <!--<div class="row">
+
+            <label for="LocaitonID" class="col-md-3 control-label">Contact Role:</label>
+
+            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ContactRole" class="form-control" /><span class="help-block"></span></div>
+        </div>
+
+        <div class="row">
+
+            <label for="LocaitonID" class="col-md-3 control-label">Service Description:</label>
+
+            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
+        </div>
+        <div class="row">
+
+            <label for="Description" class="col-md-3 control-label">PTS POC:</label>
+
+            <div class="col-md-6">
+                <select ng-options="ju.Name for ju in Users track by ju.Id" ng-model="ju" style="width:100%">
+                    <option value="">Select PTS POC</option>
+                </select>
+            </div>
+        </div>-->
+                        <div class="row">
+                            <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
+
+                            <div class="col-md-6">
+
+                                <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive1" ng-model="Customeract" ng-true-value="1" ng-false-value="0" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <div style="text-align:center">
+                                <button ng-disabled="isSuperUser == 0" class="btn btn-primary" type="button" ng-click="saveNew(Customer);">Save</button>
+                                <button data-dismiss="modal" class="btn btn-default">Cancel</button>
+
+                            </div>
                         </div>
                     </div>
-
-                    <div class="form-actions">
-                        <div style="text-align:center">
-                            <button ng-disabled="isSuperUser == 0" class="btn btn-primary" type="button" ng-click="saveNew(Customer);">Save</button>
-                            <button data-dismiss="modal" class="btn btn-default">Cancel</button>
-
-                        </div>
-                    </div>
-                </div>
             </div>
 
 

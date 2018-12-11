@@ -1,14 +1,14 @@
 ﻿// JavaScript source code
-var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner']);
+var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'treasure-overlay-spinner', 'AdalAngular']);
 var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $rootScope) {
-    if ($localStorage.uname == null) {
-       // window.location.href = "../login.html";
-    }
-    $scope.uname = $localStorage.uname;
-    $scope.userdetails = $localStorage.userdetails;
-    $scope.isSuperUser = $localStorage.isSuperUser;
+   // if ($localStorage.uname == null) {
+   //    // window.location.href = "../login.html";
+   // }
+   // $scope.uname = $localStorage.uname;
+   // $scope.userdetails = $localStorage.userdetails;
+   // $scope.isSuperUser = $localStorage.isSuperUser;
 
-   $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
+   //$scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
                     
     $scope.CInit = function () {
         $scope.Customeract = 1;
@@ -22,11 +22,11 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             this.active = false;
         }
     }
-    $rootScope.spinner.on();
-    $scope.GetCustomers = function () {      
+   // $rootScope.spinner.on();
+    $scope.getCustomers = function () {
         $http.get('/api/Customers/getCustomers').then(function (res, data) {
             $scope.Customers = res.data;
-            $rootScope.spinner.off();
+           // $rootScope.spinner.off();
             $("#customers-content").show();
         });
 
@@ -47,12 +47,12 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
       
         var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (customer.PhoneNo != null && customer.PhoneNo != "") {
-            if ((customer.PhoneNo).match(phoneformat)) {
+        if (customer.CustomerContact1 != null && customer.CustomerContact1 != "") {
+            if ((customer.CustomerContact1).match(phoneformat)) {
                 $scope.phonevalid = '';
             }
             else {
-                if ((customer.PhoneNo).match(/^\d{10}$/)) {
+                if ((customer.CustomerContact1).match(/^\d{10}$/)) {
                     $scope.phonevalid = '';
                 }
                 else {
@@ -64,22 +64,22 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         
 
-        if (customer.Client == null) {
+        if (customer.CustomerName == null) {
             alert('Please enter client name.');
             return;
         }
-        if (customer.Client == "") {
+        if (customer.CustomerName == "") {
             alert('Please enter client name.');
-            $scope.GetCustomers();
+            $scope.getCustomers();
             return;
         }
 
         var SelCustomer = {
-            Client: customer.Client,
-            Contact: customer.Contact,
-            Email: customer.Email,
-            ContactRole: customer.ContactRole,
-            PhoneNo: customer.PhoneNo,
+            CustomerID: customer.CustomerID,
+            CustomerName: customer.CustomerName,
+            CustomerCode: customer.CustomerCode,
+            CustomerAddress: customer.CustomerAddress,
+            CustomerContact1: customer.CustomerContact1,
             ServiceDesc: customer.ServiceDesc,
             PTSPOCId: ($scope.poc == null) ? null : $scope.poc.Id,
             Active: (customer.act == null) ? 0 : customer.act,
@@ -89,14 +89,14 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var req = {
             method: 'POST',
-            url: '/api/Customers/saveCustomers',
+            url: '/api/Customers/postCustomers',
             //headers: {
             //    'Content-Type': undefined
             data: SelCustomer
         }
         $http(req).then(function (response) {
             //$scope.showDialog("Saved successfully!");
-            $scope.GetCustomers();
+            $scope.getCustomers();
             $scope.Customers1 = null;
 
         }, function (errres) {
@@ -104,7 +104,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             var errmssg = "";
             errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
             $scope.showDialog1(errmssg);
-            $scope.GetCustomers();
+            $scope.getCustomers();
             $scope.Customers1 = null;
         });
 
@@ -120,12 +120,12 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
 
         var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (customer.PhoneNo != null && customer.PhoneNo != "") {
-            if ((customer.PhoneNo).match(phoneformat)) {
+        if (customer.CustomerContact1 != null && customer.CustomerContact1 != "") {
+            if ((customer.CustomerContact1).match(phoneformat)) {
                 $scope.phonevalid = '';
             }
             else {
-                if ((customer.PhoneNo).match(/^\d{10}$/)) {
+                if ((customer.CustomerContact1).match(/^\d{10}$/)) {
                     $scope.phonevalid = '';
                 }
                 else {
@@ -134,16 +134,16 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 }
             }
         }
-        if (customer.Client == null) {
+        if (customer.CustomerName == null) {
             alert('Please enter client name.');
             return;
         }
 
         var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
-        if (customer.Email)
+        if (customer.CustomerEmail)
         {            
-            if (reg.test(customer.Email) == false) {
+            if (reg.test(customer.CustomerEmail) == false) {
                 // alert('Please enter valid email address.');
                 $scope.mssg = 'Enter Valid Email Id.';
                 return false;
@@ -165,14 +165,14 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var req = {
             method: 'POST',
-            url: '/api/Customers/saveCustomers',
+            url: '/api/Customers/postCustomers',
             //headers: {
             //    'Content-Type': undefined
             data: SelCustomer
         }
         $http(req).then(function (response) {
             //$scope.showDialog("Saved successfully!");
-            $scope.GetCustomers();
+            $scope.getCustomers();
             $scope.Customer = null;
             $scope.ju = null;
             $scope.mssg = null;
@@ -183,7 +183,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
             $scope.showDialog1(errmssg);
             $('#Modal-header-new').modal('hide');
-            $scope.GetCustomers();
+            $scope.getCustomers();
             $scope.Customer = null;
             $scope.mssg = null;
         });

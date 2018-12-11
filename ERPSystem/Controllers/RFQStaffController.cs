@@ -10,11 +10,12 @@ using System.Web.Http;
 
 namespace ERPSystem.Controllers
 {
-    public class OrderConfirmationController : ApiController
+    public class RFQStaffController : ApiController
     {
-        [Route("api/OrderConfirmation/getOrderConfirmation")]
+
+        [Route("api/RFQStaff/getRFQStaff")]
         [HttpGet]
-        public DataTable getOrderConfirmation()
+        public DataTable getRFQStaff()
         {
             DataTable dt = new DataTable();
             try
@@ -27,7 +28,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "getOrderConfirmation";
+                cmd.CommandText = "getRFQStaff";
                 cmd.Connection = conn;
 
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
@@ -44,9 +45,9 @@ namespace ERPSystem.Controllers
 
             return dt;
         }
-        [Route("api/OrderConfirmation/postOrderConfirmation")]
+        [Route("api/RFQStaff/postRFQStaff")]
         [HttpPost]
-        public DataTable postOrderConfirmation(OrderConfirmation cus)
+        public DataTable postRFQStaff(RFQStaff cus)
         {
 
             DataTable dt = new DataTable();
@@ -59,35 +60,35 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spOrderConfirmation";
+                cmd.CommandText = "spRFQStaff";
                 cmd.Connection = conn;
                 conn.Open();
 
 
-                SqlParameter Gid = new SqlParameter("@OrderConfirmationID", SqlDbType.Int);
-                Gid.Value = cus.OrderConfirmationID;
+                SqlParameter Gid = new SqlParameter("@RFQStaffID", SqlDbType.Int);
+                Gid.Value = cus.RFQStaffID;
                 cmd.Parameters.Add(Gid);
 
                 SqlParameter Gid1 = new SqlParameter("@RFQID", SqlDbType.Int);
                 Gid1.Value = cus.RFQID;
                 cmd.Parameters.Add(Gid1);
 
-                SqlParameter Gid2 = new SqlParameter("@CustomerID", SqlDbType.Int);
-                Gid2.Value = cus.CustomerID;
+                SqlParameter Gid2 = new SqlParameter("@RFQDetailID", SqlDbType.Int);
+                Gid2.Value = cus.RFQDetailID;
                 cmd.Parameters.Add(Gid2);
 
-                SqlParameter Gid3 = new SqlParameter("@ConfirmedOn", SqlDbType.DateTime);
-                Gid3.Value = cus.ConfirmedOn;
+
+                SqlParameter Gid3 = new SqlParameter("@UserID", SqlDbType.Int);
+                Gid3.Value = cus.UserID;
                 cmd.Parameters.Add(Gid3);
 
-                SqlParameter Gid5 = new SqlParameter("@CommType", SqlDbType.VarChar);
-                Gid5.Value = cus.CommType;
+                SqlParameter Gid4 = new SqlParameter("@UserType", SqlDbType.VarChar);
+                Gid4.Value = cus.UserType;
+                cmd.Parameters.Add(Gid4);
+
+                SqlParameter Gid5 = new SqlParameter("@Active", SqlDbType.Int);
+                Gid5.Value = cus.Active;
                 cmd.Parameters.Add(Gid5);
-
-                SqlParameter Gid6 = new SqlParameter("@Active", SqlDbType.Int);
-                Gid6.Value = cus.Active;
-                cmd.Parameters.Add(Gid6);
-
 
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
                 db.Fill(dt);
@@ -101,3 +102,5 @@ namespace ERPSystem.Controllers
         }
     }
 }
+    
+

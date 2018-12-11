@@ -27,7 +27,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spQuoteRequestDocs1";
+                cmd.CommandText = "getQuoteRequestDocs";
                 cmd.Connection = conn;
 
                 SqlDataAdapter db = new SqlDataAdapter(cmd);

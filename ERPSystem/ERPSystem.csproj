@@ -677,10 +677,19 @@
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\CustomerQuoteController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ItemPricingController.cs" />
+    <Compile Include="Controllers\OrderConfirmationController.cs" />
+    <Compile Include="Controllers\QuoteRequestDocsController.cs" />
+    <Compile Include="Controllers\QuoteResponseController.cs" />
+    <Compile Include="Controllers\RFQDocsController.cs" />
+    <Compile Include="Controllers\RFQEstimationController.cs" />
+    <Compile Include="Controllers\RFQStaffController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
-    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />
@@ -689,8 +698,6 @@
     <Compile Include="Controllers\ObjectTypesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
-    <Compile Include="Controllers\TypeGroupsController.cs" />
-    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

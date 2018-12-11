@@ -718,25 +718,21 @@ namespace ERPSystem.Models
 
     public class Customers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+        public int CustomerID { get; set; }
+        public string CustomerName { get; set; }                                                       
+        public string CustomerCode { get; set; }
 
-        public string Email { get; set; }
+        public string CustomerAddress { get; set; }
 
-        public string ContactRole { get; set; }
+        public string CustomerContact1 { get; set; }
 
-        public string PhoneNo { get; set; }
+        public string CustomerContact2 { get; set; }
 
 
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
+        public string CustomerEmail { get; set; }
         public int Active { get; set; }
 
-        public string insupddelflag { get; set; }
+
     }
     public class Suppliers
     {
@@ -1211,4 +1207,45 @@ namespace ERPSystem.Models
     
 
     }
+    public class Documents
+    {
+
+
+        public int DocID { get; set; }
+        public string Type { get; set; }
+        public string Extension { get; set; }
+        public string Content { get; set; }
+        public DateTime ?Date { get; set; }
+        public DateTime ?Time { get; set; }
+        public string UploadBy { get; set; }
+        public DateTime ?LastUpdatedOn { get; set; }
+    }
+    public class RFQStaff
+    {
+
+
+        public int RFQStaffID { get; set; }
+        public int RFQID { get; set; }
+        public int RFQDetailID { get; set; }
+        public int UserID { get; set; }
+        public string UserType { get; set; }
+        public int Active { get; set; }
+
+
+    }
+    public class CustomerQuote
+    {
+
+
+        public int CQuoteID { get; set; }
+        public int CustomerID { get; set; }
+        public int RFQID { get; set; }
+        public int QuoteResponseID { get; set; }
+        public int DocID { get; set; }
+    }
 }
+
+
+
+
+
