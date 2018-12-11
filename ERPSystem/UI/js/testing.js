@@ -1,16 +1,61 @@
-var myapp1 = angular.module('myApp1', ['ngStorage', 'ngAnimate', 'treasure-overlay-spinner', 'ui.bootstrap'])
+var myapp1 = angular.module('myApp1', ['ngStorage', 'ngAnimate', 'ui.bootstrap'])
 //var myapp1 = angular.module('myApp', ['ngStorage'])
 
 var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $rootScope, $uibModal) {
-
-    $rootScope.spinner = {
-        active: false,
-        on: function () {
-            this.active = true;
-        },
-        off: function () {
-            this.active = false;
+    var tarr = [];
+    $scope.selArr = new Array();
+    //$rootScope.spinner = {
+    //    active: false,
+    //    on: function () {
+    //        this.active = true;
+    //    },
+    //    off: function () {
+    //        this.active = false;
+    //    }
+    //}
+    $scope.GetCustomer = function () { 
+    $http.get('/api/Customers/getCustomers').then(function (res, data) {
+        $scope.Customers = res.data;
+        //$rootScope.spinner.off();
+        //$("#customers-content").show();
+    });
+    
+    $http.get('/api/ERPAsset/GetERPAsset').then(function (res, data) {
+        $scope.Equipement = res.data;
+        //$rootScope.spinner.off();
+        //$("#customers-content").show();
+    });
+    }
+    $scope.SetData = function (b) {
+        $scope.selArr.push(b);
+    }
+    $scope.SendMail = function () {
+        if ($scope.Email == null) {
+            alert("Plese Enter Email Id.");
+            return;
         }
+        if ($scope.Cust.Client == null) {
+            alert("Plese Select Customer.");
+            return;
+        }
+        for(var i=0;i<$scope.selArr.length;i++){
+            $scope.selArr[i].Email = $scope.Email;
+            $scope.selArr[i].customerid = $scope.Cust.Client;
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/SendMain',
+            data: $scope.selArr
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Enquiry Sucessfully Sent");
+            $('#Modal-header-new').modal('hide');
+            $scope.Email = "";
+        });
+
+
     }
 
     $scope.save = function (type) {
@@ -34,9 +79,6 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             alert("Updated Password Successfully");
         })
     }
-
-
-
     $scope.Signin = function () {
 
         var u = $scope.UserName;
@@ -126,21 +168,20 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             //angular.element('body').removeClass('spinnerOn'); // hide spinner
         });
     }
+    //$scope.showDialog = function (message) {
 
-    $scope.showDialog = function (message) {
-
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
-            backdrop: false,
-            templateUrl: 'myModalContent.html',
-            controller: 'ModalInstanceCtrl',
-            resolve: {
-                mssg: function () {
-                    return message;
-                }
-            }
-        });
-    }
+    //    var modalInstance = $uibModal.open({
+    //        animation: $scope.animationsEnabled,
+    //        backdrop: false,
+    //        templateUrl: 'myModalContent.html',
+    //        controller: 'ModalInstanceCtrl',
+    //        resolve: {
+    //            mssg: function () {
+    //                return message;
+    //            }
+    //        }
+    //    });
+    //}
 });
 
 myapp1.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, mssg) {

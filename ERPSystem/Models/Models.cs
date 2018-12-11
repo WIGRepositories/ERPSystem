@@ -6,6 +6,13 @@ using System.Web;
 
 namespace ERPSystem.Models
 {
+    public class Equip
+    {
+        public string customerid { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public int qty { get; set; }
+    }
     public class DeliveryTicket
     {
 
