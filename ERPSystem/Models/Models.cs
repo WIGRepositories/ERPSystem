@@ -1189,7 +1189,7 @@ namespace ERPSystem.Models
     }
     public class OrderConfirmationDocs
     {
-
+        public string flag { set; get; }
         public int OrderConfirmationDocsID { set; get; }
 
         public int OrderConfirmationID { set; get; }
@@ -1199,7 +1199,7 @@ namespace ERPSystem.Models
 
     public class PurchaseOrder
     {
-
+        public string flag { set; get; }
         public int PurchaseOrderID { set; get; }
 
         public int RFQID { set; get; }

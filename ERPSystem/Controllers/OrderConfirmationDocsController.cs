@@ -12,12 +12,12 @@ using ERPSystem.Models;
 
 namespace ERPSystem.Controllers
 {
-    public class PurchaseOrderController : ApiController
+    public class OrderConfirmationDocsController : ApiController
     {
-        public object PurchaseOrderID { get; internal set; }
+
 
         [HttpGet]
-        [Route("api/OrderConfirmationDocs/SaveLocationsimport")]
+        [Route("api/OrderConfirmationDocs/Getdata")]
 
         public DataTable OrderConfirmationDocs()
         {
@@ -32,7 +32,7 @@ namespace ERPSystem.Controllers
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spOrderConfirmationDocs";
+                cmd.CommandText = "spGetOrderConfirmationDocs";
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
@@ -44,6 +44,7 @@ namespace ERPSystem.Controllers
             return dt;
 
         }
+
 
         [HttpPost]
         [Route("api/OrderConfirmationDocs/SaveLocationsimport1")]
@@ -62,6 +63,10 @@ namespace ERPSystem.Controllers
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "spOrderConfirmationDocs";
+
+                SqlParameter fl = new SqlParameter("@flag", SqlDbType.VarChar);
+                fl.Value = d.flag;
+                cmd.Parameters.Add(fl);
 
 
                 SqlParameter ID = new SqlParameter("@OrderConfirmationDocsID", DbType.Int32);
