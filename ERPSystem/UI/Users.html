@@ -59,36 +59,33 @@
                             </div>
                             <div class="clearfix"></div>
                         </li>
-                        <!--1.dashboard-->
-                        <li class="active">
+                        <li>
                             <a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and Jobs">
                                 <i class="fa fa-tachometer fa-fw">
                                     <div class="icon-bg bg-orange"></div>
                                 </i><span class="menu-title">Dashboard</span>
                             </a>
                         </li>
-                        <!--2.Items-->
                         <li>
                             <a href="#">
                                 <i class="fa fa-cubes fa-fw">
                                     <div class="icon-bg bg-pink"></div>
-                                </i><span class="menu-title">Items</span><span class="fa arrow"></span>
+                                </i><span class="menu-title">Equipment</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li ng-hide="isSuperUser == 0">
-                                    <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
+                                    <a href="AssetModels.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipment Type</span></a>
                                 </li>
-                                <!-- <li ng-hide="isSuperUser == 0">
-                             <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
-                         </li> -->
-
-                                <li><a href="ItemList.html" data-toggle="tooltip" data-placement="right" title="Manage list of equipment across locations"><i class="fa fa-align-left"></i><span class="submenu-title">Item List</span></a></li>
+                                <li ng-hide="isSuperUser == 0">
+                                    <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
+                                </li>
+                                <li><a href="Assets.html" data-toggle="tooltip" data-placement="right" title="Manage list of equipment across locations"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments List</span></a></li>
                                 <!--<li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>-->
-                                <li><a href="ItemDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa-cubes"></i><span class="submenu-title">Item Details</span></a></li>
+                                <li><a href="AssetDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa-cubes"></i><span class="submenu-title">Equipment Details</span></a></li>
+
+
                             </ul>
                         </li>
-
-                        <!--3.jobs-->
                         <li>
                             <a href="#">
                                 <i class="fa fa-list fa-fw">
@@ -97,30 +94,31 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li><a href="JobsList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending jobs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Job List</span></a></li>
-                                <li><a href="JobDetails.html" data-toggle="tooltip" data-placement="right" title="Job specific details: Equipment, Personnel, 3rd Party, and Job Documents"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Job Details</span></a></li>
-                                <li><a href="CompletedJobList.html" data-toggle="tooltip" data-placement="right" title="Jobs marked as completed"><i class=" fa fa-list fa-fw"></i><span class="submenu-title">Completed Jobs</span></a></li>
-                                <li><a href="JobPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all jobs, by location, customer status"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>Job Personnel</a></li>
-                                <li><a href="JobEquipment.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all jobs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Job Equipment</a></li>
-                                <li><a href="JobDocuments.html" data-toggle="tooltip" data-placement="right" title="Job specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Job Documents</a></li>
+                                <li><a href="JobDetails.html" data-toggle="tooltip" data-placement="right" title="Job specific details: Equipment, Personnel, 3rd Party, and Job Documents"><i class="fa fa-file-text-o"></i><span class="submenu-title">Job Details</span></a></li>
+                                <li><a href="CompletedJobList.html" data-toggle="tooltip" data-placement="right" title="Jobs marked as completed"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Completed Jobs</span></a></li>
+                                 <li><a href="JobPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all jobs, by location, customer status"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Job Personnel</a></li>
+                                <li><a href="JobEquipment.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all jobs, by location, customer status"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Job Equipment</a></li>
+                                 <li><a href="JobDocuments.html" data-toggle="tooltip" data-placement="right" title="Job specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Job Documents</a></li>
                                 <!--<li><a href="Jobs.html"><i class="fa fa-exclamation"></i><span class="submenu-title"></span>Job Alerts</a></li>-->
-                                <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
+                               <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-cloud-upload"></i><span class="submenu-title">Job Reports</span></a></li>-->
                             </ul>
                         </li>
 
-                        <!--4.Reports-->
-                        <li ng-hide="hidereports=1">
+                        
+                      <li ng-hide="hidereports=1">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o fa-fw">
                                     <div class="icon-bg bg-violet"></div>
                                 </i><span class="menu-title">Reports</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="ReportsList.html" data-toggle="tooltip" data-placement="right" title="List of reports for the application"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>Reports List</a></li>
+                                <li><a href="ReportsList.html" data-toggle="tooltip" data-placement="right" title="List of reports for the application"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Reports List</a></li>
                             </ul>
                         </li>
+                       
+                        
 
-                        <!--5.user roles-->
                         <li ng-hide="isSuperUser == 0" class="active">
                             <a href="#">
                                 <i class="fa fa-group fa-fw">
@@ -128,42 +126,54 @@
                                 </i><span class="menu-title">Users & Roles</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">User Details</span></a></li>
-                                <li class="active"><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class=" fa fa-user"></i><span class="submenu-title">Users List</span></a></li>
-                                <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class=" fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
+                                <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class="fa fa-user"></i><span class="submenu-title">User Details</span></a></li>
+                                <li class="active"><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i><span class="submenu-title">Users List</span></a></li>
+                                <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
+
+
                             </ul>
                         </li>
+                        <!--<li>
+        <a href="UI/#">
+            <i class="fa fa-book fa-fw">
+                <div class="icon-bg bg-violet"></div>
+            </i><span class="menu-title">Help</span><span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-second-level">
+            <li><a href="UI/HelpResources.html"><i class="fa fa-columns"></i><span class="submenu-title"></span>Resources</a></li>
+            <li><a href="UI/HelpSupport.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Support</a></li>
+            <li><a href="UI/HelpFAQs.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>FAQs</a></li>
+        </ul>
+    </li>-->
 
-                        <!--6.Procedure Document-->
                         <li>
                             <a href="PPDocuments.html" data-toggle="tooltip" data-placement="right" title="Common document repository for documents across company.">
-                                <i class=" fa fa-file-text-o">
+                                <i class="fa fa-file-text-o">
                                     <div class="icon-bg bg-orange"></div>
-                                </i><span class="menu-title">Procedure Documents</span>
+                                 </i><span class="menu-title">Procedure Documents</span>
                             </a>
                         </li>
 
-                        <!--7.administration-->
-                        <li>
+                        <li ng-hide="isSuperUser == 0">
                             <a href="#">
                                 <i class="fa fa-edit fa-fw">
                                     <div class="icon-bg bg-violet"></div>
                                 </i><span class="menu-title">Administration</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="TypeGroups.html" data-toggle="tooltip" data-placement="right" title="Common groups used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data Groups</a></li>
-                                <li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>
-                                <li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>
-                                <li><a href="Types.html" data-toggle="tooltip" data-placement="right" title="Common data used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data</a></li>
-                                <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>
+                                <li><a href="TypeGroups.html" data-toggle="tooltip" data-placement="right" title="Common groups used across application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Master Data Groups</a></li>
+                                <li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>
+                                <li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>
+                                <li><a href="Types.html" data-toggle="tooltip" data-placement="right" title="Common data used across application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Master Data</a></li>
+                                <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>
                                 <!--<li><a href="ThirdParty.html"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Third Party Resources</a></li>-->
-                                <li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>
+                                <li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class="fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>
                                 <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
-                                <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
-                                <li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
+                                <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class="fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
+                                <li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
                                 <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
                                 <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>
-                            </ul>
+                             </ul>
                         </li>
                     </ul>
                 </div>
@@ -174,7 +184,7 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">Users List</div>
+                            <div class="page-title">Users</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -547,15 +557,14 @@
     <script src="js/fileupload/angular-file-upload.js"></script>
     <script src="js/fileupload/angular-file-upload-shim.js"></script>
     <script src="js/Users.js"></script>
-    <!--<script src="js/adal.js"></script>
+    <script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>
     <script src="js/AdalCommon.js"></script>
     <script src="js/angular-animate.js"></script>
     <script src="js/treasure-overlay-spinner.js"></script>
     <script src="js/fileupload/Upload.js"></script>
- 
-     AI CORE JAVASCRIPT 
-    <script src="/scripts/cloud.common.js"></script>-->
+    <!-- AI CORE JAVASCRIPT -->
+    <script src="/scripts/cloud.common.js"></script>
 </body>
 
 </html>

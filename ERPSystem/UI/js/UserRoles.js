@@ -1,4 +1,4 @@
-﻿var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap']);
+﻿var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner']);
 
 var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $filter, $rootScope) {
     if ($localStorage.uname == null) {
