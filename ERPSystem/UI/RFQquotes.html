@@ -206,7 +206,7 @@
                                             <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" ng-click="setLocation();">New Equipment</button>
                                         </div>-->
                                                         <div class="col-md-2">
-                                                            RFQ: <select ng-options="l.JobID for l in rfqlist track by l.ID" ng-model="l" ng-change="GetJobEquipment()" style="width:60%">
+                                                            RFQ: <select ng-options="l.RFQID for l in rfqlist track by l.ID" ng-model="l" ng-change="GetJobEquipment()" style="width:60%">
                                                                 <option value="">All</option>
                                                             </select>
                                                         </div>
@@ -252,7 +252,7 @@
                                                                             ng-style="(a.IsExpired == '1') ? {'background-color':'#F2DEDE'}:(a.IsExpired == '2') ?{'background-color':'#FCF8E3'}:''">
                                                                             <td>
                                                                                 <span ng-if="a.isDoc == 0" class="folder">
-                                                                                    <a href="#"><font color="blue"> <u> {{a.JobID}}</u></font></a>
+                                                                                    <a href="#"><font color="blue"> <u> {{a.Name}}</u></font></a>
                                                                                 </span>
                                                                                 <span ng-if="a.isDoc == 1" class="folder"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
                                                                                 <span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>

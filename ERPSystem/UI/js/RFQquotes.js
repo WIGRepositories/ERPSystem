@@ -33,7 +33,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.jobStatus = res.data;
         });
 
-        $http.get('/api/RFQ/GetRFQ').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
             $scope.rfqlist = res.data;
             $scope.l = $scope.rfqlist[0];
         });
@@ -55,20 +55,34 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
     }
 
-    $rootScope.spinner.on();
+    //$rootScope.spinner.on();
 
     $scope.GetJobEquipment = function () {
-        var mid = ($scope.s == null) ? -1 : $scope.s.Id;
-        var lid = ($scope.l == null) ? -1 : $scope.l.id;
-        var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
+        //var mid = ($scope.s == null) ? -1 : $scope.s.Id;
+        //var lid = ($scope.l == null) ? -1 : $scope.l.id;
+        //var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
+
         var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
 
-        $http.get('/api/Jobs/GetJobEquipment?locationId=' + lid + '&statusId=' + mid + '&customerId=' + custId + '&AssetModelId=' + modelId).then(function (res, data) {
+        $http.get('/api/RFQ/GetItemsForRFQ?modelId=1&rfqId=3').then(function (res, data) {
             $scope.JobEquipment = res.data;
-            $rootScope.spinner.off();
+            //$rootScope.spinner.off();
             $("#jobequipment-content").show();
         });
     }
+
+    //$scope.GetJobEquipment = function () {
+    //    var mid = ($scope.s == null) ? -1 : $scope.s.Id;
+    //    var lid = ($scope.l == null) ? -1 : $scope.l.id;
+    //    var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
+    //    var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
+
+    //    $http.get('/api/Jobs/GetJobEquipment?locationId=' + lid + '&statusId=' + mid + '&customerId=' + custId + '&AssetModelId=' + modelId).then(function (res, data) {
+    //        $scope.JobEquipment = res.data;
+    //        $rootScope.spinner.off();
+    //        $("#jobequipment-content").show();
+    //    });
+    //}
 
     $scope.GetRFQPersonnal = function (cc) {
         var custId = (cc == null) ? -1 : cc.ID;      

@@ -494,9 +494,16 @@ namespace ERPSystem.Models
     {
         public int Id { get; set; }
         public string flag { get; set; }
-        public int RFQId { get; set; }
-        public int AssetId { get; set; }
-        public string UserName { get; set; }
+        public string Name { get; set; }
+        public int CustomerId { get; set; }
+        public int CmTypeId { get; set; }
+        public int Status { get; set; }
+        public int SmId { get; set; }
+        public int changedById { get; set; }
+        public string Description { get; set; }
+        public string CPhoneNo { get; set; }
+        public string CEmail { get; set; }
+        public string CFax { get; set; }
     }
 
     public class AssetHierarchy
@@ -625,6 +632,38 @@ namespace ERPSystem.Models
         public int UpdatedById { get; set; }
         public string insupddelflag { get; set; }
         public int Sequence { get; set; }
+    }
+
+    public class RFQUsers
+    {
+        public int Id { get; set; }
+        public int RFQId { get; set; }
+
+        public int UserId { get; set; }
+
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+
+        public int CreatedById { get; set; }
+        public int UpdatedById { get; set; }
+        public string insupddelflag { get; set; }
+        public int Sequence { get; set; }
+    }
+
+    public class RFQResouces
+    {
+        public int Id { get; set; }
+        public int RFQId { get; set; }
+
+        public int Sequence { get; set; }
+        public int ItemId { get; set; }
+
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+
+        public int createdById { get; set; }
+        public int UpdatedById { get; set; }
+        public string insupddelflag { get; set; }
     }
     public class JobResouces
     {
