@@ -214,6 +214,7 @@
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
     <Content Include="UI\images\ees-logo.jpg" />
     <Content Include="UI\images\ees-logo.png" />
+    <Content Include="UI\images\logo.png" />
     <Content Include="UI\images\pts-white.png" />
     <Content Include="UI\images\rawpixel-678089-unsplash.jpg" />
     <Content Include="UI\JobDocuments.html" />
@@ -284,6 +285,9 @@
     <Content Include="UI\ObjectTypes.html" />
     <Content Include="UI\PPDocuments.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQDetails.html" />
+    <Content Include="UI\RFQList.html" />
+    <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
     <Content Include="UI\ThirdParty.html" />
@@ -687,6 +691,9 @@
     <Compile Include="Controllers\MaintenanceVendorController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ObjectTypesController.cs" />
+    <Compile Include="Controllers\OrderConfirmationDocsController.cs" />
+    <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
+    <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
