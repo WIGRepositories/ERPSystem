@@ -8,7 +8,6 @@ namespace ERPSystem.Models
 {
     public class DeliveryTicket
     {
-        internal object DID;
 
         public int Id { get; set; }
         public string DeliveryTicketId { get; set; }
@@ -28,8 +27,6 @@ namespace ERPSystem.Models
 
         public List<DeliveryTickeItems> DTItems { get; set; }
         public List<DeliveryTickeItemss> DTpersonnel { get; set; }
-        public object OID { get; internal set; }
-        public object CID { get; internal set; }
     }
     public class DeliveryTickeItemss
     {
@@ -490,22 +487,6 @@ namespace ERPSystem.Models
 
     }
 
-    public class RFQItems
-    {
-        public int Id { get; set; }
-        public string flag { get; set; }
-        public string Name { get; set; }
-        public int CustomerId { get; set; }
-        public int CmTypeId { get; set; }
-        public int Status { get; set; }
-        public int SmId { get; set; }
-        public int changedById { get; set; }
-        public string Description { get; set; }
-        public string CPhoneNo { get; set; }
-        public string CEmail { get; set; }
-        public string CFax { get; set; }
-    }
-
     public class AssetHierarchy
     {
 
@@ -633,38 +614,6 @@ namespace ERPSystem.Models
         public string insupddelflag { get; set; }
         public int Sequence { get; set; }
     }
-
-    public class RFQUsers
-    {
-        public int Id { get; set; }
-        public int RFQId { get; set; }
-
-        public int UserId { get; set; }
-
-        public DateTime? FromDate { get; set; }
-        public DateTime? ToDate { get; set; }
-
-        public int CreatedById { get; set; }
-        public int UpdatedById { get; set; }
-        public string insupddelflag { get; set; }
-        public int Sequence { get; set; }
-    }
-
-    public class RFQResouces
-    {
-        public int Id { get; set; }
-        public int RFQId { get; set; }
-
-        public int Sequence { get; set; }
-        public int ItemId { get; set; }
-
-        public DateTime? FromDate { get; set; }
-        public DateTime? ToDate { get; set; }
-
-        public int createdById { get; set; }
-        public int UpdatedById { get; set; }
-        public string insupddelflag { get; set; }
-    }
     public class JobResouces
     {
         public int Id { get; set; }
@@ -769,25 +718,21 @@ namespace ERPSystem.Models
 
     public class Customers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+        public int CustomerID { get; set; }
+        public string CustomerName { get; set; }                                                       
+        public string CustomerCode { get; set; }
 
-        public string Email { get; set; }
+        public string CustomerAddress { get; set; }
 
-        public string ContactRole { get; set; }
+        public string CustomerContact1 { get; set; }
 
-        public string PhoneNo { get; set; }
+        public string CustomerContact2 { get; set; }
 
 
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
+        public string CustomerEmail { get; set; }
         public int Active { get; set; }
 
-        public string insupddelflag { get; set; }
+
     }
     public class Suppliers
     {
@@ -1187,142 +1132,120 @@ namespace ERPSystem.Models
 
 
     }
-    public class OrderConfirmationDocs
+    public class RFQDocs
     {
-        public string flag { set; get; }
-        public int OrderConfirmationDocsID { set; get; }
+        public int RFQDocsID { get; set; }
 
-        public int OrderConfirmationID { set; get; }
-        public int DocID { set; get; }
-     }
+        public int DocId { get; set; }
+        public int RFQId { get; set; }
 
-
-    public class PurchaseOrder
+    }
+    public class QuoteRequestDoc
     {
-        public string flag { set; get; }
-        public int PurchaseOrderID { set; get; }
+        public int QRDocsID { get; set; }
 
-        public int RFQID { set; get; }
+        public int DocId { get; set; }
+        public int QRID { get; set; }
 
-        public int RFQDetailID { set; get; }
+
+    }
+    public class QuoteResponse
+    {
+        public int QuoteResponseID { get; set; }
+        public int RFQDetailID { get; set; }
+        public DateTime ?ReceivedOn { get; set; }
+        public string ReceivedFrom { get; set; }
+        public string IsReplyReceived { get; set; }
+        public int RFQID { get; set; }
+        public int SupplierID { get; set; }
+        public double UnitPrice { get; set; }
+        public double Total { get; set; }
+        public string CommType { get; set; }
+        public string Priority { get; set; }
+        public string IsSelected { get; set; }
+        public string IsApproved { get; set; }
+        public string SentEmailtoCustomer { get; set; }
+        public int QRID { get; set; }
+    
+    }
+    public class RFQEstimation
+    {
 
         
+        public int RFQEstimationID { get; set; }
+        public int RFQID { get; set; }
+        public int RFQDetailID { get; set; }
+        public int DocID { get; set; }
+        public int QuoteResponseID { get; set; }
+        public int ItemPricingID { get; set; }
+        public int CustomerID { get; set; }
+      
+    }
+    public class ItemPricing
+    {
 
-        public int SupplierID { set; get; }
+
+        public int ItemPricingID { get; set; }
+        public int RFQID { get; set; }
+        public int RFQDetailID { get; set; }
+        public int QuoteResponseID { get; set; }
+        public double SupplierUnitPrice { get; set; }
+        public double SupplierTotal { get; set; }
+        public double UnitPriceMargin { get; set; }
+        public double TotalMargin { get; set; }
+    }
+    public class OrderConfirmation
+    {
 
 
-        public string RFQEstimation { set; get; }
+        public int OrderConfirmationID { get; set; }
+        public int RFQID { get; set; }
+        public int CustomerID { get; set; }
+        public DateTime ?ConfirmedOn { get; set; }
+        public string CommType { get; set; }
+        public int Active { get; set; }
+    
 
-        public DateTime ?Date { set; get; }
-        public DateTime ?Time { set; get; }
+    }
+    public class Documents
+    {
 
-        public DateTime EstimatedStart { set; get; }
 
-        public DateTime EstimatedEnd { set; get; }
-        public int Active { set; get; }
+        public int DocID { get; set; }
+        public string Type { get; set; }
+        public string Extension { get; set; }
+        public string Content { get; set; }
+        public DateTime ?Date { get; set; }
+        public DateTime ?Time { get; set; }
+        public string UploadBy { get; set; }
+        public DateTime ?LastUpdatedOn { get; set; }
+    }
+    public class RFQStaff
+    {
 
+
+        public int RFQStaffID { get; set; }
+        public int RFQID { get; set; }
+        public int RFQDetailID { get; set; }
+        public int UserID { get; set; }
+        public string UserType { get; set; }
+        public int Active { get; set; }
 
 
     }
-    public class SupplierInvoice
+    public class CustomerQuote
     {
 
-        public int SupplierInvoiceID { set; get; }
-        public int RFQID { set; get; }
-        public int RFQDetailID { set; get; }
-        
-        public int SupplierID { set; get; }
-        public DateTime Date { set; get; }
-        public DateTime Time { set; get; }
-        public string CommType { set; get; }
-        public int DocID { set; get; }
+
+        public int CQuoteID { get; set; }
+        public int CustomerID { get; set; }
+        public int RFQID { get; set; }
+        public int QuoteResponseID { get; set; }
+        public int DocID { get; set; }
     }
-
-
-    public class ShippingOrder
-    {
-   
-
-        public int ShippingOrderID { set; get; }
-
-        public int SupplierInvoiceID { set; get; }
-
-        public string FromAddress { set; get; }
-
-        public string ToAddress { set; get; }
-
-        public DateTime Date { set; get; }
-
-        public DateTime Time { set; get; }
-
-        public DateTime ArrivedOn { set; get; }
-
-        public DateTime DeliveredOn { set; get; }
-        public int RFQID { set; get; }
-
-        public int Active { set; get; }
-
-    }
-    public class TransactionMaster
-    {
-
-        public int TransactionMasterID { set; get; }
-
-        public double Amount { set; get; }
-
-        public string Type { set; get; }
-
-        public string RFQDetail { set; get; }
-        public int RFQID { set; get; }
-        public int Active { set; get; }
-        }
-
-    public class Paymentmodel
-
-    {
-        public int PaymentID { set; get; }
-
-        public int InvoiceID { set; get; }
-
-        public int SupplierID { set; get; }
-
-        public double Amount { set; get; }
-        public string ModeofPayment { set; get; }
-        public DateTime ?Date { set; get; }
-        public DateTime ?Time { set; get; }
-        public string ReceiptDoc { set; get; }
-        public string PaymentVoucher { set; get; }
-        public string Status { set; get; }
-    }
-
-
-
-
-    public class QuoteRequest
-
-    {
-        public int RFQDetailID { set; get; }
-
-        public string SentOn { set; get; }
-
-        public string SentTo { set; get; }
-
-        public string IsReplyReceived { set; get; }
-        public DateTime  ?ReceivedOn { set; get; }
-        public int RFQID { set; get; }
-        public int SupplierID { set; get; }
-        public double UnitPrice { set; get; }
-        public double Total { set; get; }
-        public string CommType { set; get; }
-        public string Priority { set; get; }
-        public string IsSelected { set; get; }
-        public string IsApproved { set; get; }
-        public string SentEmailtoCustomer { set; get; }
-        public int DocID { set; get; }
-
-    }
-
-
-
-
 }
+
+
+
+
+

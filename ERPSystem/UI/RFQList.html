@@ -42,7 +42,7 @@
         }        
     </style>
 </head>
-<body ng-init="getFRQlist()" ng-controller="myCtrl">
+<body ng-init="init()" ng-controller="myCtrl">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -212,7 +212,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-                    <div class="page-content" id="jobslist-content">
+                    <div class="page-content" id="jobslist-content" style="display:none;">
                         <div id="table-action" class="row">
                             <div class="col-lg-12">
                                 <div id="tableactionTabContent" class="tab-content">
@@ -220,23 +220,23 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="row mbm">
-                                                    <!--<div class="col-md-3" style="text-align:left">
-                                                        Location: <select ng-options="s.name for s in Locations track by s.id" ng-model="s" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>-->
                                                     <div class="col-md-3" style="text-align:left">
-                                                        RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:60%">
+                                                        Location: <select ng-options="s.name for s in Locations track by s.id" ng-model="s" ng-change="getJobsListByStatus()" style="width:60%">
                                                             <option value="">All</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3" style="text-align:left">
-                                                        Customer: <select ng-options="c.Client  for c in Customers track by c.Id" ng-model="c" style="width:60%">
+                                                        RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" ng-change="getJobsListByStatus()" style="width:60%">
                                                             <option value="">All</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3" style="text-align:left">
-                                                        <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;">Add New RFQ</button>
+                                                        Customer: <select ng-options="c.Client  for c in Customers track by c.Id" ng-model="c" ng-change="getJobsListByStatus()" style="width:60%">
+                                                            <option value="">All</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3" style="text-align:left">
+                                                        <button ng-disabled="isSuperUser == 0 && CanCreate == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;">Add New RFQ</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -265,18 +265,24 @@
                                                                 <tr>
                                                                     <th>RFQ #</th>
                                                                     <th>RFQ Name</th>
-                                                                    <th>Communication Type</th>                                                                   
+                                                                    <th>Well#</th>
+                                                                    <th>Location</th>
                                                                     <th>Customer</th>
-                                                                    <th>Phone no</th>                                                                   
+                                                                    <th>Customer POC</th>
+                                                                    <th>Actual Start Date</th>
+                                                                    <th>Est. End Date</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="J in rfqlist|filter:{StatusId :'!9'}:true" ng-style="(J.StatusId == '7') ? {'background-color':'#F2DEDE'}:(J.StatusId == '8') ?{'background-color':'#DFF0D8'}:''">
-                                                                    <td><a href="RFQDetails.html?RFQId={{J.ID}}"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
+                                                                <tr ng-repeat="J in jobsList1|filter:{StatusId :'!9'}:true" ng-style="(J.StatusId == '7') ? {'background-color':'#F2DEDE'}:(J.StatusId == '8') ?{'background-color':'#DFF0D8'}:''">
+                                                                    <td><a href="JobDetails.html?jobId={{J.ID}}"><font color="blue"> <u> {{J.JobID}}</u></font></a></td>
                                                                     <td>{{J.Name}}</td>
-                                                                    <td>{{J.RFQComType}}</td>                                                                   
+                                                                    <td>{{J.WellNo}}</td>
+                                                                    <td>{{J.Location}}</td>
                                                                     <td>{{J.Customer}}</td>
-                                                                    <td>{{J.CustomerPhoneno}}</td>                                                                   
+                                                                    <td>{{J.CustPOC}}</td>
+                                                                    <td>{{J.ActualStartDt | date:'MM-dd-yyyy'}}</td>
+                                                                    <td>{{J.EstEndDt | date:'MM-dd-yyyy'}}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -324,91 +330,217 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Add New RFQ</h4>
                 </div>
-                <div class="modal-body" ng-model="newRFQ">
-                    <div class="row">
+                <div class="modal-body" ng-model="newJob">
+                    <div class="row mbm">
                         <div class="col-md-12">
+                            <div class="col-md-6">
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="Description" class="control-label" style="color:red;">RFQ#:<span class='require'>*</span></label>
-                                    <div>
-                                        <input id="inputRFQID" type="text" ng-model="newRFQ.Name" class="form-control" /><span class="help-block"></span>
-                                    </div>
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">RFQ Name:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <input id="inputJobID" type="text" ng-model="newJob.Name" class="form-control" /><span class="help-block"></span>
                                 </div>
                             </div>
+                            <div class="col-md-6">
 
-
-                            <div class="col-md-3">
-                                <label for="selCountry" class="control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.js" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Active</option>
-                                        <option value="2">Pending</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Customer: <span class='require'>*</span></label>
-                                <div>
-
-                                    <select ng-model="newRFQ.jc" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Accumalte</option>
-                                        <option value="2">Anagr</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Communication Type:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.jl" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Mobile Phone</option>
-                                        <option value="2">FAX</option>
-                                        <option value="3">Mail</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>                   
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Sales Manager:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.sm" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Ramesh</option>
-                                        <option value="2">Prasad</option>
-                                        <option value="3">Suresh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <label for="Description" class="control-label" style="color:red;">Description:</label>
-                                <div style="text-align:left;padding-left:0">
-                                    <textarea id="inputDescription" rows="2" ng-model="newRFQ.modelDescription" class="form-control"></textarea>
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">RFQ#:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <input id="inputJobID" type="text" ng-model="newJob.JobID" class="form-control" /><span class="help-block"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        <div class="form-actions">
-                            <div style="text-align:center">
-                                <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label" style="color:red;">Well#:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <input id="inputDateRate" type="text" ng-model="newJob.wellNum" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label">Bid#:</label>
+                                <div class="col-md-6">
+                                    <input id="inputBidID" type="text" ng-model="newJob.BidID" class="form-control" /><span class="help-block"></span>
+                                </div>
                             </div>
                         </div>
-                        <!---- <div class="col-md-6 col-md-offset-2">
-                <button class="btn btn-primary" type="button">Save</button>
-                <button class="btn btn-primary" type="button">Cancel</button>
-            </div>--->
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                           
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">Customer: <span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <select ng-options="c.Client  for c in Customers track by c.Id" ng-model="newJob.CustomerId">
+                                        <option value="">Select</option>
+                                    </select>
+                                        <!--<select style="width:100%" ng-model="newJob.CustomerId">
+            <option value="">Select</option>
+            <option value="1">Chevron</option>
+            <option value="2">Apache</option>
+        </select>-->
+</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">Location:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <select ng-options="s.name for s in Locations track by s.id" style="width:100%" ng-model="newJob.LocationId" ng-change="CheckCanCreate(newJob.LocationId.id)">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label">AFE#</label>
+                                <div class="col-md-6">
+                                    <input id="inputAFE" type="text" ng-model="newJob.AFE" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Name" class="col-md-5 control-label">OCSG#:</label>
+                                <div class="col-md-6">
+                                    <input id="inputOCSG" type="text" ng-model="newJob.OCSG" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label">Trucking:</label>
+                                <div class="col-md-6">
+                                    <input id="inputTrucking" type="text" ng-model="newJob.Trucking" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label">Rig: </label>
+                                <div class="col-md-6"><input id="Description" type="text" class="form-control" ng-model="newJob.Rig" /><span class="help-block"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label">Dock: </label>
+                                <div class="col-md-6">
+                                    <input id="inputDock" type="text" ng-model="newJob.Dock" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label">RFQ Type:</label>
+                                <div class="col-md-6">
+                                    <input id="inputCustomerPOC" type="text" ng-model="newJob.JobType" class="form-control" /><span class="help-block"></span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">Customer POC:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <input id="inputCustomerPOC" type="text" ng-model="newJob.CustomerPOC" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label">POC Phone#</label>
+                                <div class="col-md-6">
+                                    <input id="inputPOCPh" type="text" ng-model="newJob.POCPh" class="form-control" /><span class="help-block"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">Estimated start date:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <!--<input id="inputEstStartDt" type="date" ng-model="newJob.EstStartDt" class="form-control" /><span class="help-block"></span>-->
 
-                   
+                                    <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6" style="z-index:99999"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="newJob.EstStartDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label" >Actual start date:</label>
+
+                                <div class="col-md-6">
+                                    <!--<input id="inputActStartDt" type="date" ng-model="newJob.ActStartDt" class="form-control" /><span class="help-block"></span>-->
+
+                                    <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="newJob.ActStartDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <label for="Description" class="col-md-5 control-label" style="color:red;">Estimated End date:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <!--<input id="inputActEndDt" type="date" ng-model="newJob.EstEndDt" class="form-control" /><span class="help-block"></span>-->
+
+                                    <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="newJob.EstEndDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label" >Actual End date:</label>
+                                <div class="col-md-6">
+                                    <!--<input id="inputActEndDt" type="date" ng-model="newJob.ActEndDt" class="form-control" /><span class="help-block"></span>-->
+
+
+                                    <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="newJob.ActEndDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+
+                            <div class="col-md-6">
+                                <label for="selCountry" class="col-md-5 control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
+                                <div class="col-md-6">
+                                    <!----select ng-options="dt.Name for dt in DataTypes track by dt.Name" ng-model="dt">-->
+                                    <select disabled>
+                                        <option value="7" selected>Pending</option>
+                                        <option value="1">Back Logges</option>
+                                        <option value="2">Active</option>
+                                        <option value="3">Pending</option>
+                                        <option value="4">Completed</option>
+                                        <option value="5">Approved</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <div class="col-md-12">
+                            <label for="Description" class="col-md-3 control-label" style="color:red;">Project description:</label>
+                            <div class="col-md-9" style="text-align:left;padding-left:0">
+                                <textarea id="inputProjDesc" rows="3" ng-model="newJob.ProjDesc" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div style="text-align:center">
+                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewJob();">Save</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                        </div>
+                    </div>
+                    <!---- <div class="col-md-6 col-md-offset-2">
+                        <button class="btn btn-primary" type="button">Save</button>
+                        <button class="btn btn-primary" type="button">Cancel</button>
+                    </div>--->
 
                 </div>
+
+            </div>
 
         </div>
     </div>
@@ -463,7 +595,7 @@
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
     <script src="js/ngStorage.js"></script>        
-    <script src="js/RFQList.js"></script>
+    <script src="js/JobsList.js"></script>
     <script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>
     <script src="js/AdalCommon.js"></script>

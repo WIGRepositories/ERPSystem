@@ -191,16 +191,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBScripts\County.sql" />
-    <Content Include="DBScripts\Customers.sql" />
-    <Content Include="DBScripts\DBScripts_Sprocs.sql" />
     <Content Include="DBScripts\DBScripts_Tables.sql" />
-    <Content Include="DBScripts\States.sql" />
-    <Content Include="DBScripts\users.sql" />
+    <Content Include="DBScripts\DBScripts_SP.sql" />
     <Content Include="Login.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="Testing.html" />
+    <Content Include="UI\CompletedRFQsList.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
@@ -216,16 +212,15 @@
     <Content Include="UI\images\ees-logo.png" />
     <Content Include="UI\images\logo.png" />
     <Content Include="UI\images\pts-white.png" />
-    <Content Include="UI\images\rawpixel-678089-unsplash.jpg" />
     <Content Include="UI\JobDocuments.html" />
     <Content Include="UI\JobEquipment.html" />
     <Content Include="UI\JobPersonnel.html" />
     <Content Include="scripts\cloud.common.js" />
     <Content Include="UI\Alerts.html" />
-    <Content Include="UI\AssetDetails.html" />
+    <Content Include="UI\ItemDetails.html" />
     <Content Include="UI\AssetModelDetails.html" />
-    <Content Include="UI\AssetModels.html" />
-    <Content Include="UI\Assets.html" />
+    <Content Include="UI\ItemType.html" />
+    <Content Include="UI\ItemList.html" />
     <Content Include="UI\AssetsView.html" />
     <Content Include="UI\CompletedJobList.html" />
     <Content Include="UI\css\ng-tree-dnd.css" />
@@ -239,17 +234,17 @@
     <Content Include="UI\Jobs.html" />
     <Content Include="UI\JobsList.html" />
     <Content Include="UI\JobsView.html" />
+    <Content Include="UI\js\adal-angular.js" />
+    <Content Include="UI\js\adal.js" />
+    <Content Include="UI\js\AdalCommon.js" />
     <Content Include="UI\js\angular-route.js" />
     <Content Include="UI\js\angular-sanitize.js" />
-    <Content Include="UI\js\AssetDetails.js" />
-    <Content Include="UI\js\AssetModel.js" />
+    <Content Include="UI\js\ItemDetails.js" />
+    <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\AssetModelDetails.js" />
-    <Content Include="UI\js\Assets.js" />
+    <Content Include="UI\js\ItemList.js" />
     <Content Include="UI\js\AssetsView.js" />
     <Content Include="UI\js\CompletedJobList.js" />
-    <Content Include="UI\js\JobPersonnel%281%29.js" />
-    <Content Include="UI\js\RFQDetails.js" />
-    <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
     <Content Include="UI\js\DataLoad.js" />
@@ -260,7 +255,7 @@
     <Content Include="UI\js\JobDocuments.js" />
     <Content Include="UI\js\JobEquipment.js" />
     <Content Include="UI\js\JobPersonnel.js" />
-    <Content Include="UI\js\RFQList.js" />
+    <Content Include="UI\js\JobsList.js" />
     <Content Include="UI\js\jquery-1.10.2.js" />
     <Content Include="UI\js\Locations.js" />
     <Content Include="UI\js\MaintenanceVendors.js" />
@@ -286,12 +281,17 @@
     <Content Include="UI\PPDocuments.html" />
     <Content Include="UI\ReportsList.html" />
     <Content Include="UI\RFQDetails.html" />
+    <Content Include="UI\RFQDocuments.html" />
+    <Content Include="UI\RFQItem.html" />
     <Content Include="UI\RFQList.html" />
+    <Content Include="UI\RFQPersonnel.html" />
+
+
     <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
+    <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
-    <Content Include="UI\UserDetails.html" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - Web Deploy.pubxml" />
@@ -300,6 +300,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="UI\Content\test1.pdf" />
+    <Content Include="UI\UserDetails.html" />
     <Content Include="UI\vendors\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="UI\vendors\bootstrap\css\bootstrap.css.map" />
     <Content Include="UI\vendors\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -313,6 +314,7 @@
     <Content Include="UI\vendors\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="UI\vendors\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="UI\vendors\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="UI\vendors\holder\holder.js" />
     <Content Include="UI\vendors\iCheck\demo\css\custom.styl" />
     <Content Include="UI\vendors\iCheck\demo\css\montserrat-bold.eot" />
     <Content Include="UI\vendors\iCheck\demo\css\montserrat-bold.ttf" />
@@ -322,8 +324,6 @@
     <Content Include="UI\vendors\iCheck\demo\css\montserrat-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBScripts\Init.sql" />
-    <Content Include="DBScripts\RolesInit.sql" />
     <Content Include="Global.asax" />
     <Content Include="UI\AddNewUser.html" />
     <Content Include="UI\Company.html" />
@@ -414,7 +414,7 @@
     <Content Include="UI\js\jquery-migrate-1.2.1.min.js" />
     <Content Include="UI\js\jquery-ui.js" />
     <Content Include="UI\js\jquery.menu.js" />
-    <Content Include="UI\js\testing.js" />
+    <Content Include="UI\js\login.js" />
     <Content Include="UI\js\main.js" />
     <Content Include="UI\js\ngStorage.js" />
     <Content Include="UI\js\plus.js" />
@@ -524,7 +524,6 @@
     <Content Include="UI\vendors\font-awesome\css\font-awesome.css" />
     <Content Include="UI\vendors\font-awesome\css\font-awesome.min.css" />
     <Content Include="UI\vendors\font-awesome\fonts\fontawesome-webfont.svg" />
-    <Content Include="UI\vendors\holder\holder.js" />
     <Content Include="UI\vendors\iCheck\custom.min.js" />
     <Content Include="UI\vendors\iCheck\demo\css\banner.jpg" />
     <Content Include="UI\vendors\iCheck\demo\css\custom.css" />
@@ -661,6 +660,7 @@
     <Content Include="UI\vendors\iCheck\skins\square\yellow.css" />
     <Content Include="UI\vendors\iCheck\skins\square\yellow.png" />
     <Content Include="UI\vendors\jquery-cookie\jquery.cookie.js" />
+    <Content Include="UI\vendors\jquery-news-ticker\jquery.news-ticker.js" />
     <Content Include="UI\vendors\jquery-pace\pace.min.js" />
     <Content Include="UI\vendors\jquery-treetable\javascripts\src\jquery.treetable.js" />
     <Content Include="UI\vendors\jquery-treetable\stylesheets\jquery.treetable.css" />
@@ -681,10 +681,19 @@
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\CustomerQuoteController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ItemPricingController.cs" />
+    <Compile Include="Controllers\OrderConfirmationController.cs" />
+    <Compile Include="Controllers\QuoteRequestDocsController.cs" />
+    <Compile Include="Controllers\QuoteResponseController.cs" />
+    <Compile Include="Controllers\RFQDocsController.cs" />
+    <Compile Include="Controllers\RFQEstimationController.cs" />
+    <Compile Include="Controllers\RFQStaffController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
-    <Compile Include="Controllers\DocumentsController.cs" />
-    <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />
@@ -696,8 +705,6 @@
     <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
-    <Compile Include="Controllers\TypeGroupsController.cs" />
-    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -1,5 +1,4 @@
-﻿
-using ERPSystem.Models;
+﻿using ERPSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,106 +10,106 @@ using System.Web.Http;
 
 namespace ERPSystem.Controllers
 {
-    public class DocumentsController : ApiController
+    public class ItemPricingController : ApiController
     {
-        private DataTable dt;
 
+        [Route("api/ItemPricing/getItemPricing")]
         [HttpGet]
-        [Route("api/Documents/GetDocuments")]
-        public DataTable getDocuments()
+        public DataTable getItemPricing()
         {
             DataTable dt = new DataTable();
             try
             {
+
+
                 SqlConnection conn = new SqlConnection();
-                
+
                 conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "getDocuments";
+                cmd.CommandText = "getItemPricing";
                 cmd.Connection = conn;
-                DataSet ds = new DataSet();
+
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
                 db.Fill(dt);
-           
-               
+
+
+
+
             }
             catch (Exception ex)
             {
-              
                 throw ex;
             }
+
             return dt;
         }
-
-
+        [Route("api/ItemPricing/postItemPricing")]
         [HttpPost]
-        [Route("api/Documents/postDocuments")]
-        public DataTable postDocuments(Documents doc)
+        public DataTable postItemPricing(ItemPricing cus)
         {
 
             DataTable dt = new DataTable();
 
-
             try
             {
-                SqlConnection conn = new SqlConnection();
 
+                SqlConnection conn = new SqlConnection();
                 conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "spDocuments";
+                cmd.CommandText = "spItemPricing";
                 cmd.Connection = conn;
                 conn.Open();
 
-                SqlParameter Gid = new SqlParameter("@DocID", SqlDbType.Int);
-                Gid.Value = doc.DocID;
+
+                SqlParameter Gid = new SqlParameter("@ItemPricingID", SqlDbType.Int);
+                Gid.Value = cus.ItemPricingID;
                 cmd.Parameters.Add(Gid);
 
-                SqlParameter Gid1 = new SqlParameter("@Type", SqlDbType.VarChar);
-                Gid1.Value = doc.Type;
+                SqlParameter Gid1 = new SqlParameter("@RFQID", SqlDbType.Int);
+                Gid1.Value = cus.RFQID;
                 cmd.Parameters.Add(Gid1);
 
-                SqlParameter Gid2 = new SqlParameter("@Extension", SqlDbType.VarChar);
-                Gid2.Value = doc.Extension;
+                SqlParameter Gid2 = new SqlParameter("@RFQDetailID", SqlDbType.Int);
+                Gid2.Value = cus.RFQDetailID;
                 cmd.Parameters.Add(Gid2);
 
-                SqlParameter Gid3 = new SqlParameter("@Content", SqlDbType.VarChar);
-                Gid3.Value = doc.Content;
+
+                SqlParameter Gid3 = new SqlParameter("@QuoteResponseID", SqlDbType.Int);
+                Gid3.Value = cus.QuoteResponseID;
                 cmd.Parameters.Add(Gid3);
 
-                SqlParameter Gid4 = new SqlParameter("@Date", SqlDbType.Date);
-                Gid4.Value = doc.Date;
+                SqlParameter Gid4 = new SqlParameter("@SupplierUnitPrice", SqlDbType.Money);
+                Gid4.Value = cus.SupplierUnitPrice;
                 cmd.Parameters.Add(Gid4);
 
-                SqlParameter Gid5 = new SqlParameter("@Time", SqlDbType.Time);
-                Gid5.Value = doc.Time;
+               
+
+                SqlParameter Gid5 = new SqlParameter("@SupplierTotal", SqlDbType.Money);
+                Gid5.Value = cus.SupplierTotal;
                 cmd.Parameters.Add(Gid5);
 
-
-                SqlParameter Gid6 = new SqlParameter("@UploadBy", SqlDbType.VarChar);
-                Gid6.Value = doc.UploadBy;
+                SqlParameter Gid6 = new SqlParameter("@UnitPriceMargin", SqlDbType.Money);
+                Gid6.Value = cus.UnitPriceMargin;
                 cmd.Parameters.Add(Gid6);
 
 
-                SqlParameter Gid7 = new SqlParameter("@LastUpdatedOn", SqlDbType.DateTime);
-                Gid7.Value = doc.LastUpdatedOn;
+                SqlParameter Gid7 = new SqlParameter("@TotalMargin", SqlDbType.Money);
+                Gid7.Value = cus.TotalMargin;
                 cmd.Parameters.Add(Gid7);
 
-            
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
                 db.Fill(dt);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-              
-                return dt;
-             }
 
-    
+            return dt;
+        }
     }
 }
