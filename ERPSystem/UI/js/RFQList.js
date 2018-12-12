@@ -79,6 +79,14 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         $scope.getJobsListByStatus();
     }
+    $scope.getFRQlist = function () {
+
+
+        $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
+            $scope.rfqlist = res.data;
+            //$scope.l = $scope.rfqlist[0];
+        });
+    }
     $scope.filteroptionssel = function () {
         if ($scope.s == null) {
             tloc = -1
@@ -213,161 +221,79 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         });
     }
 
-    $scope.AddNewJob = function () {
-        var newJob = $scope.newJob;
+    $scope.AddNewRFQ = function () {
+        var newRFQ = $scope.newRFQ;
 
-        var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (newJob.PhoneNo != null && newJob.PhoneNo != "") {
-            if ((newJob.PhoneNo).match(phoneformat)) {
-                $scope.phonevalid = '';
-            }
-            else {
-                if ((newJob.PhoneNo).match(/^\d{10}$/)) {
-                    $scope.phonevalid = '';
-                }
-                else {
-                    alert('Phone number format is invalid.');
-                    return;
-                }
-            }
-        }
-
-        if (newJob == null) {
-            alert('Please enter Job name.');
-            return;
-        }
-        ////job name
-        //if (newJob.Name == null) {
-        //    alert('Please enter job name.');
-        //    return;
+        //var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
+        //if (newJob.PhoneNo != null && newJob.PhoneNo != "") {
+        //    if ((newJob.PhoneNo).match(phoneformat)) {
+        //        $scope.phonevalid = '';
+        //    }
+        //    else {
+        //        if ((newJob.PhoneNo).match(/^\d{10}$/)) {
+        //            $scope.phonevalid = '';
+        //        }
+        //        else {
+        //            alert('Phone number format is invalid.');
+        //            return;
+        //        }
+        //    }
         //}
+
+        if (newRFQ == null) {
+            alert('Please enter RFQ name.');
+            return;
+        }       
         //Job type
-        if ($scope.jbty == null || $scope.jbty == '' || $scope.jbty.Id == null) {
-            alert('Select Job Type.');
+        if (newRFQ.js == null) {
+            alert('Please Select Status.');
             return;
-        }
-        //Estimate Start Date
-        if (newJob.EstStartDt == null || newJob.EstStartDt == '') {
-            alert('Please select  Estimate Start Date.');
-            return;
-        }
-        //Estimate End Date
-        if (newJob.EstEndDt == null || newJob.EstEndDt == '') {
-            alert('Please select  Estimate End Date.');
-            return;
-        }
-        //  //PhoneNo
-        //if (newJob.PhoneNo == null) {
-        //    alert('Please select PhoneNo.');
-        //    return;
-        //}
-        //  PhoneNo
-        //if (($scope.newJob.PhoneNo).length < 10 || ($scope.newJob.PhoneNo).length > 10) {
-        //    alert('Phone Number should be 10 digits');
-        //    return;
-        //}
+        }      
+     
         //CustomerID
-        if (newJob.CustomerId == null) {
+        if (newRFQ.jc == null) {
             alert('Please select Customer.');
             return;
-        }
-        // AFE
-        if (newJob.AFE == null) {
-            alert('Please select AFE.');
+        }      
+        //Communication Type
+        if (newRFQ.jl == null) {
+            alert('Please select Communication Type.');
             return;
         }
-        //Field
-        if (newJob.Field == null) {
-            alert('Please enter Field.');
-            return;
-        }
-        //Well#
-        if (newJob.Well == null) {
-            alert('Please enter Well number.');
-            return;
-        }
-        //Rig
-        //if (newJob.Rig == null) {
-        //    alert('Please enter Rig.');
-        //    return;
-        //}
-        //State
-        if (($scope.jbty.Id == 48 && newJob.State == null) || ($scope.jbty.Id == 47 && newJob.State == null)) {
-            alert('Please Select State.');
-            return;
-        }
-        //county
-        if (($scope.jbty.Id == 48 && newJob.County == null) || ($scope.jbty.Id == 47 && newJob.County == null)) {
-            alert('Please Select county.');
-            return;
-        }
-        //CoMan
-        if (newJob.CoMan == null) {
-            alert('Please enter CoMan.');
-            return;
-        }
-        //Service Company
-        if (newJob.servicecomp == null) {
-            alert('Please enter Service Company.');
-            return;
-        }
-        //Lease
-        if (($scope.jbty.Id == 47 && newJob.Lease == null)) {
-            alert('Please Enter Lease.');
-            return;
-        }
-        //OCSG
-        if ($scope.jbty.Id == 46 && (newJob.OCSG == null || newJob.OCSG == '')) {
-            alert('Select OCSG.');
+        //Sales Manager
+        if (newRFQ.sm == null) {
+            alert('Please select Sales Manager.');
             return;
         }
 
 
-        var job = {
+        var RFq = {
 
             Id: -1,
-            Name: null,//newJob.Name,
-            JobID: 1,//newJob.JobID,          
-            AFE: newJob.AFE,
-            LocationID: ($scope.newJob.LocationId == null) ? null : $scope.newJob.LocationId.id,
-            CustomerID: newJob.CustomerId.Id,
-            StatusId: 7,//newJob.StatusId,
-            ProjDesc: newJob.ProjDesc,
-            EstStartDt: newJob.EstStartDt,
-            EstEndDt: newJob.EstEndDt,
-            ActualStartDt: newJob.ActStartDt,
-            ActualEndDt: newJob.ActEndDt,
-            WellNo: newJob.Well,
-            RIG: newJob.servicecomp,
-            OCSG: newJob.OCSG,
-            Supervisor: newJob.Supervisor,
-            Lease: newJob.Lease,
-            CoMan: newJob.CoMan,
-            PhoneNo: newJob.PhoneNo,
-            //RigName: newJob.RigName,
-            //OrderBy: newJob.OrderBy,
-            Field: newJob.Field,
-            County: (newJob.County == null) ? null : newJob.County.Id,
-            States: (newJob.State == null) ? null : newJob.State.Id,
-            JobTypeId: ($scope.jbty.Id == null || $scope.jbty.Id == '') ? 0 : $scope.jbty.Id,
-
-            //ShipVia: newJob.ShipVia,
-            //ShipTo: newJob.ShiTo,
-            changedById: $scope.userdetails.Id,
-            insupddelflag: 'I'
+            Name: newRFQ.Name,
+            Status: newRFQ.js,
+            CustomerId: newRFQ.jc,
+            CmTypeId: newRFQ.jl,
+            SmId: newRFQ.sm,
+            Description: newRFQ.modelDescription,
+            CPhoneNo: 111,//newRFQ.PhoneNo,
+            CEmail: newRFQ.Email,
+            CFax: newRFQ.Fax,
+            changedById:1,
+            flag: 'I'
         }
 
         var req = {
             method: 'POST',
-            url: '/api/Jobs/SaveJobDetails',
-            data: job
+            url: '/api/RFQ/SaveRFQDetails',
+            data: RFq
         }
         $http(req).then(function (response) {
 
-            //alert("Saved successfully!");
-            $scope.getJobsListByStatus();
-            $scope.newJob = null;
-            $scope.jbty = '';
+            alert("Saved successfully!");
+            //$scope.getJobsListByStatus();
+            $scope.newRFQ = null;
+            //$scope.jbty = '';
             $('#Modal-header-new').modal('hide');
         }, function (errres) {
             var errdata = errres.data;
