@@ -2,7 +2,7 @@ var myapp1 = angular.module('myApp1', ['ngStorage', 'ngAnimate', 'ui.bootstrap']
 var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $rootScope, $uibModal) {
 
     var tarr = [];
-
+   
     $scope.selArr = new Array();
     
     // Get the customer data
@@ -70,9 +70,10 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             $scope.selArr[i].Email = $scope.Email;
             $scope.selArr[i].customerid = $scope.Cust.Client;
         }
+     
         var req = {
             method: 'POST',
-            url: '/api/ERPAsse/SendMain',
+            url: '/api/ERPAsse/finalquote',
             data: $scope.selArr
         }
         $http(req).then(function (res) {
@@ -94,14 +95,17 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             alert("Plese Select Customer.");
             return;
         }
-        for (var i = 0; i < $scope.selArr.length; i++) {
-            $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Client;
-        }
+
+        var data = {
+            des:$scope.des, 
+            email: $scope.Email,
+            customername: $scope.Cust.Client
+        };
+
         var req = {
             method: 'POST',
-            url: '/api/ERPAsse/SendMain',
-            data: $scope.selArr
+            url: '/api/ERPAsse/RequestInvoice',
+            data: data
         }
         $http(req).then(function (res) {
             //$scope.initdata = res.data;
@@ -141,7 +145,36 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
     }
 
     //Pay Supplier 
-    $scope.PaySupplier = function () {
+    
+    //$scope.PaySupplier = function () {
+    //    if ($scope.Email == null) {
+    //        alert("Plese Enter Email Id.");
+    //        return;
+    //    }
+    //    if ($scope.Cust == null) {
+    //        alert("Plese Select Customer.");
+    //        return;
+    //    }
+    //    var data = {
+    //        //filename:$scope.fileContent,
+    //        doc: $scope.fileContent,
+    //        email: $scope.Email,
+    //        customername: $scope.Cust.Client
+    //    };
+    //    var req = {
+    //        method: 'POST',
+    //        url: '/api/ERPAsset/PaySupplier',
+    //        data: data
+    //    }
+    //    $http(req).then(function (res) {
+    //        //$scope.initdata = res.data;
+    //        //$scope.showlocimportdata(res.data);
+    //        $('#Modal-header-paysuppliers').modal('hide');
+    //        alert("Enquiry Sucessfully Sent");
+    //    });
+    //}
+
+    $scope.SendInvoice = function () {
         if ($scope.Email == null) {
             alert("Plese Enter Email Id.");
             return;
@@ -150,16 +183,15 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             alert("Plese Select Customer.");
             return;
         }
-        var data = {
-            //filename:$scope.fileContent,
-            doc: $scope.fileContent,
-            email: $scope.Email,
-            customername: $scope.Cust.Client
-        };
+        for (var i = 0; i < $scope.selArr.length; i++) {
+            $scope.selArr[i].Email = $scope.Email;
+            $scope.selArr[i].customerid = $scope.Cust.Client;
+        }
+        
         var req = {
             method: 'POST',
-            url: '/api/ERPAsset/PaySupplier',
-            data: data
+            url: '/api/ERPAsset/PaySupplierInvoicePdf',
+            data: $scope.selArr
         }
         $http(req).then(function (res) {
             //$scope.initdata = res.data;
@@ -169,6 +201,5 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
 
         });
     }
-
 });
 
