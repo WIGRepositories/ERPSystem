@@ -184,7 +184,7 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">Users</div>
+                            <div class="page-title">Users List </div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -235,11 +235,11 @@
                                         </tr>
                                     <tbody>
                                         <tr ng-repeat="U in User|filter:{FirstName:fname,LastName:lname}">
-                                            <td><a href="#" ng-click="GoToUserDetails(U.Id);"><font color="blue"> <u> {{U.Name}}</u></font></a></td>
+                                            <td><a href="#" ng-click="GoToUserDetails(U.Id);"><font color="blue"> <u> {{U.UserName}}</u></font></a></td>
                                             <td> {{U.FirstName}}</td>
                                             <td>{{U.LastName}}</td>
-                                            <td>{{U.MiddleName}}</td>
-                                            <td>{{U.EmailId}}</td>
+                                            <td>{{U.MiddleaName}}</td>
+                                            <td>{{U.EMail}}</td>
                                             <td>{{U.ContactNo1}}</td>
                                             <td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" disabled ng-model="U.Active" ng-true-value="1" ng-false-value="0" /></td>
                                             <td>

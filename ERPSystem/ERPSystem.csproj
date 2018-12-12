@@ -284,6 +284,9 @@
     <Content Include="UI\ObjectTypes.html" />
     <Content Include="UI\PPDocuments.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQDetails.html" />
+    <Content Include="UI\RFQList.html" />
+    <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
     <Content Include="UI\ThirdParty.html" />
@@ -680,17 +683,23 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
-    <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />
     <Compile Include="Controllers\MaintenanceVendorController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ObjectTypesController.cs" />
+    <Compile Include="Controllers\OrderConfirmationDocsController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
+    <Compile Include="Controllers\QuoteRequestController.cs" />
+    <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\ShippingOrderController.cs" />
+    <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
+    <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
-    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

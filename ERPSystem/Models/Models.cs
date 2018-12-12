@@ -252,14 +252,15 @@ namespace ERPSystem.Models
 
     public class Users
     {
-        public int Id { set; get; }
+        public string UserName { set; get; }
+        //public string UserName { set; get; }
         public string FirstName { set; get; }
         public string LastName { set; get; }
         public string MiddleName { set; get; }
-        public string UserName { set; get; }
+
         public string EmpNo { set; get; }
         public string Email { set; get; }
-        public string ContactNo1 { set; get; }
+        public long ContactNo1 { set; get; }
         public string ContactNo2 { set; get; }
         public int? mgrId { set; get; }
         public int ManagerName { set; get; }
@@ -332,11 +333,11 @@ namespace ERPSystem.Models
 
     public class userroles
     {
-        public int Id { set; get; }
-        public int UserId { set; get; }
-        public int? LocationId { set; get; }
-        public int RoleId { set; get; }
-        public string insupdflag { set; get; }
+        public string UserName { set; get; }
+        public string Role { set; get; }
+        public string Location { set; get; }
+        //public int RoleId { set; get; }
+        //public string insupdflag { set; get; }
 
     }
 
@@ -1224,16 +1225,17 @@ namespace ERPSystem.Models
 
 
     }
+
     public class SupplierInvoice
     {
-
+        public string flag { set; get; }
         public int SupplierInvoiceID { set; get; }
         public int RFQID { set; get; }
         public int RFQDetailID { set; get; }
         
         public int SupplierID { set; get; }
-        public DateTime Date { set; get; }
-        public DateTime Time { set; get; }
+        public DateTime ?Date { set; get; }
+        public DateTime ?Time { set; get; }
         public string CommType { set; get; }
         public int DocID { set; get; }
     }
@@ -1242,7 +1244,7 @@ namespace ERPSystem.Models
     public class ShippingOrder
     {
    
-
+        public string flag { set; get; }
         public int ShippingOrderID { set; get; }
 
         public int SupplierInvoiceID { set; get; }
@@ -1251,21 +1253,22 @@ namespace ERPSystem.Models
 
         public string ToAddress { set; get; }
 
-        public DateTime Date { set; get; }
+        public DateTime ?Date { set; get; }
 
-        public DateTime Time { set; get; }
+        public DateTime ?Time { set; get; }
 
-        public DateTime ArrivedOn { set; get; }
+        public DateTime ?ArrivedOn { set; get; }
 
-        public DateTime DeliveredOn { set; get; }
+        public DateTime ?DeliveredOn { set; get; }
         public int RFQID { set; get; }
 
         public int Active { set; get; }
 
     }
+
     public class TransactionMaster
     {
-
+        public string flag { set; get; }
         public int TransactionMasterID { set; get; }
 
         public double Amount { set; get; }
@@ -1277,9 +1280,11 @@ namespace ERPSystem.Models
         public int Active { set; get; }
         }
 
-    public class Paymentmodel
+    public class Payment
 
     {
+   
+        public string flag { set; get; }
         public int PaymentID { set; get; }
 
         public int InvoiceID { set; get; }
@@ -1301,6 +1306,7 @@ namespace ERPSystem.Models
     public class QuoteRequest
 
     {
+        public string flag { set; get; }
         public int RFQDetailID { set; get; }
 
         public string SentOn { set; get; }

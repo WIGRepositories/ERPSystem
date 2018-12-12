@@ -29,16 +29,16 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
     $scope.GetLocations = function () {
 
         $http.get('/api/Location/GetLocations').then(function (response, data) {
-            $scope.Locations = response.data;
-            $scope.NLocations = response.data;
-            $rootScope.spinner.off();
-            $("#userroles-content").show();
+            $scope.Location = response.data;
+            //$scope.NLocations = response.data;
+            //$rootScope.spinner.off();
+            //$("#userroles-content").show();
         });
 
         $http.get('/api/Roles/GetRoles?allroles=-1').then(function (res, data) {
-            $scope.roles = res.data;
-            $rootScope.spinner.off();
-            $("#userroles-content").show();
+            $scope.Role = res.data;
+            //$rootScope.spinner.off();
+            //$("#userroles-content").show();
         });
 
         $scope.GetUserRoles(0);

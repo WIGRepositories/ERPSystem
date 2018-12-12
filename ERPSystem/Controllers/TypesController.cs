@@ -237,43 +237,43 @@ namespace ERPSystem.Controllers
         [Route("api/Types/getstates")]
         public DataTable getstates()
         {
-            DataTable Tbl = new DataTable();
+            DataTable dt = new DataTable();
             //connect to database
                 SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetStates";
+                cmd.CommandText = "spGetUsers";
                 cmd.Connection = conn;
                             
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
-                db.Fill(Tbl);
+                db.Fill(dt);
              
-            return Tbl;
+            return dt;
         }
 
-        [HttpGet]
-        [Route("api/Types/GetCounty")]
-        public DataTable GetCounty(int Id)
-        {
-            DataTable Tbl = new DataTable();
-            //connect to database
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+        //[HttpGet]
+        //[Route("api/Types/GetCounty")]
+        //public DataTable GetCounty(int Id)
+        //{
+        //    DataTable Tbl = new DataTable();
+        //    //connect to database
+        //    SqlConnection conn = new SqlConnection();
+        //    conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
 
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "GetCounty";
-            cmd.Connection = conn;
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "GetCounty";
+        //    cmd.Connection = conn;
 
 
-            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = @Id;
-            SqlDataAdapter db = new SqlDataAdapter(cmd);
-            db.Fill(Tbl);
+        //    cmd.Parameters.Add("@Id", SqlDbType.Int).Value = @Id;
+        //    SqlDataAdapter db = new SqlDataAdapter(cmd);
+        //    db.Fill(Tbl);
 
-            return Tbl;
-        }
+        //    return Tbl;
+        //}
 
     }
 }

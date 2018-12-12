@@ -229,13 +229,15 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         //}
 
         var U = {
-            Id: ((flag == 'U') ? User.Id : -1),
+            Id: ((flag == 'I') ? User.Id : -1),
+            UserName: User.UserName,
             FirstName: User.FirstName,
             LastName: User.LastName,
             MiddleName: User.MiddleName,
-            EmpNo: (flag == 'U') ? User.EmpNo : $scope.EmpNo,
-            Email: (flag == 'U') ? User.EmailId : User.EmailId+'@eestt.onmicrosoft.com',
+            EmpNo: (flag == 'I') ? User.EmpNo : $scope.EmpNo,
+            Email: (flag == 'I') ? User.EmailId : User.EmailId+'@eestt.onmicrosoft.com',
             ContactNo1: User.ContactNo1,
+            Email: User.Email,
             ContactNo2: User.ContactNo2,
             mgrId: User.ManagerId,//($scope.mgr == null) ? null : $scope.mgr.Id,
             CountryId: User.Country,
@@ -277,7 +279,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         }, function (errres) {
             var errdata = errres.data;
             var errmssg = "";
-            errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+            //errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
             $scope.showDialog1(errmssg);
         });
         $scope.currGroup = null;

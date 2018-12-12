@@ -16,21 +16,22 @@ namespace ERPSystem.Controllers
     {
         [HttpGet]
         [Route("api/Users/GetUsers")]
-        public DataTable GetUsers(int cmpId)//Main Method
+        public DataTable GetUsers( )//Main Method
         {
             DataTable Tbl = new DataTable();
             try
             {
                //connect to database
                 SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
-                cmd.CommandText = "GetUsers";
+                cmd.CommandText = "spGetUsers";
                 cmd.Connection = conn;
-                SqlParameter cmpid = new SqlParameter("@cmpId", SqlDbType.Int);
-                cmpid.Value = cmpId;
-                cmd.Parameters.Add(cmpid);
+
+                //SqlParameter cmpid = new SqlParameter("@cmpId", SqlDbType.Int);
+                //cmpid.Value = cmpId;
+                //cmd.Parameters.Add(cmpid);
 
                 //SqlParameter empid= new SqlParameter("@EmpNo", SqlDbType.Int);
                 //cmpid.Value = empid;
@@ -43,6 +44,7 @@ namespace ERPSystem.Controllers
             }
             catch (Exception ex)
             {
+                throw ex;
                 //Logger.Error(ex, LogCategory.WebApp, "An error occured in GetUsers() procedure", LogLevel.Error, null);
             }
             
@@ -50,33 +52,33 @@ namespace ERPSystem.Controllers
         }
 
 
-        [HttpGet]
-        [Route("api/Users/GetworkorderUsers")]
-        public DataTable GetworkorderUsers()
-        {
-            DataTable Tbl = new DataTable();
-            try
-            {
-                //connect to database
-                SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
-                cmd.CommandText = "GetUser";
-                cmd.Connection = conn;
+        //[HttpGet]
+        //[Route("api/Users/GetworkorderUsers")]
+        //public DataTable GetworkorderUsers()
+        //{
+        //    DataTable Tbl = new DataTable();
+        //    try
+        //    {
+        //        //connect to database
+        //        SqlConnection conn = new SqlConnection();
+        //        conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
+        //        cmd.CommandText = "GetUser";
+        //        cmd.Connection = conn;
               
-                SqlDataAdapter db = new SqlDataAdapter(cmd);
-                db.Fill(Tbl);
+        //        SqlDataAdapter db = new SqlDataAdapter(cmd);
+        //        db.Fill(Tbl);
 
-                //Logger.Trace(LogCategory.WebApp, "DataTable in GetUser() procedure is loaded.", LogLevel.Information, null);
-            }
-            catch (Exception ex)
-            {
-                //Logger.Error(ex, LogCategory.WebApp, "An error occured in GetUser() procedure", LogLevel.Error, null);
-            }
+        //        //Logger.Trace(LogCategory.WebApp, "DataTable in GetUser() procedure is loaded.", LogLevel.Information, null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Logger.Error(ex, LogCategory.WebApp, "An error occured in GetUser() procedure", LogLevel.Error, null);
+        //    }
 
-            return Tbl;
-        }
+        //    return Tbl;
+        //}
 
 
         [HttpPost]
@@ -91,17 +93,17 @@ namespace ERPSystem.Controllers
             {
 
                 //connect to database
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
                 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "InsUpdUsers";
+                cmd.CommandText = "spUsers";
                 cmd.Connection = conn;
                 conn.Open();
 
 
-                SqlParameter UId = new SqlParameter("@userid", SqlDbType.Int);
-                UId.Value = U.Id;
+                SqlParameter UId = new SqlParameter("@UserName", SqlDbType.VarChar,50);
+                UId.Value = U.UserName;
                 cmd.Parameters.Add(UId);
 
                 SqlParameter UFirstName = new SqlParameter("@FirstName",SqlDbType.VarChar,50);
@@ -116,49 +118,49 @@ namespace ERPSystem.Controllers
                 MiddleName.Value = U.MiddleName;
                 cmd.Parameters.Add(MiddleName);
 
-                SqlParameter UUserType = new SqlParameter("@cmpId", SqlDbType.Int);
-                UUserType.Value = U.companyId;
-                cmd.Parameters.Add(UUserType);
+                //SqlParameter UUserType = new SqlParameter("@cmpId", SqlDbType.Int);
+                //UUserType.Value = U.companyId;
+                //cmd.Parameters.Add(UUserType);
 
-                SqlParameter uEmpNo = new SqlParameter("@EmpNo",SqlDbType.VarChar,15);
-                uEmpNo.Value = U.EmpNo;
-                cmd.Parameters.Add(uEmpNo);
+                //SqlParameter uEmpNo = new SqlParameter("@EmpNo",SqlDbType.VarChar,15);
+                //uEmpNo.Value = U.EmpNo;
+                //cmd.Parameters.Add(uEmpNo);
 
                 SqlParameter UEmail = new SqlParameter("@Email",SqlDbType.VarChar,50);
                 UEmail.Value = U.Email;
                 cmd.Parameters.Add(UEmail);
 
-                SqlParameter UAdressId = new SqlParameter("@Address",SqlDbType.VarChar,250);
-                UAdressId.Value = U.Address;
-                cmd.Parameters.Add(UAdressId);
+                //SqlParameter UAdressId = new SqlParameter("@Address",SqlDbType.VarChar,250);
+                //UAdressId.Value = U.Address;
+                //cmd.Parameters.Add(UAdressId);
 
-                SqlParameter AltAddress = new SqlParameter("@AltAddress",SqlDbType.VarChar,250);
-                AltAddress.Value = U.AltAdress;
-                cmd.Parameters.Add(AltAddress);
+                //SqlParameter AltAddress = new SqlParameter("@AltAddress",SqlDbType.VarChar,250);
+                //AltAddress.Value = U.AltAdress;
+                //cmd.Parameters.Add(AltAddress);
 
                 SqlParameter UMobileNo = new SqlParameter("@ContactNo1",SqlDbType.VarChar, 15);
                 UMobileNo.Value = U.ContactNo1;
                 cmd.Parameters.Add(UMobileNo);
 
-                 SqlParameter ContactNo2 = new SqlParameter("@ContactNo2",SqlDbType.VarChar, 15);
-                ContactNo2.Value = U.ContactNo2;
-                cmd.Parameters.Add(ContactNo2);
+                // SqlParameter ContactNo2 = new SqlParameter("@ContactNo2",SqlDbType.VarChar, 15);
+                //ContactNo2.Value = U.ContactNo2;
+                //cmd.Parameters.Add(ContactNo2);
 
-                SqlParameter URole1 = new SqlParameter("@RoleId",SqlDbType.Int);
-                URole1.Value = U.RoleId;
-                cmd.Parameters.Add(URole1);
+                //SqlParameter URole1 = new SqlParameter("@RoleId",SqlDbType.Int);
+                //URole1.Value = U.RoleId;
+                //cmd.Parameters.Add(URole1);
 
                 SqlParameter UActive = new SqlParameter("@Active",SqlDbType.Int);
                 UActive.Value = U.Active;
                 cmd.Parameters.Add(UActive);
 
-                SqlParameter UUserName = new SqlParameter("@DUserName",SqlDbType.VarChar,15);
-                UUserName.Value = U.DUserName;
-                cmd.Parameters.Add(UUserName);
+                //SqlParameter UUserName = new SqlParameter("@DUserName",SqlDbType.VarChar,15);
+                //UUserName.Value = U.DUserName;
+                //cmd.Parameters.Add(UUserName);
                 
-                SqlParameter UPassword = new SqlParameter("@DPassword",SqlDbType.VarChar,15);
-                UPassword.Value = U.DPassword;
-                cmd.Parameters.Add(UPassword);
+                //SqlParameter UPassword = new SqlParameter("@DPassword",SqlDbType.VarChar,15);
+                //UPassword.Value = U.DPassword;
+                //cmd.Parameters.Add(UPassword);
 
                 //  SqlParameter WUserName = new SqlParameter("@WUserName",SqlDbType.VarChar,15);
                 //WUserName.Value = U.WUserName;
@@ -168,56 +170,56 @@ namespace ERPSystem.Controllers
                 //WPassword.Value = U.WPassword;
                 //cmd.Parameters.Add(WPassword);
 
-                SqlParameter MgrId = new SqlParameter("@ManagerId", SqlDbType.Int);
-                MgrId.Value = U.mgrId;
-                cmd.Parameters.Add(MgrId);
+        //        SqlParameter MgrId = new SqlParameter("@ManagerId", SqlDbType.Int);
+        //        MgrId.Value = U.mgrId;
+        //        cmd.Parameters.Add(MgrId);
 
 
-                SqlParameter ZipCode = new SqlParameter("@ZipCode",SqlDbType.VarChar,15);
-                ZipCode.Value = U.ZipCode;
-                cmd.Parameters.Add(ZipCode);
+        //        SqlParameter ZipCode = new SqlParameter("@ZipCode",SqlDbType.VarChar,15);
+        //        ZipCode.Value = U.ZipCode;
+        //        cmd.Parameters.Add(ZipCode);
 
-                SqlParameter insupdflag = new SqlParameter("@insupdflag", SqlDbType.VarChar, 10);
-                insupdflag.Value = U.insupdflag;
-                cmd.Parameters.Add(insupdflag);
+        //        SqlParameter insupdflag = new SqlParameter("@insupdflag", SqlDbType.VarChar, 10);
+        //        insupdflag.Value = U.insupdflag;
+        //        cmd.Parameters.Add(insupdflag);
 
-        SqlParameter StateId = new SqlParameter("@StateId",SqlDbType.Int);
-                StateId.Value = U.StateId;
-                cmd.Parameters.Add(StateId);
+        //SqlParameter StateId = new SqlParameter("@StateId",SqlDbType.Int);
+        //        StateId.Value = U.StateId;
+        //        cmd.Parameters.Add(StateId);
 
-                 SqlParameter CountryId = new SqlParameter("@CountryId",SqlDbType.Int);
-                CountryId.Value = U.CountryId;
-                cmd.Parameters.Add(CountryId);
+        //         SqlParameter CountryId = new SqlParameter("@CountryId",SqlDbType.Int);
+        //        CountryId.Value = U.CountryId;
+        //        cmd.Parameters.Add(CountryId);
 
-                SqlParameter GenderId = new SqlParameter("@GenderId", SqlDbType.Int);
-                GenderId.Value = U.GenderId;
-                cmd.Parameters.Add(GenderId);
+        //        SqlParameter GenderId = new SqlParameter("@GenderId", SqlDbType.Int);
+        //        GenderId.Value = U.GenderId;
+        //        cmd.Parameters.Add(GenderId);
        
-                SqlParameter RFromDate = new SqlParameter();
-                RFromDate.ParameterName = "@RFromDate";
-                RFromDate.SqlDbType = SqlDbType.DateTime;
-                RFromDate.Value = U.RFromDate;
-                cmd.Parameters.Add(RFromDate);
+        //        SqlParameter RFromDate = new SqlParameter();
+        //        RFromDate.ParameterName = "@RFromDate";
+        //        RFromDate.SqlDbType = SqlDbType.DateTime;
+        //        RFromDate.Value = U.RFromDate;
+        //        cmd.Parameters.Add(RFromDate);
                 
-                SqlParameter RToDate = new SqlParameter();
-                RToDate.ParameterName = "@RToDate";
-                RToDate.SqlDbType = SqlDbType.DateTime;
-                RToDate.Value = U.RToDate;
-                cmd.Parameters.Add(RToDate);
+        //        SqlParameter RToDate = new SqlParameter();
+        //        RToDate.ParameterName = "@RToDate";
+        //        RToDate.SqlDbType = SqlDbType.DateTime;
+        //        RToDate.Value = U.RToDate;
+        //        cmd.Parameters.Add(RToDate);
 
-                SqlParameter Photo = new SqlParameter();
-                Photo.ParameterName = "@Photo";
-                Photo.SqlDbType = SqlDbType.VarChar;
-                Photo.Value = U.Photo;
-                cmd.Parameters.Add(Photo);
+        //        SqlParameter Photo = new SqlParameter();
+        //        Photo.ParameterName = "@Photo";
+        //        Photo.SqlDbType = SqlDbType.VarChar;
+        //        Photo.Value = U.Photo;
+        //        cmd.Parameters.Add(Photo);
 
-                SqlParameter name = new SqlParameter("@username",SqlDbType.VarChar,250);
-                name.Value = U.UserName;
-                cmd.Parameters.Add(name);  
+        //        SqlParameter name = new SqlParameter("@username",SqlDbType.VarChar,250);
+        //        name.Value = U.UserName;
+        //        cmd.Parameters.Add(name);  
 
-                cmd.ExecuteScalar();
+        //        cmd.ExecuteScalar();
                 
-                conn.Close();
+        //        conn.Close();
                 
                 //Logger.Trace(LogCategory.WebApp, "InsUpdUsers stored procedure is executed successfully.", LogLevel.Information, null);
 
@@ -239,31 +241,32 @@ namespace ERPSystem.Controllers
 
         [HttpGet]
         [Route("api/Users/GetUserRoles")]
-        public DataTable GetUserRoles(int locId, int usersWithOutRoles,int userid) {
+        public DataTable GetUserRoles() {
             DataTable tbl = new DataTable();
             try
             {
 
                 SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
-                cmd.CommandText = "GetUserRoles";
+                cmd.CommandText = "spGetUserRoles";
                 cmd.Connection = conn;
 
-                SqlParameter UUserType = new SqlParameter("@locationId", SqlDbType.Int);
-                UUserType.Value = locId;
-                cmd.Parameters.Add(UUserType);
+                //SqlParameter UUserType = new SqlParameter("@UserName", SqlDbType.Int);
+                //UUserType.Value = locId;
+                //cmd.Parameters.Add(UUserType);
 
-                SqlParameter pusersWithOutRoles = new SqlParameter("@usersWithOutRoles", SqlDbType.Int);
-                pusersWithOutRoles.Value = usersWithOutRoles;
-                cmd.Parameters.Add(pusersWithOutRoles);
+                //SqlParameter pusersWithOutRoles = new SqlParameter("@usersWithOutRoles", SqlDbType.Int);
+                //pusersWithOutRoles.Value = usersWithOutRoles;
+                //cmd.Parameters.Add(pusersWithOutRoles);
 
-                SqlParameter userid1 = new SqlParameter("@userid", SqlDbType.Int);
-                userid1.Value = userid;
-                cmd.Parameters.Add(userid1);
+                //SqlParameter userid1 = new SqlParameter("@userid", SqlDbType.Int);
+                //userid1.Value = userid;
+                //cmd.Parameters.Add(userid1);
 
-                DataSet ds = new DataSet();
+                //DataSet ds = new DataSet();
+
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
                 db.Fill(tbl);
                 
@@ -271,10 +274,13 @@ namespace ERPSystem.Controllers
             }
             catch (Exception ex)
             {
+                throw ex;
+
                 //Logger.Error(ex, LogCategory.WebApp, "An error occured in GetUserRoles() procedure", LogLevel.Error, null);
             }
             return tbl;
         }
+
 
         [HttpPost]
         [Route("api/Users/SaveUserRoles")]
@@ -309,7 +315,7 @@ namespace ERPSystem.Controllers
                 cmd.Parameters.Add(UUser);
 
                 SqlParameter UCmp = new SqlParameter("@LocationId", SqlDbType.Int);
-                UCmp.Value = U.LocationId;
+                UCmp.Value = U.Location;
                 cmd.Parameters.Add(UCmp);
 
                 SqlParameter insupdflag = new SqlParameter("@insupdflag", SqlDbType.VarChar);

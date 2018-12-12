@@ -281,6 +281,8 @@
                             <div class="col-md-6">
                                 <select ng-options="u.username for u in Users track by u.Id" class="form-control" ng-model="u">
                                     <option value="">Select</option>
+                                  
+
                                 </select>
                             </div>
                         </div>
@@ -292,6 +294,7 @@
                             <div class="col-md-6">
                                 <select ng-options="r.Name for r in roles track by r.Id" class="form-control" ng-model="r">
                                     <option value="">Select</option>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -303,6 +306,7 @@
                                 <select ng-options="nl.name for nl in NLocations track by nl.id" ng-model="nl"
                                         id="test" style="width:100%" ng-disabled="r.IsGlobal == 1">
                                     <option value="">All</option>
+                                   
                                 </select>
                             </div>
                         </div>
