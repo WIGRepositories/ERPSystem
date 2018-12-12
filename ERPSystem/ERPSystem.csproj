@@ -214,7 +214,9 @@
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
     <Content Include="UI\images\ees-logo.jpg" />
     <Content Include="UI\images\ees-logo.png" />
+    <Content Include="UI\images\Procure-to-Pay.jpg" />
     <Content Include="UI\images\pts-white.png" />
+    <Content Include="UI\images\purchasing.png" />
     <Content Include="UI\images\rawpixel-678089-unsplash.jpg" />
     <Content Include="UI\JobDocuments.html" />
     <Content Include="UI\JobEquipment.html" />

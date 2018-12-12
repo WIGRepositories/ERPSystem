@@ -6,6 +6,23 @@ using System.Web;
 
 namespace ERPSystem.Models
 {
+    public class PaySupplier
+    {
+
+        public string email { get; set; }
+        public string customername { get; set; }
+        public string doc { get; set; }
+        public string des { get; set;}
+    }
+    public class Equip
+    {
+        public string customerid { get; set; }
+        public string Email { get; set; }
+        public string Name { get; set; }
+        public int qty { get; set; }
+        public string des { get; set; }
+        public int perunit { get; set; }
+    }
     public class DeliveryTicket
     {
         internal object DID;
