@@ -29,7 +29,7 @@
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <!--<a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">EES EM Portal</span><span style="display: none" class="logo-text-icon">µ</span></a>-->
+                    <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text"></span><span style="display: none" class="logo-text-icon">µ</span></a>
                 </div>
                 <div class="topbar-main">
                     <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
@@ -38,8 +38,9 @@
                             <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li class="divider"></li>-->
-                                 <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li><li><a href="../Login.html"><i class="fa fa-key"></i>Change Password</a></li>
+                        <li class="divider"></li>-->
+                                <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -64,66 +65,76 @@
                             </div>
                             <div class="clearfix"></div>
                         </li>
-                        <li>
-                            <a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and Jobs">
+
+                        <li class="active">
+                            <a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and RFQs">
                                 <i class="fa fa-tachometer fa-fw">
                                     <div class="icon-bg bg-orange"></div>
                                 </i><span class="menu-title">Dashboard</span>
                             </a>
                         </li>
+                        <!--2.Items-->
                         <li>
                             <a href="#">
                                 <i class="fa fa-cubes fa-fw">
                                     <div class="icon-bg bg-pink"></div>
-                                </i><span class="menu-title">Equipment</span><span class="fa arrow"></span>
+                                </i><span class="menu-title">Inventory</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li ng-hide="isSuperUser == 0">
-                                    <a href="AssetModels.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipment Type</span></a>
+                                    <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
                                 </li>
-                                <li ng-hide="isSuperUser == 0">
-                                    <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
-                                </li>
-                                <li><a href="Assets.html" data-toggle="tooltip" data-placement="right" title="Manage list of equipment across locations"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments List</span></a></li>
+                                <!-- <li ng-hide="isSuperUser == 0">
+                            <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
+                        </li> -->
+
+                                <li><a href="ItemsList.html" data-toggle="tooltip" data-placement="right" title="Manage list of inventory items"><i class="fa fa-align-left"></i><span class="submenu-title">Item List</span></a></li>
                                 <!--<li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>-->
-                                <li><a href="AssetDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa-cubes"></i><span class="submenu-title">Equipment Details</span></a></li>
+                                <li><a href="ItemDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa-cubes"></i><span class="submenu-title">Item Details</span></a></li>
+
+                                <li><a href="InventoryItems.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryItems"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Items</span></a></li>
+                                <li><a href="InventoryStatus.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryStatus"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Status</span></a></li>
+                                <li><a href="InventorySales.html" data-toggle="tooltip" data-placement="right" title="Details of InventorySales"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Sales</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Purchases</span></a></li>
 
 
                             </ul>
+
                         </li>
+
+                        <!--3.jobs-->
                         <li>
                             <a href="#">
                                 <i class="fa fa-list fa-fw">
                                     <div class="icon-bg bg-violet"></div>
-                                </i><span class="menu-title">Jobs</span><span class="fa arrow"></span>
+                                </i><span class="menu-title">RFQs</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="JobsList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending jobs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Job List</span></a></li>
-                                <li><a href="JobDetails.html" data-toggle="tooltip" data-placement="right" title="Job specific details: Equipment, Personnel, 3rd Party, and Job Documents"><i class="fa fa-file-text-o"></i><span class="submenu-title">Job Details</span></a></li>
-                                <li><a href="CompletedJobList.html" data-toggle="tooltip" data-placement="right" title="Jobs marked as completed"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Completed Jobs</span></a></li>
-                                 <li><a href="JobPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all jobs, by location, customer status"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Job Personnel</a></li>
-                                <li><a href="JobEquipment.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all jobs, by location, customer status"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Job Equipment</a></li>
-                                 <li><a href="JobDocuments.html" data-toggle="tooltip" data-placement="right" title="Job specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Job Documents</a></li>
+                                <li><a href="RFQList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending RFQs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">RFQ List</span></a></li>
+                                <li><a href="RFQDetails.html" data-toggle="tooltip" data-placement="right" title="RFQ specific details: Equipment, Personnel, 3rd Party, and RFQ Documents"><i class=" fa fa-file-text-o"></i><span class="submenu-title">RFQ Details</span></a></li>
+                                <li><a href="CompletedRFQsList.html" data-toggle="tooltip" data-placement="right" title="RFQs marked as completed"><i class=" fa fa-list fa-fw"></i><span class="submenu-title">Completed RFQs</span></a></li>
+                                <li><a href="RFQPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all RFQs, by location, customer status"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>RFQ Personnel</a></li>
+                                <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
+                                <li><a href="RFQDocuments.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Documents</a></li>
                                 <!--<li><a href="Jobs.html"><i class="fa fa-exclamation"></i><span class="submenu-title"></span>Job Alerts</a></li>-->
-                               <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
+                                <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-cloud-upload"></i><span class="submenu-title">Job Reports</span></a></li>-->
                             </ul>
                         </li>
 
-                        
-
-                      <li ng-hide="hidereports=1">
+                        <!--4.Reports-->
+                        <li ng-hide="hidereports=1">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o fa-fw">
                                     <div class="icon-bg bg-violet"></div>
                                 </i><span class="menu-title">Reports</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="ReportsList.html" data-toggle="tooltip" data-placement="right" title="List of reports for the application"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Reports List</a></li>
+                                <li><a href="ReportsList.html" data-toggle="tooltip" data-placement="right" title="List of reports for the application"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>Reports List</a></li>
                             </ul>
                         </li>
-                        
 
+                        <!--5.user roles-->
                         <li ng-hide="isSuperUser == 0">
                             <a href="#">
                                 <i class="fa fa-group fa-fw">
@@ -131,54 +142,70 @@
                                 </i><span class="menu-title">Users & Roles</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class="fa fa-user"></i><span class="submenu-title">User Details</span></a></li>
-                                <li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i><span class="submenu-title">Users List</span></a></li>
-                                <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
-
-
+                                <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">User Details</span></a></li>
+                                <li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class=" fa fa-user"></i><span class="submenu-title">Users List</span></a></li>
+                                <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class=" fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
                             </ul>
                         </li>
-                        <!--<li>
-        <a href="UI/#">
-            <i class="fa fa-book fa-fw">
-                <div class="icon-bg bg-violet"></div>
-            </i><span class="menu-title">Help</span><span class="fa arrow"></span>
-        </a>
-        <ul class="nav nav-second-level">
-            <li><a href="UI/HelpResources.html"><i class="fa fa-columns"></i><span class="submenu-title"></span>Resources</a></li>
-            <li><a href="UI/HelpSupport.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>Support</a></li>
-            <li><a href="UI/HelpFAQs.html"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>FAQs</a></li>
-        </ul>
-    </li>-->
 
+                        <!--6.Procedure Document-->
                         <li>
                             <a href="PPDocuments.html" data-toggle="tooltip" data-placement="right" title="Common document repository for documents across company.">
-                                <i class="fa fa-file-text-o">
+                                <i class=" fa fa-file-text-o">
                                     <div class="icon-bg bg-orange"></div>
-                                 </i><span class="menu-title">Procedure Documents</span>
+                                </i><span class="menu-title">Procedure Documents</span>
                             </a>
                         </li>
-                        <li ng-hide="isSuperUser == 0" class="active">
+
+                        <!--7.administration-->
+                        <li>
                             <a href="#">
                                 <i class="fa fa-edit fa-fw">
                                     <div class="icon-bg bg-violet"></div>
                                 </i><span class="menu-title">Administration</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li><a href="TypeGroups.html" data-toggle="tooltip" data-placement="right" title="Common groups used across application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Master Data Groups</a></li>
-                                <li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>
-                                <li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>
-                                <li><a href="Types.html" data-toggle="tooltip" data-placement="right" title="Common data used across application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Master Data</a></li>
-                                <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>
+                                <li><a href="TypeGroups.html" data-toggle="tooltip" data-placement="right" title="Common groups used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data Groups</a></li>
+                                <!--<li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>-->
+                                <!--<li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>-->
+                                <li><a href="Types.html" data-toggle="tooltip" data-placement="right" title="Common data used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data</a></li>
+                                <!--<li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>-->
                                 <!--<li><a href="ThirdParty.html"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Third Party Resources</a></li>-->
-                                <li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class="fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>
+                                <!--<li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>-->
                                 <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
-                                <li class="active"><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class="fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
-                                <li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
-                                <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
-                                <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>
-                             </ul>
+                                <!--<li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>-->
+                                <!--<li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>-->
+                                <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
+                        <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
+                        <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
+                            </ul>
                         </li>
+
+                        <li ng-hide="isSuperUser == 0">
+                            <a href="#">
+                                <i class="fa fa-group fa-fw">
+                                    <div class="icon-bg bg-red"></div>
+                                </i><span class="menu-title">Customers</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">Customers List</span></a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                        <li ng-hide="isSuperUser == 0">
+                            <a href="#">
+                                <i class="fa fa-group fa-fw">
+                                    <div class="icon-bg bg-red"></div>
+                                </i><span class="menu-title">Suppliers</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">Suppliers List</span></a></li>
+
+                            </ul>
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </nav>
@@ -199,7 +226,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-                    <div class="page-content" id="customers-content" style="display:none;">
+                    <div class="page-content" id="customers-content" >
                         <div id="table-action" class="row">
 
 
@@ -222,34 +249,37 @@
                                                 <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                     <thead>
                                                         <tr>
-                                                            <th>Client</th>
-                                                            <th>Contact</th>
-                                                            <th>Phone No</th>
+                                                            <th>Name</th>
+                                                            <th>Customer Code</th>
+                                                            <th>Address</th>
+                                                            <th>Contact No1</th>
+                                                            <th>Contact No2</th>                                 
                                                             <th>Email</th>
+                                                            <th>Active</th>                                                          
                                                             <!--<th>Contact Role</th>
                                                     <th>Service Description</th>
                                                     <th>PTS POC</th>-->
-                                                            <th>Active</th>
-                                                            <th>Update</th>
+                                                            <!--<th>Active</th>-->
+                                                            <!--<th>Update</th>-->
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr ng-repeat="T in Customers" class="gradeA">
-                                                            <td>{{T.Client}}</td>
-                                                            <td>{{T.Contact}}</td>
-                                                            <td>{{T.PhoneNo}}</td>
+                                                            <td>{{T.Name}}</td>
+                                                            <td>{{T.CustomerCode}}</td>
+                                                            <td>{{T.Address}}</td>
+                                                            <td>{{T.ContactNo}}</td>
+                                                            <td>{{T.ContactNo1}}</td>
                                                             <td>{{T.Email}}</td>
-                                                            <!--<td>{{T.ContactRole}}</td>
-                                                    <td>{{T.ServiceDescription}}</td>
-                                                    <td>{{T.PTSPOC}}</td>-->
+                                                        
 
 
                                                             <td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-model="T.act" ng-true-value="1" ng-false-value="0" disabled></td>
-                                                            <td>
+                                                            <!--<td>
                                                                 <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
                                                                     <i class="fa fa-edit"></i>&nbsp;
                                                                     Edit
-                                                                </button>
+                                                                </button>-->
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -370,26 +400,38 @@
                 <div class="modal-body" ng-model="Customer">
                     <div class="row">
 
-                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Client<span class='require'>*</span>:</label>
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Client" class="form-control" /><span class="help-block"></span></div>
+                        <label for="Name" class="col-md-3 control-label" style="color:red;">Name<span class='require'>*</span>:</label>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Name" class="form-control" /><span class="help-block"></span></div>
                     </div>
 
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Customer Code</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.CustomerCode" class="form-control" /><span class="help-block"></span></div>
+                    </div>
 
                     <div class="row">
-                        <label for="Name" class="col-md-3 control-label"> Contact:</label>
+                        <label for="Name" class="col-md-3 control-label"> Address</label>
 
 
-                        <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.Contact" class="form-control" /><span class="help-block"></span></div>
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.Address" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Contact No1</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Customer.ContactNo" class="form-control" /><span class="help-block"></span></div>
                     </div>
                     <div class="row">
 
-                        <label for="PhoneNo" class="col-md-3 control-label"> Phone No:</label>
+                        <label for="PhoneNo" class="col-md-3 control-label"> Contact No2:</label>
 
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.PhoneNo" class="form-control" /><span class="help-block"></span></div>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ContactNo1" class="form-control" /><span class="help-block"></span></div>
                     </div>
                     <div class="row">
 
-                        <label for="Email" class="col-md-3 control-label"> Email Address:</label>
+                        <label for="Email" class="col-md-3 control-label"> Email</label>
 
                         <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.Email" class="form-control" /><span class="help-block"></span></div>
                         <label style="color:red;margin-top:6px;">{{mssg}}</label>
@@ -507,14 +549,13 @@
     <script src="js/main.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
-    <script src="js/ngStorage.js"></script>
     <script src="js/Customers.js"></script>
-    <script src="js/adal.js"></script>
-    <script src="js/adal-angular.js"></script>
-    <script src="js/AdalCommon.js"></script>
+    <script src="js/ngStorage.js"></script>
+   
+
     <script src="js/angular-animate.js"></script>
     <script src="js/treasure-overlay-spinner.js"></script>
     <!-- AI CORE JAVASCRIPT -->
-    <script src="/scripts/cloud.common.js"></script>   
+    
 </body>
 </html>

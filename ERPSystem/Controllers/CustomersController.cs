@@ -12,54 +12,54 @@ using System.Web.Http.Tracing;
 
 namespace ERPSystem.Controllers
 {
-   public class CustomersController : ApiController
+    public class CustomersController : ApiController
     {
-       [Route("api/Customers/getCustomers")]
-       [HttpGet]
-       public DataTable getCustomers()
-       {
-           DataTable Tbl = new DataTable();
-           try
-           {
-
-               //connect to database
-               SqlConnection conn = new SqlConnection();
-               //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
-               conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
-
-               SqlCommand cmd = new SqlCommand();
-               cmd.CommandType = CommandType.StoredProcedure;
-               cmd.CommandText = "getCustomers";
-               cmd.Connection = conn;
-               DataSet ds = new DataSet();
-               SqlDataAdapter db = new SqlDataAdapter(cmd);
-               db.Fill(ds);
-               Tbl = ds.Tables[0];
+        [Route("api/Customers/getCustomers")]
+        [HttpGet]
+        public DataTable getCustomers()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
 
 
-               //Logger.Trace(LogCategory.WebApp, "DataTable in getCustomers() procedure is loaded", LogLevel.Information, null);
-           }
-           catch (Exception ex)
-           {
-               //Logger.Error(ex, LogCategory.WebApp, "An error occured in getCustomers() procedure", LogLevel.Error, null);
-           }
-           // int found = 0;
-           return Tbl;
-       }
+                SqlConnection conn = new SqlConnection();
+
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "getCustomer";
+                cmd.Connection = conn;
+
+                SqlDataAdapter db = new SqlDataAdapter(cmd);
+                db.Fill(dt);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return dt;
+         }
+   
+      
        [HttpPost]
        [Route("api/Customers/SaveCustomers")]
-       public HttpResponseMessage SaveCustomers(Customers cus)
+       public DataTable SaveCustomers(Customers cus)
        {
 
-           //connect to database
-           SqlConnection conn = new SqlConnection();
-           try
+            DataTable dt = new DataTable();
+                   
+          try
            {
-               //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
-               conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
-               //@Client varchar(150),@Contact varchar(100),@Email varchar(50),@PhoneNo varchar(15),@Active int,@ContactRole varchar(100),@ServiceDescription varchar(100)
-               //,@PTSPOCId int,@flag char,@ID int=null
-
+                SqlConnection conn = new SqlConnection();
+              
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+             
                SqlCommand cmd = new SqlCommand();
                cmd.CommandType = CommandType.StoredProcedure;
                cmd.CommandText = "InsUpdCustomer";
@@ -67,64 +67,47 @@ namespace ERPSystem.Controllers
                conn.Open();
 
 
-               SqlParameter Gid = new SqlParameter("@Client",SqlDbType.VarChar,150);
-               Gid.Value = cus.Client;
+               SqlParameter Gid = new SqlParameter("@Name", SqlDbType.VarChar,50);
+               Gid.Value = cus.Name;
                cmd.Parameters.Add(Gid);
 
-               SqlParameter Gid1 = new SqlParameter("@Contact", SqlDbType.VarChar, 100);
-               Gid1.Value = cus.Contact;
+               SqlParameter Gid1 = new SqlParameter("@CustomerCode", SqlDbType.VarChar,50);
+               Gid1.Value = cus.CustomerCode;
                cmd.Parameters.Add(Gid1);
 
-               SqlParameter Gid2 = new SqlParameter("@Email", SqlDbType.VarChar, 50);
-               Gid2.Value = cus.Email;
+               SqlParameter Gid2 = new SqlParameter("@Address", SqlDbType.VarChar,50);
+               Gid2.Value = cus.Address;
                cmd.Parameters.Add(Gid2);
 
-               SqlParameter phone = new SqlParameter("@PhoneNo",SqlDbType.VarChar,15);
-               phone.Value = cus.PhoneNo;
+               SqlParameter phone = new SqlParameter("@ContactNo", SqlDbType.VarChar,50);
+               phone.Value = cus.ContactNo;
                cmd.Parameters.Add(phone);
 
-               SqlParameter llid = new SqlParameter("@Active",SqlDbType.Int);
-               llid.Value =  cus.Active;
+               SqlParameter llid = new SqlParameter("@ContactNo1", SqlDbType.VarChar,50);
+               llid.Value =  cus.ContactNo1;
                cmd.Parameters.Add(llid);
 
-               SqlParameter Gid3 = new SqlParameter("@ContactRole", SqlDbType.VarChar, 100);
-               Gid3.Value = cus.ContactRole;
+               SqlParameter Gid3 = new SqlParameter("@Email", SqlDbType.VarChar,50);
+               Gid3.Value = cus.Email;
                cmd.Parameters.Add(Gid3);
 
-               SqlParameter Gid4 = new SqlParameter("@ServiceDescription", SqlDbType.VarChar, 100);
-               Gid4.Value = cus.ServiceDesc;
+               SqlParameter Gid4 = new SqlParameter("@Active", SqlDbType.Int);
+               Gid4.Value = cus.Active;
                cmd.Parameters.Add(Gid4);
-               
-               SqlParameter uid = new SqlParameter("@PTSPOCId", SqlDbType.Int);
-               uid.Value = cus.PTSPOCId;
-               cmd.Parameters.Add(uid);
 
-               SqlParameter flag = new SqlParameter("@flag",SqlDbType.VarChar);
-               flag.Value = cus.insupddelflag;
-               cmd.Parameters.Add(flag);
-
-               SqlParameter uid1 = new SqlParameter("@ID", SqlDbType.Int);
-               uid1.Value = Convert.ToString(cus.ID);
-               cmd.Parameters.Add(uid1);
-            
-               cmd.ExecuteScalar();
-               conn.Close();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
 
                //Logger.Trace(LogCategory.WebApp, "InsUpdCustomer stored procedure is executed successfully", LogLevel.Information, null);
 
-               return new HttpResponseMessage(HttpStatusCode.OK);
+              
            }
            catch (Exception ex)
            {
-               if (conn != null && conn.State == ConnectionState.Open)
-               {
-                   conn.Close();
-               }
-               string str = ex.Message;
-               //Logger.Error(ex, LogCategory.WebApp, "An error occured in SaveCustomers() procedure", LogLevel.Error, null);
-               return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+
+                throw ex;
            }
+            return dt;
        }
-        public void Options() { }
     }
 }

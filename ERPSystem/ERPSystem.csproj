@@ -263,6 +263,7 @@
     <Content Include="UI\js\login.js" />
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
+    <Content Include="UI\js\source.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
     <Content Include="UI\js\DataLoad.js" />
@@ -286,11 +287,11 @@
     <Content Include="UI\js\ReportsList.js" />
     <Content Include="UI\js\RoleDetails.js" />
     <Content Include="UI\js\roles.js" />
+    <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\ThirdParty.js" />
     <Content Include="UI\js\TreeView\main.js" />
     <Content Include="UI\js\TreeView\ng-tree-dnd.js" />
-    <Content Include="UI\js\UserDetails.js" />
-    <Content Include="UI\js\UserRoles.js" />
+    <Content Include="UI\js\Users.js" />
     <Content Include="UI\Locations.html" />
     <Content Include="UI\MaintenanceVendors.html" />
     <Content Include="UI\Manufacturer.html" />
@@ -303,8 +304,8 @@
     <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
+    <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
-    <Content Include="UI\UserDetails.html" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - Web Deploy.pubxml" />
@@ -313,6 +314,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="UI\Content\test1.pdf" />
+    <Content Include="UI\UserDetails.html" />
+    <Content Include="UI\UserRoles.html" />
+    <Content Include="UI\Users.html" />
     <Content Include="UI\vendors\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="UI\vendors\bootstrap\css\bootstrap.css.map" />
     <Content Include="UI\vendors\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -442,12 +446,9 @@
     <Content Include="UI\js\ui-tabs.js" />
     <Content Include="UI\js\ui-toastr-notifications.js" />
     <Content Include="UI\js\ui-treeview.js" />
-    <Content Include="UI\js\Users.js" />
     <Content Include="UI\Roles.html" />
     <Content Include="UI\TypeGroups.html" />
     <Content Include="UI\Types.html" />
-    <Content Include="UI\UserRoles.html" />
-    <Content Include="UI\Users.html" />
     <Content Include="UI\vendors\animate.css\animate.css" />
     <Content Include="UI\vendors\bootstrap-datepicker\css\datepicker.css" />
     <Content Include="UI\vendors\bootstrap-datepicker\css\datepicker3.css" />
@@ -705,11 +706,11 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShippingOrderController.cs" />
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

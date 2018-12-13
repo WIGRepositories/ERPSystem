@@ -202,18 +202,28 @@ namespace ERPSystem.Models
     public class TypeGroupsData
     {
 
-        public int includeAccesses { get; set; }
-        public int includeDataType { get; set; }
-        public int includeStatus { get; set; }
-        public int includeDocTypes { get; set; }
-        public int includeGender { get; set; }
-        public int includeJobDocTypes { get; set; }
-        public int includeInspectionVendors { get; set; }
-        public int includeMaintenanceVendors { get; set; }
-        public int includeMaterial { get; set; }
-        public int includeState { get; set; }
-        public int includeJobType { get; set; }
-        public int includeUser { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string EmpNo { get; set; }
+        public string EmailId { get; set; }
+        public int RoleId { get; set; }
+        public int CompanyId { get; set; }
+        public int Active { get; set; }
+        public int GenderId { get; set; }
+        public int ManagerId { get; set; }
+        public int CountryId { get; set; }
+
+        public int StateId { get; set; }
+        public string ZipCode { get; set; }
+        public string ContactNo1 { get; set; }
+        public string ContactNo2 { get; set; }
+        public string Address { get; set; }
+        public string AltAddress { get; set; }
+        public string photo1 { get; set; }
+
+
 
 
     }
@@ -270,41 +280,49 @@ namespace ERPSystem.Models
 
     public class Users
     {
-        public string UserName { set; get; }
+        public int Id { set; get; }
         //public string UserName { set; get; }
         public string FirstName { set; get; }
         public string LastName { set; get; }
         public string MiddleName { set; get; }
 
         public string EmpNo { set; get; }
-        public string Email { set; get; }
-        public long ContactNo1 { set; get; }
-        public string ContactNo2 { set; get; }
-        public int? mgrId { set; get; }
-        public int ManagerName { set; get; }
-        public string Country { get; set; }
-        public string ZipCode { get; set; }
-        public string State { get; set; }
-        public int StateId { set; get; }
-        public int CountryId { set; get; }
+        public string EmailId { set; get; }
+        public int RoleId { set; get; }
+        public int CompanyId { set; get; }
         public int Active { get; set; }
         public int GenderId { get; set; }
-        public string UserType { set; get; }
-        public int UserTypeId { set; get; }
+        public int ManagerId { set; get; }
+        public string Country { get; set; }
+        public int StateId { set; get; }
+        public string ZipCode { get; set; }
+       public long ContactNo1 { set; get; }
+        public string ContactNo2 { set; get; }
         public string Address { set; get; }
-        public string AltAdress { set; get; }
-        public string Photo { get; set; }
-        public string Role { set; get; }
-        public int RoleId { set; get; }
-        public DateTime? RFromDate { get; set; }
-        public DateTime? RToDate { get; set; }
-        public string DUserName { get; set; }
-        public string DPassword { get; set; }
-        public string WUserName { get; set; }
-        public string WPassword { get; set; }
-        public string insupdflag { get; set; }
-        public int companyId { set; get; }
-        public string Company { set; get; }
+        public string AltAddress { set; get; }
+        public string photo { get; set; }
+        
+        public int CountryId { set; get; }
+
+
+        //public string State { get; set; }
+
+        //public int CountryId { set; get; }
+
+        //public string UserType { set; get; }
+        //public int UserTypeId { set; get; }
+
+        //public string Role { set; get; }
+
+        //public DateTime? RFromDate { get; set; }
+        //public DateTime? RToDate { get; set; }
+        //public string DUserName { get; set; }
+        //public string DPassword { get; set; }
+        //public string WUserName { get; set; }
+        //public string WPassword { get; set; }
+        //public string insupdflag { get; set; }
+        //public int companyId { set; get; }
+        //public string Company { set; get; }
 
     }
     public class UserLogin
@@ -351,15 +369,15 @@ namespace ERPSystem.Models
 
     public class userroles
     {
-        public string UserName { set; get; }
-        public string Role { set; get; }
-        public string Location { set; get; }
+        //public string UserName { set; get; }
+        //public string Role { set; get; }
+        //public string Location { set; get; }
 
         public int Id { set; get; }
         public int UserId { set; get; }
         public int? LocationId { set; get; }
         public int RoleId { set; get; }
-        public string insupdflag { set; get; }
+        public string CompanyId { set; get; }
 
     }
 
@@ -792,46 +810,38 @@ namespace ERPSystem.Models
 
     public class Customers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string CustomerCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
 
         public string Email { get; set; }
-
-        public string ContactRole { get; set; }
-
-        public string PhoneNo { get; set; }
-
-
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
         public int Active { get; set; }
 
         public string insupddelflag { get; set; }
     }
     public class Suppliers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SupplierCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
 
         public string Email { get; set; }
-
-        public string ContactRole { get; set; }
-
-        public string PhoneNo { get; set; }
-
-
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
         public int Active { get; set; }
-
         public string insupddelflag { get; set; }
     }
 

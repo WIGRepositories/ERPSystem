@@ -1,55 +1,34 @@
-﻿<!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+﻿
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>ERPSystem | Dashboard</title>
+    <title>Home | Configuration | Customers</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="images/icons/favicon.ico">
-    <link rel="apple-touch-icon" href="images/icons/favicon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/favicon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/favicon-114x114.png">
+
     <!--Loading bootstrap css-->
     <link type="text/css" rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
-    <!--LOADING STYLESHEET FOR PAGE-->
-    <!--Loading style vendors-->
-    <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">    
-    <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">    
+    <link type="text/css" rel="stylesheet" href="vendors/bootstrap/css/bootstrap.css">
+    <!--LOADING STYLESHEET FOR PAGE--><!--Loading style vendors-->
+    <!--<link type="text/css" rel="stylesheet" href="vendors/jquery-pace/pace.css">-->
+    <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">
+    <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">
     <link rel="stylesheet" type="text/css" href="css/treasure-overlay-spinner.css">
+
     <!--Loading style-->
-    <link type="text/css" rel="stylesheet" href="css/themes/style2/iliad-custom.css" id="theme-change" class="style-change color-change">
+    <link type="text/css" rel="stylesheet" href="css/themes/Custom.css" id="theme-change" class="style-change color-change">
     <link type="text/css" rel="stylesheet" href="css/style-responsive.css">
-    <style>
-        Backlogged {
-            color: red;
-        }
 
-        Active {
-            color: green;
-        }
-
-        Pending {
-            color: #FCF8E3;
-        }
-
-        Completed {
-            color: grey;
-        }
-
-        Approved {
-            color: lightblue;
-        }        
-    </style>
 </head>
-<body ng-init="getFRQlist()" ng-controller="myCtrl">
+
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="GetSuppliers();">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <!--<a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">EES EM Portal</span><span style="display: none" class="logo-text-icon">µ</span></a>-->
+                    <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text"></span><span style="display: none" class="logo-text-icon">µ</span></a>
                 </div>
                 <div class="topbar-main">
                     <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
@@ -58,8 +37,8 @@
                             <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
-                        <li class="divider"></li>-->
-                                <li ng-controller="logoutCtrl"><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                                <li class="divider"></li>-->
+                                <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
                                 <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
@@ -105,8 +84,8 @@
                                     <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
                                 </li>
                                 <!-- <li ng-hide="isSuperUser == 0">
-                            <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
-                        </li> -->
+                                    <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
+                                </li> -->
 
                                 <li><a href="ItemsList.html" data-toggle="tooltip" data-placement="right" title="Manage list of inventory items"><i class="fa fa-align-left"></i><span class="submenu-title">Item List</span></a></li>
                                 <!--<li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>-->
@@ -196,8 +175,8 @@
                                 <!--<li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>-->
                                 <!--<li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>-->
                                 <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
-                        <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
-                        <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
+                                <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
+                                <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
                             </ul>
                         </li>
 
@@ -236,217 +215,278 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">RFQs List</div>
+                            <div class="page-title">Suppliers</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li>Dashboard</li>
+                            <li><i class="fa fa-home"></i><a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and Jobs">Home</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Configuration</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all customers">Suppliers</a></li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-                    <div class="page-content" id="jobslist-content">
+                    <div class="page-content" id="Suppliers-content">
                         <div id="table-action" class="row">
-                            <div class="col-lg-12">
-                                <div id="tableactionTabContent" class="tab-content">
-                                    <div id="table-table-tab" class="tab-pane fade in active">
-                                        <div class="row">
-                                            <div class="col-lg-12">
+
+
+                            <div id="tableactionTabContent" class="tab-content">
+                                <div id="table-table-tab" class="tab-pane fade in active">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+
+
+                                            <div class="table-container">
                                                 <div class="row mbm">
-                                                    <!--<div class="col-md-3" style="text-align:left">
-                                                        Location: <select ng-options="s.name for s in Locations track by s.id" ng-model="s" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>-->
-                                                    <div class="col-md-3" style="text-align:left">
-                                                        RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3" style="text-align:left">
-                                                        Customer: <select ng-options="c.Client  for c in Customers track by c.Id" ng-model="c" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3" style="text-align:left">
-                                                        <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;">Add New RFQ</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
 
-                                                    <div class="container-fliud">
 
-                                                        <!--<div class="row">
-                                                    <h3 ng-show="act.length != 0">Active jobs</h3>
-                                                    <div style="width: 15%; float: left; padding: 5px; " ng-repeat="j in  jobsList1 | filter:{Status:'Active'||'!'}">
-                                                        <div class="panel panel-dark" style="background-color: green; min-height:100px">
-
-                                                            <a href="JobDetails.html?jobId={{j.ID}}">
-
-                                                                <div class="panel-body" ng-style="j.Status">
-                                                                    <span style="text-decoration-color: white"><font color="white"> {{j.Name}}</font></span>
-                                                                    <br /><span style="text-decoration-color: white"><font color="white"> Location: {{j.Location}}</font></span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
-                                                        <!--<h3 ng-show="pend.length != 0">Pending jobs</h3>-->
-
-                                                        <table class="table table-bordered table-advanced tablesorter">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>RFQ #</th>
-                                                                    <th>RFQ Name</th>
-                                                                    <th>Communication Type</th>                                                                   
-                                                                    <th>Customer</th>
-                                                                    <th>Phone no</th>                                                                   
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr ng-repeat="J in rfqlist|filter:{StatusId :'!9'}:true" ng-style="(J.StatusId == '7') ? {'background-color':'#F2DEDE'}:(J.StatusId == '8') ?{'background-color':'#DFF0D8'}:''">
-                                                                    <td><a href="RFQDetails.html?RFQId={{J.ID}}"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
-                                                                    <td>{{J.Name}}</td>
-                                                                    <td>{{J.RFQComType}}</td>                                                                   
-                                                                    <td>{{J.Customer}}</td>
-                                                                    <td>{{J.CustomerPhoneno}}</td>                                                                   
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-
-                                                        <!--<div class="panel panel-dark" style="min-height: 100px" ng-style="(j.StatusId == '7') ? {'background-color':'#F2DEDE'}:(j.StatusId == '8') ?{'background-color':'GREEN'}:''">
-
-                                                    <a href="JobDetails.html?jobId={{j.ID}}">
-
-                                                        <div class="panel-body" ng-style="j.Status">
-                                                            <span style="text-decoration-color: white"><font color="white"> {{j.Name}}</font></span>
-                                                            <br /><span style="text-decoration-color: white"><font color="white"> Location: {{j.Location}}</font></span>
-                                                        </div>
-                                                    </a>
-                                                </div>-->
-
+                                                    <div class="actions">
+                                                        <!----   <button  type="button" data-target="#modal-header-primary" data-toggle="modal" class="btn btn-info btn-sm" style="float:right;margin:10px;">  Add TypeGroup</button>--->
+                                                        <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add Supplier</button>
                                                     </div>
 
                                                 </div>
+                                                <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Supplier Code</th>
+                                                            <th>Address</th>
+                                                            <th>Contact No1</th>
+                                                            <th>Contact No2</th>
+                                                            <th>Email</th>
+                                                            <th>Active</th>
+                                                            <!--<th>Contact Role</th>
+                                                            <th>Service Description</th>
+                                                            <th>PTS POC</th>-->
+                                                            <!--<th>Active</th>-->
+                                                            <!--<th>Update</th>-->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="T in Suppliers" class="gradeA">
+                                                            <td>{{T.Name}}</td>
+                                                            <td>{{T.SupplierCode}}</td>
+                                                            <td>{{T.Address}}</td>
+                                                            <td>{{T.ContactNo}}</td>
+                                                            <td>{{T.ContactNo1}}</td>
+                                                            <td>{{T.Email}}</td>
+
+
+
+                                                            <td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-model="T.act" ng-true-value="1" ng-false-value="0" disabled></td>
+                                                            <!--<td>
+                                                                <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                    Edit
+                                                                </button>-->
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </di
                     </div>
-                    <!--END CONTENT-->
+
+
                     <!--END CONTENT--><!--BEGIN FOOTER-->
                     <div id="footer">
-                        <div class="copyright">2018 © EES Equipment Management Portal</div>
+                        <div class="copyright">2018 © ERPSystem</div>
                     </div>
                     <!--END FOOTER-->
+
                 </div>
             </treasure-overlay-spinner>
-</div>
         </div>
-        <!--END PAGE WRAPPER-->
-   
+    </div>
 
-
-    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
-        <div class="modal-dialog modal-lg">
+    <div id="Modal-header-primary" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Add New RFQ</h4>
+                    <h4 id="modal-header-primary-label" class="modal-title">Edit Suppliers</h4>
                 </div>
-                <div class="modal-body" ng-model="newRFQ">
+                <div class="modal-body" ng-model="Suppliers1">
+
                     <div class="row">
-                        <div class="col-md-12">
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="Description" class="control-label" style="color:red;">RFQ#:<span class='require'>*</span></label>
-                                    <div>
-                                        <input id="inputRFQID" type="text" ng-model="newRFQ.Name" class="form-control" /><span class="help-block"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-3">
-                                <label for="selCountry" class="control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.js" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Active</option>
-                                        <option value="2">Pending</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Customer: <span class='require'>*</span></label>
-                                <div>
-
-                                    <select ng-model="newRFQ.jc" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Accumalte</option>
-                                        <option value="2">Anagr</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Communication Type:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.jl" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Mobile Phone</option>
-                                        <option value="2">FAX</option>
-                                        <option value="3">Mail</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>                   
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Sales Manager:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.sm" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Ramesh</option>
-                                        <option value="2">Prasad</option>
-                                        <option value="3">Suresh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <label for="Description" class="control-label" style="color:red;">Description:</label>
-                                <div style="text-align:left;padding-left:0">
-                                    <textarea id="inputDescription" rows="2" ng-model="newRFQ.modelDescription" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
+                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Client<span class='require'>*</span>:</label>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.Client" class="form-control" /><span class="help-block"></span></div>
                     </div>
-                        <div class="form-actions">
-                            <div style="text-align:center">
-                                <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
-                            </div>
-                        </div>
-                        <!---- <div class="col-md-6 col-md-offset-2">
-                <button class="btn btn-primary" type="button">Save</button>
-                <button class="btn btn-primary" type="button">Cancel</button>
-            </div>--->
 
-                   
+
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Contact:</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Suppliers1.Contact" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="PhoneNo" class="col-md-3 control-label"> Phone No:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.PhoneNo" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Email" class="col-md-3 control-label"> Email Address:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="email" ng-model="Suppliers1.Email" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <!--<div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label" style="color:red;">Contact Role:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.ContactRole" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label" style="color:red;">Service Description:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Description" class="col-md-3 control-label">PTS POC:</label>
+
+                        <div class="col-md-6">
+                            <select ng-options="poc.Name for poc in Users track by poc.Id" ng-model="poc" style="width:100%">
+                                <option value="">Select PTS POC</option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
+
+                        <!--<div class="col-md-6">
+                            <input type="checkbox" class="col-md-4 " id="cactive" ng-true-value="1" ng-false-value="0" ng-checked="Suppliers1.act" />
+                        </div>-->
+
+                        <div class="col-md-4">
+
+                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive" ng-model="Suppliers1.act" ng-true-value="1" ng-false-value="0" ng-checked="Customers1.act" />
+
+                        </div>
+
+                    </div>
 
                 </div>
+                <div class="modal-footer">
 
+                    <button ng-disabled="isSuperUser == 0" type="button" class="btn btn-primary" data-dismiss="modal" ng-click="save(Suppliers1, 'U');">Save</button>
+                    <button data-dismiss="modal" class="btn btn-default">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
-    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1049">
+
+
+    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Add Supplier</h4>
+                </div>
+                <div class="modal-body" ng-model="Supplier">
+                    <div class="row">
+
+                        <label for="Name" class="col-md-3 control-label" style="color:red;">Name<span class='require'>*</span>:</label>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Supplier.Name" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Supplier Code</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Supplier.SupplierCode" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Address</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Supplier.Address" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Contact No1</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Supplier.ContactNo" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="PhoneNo" class="col-md-3 control-label"> Contact No2:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Supplier.ContactNo1" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Email" class="col-md-3 control-label"> Email</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Supplier.Email" class="form-control" /><span class="help-block"></span></div>
+                        <label style="color:red;margin-top:6px;">{{mssg}}</label>
+                    </div>
+
+                    <!--<div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label">Contact Role:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ContactRole" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+
+                    <div class="row">
+
+                        <label for="LocaitonID" class="col-md-3 control-label">Service Description:</label>
+
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+
+                        <label for="Description" class="col-md-3 control-label">PTS POC:</label>
+
+                        <div class="col-md-6">
+                            <select ng-options="ju.Name for ju in Users track by ju.Id" ng-model="ju" style="width:100%">
+                                <option value="">Select PTS POC</option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="row">
+                        <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
+
+                        <div class="col-md-6">
+
+                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive1" ng-model="Supplieract" ng-true-value="1" ng-false-value="0" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <div style="text-align:center">
+                            <button ng-disabled="isSuperUser == 0" class="btn btn-primary" type="button" ng-click="saveNew(Supplier);">Save</button>
+                            <button data-dismiss="modal" class="btn btn-default">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static">
+
         <div class="modal-header">
             <h3 class="modal-title">Save confirmation!</h3>
         </div>
@@ -463,47 +503,58 @@
             <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
+
+    </script>
+    <script type="text/ng-template" id="myModalContent1.html" data-backdrop="static" style="z-index:1055">
+        <div class="modal-header">
+            <h3 class="modal-title">Correction required!</h3>
+        </div>
+        <div class="modal-body">
+            <!--<ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>-->
+            {{mssg}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
     </script>
 
-    <!--END PAGE WRAPPER-->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <!--loading bootstrap js-->
     <script src="vendors/bootstrap/js/bootstrap.js"></script>
     <script src="vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+
+
     <script src="vendors/metisMenu/jquery.metisMenu.js"></script>
     <script src="vendors/slimScroll/jquery.slimscroll.js"></script>
     <script src="vendors/jquery-cookie/jquery.cookie.js"></script>
     <script src="vendors/iCheck/icheck.min.js"></script>
     <script src="vendors/iCheck/custom.min.js"></script>
-    <script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
+    <!--<script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>-->
     <script src="js/jquery.menu.js"></script>
     <script src="vendors/jquery-pace/pace.min.js"></script>
     <script src="vendors/holder/holder.js"></script>
     <script src="vendors/responsive-tabs/responsive-tabs.js"></script>
     <!--LOADING SCRIPTS FOR PAGE-->
-    <script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script>
-        $('.datepicker-filter').datepicker({
-            autoclose: true
-        });
-    </script>
-    <script src="js/index.js"></script>
+    <script src="js/table-action.js"></script>
     <!--CORE JAVASCRIPT-->
     <script src="js/main.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
-    <script src="js/ngStorage.js"></script>        
-    <script src="js/RFQList.js"></script>
-    <script src="js/adal.js"></script>
-    <script src="js/adal-angular.js"></script>
-    <script src="js/AdalCommon.js"></script>
+    <script src="js/Suppliers.js"></script>
+    <script src="js/ngStorage.js"></script>
+
+
     <script src="js/angular-animate.js"></script>
     <script src="js/treasure-overlay-spinner.js"></script>
     <!-- AI CORE JAVASCRIPT -->
-    <script src="/scripts/cloud.common.js"></script>
+
 </body>
 </html>

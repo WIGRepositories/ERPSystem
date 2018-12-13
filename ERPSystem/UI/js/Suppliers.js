@@ -1,17 +1,17 @@
 ﻿// JavaScript source code
-var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner']);
+var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'treasure-overlay-spinner']);
 var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $rootScope) {
     if ($localStorage.uname == null) {
-       // window.location.href = "../login.html";
+        // window.location.href = "../login.html";
     }
     $scope.uname = $localStorage.uname;
     $scope.userdetails = $localStorage.userdetails;
     $scope.isSuperUser = $localStorage.isSuperUser;
 
-   $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
-                    
+    $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
+
     $scope.CInit = function () {
-        $scope.Customeract = 1;
+        $scope.Supplieract = 1;
     }
     $rootScope.spinner = {
         active: false,
@@ -23,11 +23,11 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
     }
     //$rootScope.spinner.on();
-    $scope.GetCustomers = function () {      
-        $http.get('/api/Customers/getCustomers').then(function (res, data) {
-            $scope.Customers = res.data;
+    $scope.GetSuppliers = function () {
+        $http.get('/api/Suppliers/getSuppliers').then(function (res, data) {
+            $scope.Suppliers = res.data;
             $rootScope.spinner.off();
-            $("#customers-content").show();
+            $("#Suppliers-content").show();
         });
 
         //$http.get('/api/Users/GetUsers?cmpId=1').then(function (res, data) {
@@ -39,20 +39,20 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     }
 
-    $scope.save = function (customer) {
+    $scope.save = function (Supplier) {
 
-        if (customer == null) {
+        if (Supplier == null) {
             alert('Please enter name.');
             return;
         }
-      
+
         var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (customer.ContactNo != null && customer.ContactNo != "") {
-            if ((customer.ContactNo).match(phoneformat)) {
+        if (Supplier.ContactNo != null && Supplier.ContactNo != "") {
+            if ((Supplier.ContactNo).match(phoneformat)) {
                 $scope.phonevalid = '';
             }
             else {
-                if ((customer.ContactNo).match(/^\d{10}$/)) {
+                if ((Supplier.ContactNo).match(/^\d{10}$/)) {
                     $scope.phonevalid = '';
                 }
                 else {
@@ -63,12 +63,12 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
 
         var phoneformat1 = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (customer.ContactNo != null && customer.ContactNo != "") {
-            if ((customer.ContactNo).match(phoneformat1)) {
+        if (Supplier.ContactNo != null && Supplier.ContactNo != "") {
+            if ((Supplier.ContactNo).match(phoneformat1)) {
                 $scope.phonevalid = '';
             }
             else {
-                if ((customer.ContactNo).match(/^\d{10}$/)) {
+                if ((Supplier.ContactNo).match(/^\d{10}$/)) {
                     $scope.phonevalid = '';
                 }
                 else {
@@ -79,68 +79,68 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
 
 
-        if (customer.Name == null) {
+        if (Supplier.Name == null) {
             alert('Please enter client name.');
             return;
         }
-        if (customer.Name == "") {
+        if (Supplier.Name == "") {
             alert('Please enter client name.');
-            $scope.GetCustomers();
+            $scope.GetSuppliers();
             return;
         }
 
-        var SelCustomer = {
-            Name: customer.Name,
-            CustomerCode: customer.CustomerCode,
-            Address: customer.Address,
-            ContactNo: customer.ContactNo,
-            ContactNo1: customer.ContactNo1,
-            Email: customer.Email,
-          
-            Active: (customer.act == null) ? 0 : customer.act,
-            Id: customer.Id,
+        var SelSupplier = {
+            Name: Supplier.Name,
+            SupplierCode: Supplier.SupplierCode,
+            Address: Supplier.Address,
+            ContactNo: Supplier.ContactNo,
+            ContactNo1: Supplier.ContactNo1,
+            Email: Supplier.Email,
+            PTSPOCId: ($scope.poc == null) ? null : $scope.poc.Id,
+            Active: (Supplier.act == null) ? 0 : Supplier.act,
+            Id: Supplier.Id,
             //insupddelflag: 'U'
         };
 
         var req = {
             method: 'POST',
-            url: '/api/Customers/saveCustomers',
+            url: '/api/Suppliers/saveSuppliers',
             //headers: {
             //    'Content-Type': undefined
-            data: SelCustomer
+            data: SelSupplier
         }
         $http(req).then(function (response) {
             //$scope.showDialog("Saved successfully!");
-            $scope.GetCustomers();
-            $scope.Customers1 = null;
+            $scope.GetSuppliers();
+            $scope.Suppliers1 = null;
 
         }, function (errres) {
             var errdata = errres.data;
             var errmssg = "";
             errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
             $scope.showDialog1(errmssg);
-            $scope.GetCustomers();
-            $scope.Customers1 = null;
+            $scope.GetSuppliers();
+            $scope.Suppliers1 = null;
         });
 
 
     };
 
 
-    $scope.saveNew = function (customer) {
+    $scope.saveNew = function (Supplier) {
 
-        if (customer == null) {
+        if (Supplier == null) {
             alert('Please enter name.');
             return;
         }
 
         var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (customer.ContactNo != null && customer.ContactNo != "") {
-            if ((customer.ContactNo).match(phoneformat)) {
+        if (Supplier.ContactNo != null && Supplier.ContactNo != "") {
+            if ((Supplier.ContactNo).match(phoneformat)) {
                 $scope.phonevalid = '';
             }
             else {
-                if ((customer.ContactNo).match(/^\d{10}$/)) {
+                if ((Supplier.ContactNo).match(/^\d{10}$/)) {
                     $scope.phonevalid = '';
                 }
                 else {
@@ -151,12 +151,12 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
 
         var phoneformat = /^(\([0-9]{3}\)\s*|[0-9]{3}\-)[0-9]{3}-[0-9]{4}$/;
-        if (customer.ContactNo1 != null && customer.ContactNo1 != "") {
-            if ((customer.ContactNo1).match(phoneformat)) {
+        if (Supplier.ContactNo1 != null && Supplier.ContactNo1 != "") {
+            if ((Supplier.ContactNo1).match(phoneformat)) {
                 $scope.phonevalid = '';
             }
             else {
-                if ((customer.ContactNo1).match(/^\d{10}$/)) {
+                if ((Supplier.ContactNo1).match(/^\d{10}$/)) {
                     $scope.phonevalid = '';
                 }
                 else {
@@ -166,46 +166,45 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             }
         }
 
-        if (customer.Name == null) {
+        if (Supplier.Name == null) {
             alert('Please enter Name name.');
             return;
         }
 
         var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
-        if (customer.Email)
-        {            
-            if (reg.test(customer.Email) == false) {
+        if (Supplier.Email) {
+            if (reg.test(Supplier.Email) == false) {
                 // alert('Please enter valid email address.');
                 $scope.mssg = 'Enter Valid Email Id.';
                 return false;
             }
         }
 
-        var SelCustomer = {
-            Name: customer.Name,
-            CustomerCode: customer.CustomerCode,
-            Address: customer.Address,
-            ContactNo: customer.ContactNo,
-            ContactNo1: customer.ContactNo1,
-            Email: customer.Email,
-       
-            Active: ($scope.Customeract == null) ? 0 : $scope.Customeract,
+        var SelSupplier = {
+            Name: Supplier.Name,
+            SupplierCode: Supplier.SupplierCode,
+            Address: Supplier.Address,
+            ContactNo: Supplier.ContactNo,
+            ContactNo1: Supplier.ContactNo1,
+            Email: Supplier.Email,
+            PTSPOCId: ($scope.ju == null) ? null : $scope.ju.Id,
+            Active: ($scope.Supplieract == null) ? 0 : $scope.Supplieract,
             Id: -1,
             //insupddelflag: 'I'
-        };       
+        };
 
         var req = {
             method: 'POST',
-            url: '/api/Customers/saveCustomers',
+            url: '/api/Suppliers/saveSuppliers',
             //headers: {
             //    'Content-Type': undefined
-            data: SelCustomer
+            data: SelSupplier
         }
         $http(req).then(function (response) {
             //$scope.showDialog("Saved successfully!");
-            $scope.GetCustomers();
-            $scope.Customer = null;
+            $scope.GetSuppliers();
+            $scope.Supplier = null;
             $scope.ju = null;
             $scope.mssg = null;
             $('#Modal-header-new').modal('hide');
@@ -215,19 +214,19 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
             $scope.showDialog1(errmssg);
             $('#Modal-header-new').modal('hide');
-            $scope.GetCustomers();
-            $scope.Customer = null;
+            $scope.GetSuppliers();
+            $scope.Supplier = null;
             $scope.mssg = null;
         });
 
     };
 
 
-    $scope.setCurrCustomer = function (grp) {
-        $scope.Customers1 = grp;
+    $scope.setCurrSupplier = function (grp) {
+        $scope.Suppliers1 = grp;
         $scope.poc = null;
         for (cnt = 0; cnt < $scope.Users.length; cnt++) {
-            if ($scope.Users[cnt].Id == $scope.Customers1.PTSPOCId) {               
+            if ($scope.Users[cnt].Id == $scope.Suppliers1.PTSPOCId) {
                 $scope.poc = $scope.Users[cnt];
                 break;
             }
@@ -236,7 +235,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     };
 
     $scope.clearGroup = function () {
-        $scope.Customers1 = null;
+        $scope.Suppliers1 = null;
     };
 
 

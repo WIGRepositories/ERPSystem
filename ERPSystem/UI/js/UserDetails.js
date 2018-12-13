@@ -40,7 +40,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         }
     }
 
-    $rootScope.spinner.on();
+    //$rootScope.spinner.on();
 
     $scope.GetUsers = function () {
 
