@@ -799,49 +799,22 @@ namespace ERPSystem.Models
 
     public class Customers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string CustomerCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
 
         public string Email { get; set; }
-
-        public string ContactRole { get; set; }
-
-        public string PhoneNo { get; set; }
-
-
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
         public int Active { get; set; }
 
         public string insupddelflag { get; set; }
     }
-    public class Suppliers
-    {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
-
-        public string Email { get; set; }
-
-        public string ContactRole { get; set; }
-
-        public string PhoneNo { get; set; }
-
-
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
-        public int Active { get; set; }
-
-        public string insupddelflag { get; set; }
-    }
-
     public class PPDocument
     {
         public int ID { get; set; }
@@ -1351,7 +1324,83 @@ namespace ERPSystem.Models
         public int DocID { set; get; }
 
     }
-    
+    public class InventoryItem
+    {
+        public int Id { get; set; }
+        public String ItemName { get; set; }
+        // public String ItemImage { get; set; }
+        public String Code { get; set; }
+        public String Description { get; set; }
+        public String Category { get; set; }
+        public String SubCategory { get; set; }
+        public int ReOrderPoint { get; set; }
+        public string ItemImage { get; set; }
+        public decimal price { get; set; }
+        public string Itemmodel { get; set; }
+        public string features { get; set; }
 
+        public string InitialQuantity { get; set; }
+    }
+    public class ConfigData
+    {
+        public int includeStatus { get; set; }
+        public int includeCategories { get; set; }
+        public int includeLicenseCategories { get; set; }
+        public int includeVehicleGroup { get; set; }
+        public int includeGender { get; set; }
+        public int includeFrequency { get; set; }
+        public int includePricingType { get; set; }
+        public int includeTransactionType { get; set; }
+        public int includeApplicability { get; set; }
+        public int includeFeeCategory { get; set; }
+        public int includeTransChargeType { get; set; }
+        public int includeVehicleType { get; set; }
+        public int includeVehicleModel { get; set; }
+        public int includeVehicleMake { get; set; }
+        public int includeDocumentType { get; set; }
+        public int includePaymentType { get; set; }
+        public int includeMiscellaneousTypes { get; set; }
+        public int includeCardCategories { get; set; }
+        public int includeCardTypes { get; set; }
+        public int includeVehicleLayoutType { get; set; }
+        public int includeLicenseFeatures { get; set; }
+        public int includeCardModels { get; set; }
+        public int includeCards { get; set; }
+        public int includeTransactions { get; set; }
+        public int includeCountry { get; set; }
+        public int includeActiveCountry { get; set; }
+        public int includeFleetOwner { get; set; }
+        public int includeUserType { get; set; }
+        public int includeAuthType { get; set; }
+        public int includeState { get; set; }
+
+        public int includePackageNames { get; set; }
+
+        public int includePackageTypeName { get; set; }
+        public int includeApplicabilityType { get; set; }
+        public int includeUnitType { get; set; }
+        public int includeUnit { get; set; }
+        public int includeOperationName { get; set; }
+        public int includeValueType { get; set; }
+        public int includeApplyOn { get; set; }
+    }
+
+    public class Suppliers
+    {
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SupplierCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
+
+        public string Email { get; set; }
+        public int Active { get; set; }
+    }
 
 }

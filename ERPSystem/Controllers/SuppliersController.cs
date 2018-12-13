@@ -1,5 +1,4 @@
-﻿using ERPSystem;
-using ERPSystem.Models;
+﻿using ERPSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,15 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Tracing;
 
 namespace ERPSystem.Controllers
 {
-    public class CustomersController : ApiController
+    public class SuppliersController : ApiController
     {
-        [Route("api/Customers/getCustomers")]
+        [Route("api/Suppliers/getSuppliers")]
         [HttpGet]
-        public DataTable getCustomers()
+        public DataTable getSuppliers()
         {
             DataTable dt = new DataTable();
             try
@@ -29,7 +27,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "getCustomer";
+                cmd.CommandText = "getSupplier";
                 cmd.Connection = conn;
 
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
@@ -48,8 +46,8 @@ namespace ERPSystem.Controllers
 
 
         [HttpPost]
-        [Route("api/Customers/SaveCustomers")]
-        public DataTable SaveCustomers(Customers cus)
+        [Route("api/Suppliers/SaveSuppliers")]
+        public DataTable SaveSuppliers(Suppliers cus)
         {
 
             DataTable dt = new DataTable();
@@ -62,7 +60,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "InsUpdCustomer";
+                cmd.CommandText = "InsUpdSupplier";
                 cmd.Connection = conn;
                 conn.Open();
 
@@ -71,13 +69,14 @@ namespace ERPSystem.Controllers
                 Gid.Value = cus.Name;
                 cmd.Parameters.Add(Gid);
 
-                SqlParameter Gid1 = new SqlParameter("@CustomerCode", SqlDbType.VarChar, 50);
-                Gid1.Value = cus.CustomerCode;
+                SqlParameter Gid1 = new SqlParameter("@SupplierCode", SqlDbType.VarChar, 15);
+                Gid1.Value = cus.SupplierCode;
                 cmd.Parameters.Add(Gid1);
 
-                SqlParameter Gid2 = new SqlParameter("@Address", SqlDbType.VarChar, 50);
+                SqlParameter Gid2 = new SqlParameter("@Address", SqlDbType.VarChar, 15, cus.Address);
                 Gid2.Value = cus.Address;
                 cmd.Parameters.Add(Gid2);
+                //cmd.Parameters.Add(new SqlParameter("@Address", SqlDbType.VarChar, 115, cus.Address));
 
                 SqlParameter phone = new SqlParameter("@ContactNo", SqlDbType.VarChar, 50);
                 phone.Value = cus.ContactNo;
@@ -111,3 +110,5 @@ namespace ERPSystem.Controllers
         }
     }
 }
+
+
