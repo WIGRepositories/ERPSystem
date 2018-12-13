@@ -112,7 +112,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             return;
         }
         for(var i=0;i<$scope.selArr.length;i++){
-            $scope.selArr[i].Itemname = tt;
+            $scope.selArr[i].Itemname = tt.Name;
+            $scope.selArr[i].RFQID = tt.RFQID;
         }
         //$scope.a = $scope.selArr;
 

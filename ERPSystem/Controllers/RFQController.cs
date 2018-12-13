@@ -540,22 +540,26 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "InsUpdDelRFQPersonal";
+                cmd.CommandText = "InsUpdDelRFQSuppliers";
                 cmd.Connection = conn;
                 conn.Open();
                 foreach (RFQSupplier m in list)
                 {
 
-                    SqlParameter sid = new SqlParameter("@Name", SqlDbType.VarChar, 50);
+                    SqlParameter sid = new SqlParameter("@Sname", SqlDbType.VarChar, 50);
                     sid.Value = m.Client;
                     cmd.Parameters.Add(sid);
 
 
-                    SqlParameter bb = new SqlParameter("@Itemname", SqlDbType.VarChar,50);
-                    bb.Value = m.Itemname;
+                    SqlParameter bb = new SqlParameter("@rfqcode", SqlDbType.VarChar,50);
+                    bb.Value = m.RFQID;
                     cmd.Parameters.Add(bb);
 
-                   // cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.VarChar, 50,m.Client));
+                    SqlParameter b = new SqlParameter("@Itemname", SqlDbType.VarChar, 50);
+                    b.Value = m.Itemname;
+                    cmd.Parameters.Add(b);
+
+                    // cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.VarChar, 50,m.Client));
                     //cmd.Parameters.Add(new SqlParameter("@Itemname", SqlDbType.VarChar, 50, m.Itemname));
                     cmd.ExecuteScalar();
                     cmd.Parameters.Clear();

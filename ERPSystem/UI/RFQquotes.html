@@ -304,23 +304,23 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
-                                                <div class="row">
+                                                <!--<div class="row">
                                                     
                                                     <div class="col-md-6">
                                                         Supplier Name:<select ng-options="Cust.Client for Cust in Customers track by Cust.ID" ng-model="cc" style="width:60%" ng-change="GetRFQPersonnal(cc)">
                                                             <option value="">All</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
                                                 <div class="row" style="margin-top:10px;">
                                                     <table class="table table-bordered" style="background-color: white;">
                                                         <thead>
                                                             <tr style="height:50px">
                                                                 <th width="50%" style="text-align:center;">
-                                                                    <input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetCustlist()"/>
-                                                                Select All</th>
-                                                                <th style="text-align:center;">Item</th>                                                                
+                                                                    <!--<input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetCustlist()"/>-->
+                                                                Select Supplier</th>
+                                                                <th style="text-align:center;">Supplier List</th>                                                                
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -334,8 +334,8 @@
                                                     </table>
                                                     <div class="form-actions">
                                                         <div style="text-align:center">
-                                                            <!--<button class="btn btn-green" ng-click="AddCust();">Save</button>-->
-                                                            <button class="btn btn-green">Save</button>
+                                                            <button class="btn btn-green" ng-click="AddCust();">Save</button>
+                                                            <!--<button class="btn btn-green">Save</button>-->
                                                             <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                                                         </div>
                                                     </div>

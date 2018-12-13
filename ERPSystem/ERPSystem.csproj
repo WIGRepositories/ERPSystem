@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="DBScripts\County.sql" />
     <Content Include="DBScripts\Customers.sql" />
+    <Content Include="DBScripts\DBScripts_SP.sql" />
     <Content Include="DBScripts\DBScripts_Sprocs.sql" />
     <Content Include="DBScripts\DBScripts_Tables.sql" />
     <Content Include="DBScripts\States.sql" />

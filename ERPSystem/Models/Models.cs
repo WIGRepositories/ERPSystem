@@ -11,6 +11,8 @@ namespace ERPSystem.Models
 
         public string Client { get;set;}
         public string Itemname { get; set; }
+        public string RFQID { get; set; }
+        public string Name { get; set; }
     }
     public class PaySupplier
     {
