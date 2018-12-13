@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Tracing;
 
-namespace ERPSystem.Controllers
+namespace SmartTicketDashboard.Controllers
 {
     public class TypeGroupsController : ApiController
     {
@@ -18,35 +18,32 @@ namespace ERPSystem.Controllers
         public DataTable gettypegroups()
         {
             DataTable Tbl = new DataTable();
-            try
-            {
 
-                //connect to database
-                SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+            LogTraceWriter traceWriter = new LogTraceWriter();
+            traceWriter.Trace(Request, "0", TraceLevel.Info, "{0}", "gettypegroups credentials....");
+            //connect to database
+            SqlConnection conn = new SqlConnection();
+            //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
+            conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetTypeGroups";
-                cmd.Connection = conn;
-                DataSet ds = new DataSet();
-                SqlDataAdapter db = new SqlDataAdapter(cmd);
-                db.Fill(ds);
-                Tbl = ds.Tables[0];
-                
-                //Logger.Trace(LogCategory.WebApp, "DataTable in gettypegroups() procedure is loaded.", LogLevel.Information, null);
-            }
-            catch (Exception ex)
-            {
-
-                //Logger.Error(ex, LogCategory.WebApp, "An error occured in gettypegroups() procedure", LogLevel.Error, null);
-            }
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "getTypeGroups";
+            cmd.Connection = conn;
+            DataSet ds = new DataSet();
+            SqlDataAdapter db = new SqlDataAdapter(cmd);
+            db.Fill(ds);
+            Tbl = ds.Tables[0];
+            traceWriter.Trace(Request, "0", TraceLevel.Info, "{0}", "gettypegroups Credentials completed.");
             // int found = 0;
             return Tbl;
         }
           [HttpPost]
          public HttpResponseMessage savetypegroups(TypeGroups b)
         {
+
+            LogTraceWriter traceWriter = new LogTraceWriter();
+            traceWriter.Trace(Request, "0", TraceLevel.Info, "{0}", "savetypegroups credentials....");
 
             //connect to database
             SqlConnection conn = new SqlConnection();
@@ -83,7 +80,8 @@ namespace ERPSystem.Controllers
             SqlParameter llid = new SqlParameter();
             llid.ParameterName = "@Active";
             llid.SqlDbType = SqlDbType.Int;
-            llid.Value = b.Active;          
+            llid.Value = 1;// b.Active;
+            //llid.Value = b.Active;
             cmd.Parameters.Add(llid);
 
             SqlParameter flag = new SqlParameter();
@@ -91,13 +89,17 @@ namespace ERPSystem.Controllers
             flag.SqlDbType = SqlDbType.VarChar;
             flag.Value = b.insupddelflag;
             cmd.Parameters.Add(flag);
-           
 
-            cmd.ExecuteScalar();
+
+
+                //DataSet ds = new DataSet();
+                //SqlDataAdapter db = new SqlDataAdapter(cmd);
+                //db.Fill(ds);
+                //Tbl = Tables[0];
+                //cmd.ExecuteScalar();
             conn.Close();
-            
-                //Logger.Trace(LogCategory.WebApp, "savetypegroups Credentials completed.", LogLevel.Information, null);
-                return new HttpResponseMessage(HttpStatusCode.OK);
+            traceWriter.Trace(Request, "0", TraceLevel.Info, "{0}", "savetypegroups Credentials completed.");
+            return new HttpResponseMessage(HttpStatusCode.OK);
               }
               catch (Exception ex)
               {
@@ -107,9 +109,8 @@ namespace ERPSystem.Controllers
                   }
                   string str = ex.Message;
 
-                  
-                //Logger.Error(ex, LogCategory.WebApp, "An error occured in savetypegroups() procedure", LogLevel.Error, null);
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+                  traceWriter.Trace(Request, "1", TraceLevel.Info, "{0}", "Error in savetypegroups:" + ex.Message);
+                  return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
               }
         }
         public void Options() { }

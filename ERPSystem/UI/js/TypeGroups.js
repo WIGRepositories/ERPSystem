@@ -1,41 +1,65 @@
 // JavaScript source code
-var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap',  'treasure-overlay-spinner'])
-
-
-var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '$uibModal', 'adalAuthenticationService','$rootScope', function ($scope, $http, $localStorage, $uibModal, $rootScope) {
+var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap'])
+var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal) {
     if ($localStorage.uname == null) {
-       // window.location.href = "../login.html";
+    //    window.location.href = "login.html";
     }
     $scope.uname = $localStorage.uname;
-    $scope.userdetails = $localStorage.userdetails;
-    $scope.isSuperUser = $localStorage.isSuperUser;
+   // $scope.userdetails = $localStorage.userdetails;
+  //  $scope.Roleid = $scope.userdetails[0].roleid;
 
-   $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
-    $scope.tGroup = null;
+    $scope.dashboardDS = $localStorage.dashboardDS;
+    $http.get('/api/typegroups/gettypegroups').then(function (res, data) {
+        $scope.TypeGroups = res.data;
+    });
 
-    $scope.TGInit = function () {
-        $scope.tGroupActive = 1;
-    }
-    $rootScope.spinner = {
-        active: false,
-        on: function () {
-            this.active = true;
-        },
-        off: function () {
-            this.active = false;
-        }
-    }
-    $rootScope.spinner.on();
-    $scope.GetTypeGroups = function () {
-
-        $http.get('/api/typegroups/gettypegroups').then(function (res, data) {
-            $scope.TypeGroups = res.data;
-            $rootScope.spinner.off();
-            $("#typegroups-content").show();
-        });
-    }
-  
     $scope.save = function (TypeGroup) {
+      
+        if (TypeGroup == null) {
+            alert('Please enter name.');
+            return;
+        }
+
+        if (TypeGroup.Name == null) {
+            alert('Please enter name.');
+            return;
+        }
+
+        var SelTypeGroup = {
+            Name: TypeGroup.Name,
+            Description: TypeGroup.Description,
+            Active: TypeGroup.Active,
+            Update: TypeGroup.Update,
+            Id: TypeGroup.Id,
+            insupddelflag:'U'
+        };
+
+        var req = {
+            method: 'POST',
+            url: '/api/typegroups/savetypegroups',
+            //headers: {
+            //    'Content-Type': undefined
+            data: SelTypeGroup
+        }
+        $http(req).then(function (response) {
+
+            alert("Saved successfully!");
+
+            $scope.Group = null;
+
+        }, function (errres) {
+            var errdata = errres.data;
+            var errmssg = "TypeGroup is Not Saved";
+            errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+            alert(errmssg);
+        });
+        $scope.TypeGroups();
+        $scope.currGroup = null;
+
+    };
+
+
+    $scope.saveNew = function (TypeGroup) {
 
         if (TypeGroup == null) {
             alert('Please enter name.');
@@ -47,66 +71,13 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
             return;
         }
 
-        if (TypeGroup.Name =="") {
-            alert('Please enter name.');
-            $scope.GetTypeGroups();
-            return;
-        }
-
         var SelTypeGroup = {
             Name: TypeGroup.Name,
             Description: TypeGroup.Description,
             Active: TypeGroup.Active,
             Update: TypeGroup.Update,
-            Id: TypeGroup.Id,
-            insupddelflag: 'U'
-        };
-
-        var req = {
-            method: 'POST',
-            url: '/api/typegroups/savetypegroups',
-            //headers: {
-            //    'Content-Type': undefined
-            data: SelTypeGroup
-        }
-        $http(req).then(function (response) {
-
-          //  $scope.showDialog("Saved successfully!");
-
-            $scope.GetTypeGroups();
-            $scope.currGroup = null;
-
-        }, function (errres) {
-            var errdata = errres.data;
-            var errmssg = "";
-            errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
-            $scope.showDialog1(errmssg);
-            $scope.GetTypeGroups();
-            $scope.currGroup = null;
-        });
-
-
-    };
-
-
-    $scope.saveNew = function (tGroup) {
-
-        if (tGroup == null) {
-            alert('Please enter name.');
-            return;
-        }
-
-        if (tGroup.Name == null) {
-            alert('Please enter name.');
-            return;
-        }
-
-        var SelTypeGroup = {
-            Name: tGroup.Name,
-            Description: tGroup.Description,
-            Active: ($scope.tGroupActive == null) ? 0 : $scope.tGroupActive,
             Id: -1,
-            insupddelflag: 'I'
+            insupddelflag:'I'
         };
 
         var req = {
@@ -117,21 +88,19 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
             data: SelTypeGroup
         }
         $http(req).then(function (response) {
+            $scope.Group = null;
 
-          //  $scope.showDialog("Saved successfully!");
+            alert("Saved successfully!");
 
-            $scope.GetTypeGroups();
-            $scope.tGroup = null;
+            
 
         }, function (errres) {
             var errdata = errres.data;
-            var errmssg = "";
+            var errmssg = "Your details are incorrect";
             errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
-            $scope.showDialog1(errmssg);
-            $scope.GetTypeGroups();
-            $scope.tGroup = null;
-        });
-
+            alert(errmssg);
+        });       
+        $scope.currGroup = null;
     };
 
 
@@ -157,21 +126,8 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
             }
         });
     }
-    $scope.showDialog1 = function (message) {
-
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
-            templateUrl: 'myModalContent1.html',
-            controller: 'ModalInstanceCtrl1',
-            resolve: {
-                mssg: function () {
-                    return message;
-                }
-            }
-        });
-    }
-
-}]);
+    
+});
 
 myapp1.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, mssg) {
 
@@ -183,31 +139,6 @@ myapp1.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, mssg
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-});
-myapp1.controller('ModalInstanceCtrl1', function ($scope, $uibModalInstance, mssg) {
-
-    $scope.mssg = mssg;
-    $scope.ok = function () {
-        $uibModalInstance.close('test');
-    };
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-
-    $scope.showDialog1 = function (message) {
-
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
-            templateUrl: 'myModalContent1.html',
-            controller: 'ModalInstanceCtrl1',
-            resolve: {
-                mssg: function () {
-                    return message;
-                }
-            }
-        });
-    }
 });
 
 
