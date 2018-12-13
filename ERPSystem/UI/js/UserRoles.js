@@ -23,7 +23,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         }
     }
 
-    $rootScope.spinner.on();
+    //$rootScope.spinner.on();
 
     /* user details functions */
     $scope.GetLocations = function () {

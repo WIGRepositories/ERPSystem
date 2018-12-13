@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="DBScripts\County.sql" />
     <Content Include="DBScripts\Customers.sql" />
+    <Content Include="DBScripts\DBScripts_SP.sql" />
     <Content Include="DBScripts\DBScripts_Sprocs.sql" />
     <Content Include="DBScripts\DBScripts_Tables.sql" />
     <Content Include="DBScripts\States.sql" />
@@ -256,7 +257,6 @@
     <Content Include="UI\js\login.js" />
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
-    <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
     <Content Include="UI\js\DataLoad.js" />
     <Content Include="UI\js\datetime.js" />
@@ -279,6 +279,7 @@
     <Content Include="UI\js\ReportsList.js" />
     <Content Include="UI\js\RoleDetails.js" />
     <Content Include="UI\js\roles.js" />
+    <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\ThirdParty.js" />
     <Content Include="UI\js\TreeView\main.js" />
     <Content Include="UI\js\TreeView\ng-tree-dnd.js" />
@@ -296,6 +297,7 @@
     <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
+    <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
     <Content Include="UI\UserDetails.html" />
     <Content Include="packages.config" />
@@ -697,11 +699,11 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShippingOrderController.cs" />
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

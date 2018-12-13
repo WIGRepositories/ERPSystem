@@ -791,46 +791,38 @@ namespace ERPSystem.Models
 
     public class Customers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string CustomerCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
 
         public string Email { get; set; }
-
-        public string ContactRole { get; set; }
-
-        public string PhoneNo { get; set; }
-
-
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
         public int Active { get; set; }
 
         public string insupddelflag { get; set; }
     }
     public class Suppliers
     {
-        public int ID { get; set; }
-        public string Client { get; set; }
-        public string Contact { get; set; }
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SupplierCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
 
         public string Email { get; set; }
-
-        public string ContactRole { get; set; }
-
-        public string PhoneNo { get; set; }
-
-
-        public string ServiceDesc { get; set; }
-        public string PTSPOC { get; set; }
-
-        public int PTSPOCId { get; set; }
-
         public int Active { get; set; }
-
         public string insupddelflag { get; set; }
     }
 
