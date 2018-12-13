@@ -159,7 +159,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr style="height:50px">
-                                            <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="SendfinalQuote()">Send Enquiry</button></td>
+                                            <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="Sendsupplier1()">Send</button></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -187,7 +187,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Customer:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
@@ -215,9 +215,9 @@
                                             </td>
                                             <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>
                                             <td style="text-align:center;"></td>
-                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="marg=0" ng-model="a.marg" min="0" /></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="perunit=0" ng-model="a.perunit" min="0" /></td>
                                             <td style="text-align:center;"></td>
-                                            <td style="text-align:center;"></td>
+                                            <td style="text-align:center;"><span ng-show="a.qty!=null || a.perunit!=null;">{{a.qty*a.perunit}}</span></td>
 
                                         </tr>
                                     </tbody>
@@ -365,10 +365,10 @@
                                 </div>
                             </div>
 
-                            <div class="row" style="margin-top:5px;">
+                            <!--<div class="row" style="margin-top:5px;">
                                 
                                 <input type="file" file-reader="fileContent" style="width:100%" />
-                            </div>
+                            </div>-->
                             <div class="row" style="margin-top:10px;">
                                 
                                 <table class="table table-bordered" style="background-color: white;">

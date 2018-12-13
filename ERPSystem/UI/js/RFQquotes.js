@@ -1,4 +1,4 @@
-﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'AdalAngular', 'treasure-overlay-spinner']);
+﻿var myapp1 = angular.module('myApp', ['ngStorage', 'ui.bootstrap']);
 
 myapp1.directive('onFinishRender', function ($timeout) {
     return {
@@ -23,9 +23,10 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     //$scope.isSuperUser = $localStorage.isSuperUser;
     //$scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
     $scope.selArr = new Array();
+    var tt;
     $scope.init = function () {
 
-        $http.get('/api/GetCustomers').then(function (res, data) {
+        $http.get('/api/Customers/getCustomers').then(function (res, data) {
             $scope.Customers = res.data;
         });
 
@@ -45,15 +46,15 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $scope.GetJobEquipment();
     }    
 
-    $rootScope.spinner = {
-        active: false,
-        on: function () {
-            this.active = true;
-        },
-        off: function () {
-            this.active = false;
-        }
-    }
+    //$rootScope.spinner = {
+    //    active: false,
+    //    on: function () {
+    //        this.active = true;
+    //    },
+    //    off: function () {
+    //        this.active = false;
+    //    }
+    //}
 
     //$rootScope.spinner.on();
 
@@ -95,7 +96,9 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     $scope.checkedArr = new Array();
     $scope.uncheckedArr = new Array();
-
+    $scope.setupsupplier = function (iname) {
+        tt = iname;
+    }
     $scope.SetData = function (b) {
         $scope.selArr.push(b);
     }
@@ -108,14 +111,18 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             alert("Plese Select Supplier.");
             return;
         }
+        for(var i=0;i<$scope.selArr.length;i++){
+            $scope.selArr[i].Itemname = tt;
+        }
         //$scope.a = $scope.selArr;
 
         var req = {
             method: 'POST',
-            url: '/api/RFQ/SaveItemsList',
+            url: '/api/RFQ/SaveSupplierslist',
             data: $scope.selArr
         }
         $http(req).then(function (res) {
+            $('#Modal-header-suppliers').modal('hide');
             //$scope.initdata = res.data;
             //$scope.showlocimportdata(res.data);
             alert("Saved Sucessfully");           

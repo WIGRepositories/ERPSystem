@@ -13,7 +13,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         //$("#customers-content").show();
     });
     
-    $http.get('/api/ERPAsset/GetERPAsset').then(function (res, data) {
+    $http.get('/api/ERPAsset/GetInvertory').then(function (res, data) {
         $scope.Equipement = res.data;
         //$rootScope.spinner.off();
         //$("#customers-content").show();
@@ -25,7 +25,37 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         $scope.selArr.push(b);
     }
 
-    // send suppliers and customers
+    // send suppliers 
+    $scope.Sendsupplier1= function () {
+        if ($scope.Email == null) {
+            alert("Plese Enter Email Id.");
+            return;
+        }
+        if ($scope.Cust == null) {
+            alert("Plese Select Customer.");
+            return;
+        }
+        for (var i = 0; i < $scope.selArr.length; i++) {
+            $scope.selArr[i].Email = $scope.Email;
+            $scope.selArr[i].customerid = $scope.Cust.Client;
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/SendSuppliers',
+            data: $scope.selArr
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Enquiry Sucessfully Sent");
+            $('#Modal-header-new').modal('hide');
+            $scope.Email = "";
+        });
+
+
+    }
+
+    //acustomers
     $scope.SendMail = function () {
         if ($scope.Email == null) {
             alert("Plese Enter Email Id.");

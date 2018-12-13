@@ -259,7 +259,7 @@ namespace ERPSystem.Controllers
         [Route("api/RFQ/GetItemsForRFQ")]
         public DataTable GetItemsForRFQ(int modelId,int rfqId)
         {
-            DataTable dt = new DataTable();
+            DataTable ds = new DataTable();
             SqlConnection conn = new SqlConnection();
             try
             {
@@ -268,7 +268,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetItemForRFQ";
+                cmd.CommandText = "GetRFQItems";
                 cmd.Connection = conn;
 
                 SqlParameter mid = new SqlParameter("@modelId", SqlDbType.Int);
@@ -279,11 +279,11 @@ namespace ERPSystem.Controllers
                 jid.Value = rfqId;
                 cmd.Parameters.Add(jid);
 
-
+               
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
-                db.Fill(dt);
+                db.Fill(ds);
                 //Logger.Trace(LogCategory.WebApp, "DataTable in GetEquipmentForJob() procedure is loaded", LogLevel.Information, null);
-                return dt;
+                return ds;
             }
             catch (Exception ex)
             {
@@ -523,6 +523,61 @@ namespace ERPSystem.Controllers
                 conn.Close();
                 conn.Dispose();
             }
+        }
+
+        [HttpPost]
+        [Route("api/RFQ/SaveSupplierslist")]
+        public void SaveSupplierslist(List<RFQSupplier> list)
+        {
+            DataTable dt = new DataTable();
+                SqlConnection conn = new SqlConnection();
+            try
+            {
+                //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                //@Client varchar(150),@Contact varchar(100),@Email varchar(50),@PhoneNo varchar(15),@Active int,@ContactRole varchar(100),@ServiceDescription varchar(100)
+                //,@PTSPOCId int,@flag char,@ID int=null
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsUpdDelRFQPersonal";
+                cmd.Connection = conn;
+                conn.Open();
+                foreach (RFQSupplier m in list)
+                {
+
+                    SqlParameter sid = new SqlParameter("@Name", SqlDbType.VarChar, 50);
+                    sid.Value = m.Client;
+                    cmd.Parameters.Add(sid);
+
+
+                    SqlParameter bb = new SqlParameter("@Itemname", SqlDbType.VarChar,50);
+                    bb.Value = m.Itemname;
+                    cmd.Parameters.Add(bb);
+
+                   // cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.VarChar, 50,m.Client));
+                    //cmd.Parameters.Add(new SqlParameter("@Itemname", SqlDbType.VarChar, 50, m.Itemname));
+                    cmd.ExecuteScalar();
+                    cmd.Parameters.Clear();
+                }
+
+
+              
+                //Logger.Trace(LogCategory.WebApp, "InsUpdCustomer stored procedure is executed successfully", LogLevel.Information, null);
+
+              
+            }
+            catch (Exception ex)
+            {
+                if (conn != null && conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                string str = ex.Message;
+                //Logger.Error(ex, LogCategory.WebApp, "An error occured in SaveCustomers() procedure", LogLevel.Error, null);
+               // return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+           
         }
     }
 }

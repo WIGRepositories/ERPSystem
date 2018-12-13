@@ -6,6 +6,12 @@ using System.Web;
 
 namespace ERPSystem.Models
 {
+    public class RFQSupplier
+    {
+
+        public string Client { get;set;}
+        public string Itemname { get; set; }
+    }
     public class PaySupplier
     {
 

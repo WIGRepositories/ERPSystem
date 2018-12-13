@@ -70,15 +70,6 @@ app.controller('myCtrl', function ($scope, $http, $rootScope, $localStorage, $ui
         "Manufacture": 2, "Description": "Manufacture"
     }]
 
-    if ($localStorage.uname == null) {
-        window.location.href = "login.html";
-    }
-    $scope.uname = $localStorage.uname;
-    $scope.userdetails = $localStorage.userdetails;
-    //$scope.Roleid = $scope.userdetails[0].roleid;
-
-    $scope.dashboardDS = $localStorage.dashboardDS;
-
     //$scope.GetDataLoad = function () {
 
     //    $http.get('/api/DataLoad/GetDataLoad').then(function (response, req) {

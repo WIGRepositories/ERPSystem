@@ -41,8 +41,8 @@
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
                                 <li class="divider"></li>-->
-                                <li ng-controller="logoutCtrl"><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
-                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
+                                <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                                <li><a href=#"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -251,33 +251,29 @@
                                                                         <tr ng-repeat="a in JobEquipment" data-tt-id="{{a.ID}}" data-tt-parent-id="{{a.ParentId}}" on-finish-render
                                                                             ng-style="(a.IsExpired == '1') ? {'background-color':'#F2DEDE'}:(a.IsExpired == '2') ?{'background-color':'#FCF8E3'}:''">
                                                                             <td>
-                                                                                <span ng-if="a.isDoc == 0" class="folder">
-                                                                                    <a href="#"><font color="blue"> <u> {{a.Name}}</u></font></a>
+                                                                                <span ng-if="a.isDoc == 0"  class="folder">
+                                                                                    <a href="#" ><font color="blue"> <u ng-model="a.t"> {{a.Name}}</u></font></a>
                                                                                 </span>
                                                                                 <span ng-if="a.isDoc == 1" class="folder"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
-                                                                                <span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>
+                                                                                <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
+                                                                       
                                                                             </td>
                                                                             <td>{{a.eType}}</td>
                                                                             <td>{{a.location}}</td>
                                                                             <td>{{a.Customer}}</td>
                                                                             <td><span ng-if="a.isDoc == 1">{{a.fromdate | date:'MM-dd-yyyy'}}</span></td>
                                                                             <td><span ng-if="a.isDoc == 1">{{a.todate | date:'MM-dd-yyyy'}}</span></td>
-                                                                            <!--<td>
-                                                                <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCompany(T);" ng-if="a.isDoc == 1">
-                                                                    <i class="fa fa-edit"></i>&nbsp;
-                                                                    Preview
-                                                                </button>
-                                                            </td>-->
-                                                            <td>
-                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.isDoc == 0">                                                                   
-                                                                    Send
-                                                                </button>
-                                                            </td>
-                                                                <td>
-                                                                    <button type="button" data-toggle="modal" data-target="#Modal-header-suppliers" class="btn-default" style="width:20px;" ng-if="a.isDoc == 1">
-                                                                        +
-                                                                    </button>
-                                                                </td>
+                                                                            
+                                                                            <td>
+                                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.isDoc == 0">
+                                                                                    Send
+                                                                                </button>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" data-toggle="modal" data-target="#Modal-header-suppliers" class="btn-default" style="width:20px;" ng-click="setupsupplier(a.Name)" ng-if="a.isDoc == 1">
+                                                                                    +
+                                                                                </button>
+                                                                            </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -311,7 +307,7 @@
                                                 <div class="row">
                                                     
                                                     <div class="col-md-6">
-                                                        Name:<select ng-options="Cust.JobID for Cust in rfqlist track by Cust.ID" ng-model="cc" style="width:60%" ng-change="GetRFQPersonnal(cc)">
+                                                        Supplier Name:<select ng-options="Cust.Client for Cust in Customers track by Cust.ID" ng-model="cc" style="width:60%" ng-change="GetRFQPersonnal(cc)">
                                                             <option value="">All</option>
                                                         </select>
                                                     </div>
@@ -328,17 +324,18 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="a in custlist">
+                                                            <tr ng-repeat="a in Customers">
                                                                 <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)"/></td>
                                                                 <td style="text-align:center;">
-                                                                    {{a.UserName}}
+                                                                    {{a.Client}}
                                                                 </td>
                                                             </tr>
                                                         </tbody>                                                        
                                                     </table>
                                                     <div class="form-actions">
                                                         <div style="text-align:center">
-                                                            <button class="btn btn-green" ng-click="AddCust();">Save</button>
+                                                            <!--<button class="btn btn-green" ng-click="AddCust();">Save</button>-->
+                                                            <button class="btn btn-green">Save</button>
                                                             <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                                                         </div>
                                                     </div>
@@ -418,9 +415,9 @@
 
     <script src="js/RFQquotes.js"></script>
 
-    <script src="js/adal.js"></script>
+    <!--<script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>
-    <script src="js/AdalCommon.js"></script>
+    <script src="js/AdalCommon.js"></script>-->
     <script src="js/angular-animate.js"></script>
     <script src="js/treasure-overlay-spinner.js"></script>
     <script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
