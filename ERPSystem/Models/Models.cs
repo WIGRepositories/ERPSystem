@@ -353,8 +353,12 @@ namespace ERPSystem.Models
         public string UserName { set; get; }
         public string Role { set; get; }
         public string Location { set; get; }
-        //public int RoleId { set; get; }
-        //public string insupdflag { set; get; }
+
+        public int Id { set; get; }
+        public int UserId { set; get; }
+        public int? LocationId { set; get; }
+        public int RoleId { set; get; }
+        public string insupdflag { set; get; }
 
     }
 
@@ -1213,8 +1217,7 @@ namespace ERPSystem.Models
         public int OrderConfirmationID { set; get; }
         public int DocID { set; get; }
      }
-
-
+    
     public class PurchaseOrder
     {
         public string flag { set; get; }
@@ -1256,8 +1259,7 @@ namespace ERPSystem.Models
         public string CommType { set; get; }
         public int DocID { set; get; }
     }
-
-
+    
     public class ShippingOrder
     {
    
@@ -1316,10 +1318,7 @@ namespace ERPSystem.Models
         public string PaymentVoucher { set; get; }
         public string Status { set; get; }
     }
-
-
-
-
+    
     public class QuoteRequest
 
     {
@@ -1344,8 +1343,7 @@ namespace ERPSystem.Models
         public int DocID { set; get; }
 
     }
-
-
+    
 
 
 }

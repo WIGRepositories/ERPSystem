@@ -16,9 +16,9 @@ namespace ERPSystem.Controllers
     {
         [HttpPost]
         [Route("api/LOGIN/ValidateCredentials")]
-        public DataSet ValidateCredentials(UserLogin u)
+        public DataTable ValidateCredentials(UserLogin u)
         {
-            DataSet Tbl = new DataSet();
+            DataTable Tbl = new DataTable();
             try
             {               
 

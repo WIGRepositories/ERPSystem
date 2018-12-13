@@ -212,12 +212,15 @@
     <Content Include="UI\DataUploadTemplates\Assets.csv" />
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
-    <Content Include="UI\images\ees-logo.jpg" />
-    <Content Include="UI\images\ees-logo.png" />
+    <Content Include="UI\images\ERPSystem.jpg" />
+    <Content Include="UI\images\ERPSystemBG.jpg" />
+    <Content Include="UI\images\logo.png" />
     <Content Include="UI\images\Procure-to-Pay.jpg" />
-    <Content Include="UI\images\pts-white.png" />
     <Content Include="UI\images\purchasing.png" />
     <Content Include="UI\images\rawpixel-678089-unsplash.jpg" />
+    <Content Include="UI\ItemDetails.html" />
+    <Content Include="UI\ItemsList.html" />
+    <Content Include="UI\ItemTypes.html" />
     <Content Include="UI\JobDocuments.html" />
     <Content Include="UI\JobEquipment.html" />
     <Content Include="UI\JobPersonnel.html" />
@@ -234,7 +237,6 @@
     <Content Include="UI\HelpFAQs.html" />
     <Content Include="UI\HelpResources.html" />
     <Content Include="UI\HelpSupport.html" />
-    <Content Include="UI\images\PTSImg2.jpg" />
     <Content Include="UI\index.html" />
     <Content Include="UI\JobDetails.html" />
     <Content Include="UI\Jobs.html" />
@@ -248,7 +250,10 @@
     <Content Include="UI\js\Assets.js" />
     <Content Include="UI\js\AssetsView.js" />
     <Content Include="UI\js\CompletedJobList.js" />
-    <Content Include="UI\js\JobPersonnel%281%29.js" />
+    <Content Include="UI\js\ItemDetails.js" />
+    <Content Include="UI\js\ItemsList.js" />
+    <Content Include="UI\js\ItemType.js" />
+    <Content Include="UI\js\login.js" />
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\Suppliers.js" />
@@ -367,7 +372,6 @@
     <Content Include="UI\images\blogs\8.jpg" />
     <Content Include="UI\images\blogs\9.jpg" />
     <Content Include="UI\images\blogs\blog_item1.jpg" />
-    <Content Include="UI\images\dashboard.png" />
     <Content Include="UI\images\gallery\1.jpg" />
     <Content Include="UI\images\gallery\10.jpg" />
     <Content Include="UI\images\gallery\11.jpg" />
@@ -382,13 +386,6 @@
     <Content Include="UI\images\gallery\9.jpg" />
     <Content Include="UI\images\gallery\blog_item1.jpg" />
     <Content Include="UI\images\icons\loading.gif" />
-    <Content Include="UI\images\iliad-logo.png" />
-    <Content Include="UI\images\iliad-logo2.png" />
-    <Content Include="UI\images\iliad-logo3.png" />
-    <Content Include="UI\images\iliad-logo4.png" />
-    <Content Include="UI\images\iliad2015Logo.png" />
-    <Content Include="UI\images\PTSImg1.jpg" />
-    <Content Include="UI\images\PTSLogo.png" />
     <Content Include="UI\images\user.jpg" />
     <Content Include="UI\js\angular-animate.js" />
     <Content Include="UI\js\angular.js" />
@@ -685,6 +682,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />
@@ -702,6 +700,7 @@
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
+    <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

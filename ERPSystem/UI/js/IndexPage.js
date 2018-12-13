@@ -45,6 +45,11 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
     }
 
     var userinfor = $localStorage.userInfo;
+    $scope.uname = $localStorage.uname;
+    $scope.userdetails = $localStorage.userdetails;
+    $scope.isSuperUser = $localStorage.isSuperUser;
+    $scope.roleLocations = $localStorage.roleLocation;
+    $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
     //if (userinfor == null) {
     //    adalAuthenticationService.login();
     //}
@@ -161,9 +166,9 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
             //$rootScope.spinner.off();
         });
     }
-    $http.get('/api/Types/getstates').then(function (res, data) {
-        $scope.States = res.data;
-    });
+    //$http.get('/api/Types/getstates').then(function (res, data) {
+    //    $scope.States = res.data;
+    //});
     $scope.GetDashBoardDetails = function (loc) {
 
         $rootScope.spinner.on();
