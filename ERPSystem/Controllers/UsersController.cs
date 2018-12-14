@@ -23,7 +23,7 @@ namespace ERPSystem.Controllers
             {
                //connect to database
                 SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
                 cmd.CommandText = "spGetUsers";
@@ -93,7 +93,7 @@ namespace ERPSystem.Controllers
             {
 
                 //connect to database
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
                 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -247,7 +247,7 @@ namespace ERPSystem.Controllers
             {
 
                 SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
                 cmd.CommandText = "spGetUserRoles";

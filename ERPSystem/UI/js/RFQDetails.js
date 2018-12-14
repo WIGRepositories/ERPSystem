@@ -93,7 +93,7 @@ myapp1.filter('filterSequence', function () {
     };
 });
 
-var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $filter, fileReader, adalAuthenticationService) {
+var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $filter, fileReader) {
     //if ($localStorage.uname == null) {
     //    // window.location.href = "../login.html";
     //}
@@ -125,14 +125,14 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         return obj;
     };
-
+    
     $scope.GetJobConfig = function () {
 
         $scope.selJobId = $localStorage.nJobId;//$scope.parseLocation(window.location.search)['jobId'];
         $localStorage.nJobId = null;
-        $http.get('/api/Types/getstates').then(function (res, data) {
-            $scope.States = res.data;
-        });
+        //$http.get('/api/Types/getstates').then(function (res, data) {
+        //    $scope.States = res.data;
+        //});
 
         $http.get('/api/GetCustomers').then(function (res, data) {
             $scope.Customers = res.data;
@@ -399,15 +399,15 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             }
 
             //set state            
-            if ($scope.currJob.State != '' || $scope.currJob.State != null) {
-                for (var manfCount = 0 ; manfCount < $scope.States.length; manfCount++) {
-                    if ($scope.currJob.State == $scope.States[manfCount].Id) {
-                        $scope.State = $scope.States[manfCount];
-                        $scope.GetCounty($scope.State);
-                        break;
-                    }
-                }
-            }
+            //if ($scope.currJob.State != '' || $scope.currJob.State != null) {
+            //    for (var manfCount = 0 ; manfCount < $scope.States.length; manfCount++) {
+            //        if ($scope.currJob.State == $scope.States[manfCount].Id) {
+            //            $scope.State = $scope.States[manfCount];
+            //            $scope.GetCounty($scope.State);
+            //            break;
+            //        }
+            //    }
+            //}
 
             ////set County            
             //if ($scope.currJob.County != '' || $scope.currJob.County != null) {

@@ -240,7 +240,7 @@ namespace ERPSystem.Controllers
             DataTable dt = new DataTable();
             //connect to database
                 SqlConnection conn = new SqlConnection();
-                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ERPS_DB_ConnectionString"].ToString();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;

@@ -13,7 +13,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         //$("#customers-content").show();
     });
     
-    $http.get('/api/ERPAsset/GetInvertory').then(function (res, data) {
+    $http.get('/api/ERPAsset/GetInvertoryItem').then(function (res, data) {
         $scope.Equipement = res.data;
         //$rootScope.spinner.off();
         //$("#customers-content").show();
