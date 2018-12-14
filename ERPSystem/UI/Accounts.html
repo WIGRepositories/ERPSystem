@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>User Roles</title>
+    <title>ERPSystem | Dashboard </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!--Loading bootstrap css-->
@@ -165,7 +165,7 @@
                                 </a>
                             </li>
                             <!--5.user roles-->
-                            <li ng-hide="isSuperUser == 0" class="active">
+                            <li ng-hide="isSuperUser == 0">
                                 <a href="#">
                                     <i class="fa fa-group fa-fw">
                                         <div class="icon-bg bg-red"></div>
@@ -174,7 +174,7 @@
                                 <ul class="nav nav-second-level">
                                     <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">User Details</span></a></li>
                                     <li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class=" fa fa-user"></i><span class="submenu-title">Users List</span></a></li>
-                                    <li class="active"><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class=" fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
+                                    <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class=" fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
                                 </ul>
                             </li>
                             <!--7.administration-->
@@ -228,14 +228,14 @@
                                 </a>
                             </li>
                             <!--Accounting -->
-                            <li ng-hide="isSuperUser == 0">
+                            <li ng-hide="isSuperUser == 0" class="active">
                                 <a href="#">
                                     <i class="fa fa-file-text-o">
                                         <div class="icon-bg bg-red"></div>
                                     </i><span class="menu-title">Accounting</span><span class="fa arrow"></span>
                                 </a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
+                                    <li class="active"><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
                                     <li><a href="Sales Register.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
                                     <li><a href="Purchase Register.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
                                     <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
@@ -251,7 +251,7 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">User Roles</div>
+                            <div class="page-title">Account Details </div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -273,7 +273,7 @@
                                             <div class="col-lg-12">
                                                 <div class="table-container">
 
-                                                    <div class="col-md-2">
+                                                    <!--<div class="col-md-2">
                                                         Country:<select ng-options="cc.Name for cc in Countries track by cc.Id" ng-model="ctry" ng-init="GetCountry(ctry)" style="width:80%">
                                                             <option value="">Select</option>
                                                         </select>
@@ -283,7 +283,7 @@
                                                                          id="test" width="100%">
                                                             <option value="">Select</option>
                                                         </select>
-                                                    </div>
+                                                    </div>-->
                                                     <!--<div class="col-md-3">
                                                         Search: <select width="100%">
                                                             <option value="">Select </option>
@@ -296,10 +296,10 @@
 
                                                         </div>
                                                     </div>-->
-                                                    <div class="actions">
-                                                        <!----  <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-info btn-sm fa fa-plus" style="float:right;margin:10px;">  Assign Role</button>--->
+                                                    <!--<div class="actions">
+                                                        --  <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-info btn-sm fa fa-plus" style="float:right;margin:10px;">  Assign Role</button>-
                                                         <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm fa fa-plus" style="float: right; margin: 10px;"> Assign Role</button>
-                                                    </div>
+                                                    </div>-->
                                                     <!--<div id="Modal-header-primary" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
                                                             <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -357,22 +357,22 @@
                                                     <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                         <thead>
                                                             <tr>
-                                                                <th width="20%">Select/Unselect</th>
+                                                                <th width="20%">Account Number</th>
                                                                 <th>User Name</th>
-                                                                <th>Role</th>
-                                                                <th>Company</th>
+                                                                <th>Bank Name </th>
+                                                                <th>IFSC Code </th>
                                                                 <th>Edit</th>
                                                                 <th>Delete</th>
 
                                                             </tr>
                                                         </thead>
-                                                        <tbody>
+                                                        <!--<tbody>
                                                             <tr ng-repeat="ur in userRoles" class="gradeA">
                                                                 <td>
                                                                     <input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-checked="exists(ur, checkedArr)" ng-click="toggle(ur, checkedArr);" />
                                                                 </td>
                                                                 <td>{{ur.username}}</td>
-                                                                <td>{{ur.UserId}}</td>
+                                                                <td>{{ur.rolename}}</td>
                                                                 <td>{{ur.companyname}}</td>
                                                                 <td>
                                                                     <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setUserRoles(ur);">
@@ -383,12 +383,12 @@
                                                                 </td>
                                                                 <td><div class="col-md-3 col-sm-4"><a ng-click="testdel(ur);"><i class="fa fa-trash-o"></i></a></div></td>
 
-                                                                <!--<button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="testdel(role);">
+                                                                <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="testdel(role);">
                                                                     <i class="fa fa-edit"></i>&nbsp;
                                                                 </button>
-                                                                </td>-->
+                                                                </td>
                                                             </tr>
-                                                        </tbody>
+                                                        </tbody>-->
                                                     </table>
                                                     <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
                                                         <div class="modal-dialog">
@@ -540,7 +540,6 @@
                                     </div>
                                 </div>
                                 <!--END CONTENT--><!--BEGIN FOOTER-->
-                                <!--BEGIN FOOTER-->
                                 <div id="footer">
                                     <div class="copyright">2018 © ERPSystem</div>
                                 </div>
