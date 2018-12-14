@@ -13,7 +13,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         //$("#customers-content").show();
     });
     
-    $http.get('/api/ERPAsset/GetInvertoryItem').then(function (res, data) {
+    $http.get('/api/ERPAsset/GetInvertory').then(function (res, data) {
         $scope.Equipement = res.data;
         //$rootScope.spinner.off();
         //$("#customers-content").show();
@@ -37,7 +37,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         }
         for (var i = 0; i < $scope.selArr.length; i++) {
             $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Client;
+            $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         var req = {
             method: 'POST',
@@ -67,7 +67,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         }
         for(var i=0;i<$scope.selArr.length;i++){
             $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Client;
+            $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         var req = {
             method: 'POST',
@@ -98,7 +98,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         }
         for (var i = 0; i < $scope.selArr.length; i++) {
             $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Client;
+            $scope.selArr[i].customerid = $scope.Cust.Name;
         }
      
         var req = {
@@ -129,7 +129,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         var data = {
             des:$scope.des, 
             email: $scope.Email,
-            customername: $scope.Cust.Client
+            customername: $scope.Cust.Name
         };
 
         var req = {
@@ -158,7 +158,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         }
         for (var i = 0; i < $scope.selArr.length; i++) {
             $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Client;
+            $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         var req = {
             method: 'POST',
@@ -189,7 +189,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
     //        //filename:$scope.fileContent,
     //        doc: $scope.fileContent,
     //        email: $scope.Email,
-    //        customername: $scope.Cust.Client
+    //        customername: $scope.Cust.Name
     //    };
     //    var req = {
     //        method: 'POST',
@@ -215,7 +215,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         }
         for (var i = 0; i < $scope.selArr.length; i++) {
             $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Client;
+            $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         
         var req = {

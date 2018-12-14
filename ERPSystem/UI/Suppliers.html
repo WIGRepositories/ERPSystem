@@ -259,7 +259,7 @@
                                                             <th>Service Description</th>
                                                             <th>PTS POC</th>-->
                                                             <!--<th>Active</th>-->
-                                                            <!--<th>Update</th>-->
+                                                            <th>Update</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -274,11 +274,11 @@
 
 
                                                             <td><input type="checkbox" class="icheckbox_minimal-grey activeCheckbox" ng-model="T.act" ng-true-value="1" ng-false-value="0" disabled></td>
-                                                            <!--<td>
+                                                            <td>
                                                                 <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
                                                                     <i class="fa fa-edit"></i>&nbsp;
                                                                     Edit
-                                                                </button>-->
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -313,71 +313,77 @@
                     <h4 id="modal-header-primary-label" class="modal-title">Edit Suppliers</h4>
                 </div>
                 <div class="modal-body" ng-model="Suppliers1">
-
                     <div class="row">
 
-                        <label for="Name" class="col-md-3 control-label" style="color:red;"> Client<span class='require'>*</span>:</label>
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.Client" class="form-control" /><span class="help-block"></span></div>
+                        <label for="Name" class="col-md-3 control-label" style="color:red;">Name<span class='require'>*</span>:</label>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.Name" class="form-control" /><span class="help-block"></span></div>
                     </div>
 
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Supplier Code</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Suppliers1.SupplierCode" class="form-control" /><span class="help-block"></span></div>
+                    </div>
 
                     <div class="row">
-                        <label for="Name" class="col-md-3 control-label"> Contact:</label>
+                        <label for="Name" class="col-md-3 control-label"> Address</label>
 
 
-                        <div class="col-md-6"><input id="Description" type="text" ng-model="Suppliers1.Contact" class="form-control" /><span class="help-block"></span></div>
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Suppliers1.Address" class="form-control" /><span class="help-block"></span></div>
+                    </div>
+                    <div class="row">
+                        <label for="Name" class="col-md-3 control-label"> Contact No1</label>
+
+
+                        <div class="col-md-6"><input id="Description" type="text" ng-model="Suppliers1.ContactNo" class="form-control" /><span class="help-block"></span></div>
                     </div>
                     <div class="row">
 
-                        <label for="PhoneNo" class="col-md-3 control-label"> Phone No:</label>
+                        <label for="PhoneNo" class="col-md-3 control-label"> Contact No2:</label>
 
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.PhoneNo" class="form-control" /><span class="help-block"></span></div>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.ContactNo1" class="form-control" /><span class="help-block"></span></div>
                     </div>
                     <div class="row">
 
-                        <label for="Email" class="col-md-3 control-label"> Email Address:</label>
+                        <label for="Email" class="col-md-3 control-label"> Email</label>
 
-                        <div class="col-md-6"><input id="inputFirstName" type="email" ng-model="Suppliers1.Email" class="form-control" /><span class="help-block"></span></div>
+                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Suppliers1.Email" class="form-control" /><span class="help-block"></span></div>
+                        <label style="color:red;margin-top:6px;">{{mssg}}</label>
                     </div>
 
                     <!--<div class="row">
 
-                        <label for="LocaitonID" class="col-md-3 control-label" style="color:red;">Contact Role:</label>
+            <label for="LocaitonID" class="col-md-3 control-label">Contact Role:</label>
 
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.ContactRole" class="form-control" /><span class="help-block"></span></div>
-                    </div>
+            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ContactRole" class="form-control" /><span class="help-block"></span></div>
+        </div>
 
-                    <div class="row">
+        <div class="row">
 
-                        <label for="LocaitonID" class="col-md-3 control-label" style="color:red;">Service Description:</label>
+            <label for="LocaitonID" class="col-md-3 control-label">Service Description:</label>
 
-                        <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customers1.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
-                    </div>
-                    <div class="row">
+            <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Customer.ServiceDescription" class="form-control" /><span class="help-block"></span></div>
+        </div>
+        <div class="row">
 
-                        <label for="Description" class="col-md-3 control-label">PTS POC:</label>
+            <label for="Description" class="col-md-3 control-label">PTS POC:</label>
 
-                        <div class="col-md-6">
-                            <select ng-options="poc.Name for poc in Users track by poc.Id" ng-model="poc" style="width:100%">
-                                <option value="">Select PTS POC</option>
-                            </select>
-                        </div>
-                    </div>-->
+            <div class="col-md-6">
+                <select ng-options="ju.Name for ju in Users track by ju.Id" ng-model="ju" style="width:100%">
+                    <option value="">Select PTS POC</option>
+                </select>
+            </div>
+        </div>-->
                     <div class="row">
                         <label for="Active" class="col-md-3 control-label">Active<span class='require'></span></label>
 
-                        <!--<div class="col-md-6">
-                            <input type="checkbox" class="col-md-4 " id="cactive" ng-true-value="1" ng-false-value="0" ng-checked="Suppliers1.act" />
-                        </div>-->
+                        <div class="col-md-6">
 
-                        <div class="col-md-4">
-
-                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive" ng-model="Suppliers1.act" ng-true-value="1" ng-false-value="0" ng-checked="Customers1.act" />
+                            <input type="checkbox" class="col-md-4 icheckbox_minimal-grey activeCheckbox" id="cactive1" ng-model="Supplieract" ng-true-value="1" ng-false-value="0" />
 
                         </div>
-
                     </div>
-
                 </div>
                 <div class="modal-footer">
 
