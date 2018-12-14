@@ -27,18 +27,40 @@
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text"></span><span style="display: none" class="logo-text-icon">µ</span></a>
+                    <a id="logo" href="index.html" class="navbar-brand"><img src="images/dashboard.png" height="25" width="25" align="left" alt="" class="img-responsive"><font size="3">Smart Tickets Dashboard</font></><span style="display: none" class="logo-text-icon">µ</span></a>
                 </div>
                 <div class="topbar-main">
                     <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+
                     <ul class="nav navbar navbar-top-links navbar-right mbn">
+                        <li class="dropdown">
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bell fa-fw"></i><span class="badge badge-green">{{dashboardDS.Table2.length}}</span></a>
+                            <ul class="dropdown-menu dropdown-alerts" ng-show="dashboardDS.Table2.length==0">
+                                <li><p>You have 0 new notifications</p></li>
+                            </ul>
+                            <ul class="dropdown-menu dropdown-messages" ng-repeat="A in dashboardDS.Table2">
+                                <li><p>{{A.Message}}</p></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">{{dashboardDS.Table1.length}}</span></a>
+                            <ul class="dropdown-menu dropdown-messages" ng-show="dashboardDS.Table1.length==0">
+                                <li><p>You have 0 new messages</p></li>
+                            </ul>
+                            <ul class="dropdown-menu dropdown-messages" ng-repeat="A in dashboardDS.Table1">
+                                <li><p>{{A.Message}}</p></li>
+                            </ul>
+                        </li>
                         <li class="dropdown topbar-user">
-                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs">{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
-                                <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
-                        <li class="divider"></li>-->
-                                <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
-                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
+                                <li><a href="UserProfile.html"><i class="fa fa-user"></i>My Profile</a></li>
+
+                                <li><a href="email-inbox.html"><i class="fa fa-envelope"></i>My Inbox<span class="badge badge-danger">3</span></a></li>
+                                <li><a href="ResetPassword.html"><i class="fa fa-tasks"></i>Reset Password<span class="badge badge-success"></span></a></li>
+                                <li class="divider"></li>
+                                <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li>
+                                <li><a href="../Login.html"><i class="fa fa-key"></i>Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -70,7 +92,7 @@
                                 </a>
                             </li>
                             <!--2.Items-->
-                            <li class="active">
+                            <li>
                                 <a href="#">
                                     <i class="fa fa-cubes fa-fw">
                                         <div class="icon-bg bg-pink"></div>
@@ -89,7 +111,7 @@
                                     <!--<span class="submenu-title">Item Details</span></a></li>-->
 
                                     <li><a href="InventoryItems.html" data-toggle="tooltip" data-placement="right-->" title="Details of InventoryItems"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Items</span></a></li>
-                                    <li class="active"><a href="InventoryStatus.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryStatus"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Status</span></a></li>
+                                    <li><a href="InventoryStatus.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryStatus"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Status</span></a></li>
                                     <li><a href="InventorySales.html" data-toggle="tooltip" data-placement="right" title="Details of InventorySales"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Sales</span></a></li>
                                     <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Purchases</span></a></li>
                                     <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Reciept Returned</span></a></li>
@@ -173,15 +195,15 @@
                                     <!--<li><a href="ThirdParty.html"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Third Party Resources</a></li>-->
                                     <!--<li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>-->
                                     <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
-                                    <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
-                                    <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>
+                                    <!--<li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
+                        <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>-->
                                     <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Details of Roles"><i class="fa fa-angle-double-right"></i><span class="submenu-title">Roles</span></a></li>
                                     <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
                         <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
                         <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
                                 </ul>
                             </li>
-                            <!--customers-->
+
                             <li ng-hide="isSuperUser == 0">
                                 <a href="#">
                                     <i class="fa fa-group fa-fw">
@@ -193,8 +215,7 @@
 
                                 </ul>
                             </li>
-                            <!--suppilers-->
-                            <li>
+
                             <li ng-hide="isSuperUser == 0">
                                 <a href="#">
                                     <i class="fa fa-group fa-fw">
@@ -205,9 +226,9 @@
                                     <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">Suppliers List</span></a></li>
 
                                 </ul>
-                                </a>
+
                             </li>
-                            <!--Accounting -->
+                            <!--5.user roles-->
                             <li ng-hide="isSuperUser == 0">
                                 <a href="#">
                                     <i class="fa fa-file-text-o">
@@ -216,11 +237,11 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
-                                    <li><a href="Sales Register.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
-                                    <li><a href="Purchase Register.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
+                                    <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
+                                    <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
                                     <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
                                     <li><a href="Payables.html" data-toggle="tooltip" data-placement="right" title="Payables details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
-                                    <li><a href="Balance Sheet.html" data-toggle="tooltip" data-placement="right" title="Balance sheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
+                                    <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="Balance sheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -270,7 +291,7 @@
                                                                 <th>reorderpoint</th>
                                                                 <th>subcat</th>
                                                             </tr>
-                                                        <!--<tbody>
+                                                        <tbody>
                                                             <tr ng-repeat="I in Inventory">
 
                                                                 <td>{{I.Active}}</td>
@@ -286,7 +307,7 @@
 
 
                                                             </tr>
-                                                        </tbody>-->
+                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>
