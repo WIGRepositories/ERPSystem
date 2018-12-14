@@ -63,7 +63,7 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 4: Send final quote to customer</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                            <div class="panel-body"><button type="button" data-target="Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -111,11 +111,11 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 11: Payment to suppliers</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!--<div class="row">
                       
                         
                         <button type="button" data-target="#Modal-header-finalQuotes" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Final Quote)</button>
@@ -130,11 +130,7 @@
                     </div>
                     <div class="row" style="margin-top:5px;">
                         <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">GetPayment Reciept</button>
-                        <!--<button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send</button>
-                <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button>
-                <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Final Quote)</button>-->
-
-                    </div>
+                    </div>-->
                 </div>
             </div>
         
@@ -155,7 +151,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                                                 <div class="col-md-6">
-                                                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                                                               <option value="">All</option>
                                                                     </select>
                                                                 </div>
@@ -213,7 +209,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
@@ -267,7 +263,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Customer:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Customer:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
@@ -333,7 +329,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
@@ -389,7 +385,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
@@ -439,7 +435,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
@@ -507,7 +503,7 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Client for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>

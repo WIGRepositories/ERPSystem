@@ -282,7 +282,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3" style="text-align:left">
-                                                        Customer: <select ng-options="c.Client  for c in Customers track by c.Id" ng-model="c" style="width:60%">
+                                                        Customer: <select ng-options="c.Name  for c in Customers track by c.Id" ng-model="c" style="width:60%">
                                                             <option value="">All</option>
                                                         </select>
                                                     </div>
@@ -323,7 +323,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr ng-repeat="J in rfqlist|filter:{StatusId :'!9'}:true" ng-style="(J.StatusId == '7') ? {'background-color':'#F2DEDE'}:(J.StatusId == '8') ?{'background-color':'#DFF0D8'}:''">
-                                                                    <td><a href="RFQDetails.html?RFQId={{J.ID}}"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
+                                                                    <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
                                                                     <td>{{J.Name}}</td>
                                                                     <td>{{J.RFQComType}}</td>                                                                   
                                                                     <td>{{J.Customer}}</td>
