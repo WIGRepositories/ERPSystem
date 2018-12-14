@@ -213,6 +213,7 @@
     <Content Include="UI\DataUploadTemplates\Assets.csv" />
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
+    <Content Include="UI\DeliveryNote.html" />
     <Content Include="UI\images\ERPSystem.jpg" />
     <Content Include="UI\images\ERPSystemBG.jpg" />
     <Content Include="UI\images\logo.png" />
@@ -297,12 +298,16 @@
     <Content Include="UI\ObjectHierarchy.html" />
     <Content Include="UI\ObjectTypes.html" />
     <Content Include="UI\PPDocuments.html" />
+    <Content Include="UI\PurchaseReturned.html" />
+    <Content Include="UI\ReceiptReturned.html" />
     <Content Include="UI\ReportsList.html" />
     <Content Include="UI\RFQDetails.html" />
     <Content Include="UI\RFQList.html" />
     <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
+    <Content Include="UI\ShippingOrder.html" />
+    <Content Include="UI\StockRegister.html" />
     <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
     <Content Include="UI\UserDetails.html" />

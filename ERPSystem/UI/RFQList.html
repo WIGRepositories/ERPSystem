@@ -317,21 +317,21 @@
                     <!--END FOOTER-->
                 </div>
             </treasure-overlay-spinner>
-</div>
+            </div>
         </div>
         <!--END PAGE WRAPPER-->
    
 
 
     <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Add New RFQ</h4>
                 </div>
                 <div class="modal-body" ng-model="newRFQ">
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-md-12">
 
                             <div class="col-md-3">
@@ -400,25 +400,89 @@
                                 </div>
                             </div>
                         </div>
+                    </div>-->
+                    <div class="row mbm">
+
+                        <label class="col-md-4 control-label">RFQ# <span class='require'>*</span></label>
+                        <div class="col-md-6">
+                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQ.Name" /><span class="help-block"></span>
+                        </div>
                     </div>
+
+                    <div class="row mbm">
+                        <label class="col-md-4 control-label">RFQ Status <span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <select ng-model="newRFQ.js" style="width:100%">
+                                <option value="">Select</option>
+                                <option value="1">Active</option>
+                                <option value="2">Pending</option>
+                            </select><span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="itemDesc" class="col-md-4 control-label">Customer</label>
+
+
+                        <div class="col-md-6">
+                            <select ng-model="newRFQ.jc" style="width:100%">
+                                <option value="">Select</option>
+                                <option value="1">Accumalte</option>
+                                <option value="2">Anagr</option>
+                                </select>
+                                <span class="help-block"></span>
+                                </div>
+                    </div>
+                    <div class="row mbm">
+                        <label for="selCountry" class="col-md-4 control-label">Communication Type</label>
+
+
+                        <div class="col-md-6">
+                            <select ng-model="newRFQ.jl" style="width:100%">
+                             <option value="">Select</option>
+                              <option value="1">Mobile Phone</option>
+                              <option value="2">FAX</option>
+                                <option value="3">Mail</option>
+                             </select><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+                        <label for="selCountry" class="col-md-4 control-label">Sales Manager</label>
+
+                        <div class="col-md-6">
+                            <select ng-model="newRFQ.sm" style="width:100%">
+                                <option value="">Select</option>
+                                <option value="1">Ramesh</option>
+                                <option value="2">Prasad</option>
+                                <option value="3">Suresh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mbm">
+
+                        <label for="" class="col-md-4 control-label">Description:<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <div style="text-align:left;padding-left:0">
+                                <textarea id="inputDescription" rows="2" ng-model="newRFQ.modelDescription" class="form-control"></textarea>
+                                <!--<input id="reorderpoint" rows="2" type="text" class="form-control" ng-model="newRFQ.modelDescription" /><span class="help-block"></span>-->
+                            </div>
+                    </div>
+                        </div>
                         <div class="form-actions">
                             <div style="text-align:center">
                                 <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
                                 <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                             </div>
-                        </div>
-                        <!---- <div class="col-md-6 col-md-offset-2">
-                <button class="btn btn-primary" type="button">Save</button>
-                <button class="btn btn-primary" type="button">Cancel</button>
-            </div>--->
-
-                   
+                        </div>                                           
 
                 </div>
 
         </div>
     </div>
-    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1049">
+    </div>
+        <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1049">
         <div class="modal-header">
             <h3 class="modal-title">Save confirmation!</h3>
         </div>

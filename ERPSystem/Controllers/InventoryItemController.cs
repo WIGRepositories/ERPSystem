@@ -136,8 +136,10 @@ namespace ERPSystem.Controllers
                     f.Value = b.features;
                     cmd.Parameters.Add(f);
 
-                    SqlParameter q = new SqlParameter("@InitialQuantity", SqlDbType.VarChar, 50);
-                    q.Value = b.InitialQuantity;
+                    SqlParameter q = new SqlParameter();
+                q.ParameterName = "@InitialQuantity";
+                q.SqlDbType = SqlDbType.Decimal;
+                q.Value = b.InitialQuantity;
                     cmd.Parameters.Add(q);
 
 

@@ -221,6 +221,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Item Name</th>
+                                                            <th>Initial Quantity</th>
                                                             <th>Item Image</th>
                                                             <th>Code</th>
                                                             <th>Description</th>
@@ -231,12 +232,13 @@
                                                             <th>ItemModel</th>
                                                             <th>Features</th>
                                                             <th>Purchase Date</th>
-                                                            <th>Expiry Date</th>
+                                                            <!--<th>Expiry Date</th>-->
                                                             <th>Edit</th>
                                                         </tr>
                                                     <tbody>
                                                         <tr ng-repeat="G in InventoryItems">
                                                             <td>{{G.ItemName}}</td>
+                                                            <td>{{G.InitialQuantity}}</td>
                                                             <td> <img ng-src="{{G.ItemImage}}" style="width:150px;height:100px" /></td>
                                                             <td>{{G.Code}}</td>
                                                             <td>{{G.Description}}</td>
@@ -247,7 +249,7 @@
                                                             <td>{{G.ItemModel}}</td>
                                                             <td>{{G.Features}}</td>
                                                             <td>{{G.PublishDate}}</td>
-                                                            <td>{{G.ExpiryDate}}</td>
+                 
                                                             <td>
                                                                 {{U.Update}}
                                                                 <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setItem(G);">
@@ -302,6 +304,19 @@
                                                         <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <div class="input-icon right"><input type="text" class="form-control" id="cName" ng-model="CurrItem.ItemName" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="Name" class="control-label" style="color:green;">Initial Quantity:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="cName" ng-model="CurrItem.InitialQuantity" /></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -439,6 +454,13 @@
                                                         <label class="col-md-4 control-label">Item Name: <span class='require'>*</span></label>
                                                         <div class="col-md-6">
                                                             <input id="itemName" type="text" placeholder="Item Name" class="form-control" ng-model="Item.ItemName" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+
+                                                        <label class="col-md-4 control-label">Initial Quantity <span class='require'>*</span></label>
+                                                        <div class="col-md-6">
+                                                            <input id="initialquantity" type="text" placeholder="Initial Quantity" class="form-control" ng-model="Item.InitialQuantity" /><span class="help-block"></span>
                                                         </div>
                                                     </div>
 

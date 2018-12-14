@@ -1339,7 +1339,7 @@ namespace ERPSystem.Models
         public string Itemmodel { get; set; }
         public string features { get; set; }
 
-        public string InitialQuantity { get; set; }
+        public decimal InitialQuantity { get; set; }
     }
     public class ConfigData
     {

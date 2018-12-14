@@ -195,7 +195,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             price: Item.price,
             Itemmodel: Item.Itemmodel,
             features: Item.features,
-            InitialQuantity: 50
+            InitialQuantity: Item.InitialQuantity,
         }
 
         var req = {
@@ -249,6 +249,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             price: Item.Price,
             Itemmodel: Item.ItemModel,
             features: Item.Features,
+            InitialQuantity: Item.InitialQuantity,
 
         }
 

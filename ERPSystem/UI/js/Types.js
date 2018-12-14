@@ -33,6 +33,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $rootScope.spinner.off();
             $("#types-content").show();
         });
+
+
     }
 
     $scope.getselectval = function (seltype) {
