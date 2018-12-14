@@ -28,35 +28,115 @@
     <div class="row" style="border:none; background:white; height:400px;">
         <div class="row">
             <div class="col-xs-6">
-                <img src="UI/images/Procure-to-Pay.jpg" style="width:600px;height:400px;" />
-                <!--<img src="UI/images/rawpixel-678089-unsplash.jpg" style="width:600px;height:400px;" />-->
-            </div>
-            <div class="col-xs-6">
-                <div class="row">
-                    <h3 style="margin-left:80px;">Tendering & Sales Order Management</h3>
+                <div class="col-xs-12">
+                    <img src="UI/images/Procure-to-Pay.jpg" style="width:600px;height:300px;" />
+                    <!--<img src="UI/images/rawpixel-678089-unsplash.jpg" style="width:600px;height:400px;" />-->
                 </div>
-                <div class="row">
-                   <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Equiry</button>
-                   <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button>
-                   <button type="button" data-target="#Modal-header-finalQuotes" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Final Quote)</button>
-                   <button type="button" data-target="#Modal-header-ConfirmQuotes" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Confirm Quote) </button>
-               </div>
-                <div class="row" style="margin-top:5px;">
-                    <button type="button" data-target="#Modal-header-reqinvoice" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Supplier (Req Invoice)</button>
-                    <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;"> Get Invoice(Quote)</button>
-                    <button type="button" data-target="#Modal-header-shippingorder" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;"> Send Shipping order</button>
-                    <button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Pay Suppliers</button>
-                   
-                </div>
-                <div class="row" style="margin-top:5px;">
-                    <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">GetPayment Reciept</button>
-                    <!--<button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send</button>
-                    <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button>
-                    <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Final Quote)</button>-->
-                    
+                <div class="col-xs-12">
+                    <img src="UI/images/purchasing.png" style="width:600px;height:300px;" />
+                    <!--<img src="UI/images/rawpixel-678089-unsplash.jpg" style="width:600px;height:400px;" />-->
                 </div>
             </div>
-        </div>
+
+                <div class="col-xs-6">
+                    <div class="row">
+                        <h3 style="margin-left:80px;">Tendering & Sales Order Management flow simulation</h3>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 1: Send enqury as customer</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Equiry</button></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 2: Send quote request to suppliers</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 3:Get Supplier quote</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Equiry</button></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 4: Send final quote to customer</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 5: Customer confirmation</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 6: Invoice request to Supplier</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 7: Get Suppliers invoice </h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 8: Send Suppliers PO</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 9: Generate Delivery Note</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 10: Customer payment confirmation</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 11: Payment to suppliers</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      
+                        
+                        <button type="button" data-target="#Modal-header-finalQuotes" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Final Quote)</button>
+                        <button type="button" data-target="#Modal-header-ConfirmQuotes" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Confirm Quote) </button>
+                    </div>
+                    <div class="row" style="margin-top:5px;">
+                        <button type="button" data-target="#Modal-header-reqinvoice" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Supplier (Req Invoice)</button>
+                        <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;"> Get Invoice(Quote)</button>
+                        <button type="button" data-target="#Modal-header-shippingorder" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;"> Send Shipping order</button>
+                        <button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Pay Suppliers</button>
+
+                    </div>
+                    <div class="row" style="margin-top:5px;">
+                        <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">GetPayment Reciept</button>
+                        <!--<button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send</button>
+                <button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers</button>
+                <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer (Final Quote)</button>-->
+
+                    </div>
+                </div>
+            </div>
         
     </div>
                                     
