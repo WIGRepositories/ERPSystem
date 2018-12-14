@@ -261,8 +261,10 @@
     <Content Include="UI\js\ItemsList.js" />
     <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\login.js" />
+    <Content Include="UI\js\RFQCustomerEstimation.js" />
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
+    <Content Include="UI\js\RFQRFQDraftEstimation.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
     <Content Include="UI\js\DataLoad.js" />
@@ -298,7 +300,9 @@
     <Content Include="UI\ObjectTypes.html" />
     <Content Include="UI\PPDocuments.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQCustomerEstimation.html" />
     <Content Include="UI\RFQDetails.html" />
+    <Content Include="UI\RFQDraftEstimation.html" />
     <Content Include="UI\RFQList.html" />
     <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />

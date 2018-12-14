@@ -26,7 +26,7 @@ namespace ERPSystem.Controllers
                 conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;//Stored Procedure
-                cmd.CommandText = "spGetUsers";
+                cmd.CommandText = "GetUsers";
                 cmd.Connection = conn;
 
                 //SqlParameter cmpid = new SqlParameter("@cmpId", SqlDbType.Int);

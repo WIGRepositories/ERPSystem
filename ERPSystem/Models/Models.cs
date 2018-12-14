@@ -10,9 +10,16 @@ namespace ERPSystem.Models
     {
 
         public string Client { get;set;}
-        public string Itemname { get; set; }
+        public int ItemId { get; set; }
         public string RFQID { get; set; }
         public string Name { get; set; }
+        public int Id { get; set; }
+        public string flag { get; set; }
+        public int unit { get; set; }
+        public int unitprice { get; set; }
+        public int subtotal { get; set; }
+        public string Suppliername { get; set; }
+        public int Itemname { get; set; }
     }
     public class PaySupplier
     {
@@ -30,6 +37,7 @@ namespace ERPSystem.Models
         public int qty { get; set; }
         public string des { get; set; }
         public int perunit { get; set; }
+        public string Suppiername { get; set; }
     }
     public class DeliveryTicket
     {

@@ -109,8 +109,8 @@
                                 <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
                                 <li><a href="RFQDocuments.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Documents</a></li>
                                 <li><a href="RFQCustomerEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ CustomerEstimation</a></li>
-                                <li><a href="RFQDraftEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ DraftEstimation</a></li>
-                                <li  class="active"><a href="RFQquotes.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQquotes</a></li>
+                                <li class="active"><a href="RFQDraftEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ DraftEstimation</a></li>
+                                <li><a href="RFQquotes.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQquotes</a></li>
                                 <!--<li><a href="Jobs.html"><i class="fa fa-exclamation"></i><span class="submenu-title"></span>Job Alerts</a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
                                 <!--<li><a href="Jobs.html"><i class="fa fa-cloud-upload"></i><span class="submenu-title">Job Reports</span></a></li>-->
@@ -260,21 +260,24 @@
                                                                                 <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
                                                                        
                                                                             </td>
-                                                                            <td>{{a.eType}}</td>
-                                                                            <td>{{a.location}}</td>
-                                                                            <td>{{a.Customer}}</td>
-                                                                            <td><span ng-if="a.isDoc == 1">{{a.fromdate | date:'MM-dd-yyyy'}}</span></td>
-                                                                            <td><span ng-if="a.isDoc == 1">{{a.todate | date:'MM-dd-yyyy'}}</span></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="unit=0" ng-model="a.unit" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.unitprice" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.tax" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.dis" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.subtotal" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             
                                                                             <td>
-                                                                      <button type="button" data-target="#Modal-header-supemail" data-toggle="modal" class="btn btn-info btn-sm" ng-model="sadd" ng-click="setemaildata(a)"   style="width:80px;" ng-if="a.LEVEL == 2">
-                                                                          Send
-                                                                      </button>
+                                                                                <!--<button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.LEVEL == 2">
+                                                                                    Send
+                                                                                </button>-->
                                                                             </td>
                                                                             <td>
-                                                                                <button type="button" data-toggle="modal" data-target="#Modal-header-suppliers" class="btn-default" ng-model="sbtn" style="width:20px;" ng-click="setupsupplier(a)" ng-if="a.LEVEL == 1">
-                                                                                    +
+                                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.LEVEL == 2" ng-click="SaveDraftEstimation(a)">
+                                                                                    Save
                                                                                 </button>
+                                                                                <!--<button type="button" data-toggle="modal" data-target="#Modal-header-suppliers" class="btn-default" style="width:45px;" ng-click="setupsupplier(a)" ng-if="a.LEVEL == 1">
+                                                                                    +
+                                                                                </button>-->
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -326,10 +329,10 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="a in Suppliers">
+                                                            <tr ng-repeat="a in Customers">
                                                                 <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)"/></td>
                                                                 <td style="text-align:center;">
-                                                                    {{a.FirstName}}
+                                                                    {{a.Client}}
                                                                 </td>
                                                             </tr>
                                                         </tbody>                                                        
@@ -341,62 +344,6 @@
                                                             <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Send Suppliers Quotes-->
-                        <div id="Modal-header-supemail" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header modal-header-primary">
-                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Enquiry</h4>
-                                    </div>
-                                    <div class="modal-body" ng-model="supe">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
-                                                <div class="row">
-                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supe.Email" style="width:100%"></div>
-                                                    <div class="col-md-6">
-                                                        Supplier:
-                                                        <input type="text" ng-model="sup" value="{{suppliename.DUserName}}" ng-disabled="true" style="width:100%">
-                                                        <!--Supplier:<select ng-options="spl.DUserName forspl in suppliename track by spl.Id" ng-model="spl" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>-->
-                                                    </div>
-                                                </div>
-
-                                                <div class="row" style="margin-top:10px;">
-                                                    <table class="table table-bordered" style="background-color: white;">
-                                                        <thead>
-                                                            <tr style="height:50px">
-                                                                <th style="text-align:center;">Selected Item</th>
-                                                                <th style="text-align:center;">Item</th>
-                                                                <th style="text-align:center;">No. of Units</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1"  /></td>
-                                                                <td style="text-align:center;">
-                                                                    {{selectedItem.Name}}
-                                                                </td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="qty" min="0" /></td>
-                                                            </tr>
-                                                        </tbody>
-                                                        <tfoot>
-                                                            <tr style="height:50px">
-                                                                <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="Sendsupplier1(supe)">Send</button></td>
-                                                            </tr>
-                                                        </tfoot>
-                                                    </table>
                                                 </div>
 
                                             </div>
@@ -471,7 +418,7 @@
     <script src="js/TreeView/nd.js"></script>-->
     <!--<script src="js/JobEquipment.js"></script>-->
 
-    <script src="js/RFQquotes.js"></script>
+    <script src="js/RFQRFQDraftEstimation.js"></script>
 
     <!--<script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>

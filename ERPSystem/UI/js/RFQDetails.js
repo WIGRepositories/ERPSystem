@@ -127,14 +127,13 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     };
     
     $scope.GetJobConfig = function () {
-
+       // var InitParams = parseLocation(window.location.search)['RFQId'];
         $scope.selJobId = $localStorage.nJobId;//$scope.parseLocation(window.location.search)['jobId'];
-        $localStorage.nJobId = null;
         //$http.get('/api/Types/getstates').then(function (res, data) {
         //    $scope.States = res.data;
         //});
 
-        $http.get('/api/GetCustomers').then(function (res, data) {
+        $http.get('/api/Customers/getCustomers').then(function (res, data) {
             $scope.Customers = res.data;
         });
 
@@ -156,29 +155,29 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.docTypes = res.data;
         });
 
-        $http.get('/api/Users/GetUsers?cmpId=1').then(function (res, data) {
-            $scope.User = res.data;
-        });
+        //$http.get('/api/Users/GetUsers?cmpId=1').then(function (res, data) {
+        //    $scope.User = res.data;
+        //});
 
-        $http.get('/api/location/getlocations').then(function (res, data) {
-            $scope.Locations = res.data;
-        });
+        //$http.get('/api/location/getlocations').then(function (res, data) {
+        //    $scope.Locations = res.data;
+        //});
         $http.get('/api/Types/TypesByGroupId?groupid=10').then(function (res, data) {
             $scope.jobtypes = res.data;
         });
         $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
             $scope.rfqlist = res.data;
-
-            if ($scope.selJobId == null) {
-                if ($scope.rfqlist.length > 0) {
-                    $scope.getJobDetails($scope.rfqlist[0].ID);
-                    $scope.selJobId = $scope.rfqlist[0].ID;
-                    return;
-                }
-            }
-            else {
-                $scope.getJobDetails($scope.selJobId);
-            }
+            $scope.getRFQDetails($scope.selJobId);
+            //if ($scope.selJobId == null) {
+            //    if ($scope.rfqlist.length > 0) {
+            //        $scope.getRFQDetails($scope.rfqlist[0].ID);
+            //        $scope.selJobId = $scope.rfqlist[0].ID;
+            //        return;
+            //    }
+            //}
+            //else {
+               // $scope.getRFQDetails($scope.selJobId);
+            //}
         });
         //$http.get('/api/Jobs/GetJobsList').then(function (res, data) {
         //    $scope.jobsList = res.data;
@@ -197,6 +196,33 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         //    }
         //});
     }
+
+    $scope.getRFQDetails = function (jobid) {
+        $http.get('/api/RFQ/GetRFQDetails?rfqId=' + jobid).then(function (res, data) {
+            $scope.currJob = res.data.Table[0];
+
+            //if ($scope.currJob != null) {
+            //    for (var manfCount = 0 ; manfCount < $scope.rfqlist.length; manfCount++) {
+            //        if ($scope.currJob.ID == $scope.rfqlist[manfCount].ID) {
+            //            $scope.rfqlist = $scope.rfqlist[manfCount];
+            //            break;
+            //        }
+            //    }
+            //}
+
+            if ($scope.currJob != null) {
+                for (var manfCount = 0 ; manfCount < $scope.Customers.length; manfCount++) {
+                    if ($scope.currJob.CustomerID == $scope.Customers[manfCount].Id) {
+                        $scope.Customers = $scope.Customers[manfCount];
+                        break;
+                    }
+                }
+            }
+
+        });
+
+        
+       }
     $scope.GetCounty = function (state) {
         //$scope.dd = code;
 

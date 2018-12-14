@@ -33,7 +33,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     $scope.init = function () {
 
-        $http.get('/api/GetCustomers').then(function (res, data) {
+        $http.get('/api/Customers/getCustomers').then(function (res, data) {
             $scope.Customers = res.data;
             //$localStorage.customerdatajobs=$scope.Customers
         });
@@ -88,6 +88,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.rfqlist = res.data;
             //$scope.l = $scope.rfqlist[0];
         });
+        $scope.init();
     }
     $scope.AddNewRFQ = function () {
         var newRFQ = $scope.newRFQ;

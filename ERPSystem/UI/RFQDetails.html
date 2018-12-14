@@ -214,12 +214,12 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-2" style="text-align:left">
-                                                        Customer: <select ng-options="c.Client for c in Customers track by c.Id" ng-model="c" style="width:100%">
+                                                        Customer: <select ng-options="c.Name for c in Customers track by c.Id" ng-model="c" style="width:100%">
                                                             <option value="">All</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3" style="text-align:left">
-                                                        RFQs: <select ng-options="j.Name for j in rfqlist|filter:{StatusId:a.Id,CustomerID:c.Id}:true track by j.ID" ng-model="j" ng-change="getJobDetails(j.ID)" style="width:100%">
+                                                        RFQs: <select ng-options="j.Name for j in rfqlist track by j.ID" ng-model="j" ng-change="getRFQDetails(j.ID)" style="width:100%">
                                                             <option value="">Select</option>
                                                         </select>
                                                     </div>
@@ -273,7 +273,7 @@
                                                                         <label for="Description" class=" control-label" style="color:red;">Customer: <span class='require'>*</span></label>
                                                                         <div>
 
-                                                                            <select ng-options="jc.Client for jc in Customers track by jc.Id" ng-model="jc" ng-value="jc.Id" style="width:100%">
+                                                                            <select ng-options="jc.Name for jc in Customers track by jc.Id" ng-model="jc" ng-value="jc.Id" style="width:100%">
                                                                                 <option value="">Select</option>
                                                                             </select>
 

@@ -268,7 +268,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetRFQItems";
+                cmd.CommandText = "GetRFQItems_wip";
                 cmd.Connection = conn;
 
                 SqlParameter mid = new SqlParameter("@modelId", SqlDbType.Int);
@@ -283,13 +283,49 @@ namespace ERPSystem.Controllers
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
                 db.Fill(ds);
                 //Logger.Trace(LogCategory.WebApp, "DataTable in GetEquipmentForJob() procedure is loaded", LogLevel.Information, null);
-                return ds;
+
+                DataTable finalTable = ds.Clone();
+
+                FillDataTable(finalTable, ds, 0);
+
+                return finalTable;
             }
             catch (Exception ex)
             {
                 //Logger.Error(ex, LogCategory.WebApp, "An error occured in GetEquipmentForJob() procedure", LogLevel.Error, null);
                 throw ex;
             }
+        }
+
+        private DataTable FillDataTable(DataTable finalTable, DataTable ds, int? parentid) {
+            DataRow[] rows = null;
+            if (parentid == 0) {
+                rows = ds.Select("ParentId is null");
+            }
+            else {
+             rows = ds.Select("ParentId=" + parentid);
+            }
+            foreach (DataRow dr in rows){
+                DataRow newdr = finalTable.NewRow();
+
+                newdr["ID"] = dr["ID"];
+                newdr["RFQID"] = dr["RFQID"];
+                newdr["Name"] = dr["Name"];
+                newdr["ParentId"] = dr["ParentId"];
+                newdr["isDoc"] = dr["isDoc"];               
+                newdr["fromdate"] = dr["fromdate"];
+                newdr["todate"] = dr["todate"];
+                newdr["custId"] = dr["custId"];
+                newdr["Client"] = dr["Client"];
+                newdr["RowID"] = dr["RowID"];
+                newdr["ItemId"] = dr["ItemId"];
+                newdr["LEVEL"] = dr["LEVEL"];
+
+               
+                finalTable.Rows.Add(newdr);
+                FillDataTable(finalTable, ds, (dr["ID"] == DBNull.Value)? 0 : Convert.ToInt32(dr["ID"]));
+                    }
+            return finalTable;
         }
 
 
@@ -526,7 +562,7 @@ namespace ERPSystem.Controllers
         }
 
         [HttpPost]
-        [Route("api/RFQ/SaveSupplierslist")]
+        [Route("api/RFQ/RFQSaveSupplierslist")]
         public void SaveSupplierslist(List<RFQSupplier> list)
         {
             DataTable dt = new DataTable();
@@ -546,8 +582,8 @@ namespace ERPSystem.Controllers
                 foreach (RFQSupplier m in list)
                 {
 
-                    SqlParameter sid = new SqlParameter("@Sname", SqlDbType.VarChar, 50);
-                    sid.Value = m.Client;
+                    SqlParameter sid = new SqlParameter("@Sname", SqlDbType.Int);
+                    sid.Value = m.Id;
                     cmd.Parameters.Add(sid);
 
 
@@ -555,9 +591,14 @@ namespace ERPSystem.Controllers
                     bb.Value = m.RFQID;
                     cmd.Parameters.Add(bb);
 
-                    SqlParameter b = new SqlParameter("@Itemname", SqlDbType.VarChar, 50);
-                    b.Value = m.Itemname;
+                    SqlParameter b = new SqlParameter("@Itemname", SqlDbType.Int);
+                    b.Value = m.ItemId;
                     cmd.Parameters.Add(b);
+
+                    SqlParameter f= new SqlParameter("@flag", SqlDbType.VarChar);
+                    f.Value = m.flag;
+                    cmd.Parameters.Add(f);
+                    
 
                     // cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.VarChar, 50,m.Client));
                     //cmd.Parameters.Add(new SqlParameter("@Itemname", SqlDbType.VarChar, 50, m.Itemname));
@@ -583,5 +624,77 @@ namespace ERPSystem.Controllers
             }
            
         }
+
+        [HttpPost]
+        [Route("api/RFQ/SaveRFQDrafEstimation")]
+        public void SaveRFQDrafEstimation(List<RFQSupplier> list)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                //@Client varchar(150),@Contact varchar(100),@Email varchar(50),@PhoneNo varchar(15),@Active int,@ContactRole varchar(100),@ServiceDescription varchar(100)
+                //,@PTSPOCId int,@flag char,@ID int=null
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsUpdDelRFQDraftEstimation";
+                cmd.Connection = conn;
+                conn.Open();
+                foreach (RFQSupplier m in list)
+                {
+                     SqlParameter ut = new SqlParameter("@unit", SqlDbType.Int);
+                    ut.Value = m.unit;
+                    cmd.Parameters.Add(ut);
+
+                    SqlParameter up = new SqlParameter("@unitprice", SqlDbType.Int);
+                    up.Value = m.unitprice;
+                    cmd.Parameters.Add(up);
+
+                    SqlParameter st = new SqlParameter("@subtotal", SqlDbType.Int);
+                    st.Value = m.subtotal;
+                    cmd.Parameters.Add(st);
+
+                    SqlParameter sn = new SqlParameter("@sname", SqlDbType.VarChar,50);
+                    sn.Value = m.Suppliername;
+                    cmd.Parameters.Add(sn);
+                    
+                    SqlParameter rcode = new SqlParameter("@rfqcode", SqlDbType.VarChar, 50);
+                    rcode.Value = m.RFQID;
+                    cmd.Parameters.Add(rcode);
+
+                    SqlParameter iname = new SqlParameter("@ItemId", SqlDbType.Int);
+                    iname.Value = m.ItemId;
+                    cmd.Parameters.Add(iname);
+
+                    SqlParameter f = new SqlParameter("@flag", SqlDbType.VarChar);
+                    f.Value = m.flag;
+                    cmd.Parameters.Add(f);
+
+                    cmd.ExecuteScalar();
+                    cmd.Parameters.Clear();
+                }
+
+
+
+                //Logger.Trace(LogCategory.WebApp, "InsUpdCustomer stored procedure is executed successfully", LogLevel.Information, null);
+
+
+            }
+            catch (Exception ex)
+            {
+                if (conn != null && conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                string str = ex.Message;
+                //Logger.Error(ex, LogCategory.WebApp, "An error occured in SaveCustomers() procedure", LogLevel.Error, null);
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+        }
     }
+
 }
