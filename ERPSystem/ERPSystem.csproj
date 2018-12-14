@@ -202,6 +202,8 @@
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Testing.html" />
+    <Content Include="UI\Accounts.html" />
+    <Content Include="UI\BalanceSheet.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
@@ -296,13 +298,17 @@
     <Content Include="UI\Manufacturer.html" />
     <Content Include="UI\ObjectHierarchy.html" />
     <Content Include="UI\ObjectTypes.html" />
+    <Content Include="UI\Payables.html" />
     <Content Include="UI\PPDocuments.html" />
+    <Content Include="UI\PurchaseRegister.html" />
+    <Content Include="UI\Receivables.html" />
     <Content Include="UI\ReportsList.html" />
     <Content Include="UI\RFQDetails.html" />
     <Content Include="UI\RFQList.html" />
     <Content Include="UI\RFQquotes.html" />
     <Content Include="UI\RoleAssetModels.html" />
     <Content Include="UI\RoleDetails.html" />
+    <Content Include="UI\SalesRegister.html" />
     <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
     <Content Include="UI\UserDetails.html" />
