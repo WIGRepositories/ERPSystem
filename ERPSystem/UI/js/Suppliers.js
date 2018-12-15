@@ -96,10 +96,10 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             ContactNo: Supplier.ContactNo,
             ContactNo1: Supplier.ContactNo1,
             Email: Supplier.Email,
-            PTSPOCId: ($scope.poc == null) ? null : $scope.poc.Id,
+       
             Active: (Supplier.act == null) ? 0 : Supplier.act,
             Id: Supplier.Id,
-            //insupddelflag: 'U'
+            flag: 'U'
         };
 
         var req = {
@@ -188,10 +188,10 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             ContactNo: Supplier.ContactNo,
             ContactNo1: Supplier.ContactNo1,
             Email: Supplier.Email,
-            PTSPOCId: ($scope.ju == null) ? null : $scope.ju.Id,
+        
             Active: ($scope.Supplieract == null) ? 0 : $scope.Supplieract,
             Id: -1,
-            //insupddelflag: 'I'
+            flag: 'I'
         };
 
         var req = {

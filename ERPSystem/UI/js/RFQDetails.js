@@ -92,7 +92,103 @@ myapp1.filter('filterSequence', function () {
         return filteredSeq;
     };
 });
+myapp1.directive("ngFileSelect", function () {
 
+    return {
+
+        link: function ($scope, el) {
+
+            el.on('click', function () {
+
+                this.value = '';
+
+            });
+
+            el.bind("change", function (e) {
+
+                $scope.file = (e.srcElement || e.target).files[0];
+
+
+
+                var allowed = ["jpeg", "png", "gif", "jpg"];
+
+                var found = false;
+
+                var img;
+
+                img = new Image();
+
+                allowed.forEach(function (extension) {
+
+                    if ($scope.file.type.match('image/' + extension)) {
+
+                        found = true;
+
+                    }
+
+                });
+
+                if (!found) {
+
+                    alert('file type should be .jpeg, .png, .jpg, .gif');
+
+                    return;
+
+                }
+
+                img.onload = function () {
+
+                    var dimension = $scope.selectedImageOption.split(" ");
+
+                    if (dimension[0] == this.width && dimension[2] == this.height) {
+
+                        allowed.forEach(function (extension) {
+
+                            if ($scope.file.type.match('image/' + extension)) {
+
+                                found = true;
+
+                            }
+
+                        });
+
+                        if (found) {
+
+                            if ($scope.file.size <= 1048576) {
+
+                                $scope.getFile();
+
+                            } else {
+
+                                alert('file size should not be grater then 1 mb.');
+
+                            }
+
+                        } else {
+
+                            alert('file type should be .jpeg, .png, .jpg, .gif');
+
+                        }
+
+                    } else {
+
+                        alert('selected image dimension is not equal to size drop down.');
+
+                    }
+
+                };
+
+                //  img.src = _URL.createObjectURL($scope.file);
+
+
+
+            });
+
+        }
+
+    };
+
+});
 var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $filter, fileReader) {
     //if ($localStorage.uname == null) {
     //    // window.location.href = "../login.html";
@@ -136,7 +232,13 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $http.get('/api/Customers/getCustomers').then(function (res, data) {
             $scope.Customers = res.data;
         });
+        $http.get('/api/Users/GetUsers').then(function (res, data) {
+            $scope.Suppliers = res.data;
+        });
 
+        $http.get('/api/InventoryItem/GetInventoryItem?subCatId=-1').then(function (response, data) {
+            $scope.InventoryItems = response.data;
+        });
 
         $http.get('/api/Types/TypesByGroupId?groupid=3').then(function (res, data) {
             $scope.jobStatus = res.data;
@@ -165,7 +267,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $http.get('/api/Types/TypesByGroupId?groupid=10').then(function (res, data) {
             $scope.jobtypes = res.data;
         });
-        $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQwithoutstatus').then(function (res, data) {
             $scope.rfqlist = res.data;
             $scope.getRFQDetails($scope.selJobId);
             //if ($scope.selJobId == null) {
@@ -200,33 +302,52 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.getRFQDetails = function (jobid) {
         $http.get('/api/RFQ/GetRFQDetails?rfqId=' + jobid).then(function (res, data) {
             $scope.currJob = res.data.Table[0];
-
-            //if ($scope.currJob != null) {
-            //    for (var manfCount = 0 ; manfCount < $scope.rfqlist.length; manfCount++) {
-            //        if ($scope.currJob.ID == $scope.rfqlist[manfCount].ID) {
-            //            $scope.rfqlist = $scope.rfqlist[manfCount];
-            //            break;
-            //        }
-            //    }
-            //}
-
-            if ($scope.currJob != null) {
+            $scope.jl = $scope.currJob.RFQComType;
+            $scope.getRFQDocuments($scope.selJobId);
+            if ($scope.currJob != null && $scope.rfqlist!=null) {
+                for (var manfCount = 0 ; manfCount < $scope.rfqlist.length; manfCount++) {
+                    if ($scope.currJob.ID == $scope.rfqlist[manfCount].ID) {
+                        $scope.j= $scope.rfqlist[manfCount];
+                        break;
+                    }
+                }
+            }
+            
+            if ($scope.currJob != null && $scope.Customers!=null) {
                 for (var manfCount = 0 ; manfCount < $scope.Customers.length; manfCount++) {
-                    if ($scope.currJob.CustomerID == $scope.Customers[manfCount].Id) {
-                        $scope.Customers = $scope.Customers[manfCount];
+                    if ($scope.currJob.CustomerId == $scope.Customers[manfCount].Id) {
+                        $scope.currJob.jc = $scope.Customers[manfCount];
+                        $scope.c= $scope.Customers[manfCount];
+                     
+                        break;
+                    }
+                }
+            }
+            if ($scope.currJob != null && $scope.jobStatus!=null) {
+                for (var manfCount = 0 ; manfCount < $scope.jobStatus.length; manfCount++) {
+                    if ($scope.currJob.StatusId == $scope.jobStatus[manfCount].Id) {
+                        $scope.currJob.js = $scope.jobStatus[manfCount];
+                        $scope.a = $scope.jobStatus[manfCount];
+
                         break;
                     }
                 }
             }
 
+            if ($scope.currJob != null && $scope.Suppliers!=null) {
+                for (var manfCount = 0 ; manfCount < $scope.Suppliers.length; manfCount++) {
+                    if ($scope.currJob.SmanagerId == $scope.Suppliers[manfCount].Id) {
+                        $scope.currJob.user = $scope.Suppliers[manfCount];
+                        break;
+                    }
+                }
+            }
         });
 
         
        }
     $scope.GetCounty = function (state) {
-        //$scope.dd = code;
-
-        $http.get('/api/Types/GetCounty?Id=' + state.Id).then(function (res, data) {
+    $http.get('/api/Types/GetCounty?Id=' + state.Id).then(function (res, data) {
             $scope.county = res.data;
 
             if ($scope.currJob.County != '' || $scope.currJob.County != null) {
@@ -240,6 +361,112 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             }
             $scope.Changejobtype();
         });
+    }
+    $scope.saveNewItem = function (Item) {
+        if (Item == null) {
+            alert('Please enter Item Name.');
+            return;
+        }
+
+        if (Item.ItemName == null) {
+            alert('Please enter Item Name.');
+            return;
+        }
+        if (Item.Code == null) {
+            alert('please enter Code');
+            return;
+        }
+        //if (Item.SubCategory == null) {
+        //    alert('please select subcategory');
+        //    return;
+        //}
+        var Item = {
+            Id: -1,
+            ItemName: Item.ItemName,
+            ItemImage: $scope.imageSrc,
+            Code: Item.Code,
+            Description: Item.Description,
+            Category: 6,// Item.Category.Id,
+            SubCategory: 1,//Item.SubCategory.Id,
+            ReOrderPoint: Item.ReOrderPoint,
+            price: Item.price,
+            Itemmodel: Item.Itemmodel,
+            features: Item.features,
+            InitialQuantity: Item.InitialQuantity,
+        }
+
+        var req = {
+            method: 'POST',
+            url: '/api/InventoryItem/SaveInventoryItem',
+            data: Item
+        }
+        $http(req).then(function (response) {
+
+            alert("Saved successfully!");
+
+            $scope.Group = null;
+            $scope.GetInventoryItems();
+
+        }, function (errres) {
+            var errdata = errres.data;
+            var errmssg = "Your details are incorrect";
+            errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+            alert(errmssg);
+        });
+        $scope.currGroup = null;
+    };
+    $scope.UploadImg = function () {
+        var fileinput = document.getElementById('fileInput');
+        fileinput.click();
+
+        //  
+        //if ($scope.file == null)
+        //{ $scope.file = fileinput.files[0]; }
+        //fileReader.readAsDataUrl($scope.file, $scope).then(function (result) { $scope.imageSrc = result; });
+        //fileReader.onLoad($scope.file, $scope).then(function (result) { $scope.imageSrc = result; });
+    };
+
+    $scope.onFileSelect1 = function () {
+        fileReader.readAsDataUrl($scope.file, $scope).then(function (result) { $scope.imageSrc = result; });
+    }
+    //Save the RFQ Detaisl
+    $scope.SaveRFQDetails= function (rdes, flag) {
+
+        var rfqdetails = {
+            Id:rdes.ID,
+            Name: rdes.RFQID,
+            Status: rdes.js.Id,
+            CustomerId: rdes.jc.Id,
+            CmTypeId: rdes.jl,
+            SmId: rdes.user.Id,
+            Description: rdes.Description,
+            CPhoneNo: 111,//newRFQ.PhoneNo,
+            CEmail: rdes.Email,
+            CFax: rdes.Fax,
+            changedById: 1,
+            flag: flag
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/RFQ/SaveRFQDetails',
+            data: rfqdetails
+        }
+        $http(req).then(function (response) {
+
+            alert("Saved successfully!");
+            //$scope.getJobsListByStatus();
+            $scope.currJob = null;
+            //$scope.jbty = '';
+           //$('#Modal-header-new').modal('hide');
+
+        }, function (errres) {
+            var errdata = errres.data;
+            var errmssg = "";
+            errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+            $('#Modal-header-new').modal('hide');
+            $scope.showDialog1(errmssg);
+        });
+      
 
     }
 
@@ -1481,8 +1708,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 {
                     Id: ($scope.jobDoc == null) ? -1 : $scope.jobDoc.Id,
                     JobId: $scope.currJob.ID,
-                    createdById: ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id,
-                    UpdatedById: ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id,
+                    createdById:1, //($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id,
+                    UpdatedById:1,// ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id,
                     FromDate: null,
                     ToDate: null,
                     //  docCatId: $scope.currobj.Id,
@@ -1564,18 +1791,19 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     }
 
     $scope.GetFileContent = function (f) {
-        // var data = $scope.currobj.files1[0];  
-        if (f.DocContent != null) {
-            openPDF(f.DocContent, f.DocName);
-            return;
-        }
-        else {
-            //get the file content from db
-            $http.get('/api/Jobs/GetJobFileContent?docId=' + f.Id).then(function (res, data) {
-                $scope.docDetails = res.data[0];
-                openPDF($scope.docDetails.DocContent, res.data[0].DocName);
-            });
-        }
+        openPDF(f.Content, "testin");
+        //// var data = $scope.currobj.files1[0];  
+        //if (f.DocContent != null) {
+        //    openPDF(f.DocContent, f.DocName);
+        //    return;
+        //}
+        //else {
+        //    //get the file content from db
+        //    $http.get('/api/Jobs/GetJobFileContent?docId=' + f.Id).then(function (res, data) {
+        //        $scope.docDetails = res.data[0];
+        //        openPDF($scope.docDetails.DocContent, res.data[0].DocName);
+        //    });
+        //}
     }
 
     function openPDF(resData, fileName) {
@@ -1801,21 +2029,22 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         }
 
         // $scope.modifiedJob.createdById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id;
-        $scope.modifiedJob.UpdatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id;
+        $scope.modifiedJob.UpdatedById = 1;//($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id;
 
         var req = {
             method: 'POST',
-            url: '/api/Jobs/SaveJobDocs',
+            url: '/api/RFQ/RFQDoc',
             data: $scope.modifiedJob
         }
         $http(req).then(function (response) {
 
             //$scope.showDialog("Saved successfully!");
             // $scope.getJobDetails($scope.modifiedJob.JobId);
-            $scope.GetJobDetailsJobDocs($scope.currJob.ID)
+            
+            $scope.getRFQDocuments($scope.selJobId);
             //$scope.jobdocs = response.data.Table;
             //$scope.jobdocs = null;
-            $scope.assetHistory = response.data.Table1;
+            //$scope.assetHistory = response.data.Table1;
 
             $scope.jobDoc.docType.Id = '';
             $scope.jobDoc.ExpiryDate = null;
@@ -1836,6 +2065,21 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.showDialog1(errmssg);
         });
     }
+
+    $scope.getRFQDocuments = function (rfid) {
+        $http.get('/api/RFQ/GetRFQDocuments?rfqid=' + rfid).then(function (res, data) {
+            $scope.jobdocs = res.data;
+            //if ($scope.jobdocs) {
+            //    if ($scope.jobdocs.length > 0) {
+            //        for (i = 0; i < $scope.jobdocs.length; i++) {
+            //            $scope.jobdocs[i].expiryDate = getdateFormat($scope.jobdocs[i].expiryDate);
+
+            //        }
+            //    }
+            //}
+        });
+    }
+
 
     $scope.test = function () {
         alert($scope.dDeliveryDate);

@@ -12,6 +12,214 @@ namespace ERPSystem.Controllers
 {
     public class RFQController : ApiController
     {
+
+
+        [HttpPost]
+        [Route("api/RFQ/RFQDoc")]
+        public DataSet SaveJobDocs(JobDocuments jdoc)
+        {
+            //connect to database
+            SqlConnection conn = new SqlConnection();
+            DataSet dt = new DataSet();
+            try
+            {
+                //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsUpdDelRFQDocs";
+                cmd.Connection = conn;
+                // conn.Open();              
+
+                #region save job docs
+                SqlParameter id = new SqlParameter("@Id", SqlDbType.Int);
+                id.Value = (jdoc.Id == 0) ? -1 : jdoc.Id;
+                cmd.Parameters.Add(id);
+
+                SqlParameter AssetId = new SqlParameter("@rfqid", SqlDbType.Int);
+                AssetId.Value = jdoc.JobId;
+                cmd.Parameters.Add(AssetId);
+
+                SqlParameter Gid1 = new SqlParameter("@doctype", SqlDbType.Int);
+                Gid1.Value = jdoc.docTypeId;
+                cmd.Parameters.Add(Gid1);
+
+                SqlParameter assettypeid = new SqlParameter("@DocName", SqlDbType.VarChar, 100);
+                assettypeid.Value = jdoc.docName;
+                cmd.Parameters.Add(assettypeid);
+
+                //SqlParameter rootassetid = new SqlParameter("@CreatedBy", SqlDbType.Int);
+                //rootassetid.Value = jdoc.createdById;
+                //cmd.Parameters.Add(rootassetid);
+
+                //SqlParameter AsstMDLHierarID = new SqlParameter("@UpdatedBy", SqlDbType.Int);
+                //AsstMDLHierarID.Value = jdoc.UpdatedById;
+                //cmd.Parameters.Add(AsstMDLHierarID);
+
+                SqlParameter assetModelId = new SqlParameter("@ExpiryDate", SqlDbType.Date);
+                assetModelId.Value = jdoc.expiryDate;
+                cmd.Parameters.Add(assetModelId);
+
+
+                //SqlParameter LocationId = new SqlParameter("@DueDate", SqlDbType.Date);
+                //LocationId.Value = jdoc.dueDate;
+                //cmd.Parameters.Add(LocationId);
+
+                SqlParameter parentid = new SqlParameter("@DocContent", SqlDbType.VarChar,-1);
+                parentid.Value = jdoc.docContent;
+                cmd.Parameters.Add(parentid);
+
+                SqlParameter flag1 = new SqlParameter("@insupdflag", SqlDbType.VarChar);
+                flag1.Value = jdoc.insupddelflag;
+                cmd.Parameters.Add(flag1);
+
+                SqlParameter loggedinUserId1 = new SqlParameter("@loggedinUserId", SqlDbType.Int);
+                loggedinUserId1.Value = jdoc.UpdatedById;
+                cmd.Parameters.Add(loggedinUserId1);
+
+
+                //cmd.ExecuteScalar();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                #endregion save job details
+
+
+                // conn.Close();
+                //Logger.Trace(LogCategory.WebApp, "DataTable in SaveJobDocs() procedure is loaded", LogLevel.Information, null);
+                return dt;
+            }
+            catch (SqlException sqlEx)
+            {
+                //Logger.Error(sqlEx, LogCategory.WebApp, "An error occured in SaveJobDocs() procedure", LogLevel.Error, null);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                if (conn != null && conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                string str = ex.Message;
+
+                //Logger.Error(ex, LogCategory.WebApp, "An error occured in SaveJobDocs() procedure", LogLevel.Error, null);
+                return dt;
+            }
+            finally
+            {
+                conn.Close();
+                conn.Dispose();
+            }
+        }
+
+        [HttpGet]
+        [Route("api/RFQ/GetRFQDocuments")]
+        public DataTable GetRFQDocuments(int rfqid)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "GetRFQDocuments";
+                cmd.Connection = conn;
+
+                SqlParameter mid = new SqlParameter("@rfqid", SqlDbType.Int);
+                mid.Value = rfqid;
+                cmd.Parameters.Add(mid);
+
+                SqlDataAdapter db = new SqlDataAdapter(cmd);
+                db.Fill(dt);
+                //Logger.Trace(LogCategory.WebApp, "DataTable in GetUsersForJob() procedure is loaded", LogLevel.Information, null);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error(ex, LogCategory.WebApp, "An error occured in GetUsersForJob() procedure", LogLevel.Error, null);
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/RFQ/GetRFQDraftEstimation")]
+        public DataTable GetRFQDraftEstimation(int modelId,int rfqId)
+        {
+            DataTable ds = new DataTable();
+            try
+            {
+                SqlConnection conn = new SqlConnection();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "GetRFQDraftEstimation";
+                cmd.Connection = conn;
+
+                SqlParameter mid = new SqlParameter("@modelId", SqlDbType.Int);
+                mid.Value = modelId;
+                cmd.Parameters.Add(mid);
+
+                SqlParameter jid = new SqlParameter("@rfqId", SqlDbType.Int);
+                jid.Value = rfqId;
+                cmd.Parameters.Add(jid);
+
+
+                SqlDataAdapter db = new SqlDataAdapter(cmd);
+                db.Fill(ds);
+                //Logger.Trace(LogCategory.WebApp, "DataTable in GetEquipmentForJob() procedure is loaded", LogLevel.Information, null);
+
+                DataTable finalTable = ds.Clone();
+
+                FillDataTable1(finalTable, ds, 0);
+
+                return finalTable;
+            }
+            catch (Exception ex)
+            {
+                throw ex;//Logger.Error(ex, LogCategory.WebApp, "An error occured in GetAssets() procedure", LogLevel.Error, null);
+            }
+           
+        }
+        private DataTable FillDataTable1(DataTable finalTable, DataTable ds, int? parentid)
+        {
+            DataRow[] rows = null;
+            if (parentid == 0)
+            {
+                rows = ds.Select("ParentId is null");
+            }
+            else
+            {
+                rows = ds.Select("ParentId=" + parentid);
+            }
+            foreach (DataRow dr in rows)
+            {
+                DataRow newdr = finalTable.NewRow();
+
+                newdr["ID"] = dr["ID"];
+                newdr["RFQID"] = dr["RFQID"];
+                newdr["Name"] = dr["Name"];
+                newdr["ParentId"] = dr["ParentId"];
+                newdr["isDoc"] = dr["isDoc"];
+                newdr["fromdate"] = dr["fromdate"];
+                newdr["todate"] = dr["todate"];
+                newdr["custId"] = dr["custId"];
+                newdr["Client"] = dr["Client"];
+                newdr["RowID"] = dr["RowID"];
+                newdr["ItemId"] = dr["ItemId"];
+                newdr["LEVEL"] = dr["LEVEL"];
+                newdr["NoOfUnits"] = dr["NoOfUnits"];
+                newdr["DealerUnitPrice"] = dr["DealerUnitPrice"];
+                newdr["Subtotal"] = dr["Subtotal"];
+                finalTable.Rows.Add(newdr);
+                FillDataTable1(finalTable, ds, (dr["ID"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["ID"]));
+            }
+            return finalTable;
+        }
         [HttpGet]
         [Route("api/RFQ/GetRFQ")]
         public DataTable GetRFQ(int statusid,int custid)
@@ -53,6 +261,47 @@ namespace ERPSystem.Controllers
             return Tbl;
         }
 
+
+        [HttpGet]
+        [Route("api/RFQ/GetRFQwithoutstatus")]
+        public DataTable GetRFQwithoutstatus()
+        {
+            DataTable Tbl = new DataTable();
+            try
+            {
+                //connect to database
+                SqlConnection conn = new SqlConnection();
+                //connetionString="Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password"
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "GetRFQwithoutstatus";
+                cmd.Connection = conn;
+
+                //SqlParameter mid = new SqlParameter("@statusId", SqlDbType.Int);
+                //mid.Value = statusid;
+                //cmd.Parameters.Add(mid);
+
+                //SqlParameter lid = new SqlParameter("@custId", SqlDbType.Int);
+                //lid.Value = custid;
+                //cmd.Parameters.Add(lid);
+
+
+                SqlDataAdapter db = new SqlDataAdapter(cmd);
+
+                db.Fill(Tbl);
+                //Tbl = ds.Tables[0];
+
+                //Logger.Trace(LogCategory.WebApp, "DataTable in GetAssets() procedure is loaded", LogLevel.Information, null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;//Logger.Error(ex, LogCategory.WebApp, "An error occured in GetAssets() procedure", LogLevel.Error, null);
+            }
+            // int found = 0;
+            return Tbl;
+        }
 
         [HttpGet]
         [Route("api/RFQ/GetRFQPersonnal")]

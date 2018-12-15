@@ -38,6 +38,7 @@ namespace ERPSystem.Models
         public string des { get; set; }
         public int perunit { get; set; }
         public string Suppiername { get; set; }
+        public int Subtotal { get; set; }
     }
     public class DeliveryTicket
     {
@@ -820,17 +821,17 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string CustomerCode { get; set; }
 
-        public string Address { get; set; }
+        public string shippingaddress { get; set; }
+
+        public string billingaddress { get; set; }
 
         public string ContactNo { get; set; }
 
         public string ContactNo1 { get; set; }
-
-
         public string Email { get; set; }
         public int Active { get; set; }
-
-        public string insupddelflag { get; set; }
+        public string flag { get; set; }
+      
     }
     public class PPDocument
     {
@@ -1418,6 +1419,7 @@ namespace ERPSystem.Models
 
         public string Email { get; set; }
         public int Active { get; set; }
+        public string flag { get; set; }
     }
 
 }
