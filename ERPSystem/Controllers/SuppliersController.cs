@@ -94,6 +94,11 @@ namespace ERPSystem.Controllers
                 Gid4.Value = cus.Active;
                 cmd.Parameters.Add(Gid4);
 
+                SqlParameter Gid5 = new SqlParameter("@flag", SqlDbType.VarChar);
+                Gid5.Value = cus.flag;
+                cmd.Parameters.Add(Gid5);
+
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
 

@@ -14,16 +14,9 @@ myapp1.directive('onFinishRender', function ($timeout) {
 });
 
 var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal,  $rootScope) {
-
-    //if ($localStorage.uname == null) {
-    //    window.location.href = "../login.html";
-    //}
-    //$scope.uname = $localStorage.uname;
-    //$scope.userdetails = $localStorage.userdetails;
-    //$scope.isSuperUser = $localStorage.isSuperUser;
-    //$scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
     $scope.selArr = new Array();
     var tt;
+    $scope.ses = new Array();
     $scope.init = function () {
 
         $http.get('/api/Customers/getCustomers').then(function (res, data) {
@@ -39,52 +32,26 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.l = $scope.rfqlist[0];
         });
 
-        //$http.get('/api/AssetModel/GetAssetModels?locId=-1').then(function (res, data) {
-        //    $scope.Models = res.data;
-        //});
+        $http.get('/api/RFQ/GetRFQDraftEstimation').then(function (res, data) {
+            $scope.drafestimation= res.data;
+        });
+        $http.get('/api/Users/GetUsers').then(function (res, data) {
+            $scope.Suppliers = res.data;
+        });
+        $http.get('/api/InventoryItem/Getitems').then(function (res, data) {
+            $scope.itemslist = res.data;
+        });
 
         $scope.GetJobEquipment();
     }    
-
-    //$rootScope.spinner = {
-    //    active: false,
-    //    on: function () {
-    //        this.active = true;
-    //    },
-    //    off: function () {
-    //        this.active = false;
-    //    }
-    //}
-
-    //$rootScope.spinner.on();
-
     $scope.GetJobEquipment = function () {
-        //var mid = ($scope.s == null) ? -1 : $scope.s.Id;
-        //var lid = ($scope.l == null) ? -1 : $scope.l.id;
-        //var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
-
         var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
-
-        $http.get('/api/RFQ/GetItemsForRFQ?modelId=-1&rfqId=-1').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQDraftEstimation?modelId=-1&rfqId=-1').then(function (res, data) {
             $scope.JobEquipment = res.data;
             //$rootScope.spinner.off();
             $("#jobequipment-content").show();
         });
     }
-
-    //$scope.GetJobEquipment = function () {
-    //    var mid = ($scope.s == null) ? -1 : $scope.s.Id;
-    //    var lid = ($scope.l == null) ? -1 : $scope.l.id;
-    //    var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
-    //    var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
-
-    //    $http.get('/api/Jobs/GetJobEquipment?locationId=' + lid + '&statusId=' + mid + '&customerId=' + custId + '&AssetModelId=' + modelId).then(function (res, data) {
-    //        $scope.JobEquipment = res.data;
-    //        $rootScope.spinner.off();
-    //        $("#jobequipment-content").show();
-    //    });
-    //}
-
     $scope.GetRFQPersonnal = function (cc) {
         var custId = (cc == null) ? -1 : cc.ID;      
 
@@ -93,6 +60,62 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             //$rootScope.spinner.off();           
         });
     }
+
+    $scope.SetUpEmailData = function (sdf) {
+        $scope.NoOfUnits1 = sdf.NoOfUnits;
+        $scope.Subtotal1 = sdf.Subtotal;
+        $scope.DealerUnitPrice1 = sdf.DealerUnitPrice;
+        $scope.selectedItem = '';
+        $scope.suppliename = '';
+        if (sdf != null) {
+            for (var i = 0; i < $scope.itemslist.length; i++) {
+                if (sdf.ItemId == $scope.itemslist[i].ID) {
+                    $scope.selectedItem = $scope.itemslist[i];
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.Suppliers.length; i++) {
+                if (sdf.Name == $scope.Suppliers[i].FirstName) {
+                    $scope.suppliename = $scope.Suppliers[i];
+                    break;
+                }68
+            }
+
+        }
+    }
+    $scope.SendCustomer = function (supe) {
+        if (supe.Email == null) {
+            alert("Plese Enter Email Id.");
+            return;
+        }
+        $scope.ses[0] = {
+            qty: $scope.NoOfUnits1,
+            Subtotal:   $scope.Subtotal1 ,
+            perunit: $scope.DealerUnitPrice1,
+            Email: supe.Email,
+            customerid: $scope.suppliename.DUserName,
+            Name: $scope.selectedItem.Name,
+        }
+
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsset/RFQtoCustomer',
+            data: $scope.ses
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Successfully Email has sent");
+            $('#Modal-header-supemail').modal('hide');
+            $scope.Email = "";
+            $scope.selectedItem = '';
+            $scope.suppliename = '';
+        });
+
+
+    }
+   
+
 
     $scope.checkedArr = new Array();
     $scope.uncheckedArr = new Array();
