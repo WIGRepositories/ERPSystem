@@ -200,9 +200,6 @@
     <Content Include="Login.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="scripts\DBScripts_SP.sql" />
-    <Content Include="scripts\DBScripts_Tables.sql" />
-    <Content Include="scripts\Init.sql" />
     <Content Include="Testing.html" />
     <Content Include="UI\Accounts.html" />
     <Content Include="UI\BalanceSheet.html" />
@@ -210,7 +207,6 @@
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
     <Content Include="UI\Content\WorkOrder.html" />
-    <Content Include="UI\css\Custom.css" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
     <Content Include="UI\DataLoad.html" />
@@ -327,8 +323,8 @@
     <Content Include="UI\ThirdParty.html" />
     <Content Include="UI\UserDetails.html" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ERPSystemPortal.pubxml" />
+    <None Include="Properties\PublishProfiles\ERPSystemTesting.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
