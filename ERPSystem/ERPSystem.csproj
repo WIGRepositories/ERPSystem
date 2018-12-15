@@ -259,6 +259,7 @@
     <Content Include="UI\js\Assets.js" />
     <Content Include="UI\js\AssetsView.js" />
     <Content Include="UI\js\charts-highchart-line.js" />
+    <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\ItemDetails.js" />

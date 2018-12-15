@@ -287,7 +287,7 @@
                                                         </div>
 
                                                         <div class="col-md-3" style="text-align:right">
-                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;">Add New RFQ</button>
+                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;"ng-click="CInit()">Add New RFQ</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -363,7 +363,7 @@
 
                         <label class="col-md-4 control-label">RFQ# <span class='require'>*</span></label>
                         <div class="col-md-6">
-                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQ.Name" /><span class="help-block"></span>
+                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQ" readonly/><span class="help-block"></span>
                         </div>
                     </div>
 

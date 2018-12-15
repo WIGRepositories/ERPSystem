@@ -60,7 +60,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "InsUpdSupplier";
+                cmd.CommandText = "insupdSupplier";
                 cmd.Connection = conn;
                 conn.Open();
 
@@ -69,7 +69,7 @@ namespace ERPSystem.Controllers
                 Gid.Value = cus.Name;
                 cmd.Parameters.Add(Gid);
 
-                SqlParameter Gid1 = new SqlParameter("@SupplierCode", SqlDbType.VarChar, 15);
+                SqlParameter Gid1 = new SqlParameter("@SupplierCode", SqlDbType.VarChar, 50);
                 Gid1.Value = cus.SupplierCode;
                 cmd.Parameters.Add(Gid1);
 
