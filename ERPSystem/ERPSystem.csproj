@@ -194,7 +194,6 @@
     <Content Include="DBScripts\County.sql" />
     <Content Include="DBScripts\Customers.sql" />
     <Content Include="DBScripts\DBScripts_SP.sql" />
-    <Content Include="DBScripts\DBScripts_Sprocs.sql" />
     <Content Include="DBScripts\DBScripts_Tables.sql" />
     <Content Include="DBScripts\States.sql" />
     <Content Include="DBScripts\users.sql" />
@@ -717,7 +716,6 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
-    <Compile Include="DBScripts\InventoryStatusController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
