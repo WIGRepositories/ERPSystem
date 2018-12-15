@@ -89,6 +89,18 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         });
         $scope.init();
     }
+    $scope.CInit = function () {
+        $scope.Customeract = 1;
+        var date = new Date();
+        var components = [
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+        ];
+
+        var id = components.join("");
+        $scope.newRFQ = 'RFQ' + id;
+    }
     $scope.AddNewRFQ = function () {
         var newRFQ = $scope.newRFQ;
         if (newRFQ == null) {
