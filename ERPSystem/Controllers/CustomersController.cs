@@ -67,7 +67,7 @@ namespace ERPSystem.Controllers
                 conn.Open();
 
 
-                SqlParameter Gid = new SqlParameter("@Name", SqlDbType.VarChar, 50);
+                SqlParameter Gid = new SqlParameter("@name", SqlDbType.VarChar, 50);
                 Gid.Value = cus.Name;
                 cmd.Parameters.Add(Gid);
 
@@ -94,6 +94,11 @@ namespace ERPSystem.Controllers
                 SqlParameter Gid4 = new SqlParameter("@Active", SqlDbType.Int);
                 Gid4.Value = cus.Active;
                 cmd.Parameters.Add(Gid4);
+
+
+                SqlParameter Gid5 = new SqlParameter("@flag", SqlDbType.VarChar);
+                Gid5.Value = cus.flag;
+                cmd.Parameters.Add(Gid5);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
