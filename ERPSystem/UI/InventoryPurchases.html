@@ -233,11 +233,11 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
-                                    <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
-                                    <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
+                                    <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="SalesRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">SalesRegister</span></a></li>
+                                    <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="PurchaseRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">PurchaseRegister</span></a></li>
                                     <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
                                     <li><a href="Payables.html" data-toggle="tooltip" data-placement="right" title="Payables details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
-                                    <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="Balance sheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
+                                    <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="BalanceSheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">BalanceSheet</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -451,26 +451,99 @@
                                                     <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                         <thead>
                                                             <tr>
-
-                                                                <th>Item Name</th>
-                                                                <th>Quantity</th>
-                                                                <th>PerUnitPrice</th>
-                                                                <th>PurchaseDate</th>
-                                                                <th>PurchaseOrderNumber</th>
-
-
-                                                            </tr>
-                                                        <tbody>
-                                                            <tr ng-repeat="G in Group">
-
-                                                                <td>{{G.ItemName}}</td>
-                                                                <td>{{G.Quantity}}</td>
-                                                                <td>{{G.PerUnitPrice}}</td>
-                                                                <td>{{G.PurchaseDate}}</td>
-                                                                <td>{{G.PurchaseOrderNumber}}</td>
-
+                                                                <th width="10%">Item Name </th>
+                                                                <th>No.Of Units</th>
+                                                                <th>Purchase  On  </th>
+                                                                <th>Unit Price </th>
+                                                                <th>Charges  </th>
+                                                                <th>Discount  </th>
+                                                                <th>Sub Total </th>
+                                                                <th>Total </th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
 
                                                             </tr>
+                                                        </thead>
+                                                        <tr>
+                                                            <td>Electronic Items </td>
+                                                            <td>5</td>
+                                                            <td>12-Dec-2018</td>
+                                                            <td>100</td>
+                                                            <td> 10 </td>
+                                                            <td> 5 </td>
+                                                            <td> 510</td>
+                                                            <td> 505 </td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Equipments  </td>
+                                                            <td>3</td>
+                                                            <td>1-Dec-2018</td>
+                                                            <td>100</td>
+                                                            <td> 10 </td>
+                                                            <td> 5 </td>
+                                                            <td> 305</td>
+                                                            <td> 350 </td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Machines  </td>
+                                                            <td>2</td>
+                                                            <td>2-Dec-2018</td>
+                                                            <td>100</td>
+                                                            <td> 10 </td>
+                                                            <td> 5 </td>
+                                                            <td> 210</td>
+                                                            <td> 250 </td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Item4 </td>
+                                                            <td>10</td>
+                                                            <td>12-Dec-2018</td>
+                                                            <td>100</td>
+                                                            <td> 10 </td>
+                                                            <td> 5 </td>
+                                                            <td> 1010</td>
+                                                            <td> 1050 </td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Item5</td>
+                                                            <td>5</td>
+                                                            <td>12-Dec-2018</td>
+                                                            <td>100</td>
+                                                            <td> 10 </td>
+                                                            <td> 5 </td>
+                                                            <td> 105</td>
+                                                            <td> 105 </td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>

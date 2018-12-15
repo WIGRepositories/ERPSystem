@@ -211,23 +211,23 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
 
     $scope.GetUsersForCmp = function () {
 
-        if ($scope.cmp == null) {
-            $scope.User = null;
-            $scope.MgrUsers = null;
-            $scope.cmproles = null;
-            return;
-        }
+        //if ($scope.cmp == null) {
+        //    $scope.User = null;
+        //    $scope.MgrUsers = null;
+        //    $scope.cmproles = null;
+        //    return;
+        //}
 
-        $http.get('/api/Users/GetUsers?cmpId=' + $scope.cmp.Id).then(function (res, data) {
+        $http.get('/api/Users/GetUsers').then(function (res, data) {
             $scope.User = res.data;
-            $scope.MgrUsers = res.data;
+           // $scope.MgrUsers = res.data;
         });
 
-        $http.get('/api/Roles/GetCompanyRoles?companyId=' + $scope.cmp.Id).then(function (res, data) {
-            $scope.cmproles = res.data;
+        //$http.get('/api/Roles/GetCompanyRoles?companyId=' + $scope.cmp.Id).then(function (res, data) {
+        //    $scope.cmproles = res.data;
 
 
-        });
+        //});
     }
 
     $scope.GetConfigData = function () {
@@ -434,6 +434,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
 
         if (cmp == null) {
             $scope.userRoles = null;
+            $scope.UserId = UserId;
             $scope.checkedArr = [];
             $scope.uncheckedArr = [];
             return;
