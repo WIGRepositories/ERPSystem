@@ -38,6 +38,7 @@ namespace ERPSystem.Models
         public string des { get; set; }
         public int perunit { get; set; }
         public string Suppiername { get; set; }
+        public int Subtotal { get; set; }
     }
     public class DeliveryTicket
     {
@@ -825,12 +826,10 @@ namespace ERPSystem.Models
         public string ContactNo { get; set; }
 
         public string ContactNo1 { get; set; }
-
-
         public string Email { get; set; }
         public int Active { get; set; }
 
-        public string insupddelflag { get; set; }
+      
     }
     public class PPDocument
     {
