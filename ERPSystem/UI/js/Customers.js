@@ -109,7 +109,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
             Active: (customer.act == null) ? 0 : customer.act,
             Id: customer.Id,
-            //insupddelflag: 'U'
+            flag: 'U'
         };
 
         var req = {
@@ -201,7 +201,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
             Active: ($scope.Customeract == null) ? 0 : $scope.Customeract,
             Id: -1,
-            //insupddelflag: 'I'
+            flag: 'I'
         };
 
         var req = {

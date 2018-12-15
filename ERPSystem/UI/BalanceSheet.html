@@ -236,11 +236,11 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
-                                    <li><a href="Sales Register.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
-                                    <li><a href="Purchase Register.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
+                                    <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="SalesRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">SalesRegister</span></a></li>
+                                    <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="PurchaseRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">PurchaseRegister</span></a></li>
                                     <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
                                     <li><a href="Payables.html" data-toggle="tooltip" data-placement="right" title="Payables details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
-                                    <li class="active"><a href="Balance Sheet.html" data-toggle="tooltip" data-placement="right" title="Balance sheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
+                                    <li class="active"><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="BalanceSheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">BalanceSheet</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -251,7 +251,7 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">Balance Sheet  </div>
+                            <div class="page-title">BalanceSheet  </div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -357,15 +357,128 @@
                                                     <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                         <thead>
                                                             <tr>
-                                                                <th width="20%">Account Number</th>
-                                                                <th>User Name</th>
-                                                                <th>Bank Name </th>
-                                                                <th>IFSC Code </th>
+                                                                <th width="10%">From Id </th>
+                                                                <th>Account Name</th>
+                                                                <th>Account Code  </th>
+                                                                <th>Debit </th>
+                                                                <th>Credit  </th>
+                                                                <th>Ammount  </th>
+                                                                <th> Date </th>
                                                                 <th>Edit</th>
                                                                 <th>Delete</th>
-
                                                             </tr>
                                                         </thead>
+                                                        <tr>
+                                                            <td> TR100</td>
+                                                            <td> Simha </td>
+                                                            <td> AC002</td>
+                                                            <td> ----- </td>
+                                                            <td> Credit </td>
+                                                            <td> 100</td>
+                                                            <td> 1-Jan-2018</td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td> TR100</td>
+                                                            <td> Webingate  </td>
+                                                            <td> AC002</td>
+                                                            <td> Debit</td>
+                                                            <td> -----  </td>
+                                                            <td> 100</td>
+                                                            <td> 1-Jan-2018</td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td> TR200</td>
+                                                            <td> Santhosh  </td>
+                                                            <td> AC002</td>
+                                                            <td> Debit</td>
+                                                            <td> -----  </td>
+                                                            <td> 300</td>
+                                                            <td> 1-Jan-2018</td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td> TR100</td>
+                                                            <td> Webingate </td>
+                                                            <td> AC002</td>
+                                                            <td> -----</td>
+                                                            <td> Credit  </td>
+                                                            <td> 100</td>
+                                                            <td> 1-Jan-2018</td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td> TR200</td>
+                                                            <td> Webingate Acc1  </td>
+                                                            <td> AC002</td>
+                                                            <td> -----</td>
+                                                            <td> Credit  </td>
+                                                            <td> 100</td>
+                                                            <td> 1-Jan-2018</td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td> TR200</td>
+                                                            <td> Webingate Acc2  </td>
+                                                            <td> AC002</td>
+                                                            <td> -----</td>
+                                                            <td> Credit  </td>
+                                                            <td> 100</td>
+                                                            <td> 1-Jan-2018</td>
+                                                            <td>
+                                                                <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                </button>
+                                                            </td>
+                                                            <td> <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="Addresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a> </td>
+
+
+
+                                                        </tr>
+
+
+
                                                         <!--<!--<tbody>
                                                             <tr ng-repeat="ur in userRoles" class="gradeA">
                                                                 <td>

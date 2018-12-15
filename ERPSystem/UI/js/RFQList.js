@@ -84,9 +84,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.getFRQlist = function () {
 
 
-        $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQwithoutstatus').then(function (res, data) {
             $scope.rfqlist = res.data;
-            //$scope.l = $scope.rfqlist[0];
         });
         $scope.init();
     }

@@ -201,6 +201,9 @@
     <Content Include="Login.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="scripts\DBScripts_SP.sql" />
+    <Content Include="scripts\DBScripts_Tables.sql" />
+    <Content Include="scripts\Init.sql" />
     <Content Include="Testing.html" />
     <Content Include="UI\Accounts.html" />
     <Content Include="UI\BalanceSheet.html" />
@@ -262,6 +265,7 @@
     <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\InventoryItem.js" />
+    <Content Include="UI\js\InventoryStatus.js" />
     <Content Include="UI\js\ItemDetails.js" />
     <Content Include="UI\js\ItemsList.js" />
     <Content Include="UI\js\ItemType.js" />
@@ -713,6 +717,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
+    <Compile Include="DBScripts\InventoryStatusController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />

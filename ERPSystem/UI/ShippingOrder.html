@@ -213,11 +213,11 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
-                                    <li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
-                                    <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
+                                    <li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">SalesRegister</span></a></li>
+                                    <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">PurchaseRegister</span></a></li>
                                     <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
                                     <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
-                                    <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
+                                    <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">BalanceSheet</span></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -258,16 +258,158 @@
                                                     <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                         <thead>
                                                             <tr>
-                                                                <th>ShippingOrderNum</th>
-                                                                <th>TransactionId</th>
-                                                                <th>Date</th>
+                                                                <th>ShippingOrderId</th>
+                                                                <th>RFQId</th>
+                                                                <th>Item</th>
+                                                                <th>no.of units</th>
+                                                                <th>Shipping date</th>
+                                                                <th>fromaddress</th>
+                                                                <th>toaddress</th>
+                                                                <th>delivery data</th>
                                                                 <th>amount</th>
-
-                                                                <th>Status</th>
-                                                                <th>SalesOrderId</th>
-                                                                <th>Update</th>
+                                                                <th>issueson</th>
+                                                                <th>status</th>
+                                                                <th>edit</th>
+                                                                <th>delete</th>
 
                                                             </tr>
+                                                            <tr>
+
+                                                                <td>001</td>
+                                                                <td>001</td>
+                                                                <td>car</td>
+                                                                <td>50</td>
+                                                                <td>16/12/2018</td>
+                                                                <td>deihi</td>
+                                                                <td>vjw</td>                                                           
+                                                                <td>18/12/2018</td>
+                                                                <td>1000000</td>
+                                                                <td>14/12/2018</td>
+                                                                <td>shipping</td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Edit
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Delete
+                                                                    </button>
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <tr>
+
+                                                                <td>002</td>
+                                                                <td>002</td>
+                                                                <td>bikes</td>
+                                                                <td>50</td>
+                                                                <td>18/12/2018</td>
+                                                                <td>rajamandry</td>
+                                                                <td>hyd</td>
+                                                                <td>20/12/2018</td>
+                                                                <td>1000000</td>
+                                                                <td>14/12/2018</td>
+                                                                <td>shipping</td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Edit
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Delete
+                                                                    </button>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td>003</td>
+                                                                <td>003</td>
+                                                                <td>bulldoger</td>
+                                                                <td>8</td>
+                                                                <td>18/12/2018</td>
+                                                                <td>mombai</td>
+                                                                <td>karnataka</td>
+                                                                <td>21/12/2018</td>
+                                                                <td>1000000</td>
+                                                                <td>15/12/2018</td>
+                                                                <td>shipping</td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Edit
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Delete
+                                                                    </button>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td>004</td>
+                                                                <td>004</td>
+                                                                <td>mini cranes</td>
+                                                                <td>30</td>
+                                                                <td>17/12/2018</td>
+                                                                <td>maharashtara</td>
+                                                                <td>chennai</td>
+                                                                <td>24/12/2018</td>
+                                                                <td>1000000</td>
+                                                                <td>15/12/2018</td>
+                                                                <td>shipping</td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Edit
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Delete
+                                                                    </button>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+
+                                                                <td>005</td>
+                                                                <td>005</td>
+                                                                <td>gas pumps</td>
+                                                                <td>50</td>
+                                                                <td>20/12/2018</td>
+                                                                <td>khashmir</td>
+                                                                <td>kanyakumari</td>
+                                                                <td>25/12/2018</td>
+                                                                <td>1000000</td>
+                                                                <td>23/12/2018</td>
+                                                                <td>shipping</td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Edit
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setCurrCustomer(T);">
+                                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                                        Delete
+                                                                    </button>
+                                                                </td>
+
+                                                            </tr>
+
                                                         </thead>
                                                         <!--<tbody>
 

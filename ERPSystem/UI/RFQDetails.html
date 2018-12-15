@@ -221,11 +221,11 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
-                                <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
-                                <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
+                                <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="SalesRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">SalesRegister</span></a></li>
+                                <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="PurchaseRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">PurchaseRegister</span></a></li>
                                 <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
                                 <li><a href="Payables.html" data-toggle="tooltip" data-placement="right" title="Payables details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
-                                <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="Balance sheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
+                                <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="BalanceSheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">BalanceSheet</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -273,7 +273,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3" style="text-align:left">
-                                                        RFQs: <select ng-options="j.Name for j in rfqlist track by j.ID" ng-model="j" ng-change="getRFQDetails(j.ID)" style="width:100%">
+                                                        RFQs: <select ng-options="j.RFQID for j in rfqlist track by j.ID" ng-model="j" ng-change="getRFQDetails(j.ID)" style="width:100%">
                                                             <option value="">Select</option>
                                                         </select>
                                                     </div>
@@ -299,7 +299,7 @@
 
                                                     <div id="collapse0" class="panel-collapse list-group portlet-body" style="padding: 0px; border: 1px solid #e5e5e5;">
 
-                                                        <div class="panel-body">
+                                                        <div class="panel-body" ng-model="currJob">
 
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -318,7 +318,7 @@
                                                                         <label for="selCountry" class="control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
                                                                         <div>
 
-                                                                            <select ng-options="js.Name for js in jobStatus track by js.Id" ng-model="js" ng-value="js.Id" style="width:100%">
+                                                                            <select ng-options="js.Name for js in jobStatus track by js.Id" ng-model="currJob.js" style="width:100%">
                                                                                 <option value="">Select</option>
                                                                             </select>
                                                                         </div>
@@ -327,18 +327,22 @@
                                                                         <label for="Description" class=" control-label" style="color:red;">Customer: <span class='require'>*</span></label>
                                                                         <div>
 
-                                                                            <select ng-options="jc.Name for jc in Customers track by jc.Id" ng-model="jc" ng-value="jc.Id" style="width:100%">
+                                                                            <select ng-options="jc.Name for jc in Customers track by jc.Id" ng-model="currJob.jc" style="width:100%">
                                                                                 <option value="">Select</option>
                                                                             </select>
 
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <label for="Description" class=" control-label" style="color:red;">Communication Type:<span class='require'>*</span></label>
+                                                                        <label for="Description" class="control-label" style="color:red;">Communication Type:<span class='require'>*</span></label>
                                                                         <div>
-                                                                            <select ng-options="jl.name for jl in Locations track by jl.id" ng-model="jl" ng-value="jl.LocationID" style="width:100%">
+                                                                            <select  ng-model="currJob.jl" ng-value="jl" style="width:100%">
                                                                                 <option value="">Select</option>
+                                                                                <option value="1">Mobile Phone</option>
+                                                                                <option value="2">FAX</option>
+                                                                                <option value="3">Mail</option>
                                                                             </select>
+
                                                                         </div>
                                                                     </div>
 
@@ -351,7 +355,7 @@
                                                                     <div class="col-md-3">
                                                                         <label for="Description" class=" control-label" style="color:red;">Sales Manager:<span class='require'>*</span></label>
                                                                         <div>
-                                                                            <select ng-options="jl.name for jl in Locations track by jl.id" ng-model="jl" ng-value="jl.LocationID" style="width:100%">
+                                                                            <select ng-options="user.FirstName for user in Suppliers track by user.Id" ng-model="currJob.user" style="width:100%">
                                                                                 <option value="">Select</option>
                                                                             </select>
                                                                         </div>
@@ -373,7 +377,7 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-actions">
                                                                             <div style="text-align:center">
-                                                                                <button ng-disabled="isSuperUser == 0" class="btn btn-green" ng-click="saveJobDetails(currJob, 'U')">Save</button>
+                                                                                <button ng-disabled="isSuperUser == 0" class="btn btn-green" ng-click="SaveRFQDetails(currJob, 'U')">Save</button>
                                                                                 &nbsp;
                                                                                 <button type="button" class="btn btn-danger" ng-click="getJobDetails(currJob.ID)">Cancel</button>
                                                                             </div>
@@ -393,7 +397,7 @@
 
                                                         <div class="portlet-header" style="background-color: #f5f5f5; border: 1px solid #e5e5e5; color: #b8adb7">
                                                             <div class="caption"><a href="">RFQ Items</a></div>
-                                                            <div class="tools"><span class="badge badge-green">{{resources.length}}</span><i class="fa fa-chevron-down"></i></div>
+                                                            <div class="tools"><span class="badge badge-green">{{InventoryItems.length}}</span><i class="fa fa-chevron-down"></i></div>
                                                         </div>
 
 
@@ -404,24 +408,24 @@
                                                                     <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>Equipment</th>
+                                                                                <th>Item</th>
                                                                                 <th>Type</th>
                                                                                 <th>Current Location</th>
                                                                                 <th>From Date</th>
-                                                                                <th>To Date</th>
-                                                                                <th>Updated By</th>
-                                                                                <th></th>
-                                                                                <th></th>
+                                                                                <!--<th>To Date</th>
+                                                                                <th>Updated By</th>-->
+                                                                                <th>Edit</th>
+                                                                                <th>Delete</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr ng-repeat="T in resources|filter:{insupddelflag :'!D'}" class="gradeA">
-                                                                                <td><a href="ItemDetails.html?ItemId={{T.ItemId}}"> <font color="blue"> <u> {{T.Name}}</u></font></a></td>
-                                                                                <td>{{T.ItemModel}}</td>
+                                                                            <tr ng-repeat="T in InventoryItems" class="gradeA">
+                                                                                <td><a href="ItemDetails.html?ItemId={{T.ID}}"> <font color="blue"> <u> {{T.ItemName}}</u></font></a></td>
+                                                                                <td>{{T.Name}}</td>
                                                                                 <td>{{T.location}}</td>
-                                                                                <td>{{T.FromDate | date:'MM-dd-yyyy'}}</td>
-                                                                                <td>{{T.ToDate | date:'MM-dd-yyyy'}}</td>
-                                                                                <td>{{uname}}</td>
+                                                                                <td></td>
+                                                                                <!--<td>{{T.ToDate | date:'MM-dd-yyyy'}}</td>-->
+                                                                                <!--<td></td>-->
                                                                                 <td>
                                                                                     <button type="button" data-target="#Modal-header-new-jeu" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditJobEquipment(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
                                                                                         <i class="fa fa-edit"></i>&nbsp;
@@ -435,7 +439,7 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-je" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetAssetsModels();">Add Inventory Items</button></div>
+                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-inventoryitems" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;">Add Inventory Items</button></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -444,7 +448,7 @@
 
                                                         <div class="portlet-header" style="background-color: #f5f5f5; border: 1px solid #e5e5e5; color: #b8adb7">
                                                             <div class="caption"><a href=""> RFQ Personnel</a></div>
-                                                            <div class="tools"><span class="badge badge-green">{{jobusers.length}}</span><i class="fa fa-chevron-down"></i></div>
+                                                            <div class="tools"><span class="badge badge-green">{{Suppliers.length}}</span><i class="fa fa-chevron-down"></i></div>
                                                         </div>
 
 
@@ -465,8 +469,8 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr ng-repeat="T in jobusers|filter:{insupddelflag :'!D'}" class="gradeA">
-                                                                                <td>{{T.Name}}</td>
+                                                                            <tr ng-repeat="T in Suppliers" class="gradeA">
+                                                                                <td>{{T.FirstName}}</td>
                                                                                 <td>{{T.FromDate | date:'MM-dd-yyyy'}}</td>
                                                                                 <td>{{T.ToDate | date:'MM-dd-yyyy'}}</td>
                                                                                 <td>{{uname}}</td>
@@ -483,7 +487,8 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-p" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetUsersForRFQ();">Add Sales Persons</button></div>
+                                                                <!--<div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-p" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetUsersForRFQ();">Add Sales Persons</button></div>-->
+                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-p" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;">Add Sales Persons</button></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -516,7 +521,7 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr ng-repeat="T in jobdocs" class="gradeA">
-                                                                                <td><a href="#" ng-click="GetFileContent(T)"><font color="blue">{{T.DocName}}</font></a></td>
+                                                                                <td><a href="#" ng-click="GetFileContent(T)"><font color="blue">{{T.DocID}}</font></a></td>
                                                                                 <td>{{T.DocType}}</td>
                                                                                 <td>{{T.ExpiryDate | date:'MM-dd-yyyy'}}</td>
                                                                                 <!--<td>{{T.DueDate | date:'MM-dd-yyyy'}}</td>-->
@@ -665,6 +670,133 @@
     </div>
     <!--END PAGE WRAPPER-->
             </div>
+        <div id="Modal-header-inventoryitems" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-primary">
+                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                        <h4 id="modal-header-primary-label" class="modal-title">Add New Item</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row">
+
+                            <label class="col-md-4 control-label">Item Name: <span class='require'>*</span></label>
+                            <div class="col-md-6">
+                                <input id="itemName" type="text" placeholder="Item Name" class="form-control" ng-model="Item.ItemName" /><span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <label class="col-md-4 control-label">Initial Quantity <span class='require'>*</span></label>
+                            <div class="col-md-6">
+                                <input id="initialquantity" type="text" placeholder="Initial Quantity" class="form-control" ng-model="Item.InitialQuantity" /><span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-4 control-label">Code: <span class='require'>*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="itemcode" type="text" placeholder="Item Code" class="form-control" ng-model="Item.Code" /><span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label for="itemDesc" class="col-md-4 control-label">Description:</label>
+
+
+                            <div class="col-md-6">
+                                <input id="itemDesc" type="text" placeholder="Item Description" class="form-control" ng-model="Item.Description" /><span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="selCountry" class="col-md-4 control-label">Category:</label>
+
+
+                            <div class="col-md-6">
+                                <select disabled class="form-control">
+                                    <option value="">Inventory Category</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mbm">
+                            <label for="selCountry" class="col-md-4 control-label">SubCategory:</label>
+
+                            <div class="col-md-6">
+                                <select ng-options="s.Name for s in SubCategory track by s.Id" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="1">Category1</option>
+                                    <option value="2">Category2</option>
+                                    <option value="3">Category3</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <label for="" class="col-md-4 control-label">Re-order point:<span class='require'>*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="reorderpoint" type="text" class="form-control" ng-model="Item.ReOrderPoint" /><span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="Address Id" class="col-md-4 control-label" style="float:left">Photo:</label>
+                            <div class="col-md-8">
+                                <img id="cmpLogo" ng-src="{{imageSrc}}" width="150px" height="120px" />
+                                <br />
+                                <a href="#" class="btn btn-green" ng-click="UploadImg();" style="margin-top:5px">
+                                    <i class="fa fa-upload"></i>&nbsp;
+                                    Upload photo
+                                </a>
+                            </div>
+                            <input type="file" name="fileInput" id="fileInput" ng-file-select="onFileSelect1($files)" class="btn btn-green" accept=".jpg,.png,.gif,.jpeg" style="display:none" ng-model="$scope.imageSrc" ng-change="setimg();" />
+
+                        </div>
+
+                        <div class="row" style="margin-top:3px;">
+
+                            <label for="" class="col-md-4 control-label">Price:<span class='require'>*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="reorderpoint" type="text" class="form-control" ng-model="Item.price" /><span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="" class="col-md-4 control-label">Item Model:<span class='require'>*</span></label>
+                            <div class="col-md-6">
+                                <input id="reorderpoint" type="text" class="form-control" ng-model="Item.Itemmodel" /><span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="" class="col-md-4 control-label">Features:<span class='require'>*</span></label>
+
+                            <div class="col-md-6">
+                                <input id="reorderpoint" type="text" class="form-control" ng-model="Item.features" /><span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <label for="code" class="col-md-4 control-label">Purchase Date:<span class='require'></span></label>
+                            <div class="col-md-6"><input type="datetime-local" ng-model="Item.PublishDate" class="form-control" /><span class="help-block"></span></div>
+
+                        </div>
+                        <div class="form-actions">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button class="btn btn-primary" data-dismiss="modal" type="button" ng-click="saveNewItem(Item,'I');">Save</button>
+                                <a href="InventoryItems.html" class="btn btn-green">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
     <div id="Modal-header-new-d" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">

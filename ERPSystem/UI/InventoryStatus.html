@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Inventory Status</title>
+    <title>ERPSystem | Dashboard</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <!--Loading bootstrap css-->
@@ -16,51 +17,29 @@
     <!--Loading style-->
     <link type="text/css" rel="stylesheet" href="css/themes/Custom.css" id="theme-change" class="style-change color-change">
     <link type="text/css" rel="stylesheet" href="css/style-responsive.css">
+
 </head>
 
-<body ng-app="myApp" ng-controller="myCtrl" ng-init="GetInventory();" ng-model="Inventory">
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="GetInventoryItems()" ng-model="InventoryItems">
     <div>
         <!--BEGIN THEME SETTING-->
-        <!--BEGIN BACK TO TOP-->
-        <a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
+        <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
             <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
                 <div class="navbar-header">
                     <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a id="logo" href="index.html" class="navbar-brand"><img src="images/dashboard.png" height="25" width="25" align="left" alt="" class="img-responsive"><font size="3">Smart Tickets Dashboard</font></><span style="display: none" class="logo-text-icon">µ</span></a>
+                    <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text"></span><span style="display: none" class="logo-text-icon">µ</span></a>
                 </div>
                 <div class="topbar-main">
                     <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
-
                     <ul class="nav navbar navbar-top-links navbar-right mbn">
-                        <li class="dropdown">
-                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bell fa-fw"></i><span class="badge badge-green"><!--{{dashboardDS.Table2.length}}--></span></a>
-                            <ul class="dropdown-menu dropdown-alerts" ng-show="dashboardDS.Table2.length==0">
-                                <li><p>You have 0 new notifications</p></li>
-                            </ul>
-                            <ul class="dropdown-menu dropdown-messages" ng-repeat="A in dashboardDS.Table2">
-                                <li><p>{{A.Message}}</p></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange"><!--{{dashboardDS.Table1.length}}--></span></a>
-                            <ul class="dropdown-menu dropdown-messages" ng-show="dashboardDS.Table1.length==0">
-                                <li><p>You have 0 new messages</p></li>
-                            </ul>
-                            <ul class="dropdown-menu dropdown-messages" ng-repeat="A in dashboardDS.Table1">
-                                <li><p>{{A.Message}}</p></li>
-                            </ul>
-                        </li>
                         <li class="dropdown topbar-user">
-                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs"><!--{{uname}}--></span>&nbsp;<span class="caret"></span></a>
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
-                                <li><a href="UserProfile.html"><i class="fa fa-user"></i>My Profile</a></li>
-
-                                <li><a href="email-inbox.html"><i class="fa fa-envelope"></i>My Inbox<span class="badge badge-danger">3</span></a></li>
-                                <li><a href="ResetPassword.html"><i class="fa fa-tasks"></i>Reset Password<span class="badge badge-success"></span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="extra-lock-screen.html"><i class="fa fa-lock"></i>Lock Screen</a></li>
-                                <li><a href="../Login.html"><i class="fa fa-key"></i>Log Out</a></li>
+                                <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
+                                <li class="divider"></li>-->
+                                <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -100,14 +79,14 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <!--<li ng-hide="isSuperUser == 0">
-                                                <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
-                                            </li>
-                                            <!-- <li ng-hide="isSuperUser == 0">
-                            <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
-                        </li> -->
+                                                            <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
+                                                        </li>
+                                                        <!-- <li ng-hide="isSuperUser == 0">
+                                        <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
+                                    </li> -->
                                     <!--<li><a href="ItemsList.html" data-toggle="tooltip" data-placement="right" title="Manage list of inventory items"><i class="fa fa-align-left"></i><span class="submenu-title">Item List</span></a></li>
-                        <li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>
-                        <li><a href="ItemDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa<!---cubes"></i>-->
+                                    <li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>
+                                    <li><a href="ItemDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa<!---cubes"></i>-->
                                     <!--<span class="submenu-title">Item Details</span></a></li>-->
 
                                     <li><a href="InventoryItems.html" data-toggle="tooltip" data-placement="right-->" title="Details of InventoryItems"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Items</span></a></li>
@@ -196,11 +175,11 @@
                                     <!--<li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>-->
                                     <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
                                     <!--<li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
-                        <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>-->
+                                    <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>-->
                                     <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Details of Roles"><i class="fa fa-angle-double-right"></i><span class="submenu-title">Roles</span></a></li>
                                     <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
-                        <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
-                        <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
+                                    <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
+                                    <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
                                 </ul>
                             </li>
 
@@ -237,32 +216,32 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
-                                    <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="Sales Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Sales register</span></a></li>
-                                    <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="Purchase Register details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Purchase register</span></a></li>
+                                    <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="SalesRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">SalesRegister</span></a></li>
+                                    <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="PurchaseRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">PurchaseRegister</span></a></li>
                                     <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
                                     <li><a href="Payables.html" data-toggle="tooltip" data-placement="right" title="Payables details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
-                                    <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="Balance sheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Balance Sheet</span></a></li>
+                                    <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="BalanceSheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">BalanceSheet</span></a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </nav>
-                <!--END CHAT FORM--><!--BEGIN PAGE WRAPPER-->
+                <!--END SIDEBAR MENU--><!--BEGIN PAGE WRAPPER-->
                 <div id="page-wrapper">
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
                             <div class="page-title">Inventory Status</div>
                         </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li><i class="fa fa-home"></i>&nbsp;<a href="#">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                        </ol>
+                        <!--<ol class="breadcrumb page-breadcrumb pull-right">
+                            <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                            <li><a href="#">Inventory & BT POS</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                            <li><a href="InventoryItems.html">Inventory Items</a></li>
+
+                        </ol>-->
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-
-
                     <div class="page-content">
                         <div id="table-action" class="row">
                             <div class="col-lg-12">
@@ -270,21 +249,300 @@
                                 <div id="tableactionTabContent" class="tab-content">
                                     <div id="table-table-tab" class="tab-pane fade in active">
                                         <div class="row">
+
                                             <div class="col-lg-12">
+
                                                 <div class="table-container">
+                                                    <!--<div class="row mbm">
+                                                        <div class="actions">
+                                                            <button type="button" data-dismiss="modal" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm fa fa-plus" style="float:right;margin-right:20px" ng-click="GetSubCategories();">Add Inventory Items</button>
+
+                                                        </div>-->
+
+                                                    </div>
+                                                </div>
+                                                <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Item Name</th>
+                                                            <th>Initial Quantity</th>
+                                                            <th>Item Image</th>
+                                                            <th>Code</th>
+                                                            <th>Description</th>
+                                                            <th>Category</th>
+                                                            <th>Sub Category</th>
+                                                            <th>Reorder Point</th>
+                                                            <th>Price</th>
+                                                            <th>ItemModel</th>
+                                                            <th>Features</th>
+                                                            <th>Purchase Date</th>
+                                                            <!--<th>Expiry Date</th>-->
+                                                            <th>Edit</th>
+                                                        </tr>
+                                                    <tbody>
+                                                        <tr ng-repeat="G in InventoryItems">
+                                                            <td>{{G.ItemName}}</td>
+                                                            <td>{{G.InitialQuantity}}</td>
+                                                            <td> <img ng-src="{{G.ItemImage}}" style="width:150px;height:100px" /></td>
+                                                            <td>{{G.Code}}</td>
+                                                            <td>{{G.Description}}</td>
+                                                            <td>{{G.Category}}</td>
+                                                            <td>{{G.SubCategory}}</td>
+                                                            <td>{{G.ReOrderPoint}}</td>
+                                                            <td>{{G.Price}}</td>
+                                                            <td>{{G.ItemModel}}</td>
+                                                            <td>{{G.Features}}</td>
+                                                            <td>{{G.PublishDate}}</td>
+
+                                                            <td>
+                                                                {{U.Update}}
+                                                                <button type="button" data-target="#Modal-header-primary" data-toggle="modal" class="btn btn-default btn-xs" ng-click="setItem(G);">
+                                                                    <i class="fa fa-edit"></i>&nbsp;
+                                                                    Edit
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div id="Modal-header-primary" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade" ng-model="CurrItem">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header modal-header-primary">
+                                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                                    <h4 id="modal-header-primary-label" class="modal-title">Edit Inventory Status</h4>
+                                                </div>
+                                                <div class="modal-body" ng-model="Sales1">
+
+
                                                     <div class="row mbm">
+                                                        <label for="Address Id" class="col-md-4 control-label" style="float:left">Photo:</label>
+                                                        <div class="col-md-8">
+                                                            <img id="cmpLogo" ng-src="{{imageSrc}}" width="150px" height="120px" />
+                                                            <br />
+                                                            <a href="#" class="btn btn-green" ng-click="UploadImg();" style="margin-top:5px">
+                                                                <i class="fa fa-upload"></i>&nbsp;
+                                                                Upload photo
+                                                            </a>
+                                                        </div>
+                                                        <input type="file" name="fileInput" id="fileInput" ng-file-select="onFileSelect($files)" class="btn btn-green" accept=".jpg,.png,.gif,.jpeg" style="display:none" ng-model="$scope.imageSrc" ng-change="setimg();" />
 
                                                     </div>
 
-                                                    <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
-                                                        <thead>
-                                                            <tr>
+                                                    <div class="row">
 
-                                                                <th>Active</th>
-                                                                <th>availableQty</th>
-                                                                <th>category</th>
-                                                                <th>code</th>
-                                                                <th>desc</th>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="Name" class="control-label" style="color:red;">Name:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="cName" ng-model="CurrItem.ItemName" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="Name" class="control-label" style="color:green;">Initial Quantity:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="cName" ng-model="CurrItem.InitialQuantity" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="Description" class="control-label">Code:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.Code" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">Description:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.Description" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">PerUnitPrice:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.Price" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">ReOrder Point:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.ReOrderPoint" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">Item Model:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.ItemModel" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">Features:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.Features" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">PurchaseDate:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.PurchaseDate" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group has-success" style="text-align:right">
+                                                                <label for="TypeGroup" class="control-label">InVoiceNumber:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="form-group">
+                                                                <div class="input-icon right"><input type="text" class="form-control" id="ccode" ng-model="CurrItem.InVoiceNumber" /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-actions">
+                                                    <div class="col-md-offset-3 col-md-9">
+                                                        <button class="btn btn-primary" data-dismiss="modal" type="button" ng-click="save(CurrItem, 'U');">Save</button>
+                                                        <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header modal-header-primary">
+                                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                                    <h4 id="modal-header-primary-label" class="modal-title">Add New Item</h4>
+                                                </div>
+                                                <div class="modal-body">
+
+
+                                                    <div class="row mbm">
+
+                                                        <label class="col-md-4 control-label">Item Name: <span class='require'>*</span></label>
+                                                        <div class="col-md-6">
+                                                            <input id="itemName" type="text" placeholder="Item Name" class="form-control" ng-model="Item.ItemName" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+
+                                                        <label class="col-md-4 control-label">Initial Quantity <span class='require'>*</span></label>
+                                                        <div class="col-md-6">
+                                                            <input id="initialquantity" type="text" placeholder="Initial Quantity" class="form-control" ng-model="Item.InitialQuantity" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row mbm">
+                                                        <label class="col-md-4 control-label">Code: <span class='require'>*</span></label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="itemcode" type="text" placeholder="Item Code" class="form-control" ng-model="Item.Code" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label for="itemDesc" class="col-md-4 control-label">Description:</label>
+
+
+                                                        <div class="col-md-6">
+                                                            <input id="itemDesc" type="text" placeholder="Item Description" class="form-control" ng-model="Item.Description" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+                                                        <label for="selCountry" class="col-md-4 control-label">Category:</label>
+
+
+                                                        <div class="col-md-6">
+                                                            <select disabled class="form-control">
+                                                                <option value="">Inventory Category</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+                                                        <label for="selCountry" class="col-md-4 control-label">SubCategory:</label>
+
+                                                        <div class="col-md-6">
+                                                            <select ng-options="s.Name for s in SubCategory track by s.Id" class="form-control">
+                                                                <option value="">Select</option>
+                                                                <option value="1">Category1</option>
+                                                                <option value="2">Category2</option>
+                                                                <option value="3">Category3</option>
 
                                                                 <th>name</th>
                                                                 <th>PerUnitPrice</th>
@@ -294,30 +552,68 @@
                                                         <!--<tbody>
                                                             <tr ng-repeat="I in Inventory">
 
-                                                                <td>{{I.Active}}</td>
-                                                                <td>{{I.availableQty}}</td>
-                                                                <td>{{I.category}}</td>
-                                                                <td>{{I.code}}</td>
-                                                                <td>{{I.desc}}</td>
+                                                        <label for="" class="col-md-4 control-label">Re-order point:<span class='require'>*</span></label>
 
-                                                                <td>{{I.name}}</td>
-                                                                <td>{{I.PerUnitPrice}}</td>
-                                                                <td>{{I.reorderpoint}}</td>
-                                                                <td>{{I.subcat}}</td>
+                                                        <div class="col-md-6">
+                                                            <input id="reorderpoint" type="text" class="form-control" ng-model="Item.ReOrderPoint" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+                                                        <label for="Address Id" class="col-md-4 control-label" style="float:left">Photo:</label>
+                                                        <div class="col-md-8">
+                                                            <img id="cmpLogo" ng-src="{{imageSrc}}" width="150px" height="120px" />
+                                                            <br />
+                                                            <a href="#" class="btn btn-green" ng-click="UploadImg();" style="margin-top:5px">
+                                                                <i class="fa fa-upload"></i>&nbsp;
+                                                                Upload photo
+                                                            </a>
+                                                        </div>
+                                                        <input type="file" name="fileInput" id="fileInput" ng-file-select="onFileSelect($files)" class="btn btn-green" accept=".jpg,.png,.gif,.jpeg" style="display:none" ng-model="$scope.imageSrc" ng-change="setimg();" />
 
+                                                    </div>
 
-                                                            </tr>
-                                                        </tbody>-->
-                                                    </table>
+                                                    <div class="row mbm">
+
+                                                        <label for="" class="col-md-4 control-label">Price:<span class='require'>*</span></label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="reorderpoint" type="text" class="form-control" ng-model="Item.price" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+
+                                                        <label for="" class="col-md-4 control-label">Item Model:<span class='require'>*</span></label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="reorderpoint" type="text" class="form-control" ng-model="Item.Itemmodel" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+
+                                                        <label for="" class="col-md-4 control-label">Features:<span class='require'>*</span></label>
+
+                                                        <div class="col-md-6">
+                                                            <input id="reorderpoint" type="text" class="form-control" ng-model="Item.features" /><span class="help-block"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mbm">
+
+                                                        <label for="code" class="col-md-4 control-label">Purchase Date:<span class='require'></span></label>
+                                                        <div class="col-md-6"><input type="datetime-local" ng-model="Item.PublishDate" class="form-control" /><span class="help-block"></span></div>
+
+                                                    </div>
+                                                    <div class="form-actions">
+                                                        <div class="col-md-offset-3 col-md-9">
+                                                            <button class="btn btn-primary" data-dismiss="modal" type="button" ng-click="saveNewItem(Item,'I');">Save</button>
+                                                            <a href="InventoryItems.html" class="btn btn-green">Cancel</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
+
+
+
                                         </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!--END CONTENT-->
                         <!--BEGIN FOOTER-->
@@ -333,25 +629,26 @@
         </div>
         <script type="text/ng-template" id="myModalContent.html" data-backdrop="static">
 
-            <div class="modal-header">
-                <h3 class="modal-title">Save confirmation!</h3>
-            </div>
-            <div class="modal-body">
-                <!--<ul>
-                    <li ng-repeat="item in items">
-                        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                    </li>
-                </ul>
-                Selected: <b>{{ selected.item }}</b>-->
-                {{mssg}}
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-            </div>
+        <div class="modal-header">
+            <h3 class="modal-title">Save confirmation!</h3>
+        </div>
+        <div class="modal-body">
+            <!--<ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>-->
+            {{mssg}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
 
-        </script>
-    </div>
+    </script>
+
+
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -374,12 +671,11 @@
     <!--CORE JAVASCRIPT-->
     <script src="js/main.js"></script>
     <script src="js/angular.js"></script>
-    <script src="js/ngStorage.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
-    <!--<script src="js/InventoryStatus.js"></script>-->
-    <!--<script src="js/Alerts.js"></script>
-
-        <script src="js/Notifications.js"></script>-->
+    <script src="js/ngStorage.js"></script>
+    <script src="js/fileupload/angular-file-upload.js"></script>
+    <script src="js/fileupload/angular-file-upload-shim.js"></script>
+    <script src="js/InventoryItem.js"></script>
+    <script src="js/fileupload/Upload.js"></script>
 </body>
-
 </html>
