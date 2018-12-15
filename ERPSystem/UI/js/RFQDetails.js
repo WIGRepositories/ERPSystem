@@ -202,6 +202,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.newCheckedArr = new Array();
     $scope.checkedArr = new Array();
     $scope.uncheckedArr = new Array();
+    $scope.salemanagers = new Array();
+    $scope.salerepresentives = new Array();
     $scope.datecol = new Array();
     $scope.IsFileExtnInvalid = false;
     $scope.ReturnDtInvalid = false;
@@ -234,10 +236,22 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         });
         $http.get('/api/Users/GetUsers').then(function (res, data) {
             $scope.Suppliers = res.data;
+            if ($scope.Suppliers!=null) { 
+            for (var i = 0; i < $scope.Suppliers.length; i++) {
+                if ($scope.Suppliers[i].RoleId != null) {
+                    if (3 == $scope.Suppliers[i].RoleId) { 
+                        $scope.salemanagers.push($scope.Suppliers[i]);
+                    }
+                    if ((4 == $scope.Suppliers[i].RoleId)) {
+                        $scope.salerepresentives.push($scope.Suppliers[i]);
+                    }
+                }
+            }
+           }
         });
 
         $http.get('/api/InventoryItem/GetInventoryItem?subCatId=-1').then(function (response, data) {
-            $scope.InventoryItems = response.data;
+            $scope.InventoryItems= response.data;
         });
 
         $http.get('/api/Types/TypesByGroupId?groupid=3').then(function (res, data) {
@@ -302,8 +316,17 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.getRFQDetails = function (jobid) {
         $http.get('/api/RFQ/GetRFQDetails?rfqId=' + jobid).then(function (res, data) {
             $scope.currJob = res.data.Table[0];
+            $scope.itemlist = res.data.Table1;
+            $scope.rfqpersonals = res.data.Table2;
+            $scope.jobdocs = res.data.Table3;
+            //$scope.currJob = res.data.Table[0];
+            //$scope.currJob = res.data.Table[0];
+            //$scope.
+
             $scope.jl = $scope.currJob.RFQComType;
-            $scope.getRFQDocuments($scope.selJobId);
+
+            //$scope.getRFQDocuments($scope.selJobId);
+
             if ($scope.currJob != null && $scope.rfqlist!=null) {
                 for (var manfCount = 0 ; manfCount < $scope.rfqlist.length; manfCount++) {
                     if ($scope.currJob.ID == $scope.rfqlist[manfCount].ID) {
@@ -393,11 +416,12 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             Itemmodel: Item.Itemmodel,
             features: Item.features,
             InitialQuantity: Item.InitialQuantity,
+            rfqid: Item.RId.ID
         }
 
         var req = {
             method: 'POST',
-            url: '/api/InventoryItem/SaveInventoryItem',
+            url: '/api/InventoryItem/saveRFqitemslist',
             data: Item
         }
         $http(req).then(function (response) {

@@ -828,8 +828,9 @@ namespace ERPSystem.Models
         public string ContactNo1 { get; set; }
         public string Email { get; set; }
         public int Active { get; set; }
+        public string flag { get; set; }
 
-      
+
     }
     public class PPDocument
     {
@@ -1354,7 +1355,7 @@ namespace ERPSystem.Models
         public decimal price { get; set; }
         public string Itemmodel { get; set; }
         public string features { get; set; }
-
+        public int rfqid { get; set; }
         public decimal InitialQuantity { get; set; }
     }
     public class ConfigData
@@ -1417,6 +1418,7 @@ namespace ERPSystem.Models
 
         public string Email { get; set; }
         public int Active { get; set; }
+        public string flag { get; set; }
     }
 
 }

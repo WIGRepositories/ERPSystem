@@ -424,6 +424,7 @@ namespace ERPSystem.Controllers
         }
 
         [HttpGet]
+        [Route("api/RFQ/GetRFQDetails")]
         public DataSet GetRFQDetails(int rfqId)
         {
             try
@@ -439,7 +440,7 @@ namespace ERPSystem.Controllers
                 cmd.Connection = conn;
 
                 SqlParameter Gim = new SqlParameter("@id", SqlDbType.Int);
-                Gim.Value = Convert.ToString(rfqId);
+                Gim.Value =rfqId;
                 cmd.Parameters.Add(Gim);
 
                 DataSet ds = new DataSet();
