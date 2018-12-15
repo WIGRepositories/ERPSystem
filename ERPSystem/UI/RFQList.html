@@ -270,94 +270,76 @@
                                     <div id="table-table-tab" class="tab-pane fade in active">
                                         <div class="row">
                                             <div class="col-lg-12">
-                                                <div class="row mbm">
-                                                    <!--<div class="col-md-3" style="text-align:left">
-                                                        Location: <select ng-options="s.name for s in Locations track by s.id" ng-model="s" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>-->
-                                                    <div class="col-md-3" style="text-align:left">
-                                                        RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3" style="text-align:left">
-                                                        Customer: <select ng-options="c.Name  for c in Customers track by c.Id" ng-model="c" style="width:60%">
-                                                            <option value="">All</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-3" style="text-align:left">
-                                                        <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;">Add New RFQ</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
+                                                <div class="table-container">
+                                                    <div class="row mbm">
+                                                        <div class="col-md-2" style="text-align:left">
+                                                            Search RFQ#:<input type="text" ng-model="rfqno" style="width:80%"/>
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align:left">
+                                                            RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:80%">
+                                                                <option value="">All</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align:left">
+                                                            Customer: <select ng-options="c.Name  for c in Customers track by c.Id" ng-model="c" style="width:80%">
+                                                                <option value="">All</option>
+                                                            </select>
+                                                        </div>
 
-                                                    <div class="container-fliud">
-
-                                                        <!--<div class="row">
-                                                    <h3 ng-show="act.length != 0">Active jobs</h3>
-                                                    <div style="width: 15%; float: left; padding: 5px; " ng-repeat="j in  jobsList1 | filter:{Status:'Active'||'!'}">
-                                                        <div class="panel panel-dark" style="background-color: green; min-height:100px">
-
-                                                            <a href="JobDetails.html?jobId={{j.ID}}">
-
-                                                                <div class="panel-body" ng-style="j.Status">
-                                                                    <span style="text-decoration-color: white"><font color="white"> {{j.Name}}</font></span>
-                                                                    <br /><span style="text-decoration-color: white"><font color="white"> Location: {{j.Location}}</font></span>
-                                                                </div>
-                                                            </a>
+                                                        <div class="col-md-3" style="text-align:right">
+                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;">Add New RFQ</button>
                                                         </div>
                                                     </div>
-                                                </div>-->
-                                                        <!--<h3 ng-show="pend.length != 0">Pending jobs</h3>-->
-
-                                                        <table class="table table-bordered table-advanced tablesorter">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>RFQ #</th>
-                                                                    <th>RFQ Name</th>
-                                                                    <th>Communication Type</th>                                                                   
-                                                                    <th>Customer</th>
-                                                                    <th>Phone no</th>                                                                   
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr ng-repeat="J in rfqlist|filter:{StatusId :'!9'}:true" ng-style="(J.StatusId == '7') ? {'background-color':'#F2DEDE'}:(J.StatusId == '8') ?{'background-color':'#DFF0D8'}:''">
-                                                                    <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
-                                                                    <td>{{J.Name}}</td>
-                                                                    <td>{{J.RFQComType}}</td>                                                                   
-                                                                    <td>{{J.Customer}}</td>
-                                                                    <td>{{J.CustomerPhoneno}}</td>                                                                   
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-
-                                                        <!--<div class="panel panel-dark" style="min-height: 100px" ng-style="(j.StatusId == '7') ? {'background-color':'#F2DEDE'}:(j.StatusId == '8') ?{'background-color':'GREEN'}:''">
-
-                                                    <a href="JobDetails.html?jobId={{j.ID}}">
-
-                                                        <div class="panel-body" ng-style="j.Status">
-                                                            <span style="text-decoration-color: white"><font color="white"> {{j.Name}}</font></span>
-                                                            <br /><span style="text-decoration-color: white"><font color="white"> Location: {{j.Location}}</font></span>
-                                                        </div>
-                                                    </a>
-                                                </div>-->
-
-                                                    </div>
-
                                                 </div>
                                             </div>
                                         </div>
+                                               
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+
+                                                        <div class="container-fliud">
+
+
+
+                                                            <table class="table table-bordered table-advanced tablesorter">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>RFQ #</th>
+                                                                        <th>RFQ Name</th>
+                                                                        <th>Communication Type</th>
+                                                                        <th>Customer</th>
+                                                                        <th>Phone no</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat="J in rfqlist|filter:{RFQID:rfqno}">
+                                                                        <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
+                                                                        <td>{{J.Name}}</td>
+                                                                        <td>{{J.RFQComType}}</td>
+                                                                        <td>{{J.Customer}}</td>
+                                                                        <td>{{J.CustomerPhoneno}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+                                                          
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </di
+                       
                     </div>
                     <!--END CONTENT-->
                     <!--END CONTENT--><!--BEGIN FOOTER-->
                     <div id="footer">
-                        <div class="copyright">2018 © EES Equipment Management Portal</div>
+                        <div class="copyright">2018 © ERPSystem</div>
                     </div>
                     <!--END FOOTER-->
                 </div>
@@ -376,77 +358,8 @@
                     <h4 id="modal-header-primary-label" class="modal-title">Add New RFQ</h4>
                 </div>
                 <div class="modal-body" ng-model="newRFQ">
-                    <!--<div class="row">
-                        <div class="col-md-12">
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="Description" class="control-label" style="color:red;">RFQ#:<span class='require'>*</span></label>
-                                    <div>
-                                        <input id="inputRFQID" type="text" ng-model="newRFQ.Name" class="form-control" /><span class="help-block"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-3">
-                                <label for="selCountry" class="control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.js" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Active</option>
-                                        <option value="2">Pending</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Customer: <span class='require'>*</span></label>
-                                <div>
-
-                                    <select ng-model="newRFQ.jc" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Accumalte</option>
-                                        <option value="2">Anagr</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Communication Type:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.jl" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Mobile Phone</option>
-                                        <option value="2">FAX</option>
-                                        <option value="3">Mail</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>                   
+                   
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                                <label for="Description" class="control-label" style="color:red;">Sales Manager:<span class='require'>*</span></label>
-                                <div>
-                                    <select ng-model="newRFQ.sm" style="width:100%">
-                                        <option value="">Select</option>
-                                        <option value="1">Ramesh</option>
-                                        <option value="2">Prasad</option>
-                                        <option value="3">Suresh</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <label for="Description" class="control-label" style="color:red;">Description:</label>
-                                <div style="text-align:left;padding-left:0">
-                                    <textarea id="inputDescription" rows="2" ng-model="newRFQ.modelDescription" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-                    <div class="row mbm">
 
                         <label class="col-md-4 control-label">RFQ# <span class='require'>*</span></label>
                         <div class="col-md-6">
@@ -454,7 +367,7 @@
                         </div>
                     </div>
 
-                    <div class="row mbm">
+                    <div class="row">
                         <label class="col-md-4 control-label">RFQ Status <span class='require'>*</span></label>
 
                         <div class="col-md-6">
@@ -479,7 +392,7 @@
                                 <span class="help-block"></span>
                                 </div>
                     </div>
-                    <div class="row mbm">
+                    <div class="row">
                         <label for="selCountry" class="col-md-4 control-label">Communication Type</label>
 
 
@@ -492,7 +405,7 @@
                              </select><span class="help-block"></span>
                         </div>
                     </div>
-                    <div class="row mbm">
+                    <div class="row">
                         <label for="selCountry" class="col-md-4 control-label">Sales Manager</label>
 
                         <div class="col-md-6">
@@ -504,7 +417,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mbm">
+                    <div class="row">
 
                         <label for="" class="col-md-4 control-label">Description:<span class='require'>*</span></label>
 

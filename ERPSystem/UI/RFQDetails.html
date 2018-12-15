@@ -294,10 +294,10 @@
 
                                                     <div class="portlet-header" style="background-color: #f5f5f5; border: 1px solid #e5e5e5; color: #b8adb7">
                                                         <div class="caption"><a href=""> RFQ Details</a></div>
-                                                        <div class="tools"><i class="fa fa-chevron-down"></i></div>
+                                                        <div class="tools"><i class="fa fa-chevron-up"></i></div>
                                                     </div>
 
-                                                    <div id="collapse0" class="panel-collapse list-group portlet-body" style="padding: 0px; display: none; border: 1px solid #e5e5e5;">
+                                                    <div id="collapse0" class="panel-collapse list-group portlet-body" style="padding: 0px; border: 1px solid #e5e5e5;">
 
                                                         <div class="panel-body">
 
@@ -315,7 +315,7 @@
                                                                   
 
                                                                     <div class="col-md-3">
-                                                                        <label for="selCountry" class=" control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
+                                                                        <label for="selCountry" class="control-label" style="color:red;">RFQ Status:<span class='require'>*</span></label>
                                                                         <div>
 
                                                                             <select ng-options="js.Name for js in jobStatus track by js.Id" ng-model="js" ng-value="js.Id" style="width:100%">
@@ -371,17 +371,13 @@
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-
-
                                                                         <div class="form-actions">
                                                                             <div style="text-align:center">
-                                                                                <button ng-disabled="j==null || isSuperUser == 0" class="btn btn-green" ng-click="saveJobDetails(currJob, 'U')">Save</button>
+                                                                                <button ng-disabled="isSuperUser == 0" class="btn btn-green" ng-click="saveJobDetails(currJob, 'U')">Save</button>
                                                                                 &nbsp;
                                                                                 <button type="button" class="btn btn-danger" ng-click="getJobDetails(currJob.ID)">Cancel</button>
                                                                             </div>
                                                                         </div>
-
-
                                                                     </div>
                                                                 </div>
 
@@ -439,7 +435,7 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-je" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetAssetsModels();">Add Equipment</button></div>
+                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-je" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetAssetsModels();">Add Inventory Items</button></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -487,59 +483,12 @@
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-p" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetUsersForRFQ();">Add personnel</button></div>
+                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-p" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;" ng-click="GetUsersForRFQ();">Add Sales Persons</button></div>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <!--<div class="portlet box portlet-grey" style="margin-bottom:10px">
-
-                                                        <div class="portlet-header" style="background-color: #f5f5f5; border: 1px solid #e5e5e5; color: #b8adb7">
-                                                            <div class="caption"><a href="">Third-party Resources</a></div>
-                                                            <div class="tools"><span class="badge badge-green">{{tresources.length}}</span><i class="fa fa-chevron-down"></i></div>
-                                                        </div>
-
-
-                                                        <div id="collapse1" class="panel-collapse list-group portlet-body" style="padding: 0px; display: none; border: 1px solid #e5e5e5;">
-                                                            <div class="panel-body">
-                                                                 <div class="alert alert-danger">No records to display.</div>
-                                                                <div>
-                                                                    <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Resource</th>
-                                                                                <th>Vendor</th>
-                                                                                <th>From Date</th>
-                                                                                <th>To Date</th>
-                                                                                <th>Updated By</th>
-                                                                                <th>Edit</th>
-                                                                                <th>Delete</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr ng-repeat="T in tresources|filter:{insupddelflag :'!D'}" class="gradeA">
-                                                                                <td>{{T.Name}}</td>
-                                                                                <td>{{T.VName}}</td>
-                                                                                <td>{{T.FromDate | date:'MM-dd-yyyy'}}</td>
-                                                                                <td>{{T.ToDate | date:'MM-dd-yyyy'}}</td>
-                                                                                <td>{{uname}}</td>
-                                                                                <td>
-                                                                                    <button type="button" data-target="#Modal-header-new-tpru" data-toggle="modal" class="btn btn-default btn-xs" ng-click="EditTPresources(T)" ng-disabled="isSuperUser == 0 && CanEdit == 0">
-                                                                                        <i class="fa fa-edit"></i>&nbsp;
-
-                                                                                    </button>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="AddTresources(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                <div><button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-tpr" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;">Add third-party Resources</button></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>-->
+                                                    
 
                                                     <div class="portlet box portlet-grey" style="margin-bottom:10px">
 
@@ -588,7 +537,7 @@
                                                                 </div>
                                                                 <div>
 
-                                                                    <button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-d" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;">Upload project documents</button>
+                                                                    <button ng-disabled="isSuperUser == 0 && CanEdit == 0" type="button" data-target="#Modal-header-new-d" data-toggle="modal" class="btn btn-info btn-sm" style="float: left; margin: 10px;">Upload RFQ related documents</button>
                                                                 </div>
 
                                                             </div>

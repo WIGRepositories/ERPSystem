@@ -54,6 +54,74 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
     //    adalAuthenticationService.login();
     //}
 
+    $scope.AddNewRFQ = function () {
+        var newRFQ = $scope.newRFQ;
+        if (newRFQ == null) {
+            alert('Please enter RFQ name.');
+            return;
+        }
+        //Job type
+        if (newRFQ.js == null) {
+            alert('Please Select Status.');
+            return;
+        }
+
+        //CustomerID
+        if (newRFQ.jc == null) {
+            alert('Please select Customer.');
+            return;
+        }
+        //Communication Type
+        if (newRFQ.jl == null) {
+            alert('Please select Communication Type.');
+            return;
+        }
+        //Sales Manager
+        if (newRFQ.sm == null) {
+            alert('Please select Sales Manager.');
+            return;
+        }
+
+
+        var RFq = {
+
+            Id: -1,
+            Name: newRFQ.Name,
+            Status: newRFQ.js,
+            CustomerId: newRFQ.jc,
+            CmTypeId: newRFQ.jl,
+            SmId: newRFQ.sm,
+            Description: newRFQ.modelDescription,
+            CPhoneNo: 111,//newRFQ.PhoneNo,
+            CEmail: newRFQ.Email,
+            CFax: newRFQ.Fax,
+            changedById: 1,
+            flag: 'I'
+        }
+
+        var req = {
+            method: 'POST',
+            url: '/api/RFQ/SaveRFQDetails',
+            data: RFq
+        }
+        $http(req).then(function (response) {
+
+            alert("Saved successfully!");
+            //$scope.getJobsListByStatus();
+            $scope.newRFQ = null;
+            //$scope.jbty = '';
+            $('#Modal-header-new').modal('hide');
+
+        }, function (errres) {
+            var errdata = errres.data;
+            var errmssg = "";
+            errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+            $('#Modal-header-new').modal('hide');
+            $scope.showDialog1(errmssg);
+        });
+        $scope.currGroup = null;
+
+    }
 
     $scope.ValidateCredentials = function () {
 
@@ -696,92 +764,7 @@ var mycrtl1 = myapp1.controller('myCtrl', ['$scope', '$http', '$localStorage', '
         $scope.amodel = a.AssetModelHierId;
         $scope.newAssetActive = 1;
     }
-    //$scope.saveNewAsset = function ($event) {
-    //    var newAsset = $scope.newAsset;
-    //    if (newAsset == null) {
-    //        alert('Please enter the equipment name');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-    //    if (newAsset.Name == null) {
-    //        alert('Please enter the equipment name');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-    //    if ($scope.selectedEqipType == null) {
-    //        alert('Please select an equipment model');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-    //    if ($scope.selectedEqipType.id == null) {
-    //        alert('Please select an equipment model');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-    //    //if ($scope.selectedEqipType.AssetType == null) {
-    //    //    alert('Please select an equipment model');
-    //    //    return;
-    //    //}
-    //    if ($scope.selectedEqipType.AssetTypeId == null) {
-    //        alert('Please select an equipment model');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-    //    if ($scope.nl == null) {
-    //        alert('Please select a location');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-    //    if ($scope.nl.id == null) {
-    //        alert('Please select a location');
-    //        $event.stopPropagation();
-    //        $event.preventDefault();
-    //        return;
-    //    }
-
-    //    var newAsset1 = {
-    //        Id: -1,
-    //        Name: newAsset.Name,
-    //        Description: newAsset.Description,
-    //        Active: ($scope.newAssetActive == null) ? 0 : $scope.newAssetActive,//selectedRole.Active, 
-    //        AsstMDLHierarID: $scope.selectedEqipType.AssetModelHierId,
-    //        AssetModelId: $scope.selectedEqipType.id,
-    //        ParentID: null,
-    //        RootAssetID: -1,
-    //        LocationId: $scope.nl.id,
-    //        AssetTypeId: $scope.selectedEqipType.AssetTypeId,
-    //        changedById: $scope.userdetails.Id,
-    //        insupddelflag: 'I'
-    //    };
-
-    //    var req = {
-    //        method: 'POST',
-    //        url: '/api/Asset/SaveAsset',
-    //        data: newAsset1
-    //    }
-    //    $http(req).then(function (response) {
-
-    //        //$scope.showDialog("Saved successfully!");
-    //        $scope.GetDashBoardDetails();
-
-    //        $scope.newAsset = null;
-    //        $scope.newAssetModel = null;
-
-    //    }, function (errres) {
-    //        var errdata = errres.data;
-    //        var errmssg = "";
-    //        errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
-    //        $scope.showDialog(errmssg);
-
-    //    });
-
-    //}
+    
     $scope.AddNewJob = function () {
         var newJob = $scope.newJob;
         if (newJob == null) {

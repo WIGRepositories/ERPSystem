@@ -258,6 +258,7 @@
     <Content Include="UI\js\AssetModelDetails.js" />
     <Content Include="UI\js\Assets.js" />
     <Content Include="UI\js\AssetsView.js" />
+    <Content Include="UI\js\charts-highchart-line.js" />
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\ItemDetails.js" />
@@ -682,6 +683,13 @@
     <Content Include="UI\vendors\iCheck\skins\square\yellow.css" />
     <Content Include="UI\vendors\iCheck\skins\square\yellow.png" />
     <Content Include="UI\vendors\jquery-cookie\jquery.cookie.js" />
+    <Content Include="UI\vendors\jquery-highcharts\data.js" />
+    <Content Include="UI\vendors\jquery-highcharts\drilldown.js" />
+    <Content Include="UI\vendors\jquery-highcharts\exporting.js" />
+    <Content Include="UI\vendors\jquery-highcharts\funnel.js" />
+    <Content Include="UI\vendors\jquery-highcharts\highchart.js" />
+    <Content Include="UI\vendors\jquery-highcharts\highcharts-more.js" />
+    <Content Include="UI\vendors\jquery-highcharts\highcharts.js" />
     <Content Include="UI\vendors\jquery-pace\pace.min.js" />
     <Content Include="UI\vendors\jquery-treetable\javascripts\src\jquery.treetable.js" />
     <Content Include="UI\vendors\jquery-treetable\stylesheets\jquery.treetable.css" />
