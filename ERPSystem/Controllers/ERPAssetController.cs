@@ -125,7 +125,7 @@ namespace ERPSystem.Controllers
                 cellj1.AddElement(new Paragraph("" + tt));
 
                 PdfPCell cellj2 = new PdfPCell();
-                cellj2.AddElement(new Paragraph(m.Name));
+                cellj2.AddElement(new Paragraph(m.ItemName));
 
                 PdfPCell cellj3 = new PdfPCell();
                 cellj3.AddElement(new Paragraph("" + m.qty));
@@ -214,11 +214,11 @@ namespace ERPSystem.Controllers
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.Name);
+                //    itemsList.Append(m.ItemName);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.des);
+                //    itemsList.Append(m.Description);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
@@ -352,11 +352,11 @@ namespace ERPSystem.Controllers
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    itemsList.Append(m.Name);
+                    itemsList.Append(m.ItemName);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    itemsList.Append(m.des);
+                    itemsList.Append(m.Description);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
@@ -454,11 +454,11 @@ namespace ERPSystem.Controllers
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    itemsList.Append(m.Name);
+                    itemsList.Append(m.ItemName);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    itemsList.Append(m.des);
+                    itemsList.Append(m.Description);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
@@ -556,11 +556,11 @@ namespace ERPSystem.Controllers
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    itemsList.Append(m.Name);
+                    itemsList.Append(m.ItemName);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
-                    itemsList.Append(m.des);
+                    itemsList.Append(m.Description);
                     itemsList.Append("</td>");
 
                     itemsList.Append("<td>");
@@ -790,7 +790,7 @@ namespace ERPSystem.Controllers
                 cellj1.AddElement(new Paragraph("" + tt));
 
                 PdfPCell cellj2 = new PdfPCell();
-                cellj2.AddElement(new Paragraph(m.Name));
+                cellj2.AddElement(new Paragraph(m.ItemName));
 
                 PdfPCell cellj3 = new PdfPCell();
                 cellj3.AddElement(new Paragraph("" + m.qty));
@@ -879,11 +879,11 @@ namespace ERPSystem.Controllers
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.Name);
+                //    itemsList.Append(m.ItemName);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.des);
+                //    itemsList.Append(m.Description);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
@@ -1116,7 +1116,7 @@ namespace ERPSystem.Controllers
                 cellj1.AddElement(new Paragraph("" + tt));
 
                 PdfPCell cellj2 = new PdfPCell();
-                cellj2.AddElement(new Paragraph(m.Name));
+                cellj2.AddElement(new Paragraph(m.ItemName));
 
                 PdfPCell cellj3 = new PdfPCell();
                 cellj3.AddElement(new Paragraph("" + m.qty));
@@ -1205,11 +1205,11 @@ namespace ERPSystem.Controllers
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.Name);
+                //    itemsList.Append(m.ItemName);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.des);
+                //    itemsList.Append(m.Description);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");

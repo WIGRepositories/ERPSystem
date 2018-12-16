@@ -13,7 +13,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         //$("#customers-content").show();
     });
     
-    $http.get('/api/ERPAsset/GetInvertory').then(function (res, data) {
+    $http.get('/api/InventoryItem/GetInventoryItem?subCatId=-1').then(function (res, data) {
         $scope.Equipement = res.data;
         //$rootScope.spinner.off();
         //$("#customers-content").show();
@@ -26,17 +26,20 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
     }
 
     // send suppliers 
-    $scope.Sendsupplier1= function () {
-        if ($scope.Email == null) {
-            alert("Plese Enter Email Id.");
-            return;
-        }
+    $scope.Sendsupplier1 = function () {
+
         if ($scope.Cust == null) {
             alert("Plese Select Customer.");
             return;
         }
+
+        if ($scope.Cust.Email == null) {
+            alert("Plese Enter Email Id.");
+            return;
+        }
+       
         for (var i = 0; i < $scope.selArr.length; i++) {
-            $scope.selArr[i].Email = $scope.Email;
+        $scope.selArr[i].Email = $scope.Cust.Email;
             $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         var req = {
@@ -49,7 +52,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             //$scope.showlocimportdata(res.data);
             alert("Enquiry Sucessfully Sent");
             $('#Modal-header-new').modal('hide');
-            $scope.Email = "";
+            $scope.Cust = null;
         });
 
 
@@ -57,16 +60,17 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
 
     //acustomers
     $scope.SendMail = function () {
-        if ($scope.Email == null) {
-            alert("Plese Enter Email Id.");
-            return;
-        }
-        if ($scope.Cust==null) {
+        if ($scope.Cust == null) {
             alert("Plese Select Customer.");
             return;
         }
+
+        if ($scope.Cust.Email == null) {
+            alert("Plese Enter Email Id.");
+            return;
+        }
         for(var i=0;i<$scope.selArr.length;i++){
-            $scope.selArr[i].Email = $scope.Email;
+            $scope.selArr[i].Email = $scope.Cust.Email;
             $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         var req = {
@@ -79,7 +83,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             //$scope.showlocimportdata(res.data);
             alert("Enquiry Sucessfully Sent");
             $('#Modal-header-new').modal('hide');
-            $scope.Email = "";
+            $scope.Cust = null;
         });
 
 

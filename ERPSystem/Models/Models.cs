@@ -33,9 +33,9 @@ namespace ERPSystem.Models
     {
         public string customerid { get; set; }
         public string Email { get; set; }
-        public string Name { get; set; }
+        public string ItemName { get; set; }
         public int qty { get; set; }
-        public string des { get; set; }
+        public string Description { get; set; }
         public int perunit { get; set; }
         public string Suppiername { get; set; }
         public int Subtotal { get; set; }
@@ -1418,7 +1418,7 @@ namespace ERPSystem.Models
         public string flag { get; set; }
         public string Email { get; set; }
         public int Active { get; set; }
-        public string flag { get; set; }
+       
     }
 
 }

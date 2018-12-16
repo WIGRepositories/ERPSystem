@@ -149,7 +149,7 @@
                                                         <div class="col-md-12">
                                                             <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
                                                             <div class="row">
-                                                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
+                                                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Cust.Email" style="width:100%"></div>
                                                                 <div class="col-md-6">
                                                                     Customer:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
                                                                               <option value="">All</option>
@@ -171,9 +171,11 @@
                                                                         <tr ng-repeat="a in Equipement">
                                                                             <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)" /></td>                                                                           
                                                                             <td style="text-align:center;">                                                                               
-                                                                                {{a.Name}}
+                                                                                {{a.ItemName}}
                                                                             </td> 
-                                                                            <td style="text-align:center;"><input type="text"  ng-model="a.des" class="form-control"/></td>                                                                                                                                                                                                                                  
+                                                                            <td style="text-align:center;">{{a.Description}}
+                                                                            <!--<input type="text"  ng-model="a.des" class="form-control"/>-->
+                                                                            </td>                                                                                                                                                                                                                                  
                                                                             <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>                                                                            
                                                                         </tr>
                                                                     </tbody>
