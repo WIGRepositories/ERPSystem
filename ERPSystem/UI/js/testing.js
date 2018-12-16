@@ -13,10 +13,14 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         //$("#customers-content").show();
     });
     
-    $http.get('/api/ERPAsset/GetInvertory').then(function (res, data) {
+    $http.get('/api/InventoryItem/GetInventoryItem?subCatId=-1').then(function (res, data) {
         $scope.Equipement = res.data;
         //$rootScope.spinner.off();
         //$("#customers-content").show();
+    });
+
+    $http.get('/api/Suppliers/getSuppliers').then(function (res, data) {
+        $scope.Suppliers = res.data;       
     });
     }
 
@@ -24,49 +28,20 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
     $scope.SetData = function (b) {
         $scope.selArr.push(b);
     }
-
-    // send suppliers 
-    $scope.Sendsupplier1= function () {
-        if ($scope.Email == null) {
-            alert("Plese Enter Email Id.");
-            return;
-        }
+       
+    //acustomers
+    $scope.SendMail = function () {
         if ($scope.Cust == null) {
             alert("Plese Select Customer.");
             return;
         }
-        for (var i = 0; i < $scope.selArr.length; i++) {
-            $scope.selArr[i].Email = $scope.Email;
-            $scope.selArr[i].customerid = $scope.Cust.Name;
-        }
-        var req = {
-            method: 'POST',
-            url: '/api/ERPAsse/SendSuppliers',
-            data: $scope.selArr
-        }
-        $http(req).then(function (res) {
-            //$scope.initdata = res.data;
-            //$scope.showlocimportdata(res.data);
-            alert("Enquiry Sucessfully Sent");
-            $('#Modal-header-new').modal('hide');
-            $scope.Email = "";
-        });
 
-
-    }
-
-    //acustomers
-    $scope.SendMail = function () {
-        if ($scope.Email == null) {
+        if ($scope.Cust.Email == null) {
             alert("Plese Enter Email Id.");
             return;
         }
-        if ($scope.Cust==null) {
-            alert("Plese Select Customer.");
-            return;
-        }
         for(var i=0;i<$scope.selArr.length;i++){
-            $scope.selArr[i].Email = $scope.Email;
+            $scope.selArr[i].Email = $scope.Cust.Email;
             $scope.selArr[i].customerid = $scope.Cust.Name;
         }
         var req = {
@@ -79,10 +54,61 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             //$scope.showlocimportdata(res.data);
             alert("Enquiry Sucessfully Sent");
             $('#Modal-header-new').modal('hide');
-            $scope.Email = "";
+            $scope.Cust = null;
         });
+    }
 
+    $scope.SendCustomerConfirmationEmail = function () {
 
+        var mail = {
+            customerid: $scope.Cust.Name,
+            Email: $scope.Cust.Email,
+            body: $scope.emailcontent
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/SendCustomerConfirmationEmail',
+            data: mail
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Customer Confirmation Email Sucessfully Sent");
+            $('#Modal-header-new').modal('hide');
+            $scope.Cust = null;
+        });
+    }
+
+    //get supplier quote
+    //acustomers
+    $scope.GetSupplierQuote = function () {
+        if ($scope.Sup == null) {
+            alert("Plese Select Supplier.");
+            return;
+        }
+
+        if ($scope.Email == null) {
+            alert("Plese Enter Email Id.");
+            return;
+        }
+        for (var i = 0; i < $scope.selArr.length; i++) {
+            $scope.selArr[i].Email = $scope.Email;
+            $scope.selArr[i].customerid = $scope.Sup.Name;
+        }
+
+       // $scope.selArr[0].body = document.getElementById('check').innerHTML;
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/SendSampleSupplierQuote',
+            data: $scope.selArr
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Sample quote sent Sucessfully");
+            $('#Modal-header-new').modal('hide');
+            $scope.Cust = null;
+        });
     }
         
     // send final Quote

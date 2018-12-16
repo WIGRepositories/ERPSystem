@@ -35,12 +35,18 @@ namespace ERPSystem.Models
     {
         public string customerid { get; set; }
         public string Email { get; set; }
-        public string Name { get; set; }
+        public string ItemName { get; set; }
         public int qty { get; set; }
-        public string des { get; set; }
+        public string Description { get; set; }
         public int perunit { get; set; }
         public string Suppiername { get; set; }
         public int Subtotal { get; set; }
+        public string body { get; set; }
+
+        public int tax { get; set; }
+        public int dis { get; set; }
+
+
     }
     public class DeliveryTicket
     {
@@ -554,6 +560,7 @@ namespace ERPSystem.Models
         public string CPhoneNo { get; set; }
         public string CEmail { get; set; }
         public string CFax { get; set; }
+        public string RFQId { get; set;}
     }
 
     public class AssetHierarchy

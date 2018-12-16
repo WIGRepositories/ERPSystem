@@ -367,6 +367,10 @@ namespace ERPSystem.Controllers
                 //  @name varchar(50),@desc varchar(250)=null,@assettypeid int,@parentid int=null
                 //  ,@rootassetid int=-1,@change char(1),@id int=null,@assetModelId int
 
+                SqlParameter RFQId = new SqlParameter("@RFQId", SqlDbType.VarChar, 15);
+                RFQId.Value = a.RFQId;
+                cmd.Parameters.Add(RFQId);
+
                 SqlParameter Gid = new SqlParameter("@flag", SqlDbType.VarChar, 50);
                 Gid.Value = a.flag;
                 cmd.Parameters.Add(Gid);

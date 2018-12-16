@@ -293,7 +293,7 @@
                                                 <p class="icon"><i class="fa fa-money"></i></p><h4 class="value"><span>4 RFQs</span></h4>
                                                 <p>3 Approved and 1 Pending</p>
                                                 <a href="RFQList.html"><button class="btn btn-primary" type="button">Details</button></a>
-                                                <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right;">Add New RFQ</button>
+                                                <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right;" ng-click="CInit()">Add New RFQ</button>
                                             </div>
                                         </div>
                                     </div>
@@ -472,40 +472,37 @@
                 </div>
                 <div class="modal-body" ng-model="newRFQ">
                     
-                    <div class="row mbm">
+                    <div class="row ">
 
                         <label class="col-md-4 control-label">RFQ# <span class='require'>*</span></label>
                         <div class="col-md-6">
-                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQ.Name" /><span class="help-block"></span>
+                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQId" readonly/><span class="help-block"></span>
                         </div>
                     </div>
 
-                    <div class="row mbm">
+                    <div class="row ">
                         <label class="col-md-4 control-label">RFQ Status <span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <select ng-model="newRFQ.js" style="width:100%">
-                                <option value="">Select</option>
-                                <option value="1">Active</option>
-                                <option value="2">Pending</option>
+                            <select ng-options="js.Name for js in jobStatus track by js.Id" ng-model="newRFQ.js" style="width:100%">
+                                <option value="">Select</option>                                
                             </select><span class="help-block"></span>
                         </div>
                     </div>
 
                     <div class="row">
-                        <label for="itemDesc" class="col-md-4 control-label">Customer</label>
+                        <label class="col-md-4 control-label">Customer</label>
 
 
                         <div class="col-md-6">
-                            <select ng-model="newRFQ.jc" style="width:100%">
+
+                            <select ng-options="jc.Name for jc in Customers track by jc.Id" ng-model="newRFQ.jc" style="width:100%">
                                 <option value="">Select</option>
-                                <option value="1">Accumalte</option>
-                                <option value="2">Anagr</option>
-                            </select>
+                            </select>                        
                             <span class="help-block"></span>
                         </div>
                     </div>
-                    <div class="row mbm">
+                    <div class="row ">
                         <label for="selCountry" class="col-md-4 control-label">Communication Type</label>
 
 
@@ -514,23 +511,22 @@
                                 <option value="">Select</option>
                                 <option value="1">Mobile Phone</option>
                                 <option value="2">FAX</option>
-                                <option value="3">Mail</option>
+                                <option value="3">E-Mail</option>
                             </select><span class="help-block"></span>
                         </div>
                     </div>
-                    <div class="row mbm">
+                    <div class="row ">
                         <label for="selCountry" class="col-md-4 control-label">Sales Manager</label>
 
                         <div class="col-md-6">
-                            <select ng-model="newRFQ.sm" style="width:100%">
+                            <select ng-options="user.FirstName+' '+user.LastName for user in salemanagers track by user.Id" ng-model="newRFQ.sm" style="width:100%">
                                 <option value="">Select</option>
-                                <option value="1">Ramesh</option>
-                                <option value="2">Prasad</option>
-                                <option value="3">Suresh</option>
+
                             </select>
+                           
                         </div>
                     </div>
-                    <div class="row mbm">
+                    <div class="row ">
 
                         <label for="" class="col-md-4 control-label">Description:<span class='require'>*</span></label>
 

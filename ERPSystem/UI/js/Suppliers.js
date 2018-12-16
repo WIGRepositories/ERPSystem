@@ -196,7 +196,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var SelSupplier = {
             Name: Supplier.Name,
-            SupplierCode: Supplier.SupplierCode,
+            SupplierCode: $scope.SupplierCode,
             Address: Supplier.Address,
             ContactNo: Supplier.ContactNo,
             ContactNo1: Supplier.ContactNo1,

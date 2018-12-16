@@ -193,7 +193,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var SelCustomer = {
             Name: customer.Name,
-            CustomerCode: customer.CustomerCode,
+            CustomerCode: $scope.CustomerCode,
             Address: customer.Address,
             ContactNo: customer.ContactNo,
             ContactNo1: customer.ContactNo1,

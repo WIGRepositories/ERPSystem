@@ -26,7 +26,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.isSuperUser = $localStorage.isSuperUser;
     $scope.roleLocations = $localStorage.roleLocation;
     $scope.isAdminSupervisor = $localStorage.isAdminSupervisor;
-
+    $scope.salemanagers = new Array();
+    $scope.salerepresentives = new Array();
     var tloc = '';
     var tjst = '';
     var tcst = '';
@@ -99,25 +100,66 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         ];
 
         var id = components.join("");
-        $scope.newRFQ = 'RFQ' + id;
+        $scope.newRFQId = 'RFQ' + id;
+        $scope.GetConfigData();
     }
+
+
+    $scope.GetConfigData = function () {
+        $http.get('/api/Customers/getCustomers').then(function (res, data) {
+            $scope.Customers = res.data;
+        });
+        $http.get('/api/Users/GetUsers').then(function (res, data) {
+            $scope.Suppliers = res.data;
+            if ($scope.Suppliers != null) {
+                for (var i = 0; i < $scope.Suppliers.length; i++) {
+                    if ($scope.Suppliers[i].RoleId != null) {
+                        if (3 == $scope.Suppliers[i].RoleId) {
+                            $scope.salemanagers.push($scope.Suppliers[i]);
+                        }
+                        if ((4 == $scope.Suppliers[i].RoleId)) {
+                            $scope.salerepresentives.push($scope.Suppliers[i]);
+                        }
+                    }
+                }
+            }
+        });
+        $http.get('/api/Types/TypesByGroupId?groupid=3').then(function (res, data) {
+            $scope.jobStatus = res.data;
+            var st = [];
+            if ($scope.jobStatus) {
+                for (var i = 0; i < $scope.jobStatus.length; i++) {
+                    if ($scope.jobStatus[i].Id != 32 && $scope.jobStatus[i].Id != 29) {
+                        st.push($scope.jobStatus[i]);
+                    }
+                }
+                $scope.jbstatus = st;
+            }
+        });
+
+        $http.get('/api/Types/TypesByGroupId?groupid=5').then(function (res, data) {
+            $scope.docTypes = res.data;
+        });
+
+    }
+
     $scope.AddNewRFQ = function () {
         var newRFQ = $scope.newRFQ;
         if (newRFQ == null) {
             alert('Please enter RFQ name.');
             return;
-        }       
+        }
         //Job type
         if (newRFQ.js == null) {
             alert('Please Select Status.');
             return;
-        }      
-     
+        }
+
         //CustomerID
         if (newRFQ.jc == null) {
             alert('Please select Customer.');
             return;
-        }      
+        }
         //Communication Type
         if (newRFQ.jl == null) {
             alert('Please select Communication Type.');
@@ -133,16 +175,17 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         var RFq = {
 
             Id: -1,
-            Name: newRFQ.Name,
-            Status: newRFQ.js,
-            CustomerId: newRFQ.jc,
+            RFQId: $scope.newRFQId,
+            Name: $scope.newRFQId,
+            Status: newRFQ.js.Id,
+            CustomerId: newRFQ.jc.Id,
             CmTypeId: newRFQ.jl,
-            SmId: newRFQ.sm,
+            SmId: newRFQ.sm.Id,
             Description: newRFQ.modelDescription,
             CPhoneNo: 111,//newRFQ.PhoneNo,
             CEmail: newRFQ.Email,
             CFax: newRFQ.Fax,
-            changedById:1,
+            changedById: 1,
             flag: 'I'
         }
 
@@ -154,10 +197,16 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $http(req).then(function (response) {
 
             alert("Saved successfully!");
+            var newRFQDetails = response.data[0];
             //$scope.getJobsListByStatus();
             $scope.newRFQ = null;
             //$scope.jbty = '';
             $('#Modal-header-new').modal('hide');
+
+            // 
+            $localStorage.nJobId = newRFQDetails.ID;
+            window.location.href = "RFQDetails.html";
+
         }, function (errres) {
             var errdata = errres.data;
             var errmssg = "";
