@@ -39,6 +39,12 @@ namespace ERPSystem.Models
         public int perunit { get; set; }
         public string Suppiername { get; set; }
         public int Subtotal { get; set; }
+        public string body { get; set; }
+
+        public int tax { get; set; }
+        public int dis { get; set; }
+
+
     }
     public class DeliveryTicket
     {

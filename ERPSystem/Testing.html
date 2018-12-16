@@ -51,25 +51,27 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 2: Send quote request to suppliers</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Quote to Suppliers</button></div>
+                            <!--<div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Quote to Suppliers</button></div>-->
+                            <div class="panel-body">this will done through portal</div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 3:Get Supplier quote</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Get Supplier Quote</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-getsuppliersquote" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Get Supplier Quote</button></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 4: Send final quote to customer</h4></div>
-                            <div class="panel-body"><button type="button" data-target="Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Final Quote to Customer</button></div>
+                            <!--<div class="panel-body"><button type="button" data-target="Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Final Quote to Customer</button></div>-->
+                            <div class="panel-body">This will be done through portal</div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 5: Customer confirmation</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer Confirmation</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-CustomerConfirmation" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Customer Confirmation</button></div>
                         </div>
                     </div>
 
@@ -151,7 +153,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Cust.Email" style="width:100%"></div>
                                                                 <div class="col-md-6">
-                                                                    Customer:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                                                    Customer:<select ng-options="Cust1.Name for Cust1 in Customers track by Cust1.id" ng-model="Cust" style="width:60%">
                                                                               <option value="">All</option>
                                                                     </select>
                                                                 </div>
@@ -195,14 +197,13 @@
                                             </div>
                                         </div>
                                     </div>
-
-    <!-- Send Suppliers-->
-    <div id="Modal-header-suppliers" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        
+    <div id="Modal-header-getsuppliersquote" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Send Request to Suppliers</h4>
+                    <h4 id="modal-header-primary-label" class="modal-title">Get Quote from supplier</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -211,33 +212,47 @@
                             <div class="row">
                                 <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
                                 <div class="col-md-6">
-                                    Supplier:<select ng-options="Cust.Name for Cust in Customers track by Cust.id" ng-model="Cust" style="width:60%">
+                                    Supplier:<select ng-options="sup.Name for sup in Suppliers track by sup.id" ng-model="Sup" style="width:60%">
                                         <option value="">All</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="row" style="margin-top:10px;">
+
                                 <table class="table table-bordered" style="background-color: white;">
                                     <thead>
                                         <tr style="height:50px">
                                             <th style="text-align:center;">Selected Item</th>
                                             <th style="text-align:center;">Item</th>
-                                            <th style="text-align:center;">No. of Units</th>
+                                            <th style="text-align:center;">Quantity</th>
+                                            <th style="text-align:center;">Per Unit Price</th>
+                                            <th style="text-align:center;">Sub Total</th>
+                                            <th style="text-align:center;">Taxes</th>                                            
+                                            <th style="text-align:center;">Discounts</th>
+                                            <th style="text-align:center;">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="check">
                                         <tr ng-repeat="a in Equipement">
                                             <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)" /></td>
                                             <td style="text-align:center;">
-                                                {{a.Name}}
+                                                {{a.ItemName}}
                                             </td>
                                             <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="perunit=0" ng-model="a.perunit" min="0" /></td>                                            
+                                            <td style="text-align:center;"><span ng-show="a.qty!=null || a.perunit!=null;">{{a.qty*a.perunit}}</span></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.tax" min="0" /></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.dis" min="0" /></td>                                                                                       
+                                            <td style="text-align:center;"><span ng-show="a.qty!=null || a.perunit!=null;">{{(a.qty*a.perunit)+a.tax+a.dis}}</span></td>
+
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr style="height:50px">
-                                            <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="Sendsupplier1()">Send Request to Suppliers</button></td>
+
+                                            <td colspan="7" align="center"><button class="btn btn-primary form-control" style="width:100%;height:40px;" ng-click="GetSupplierQuote()">Sample supplier Quote</button></td>
+
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -250,6 +265,39 @@
         </div>
     </div>
     
+    <div id="Modal-header-CustomerConfirmation" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Customer order confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Cust.Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                    Customer:<select ng-options="Cust1.Name for Cust1 in Customers track by Cust1.id" ng-model="Cust" style="width:60%">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row col-md-12" style="margin-top:10px;">
+                                <textarea ng-model="emailcontent" ng-init="Please consider the confirmation and proceed with the order" rows="3" style="width:100%;"></textarea>
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <button class="btn btn-primary form-control" style="width:100%;height:40px;margin-top:10px;" ng-click="SendCustomerConfirmationEmail()">Send Customer Confirmation Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--Customer final Quotes-->
     <div id="Modal-header-finalQuotes" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
         <div class="modal-dialog modal-lg">
@@ -548,27 +596,27 @@
         </div>
     </div>
 
-                                    <script src="UI/js/jquery-1.10.2.min.js"></script>
-                                    <script src="UI/js/jquery-migrate-1.2.1.min.js"></script>
-                                    <script src="UI/js/jquery-ui.js"></script>
-                                    <!--loading bootstrap js-->
+        <script src="UI/js/jquery-1.10.2.min.js"></script>
+        <script src="UI/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="UI/js/jquery-ui.js"></script>
+        <!--loading bootstrap js-->
     
     
-                                    <script src="UI/vendors/bootstrap/js/bootstrap.js"></script>
-                                    <script src="UI/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-                                    <script src="UI/vendors/metisMenu/jquery.metisMenu.js"></script>
-                                    <script src="UI/vendors/slimScroll/jquery.slimscroll.js"></script>
-                                    <script src="UI/js/fileupload/angular-file-upload-shim.js"></script>
-                                    <script src="UI/js/fileupload/ng-file-upload-shim.js"></script>
-                                    <script src="UI/vendors/jquery-cookie/jquery.cookie.js"></script>
-                                    <script src="UI/vendors/iCheck/icheck.min.js"></script>
-                                    <script src="UI/vendors/iCheck/custom.min.js"></script>
-                                    <script src="UI/vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
+        <script src="UI/vendors/bootstrap/js/bootstrap.js"></script>
+        <script src="UI/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+        <script src="UI/vendors/metisMenu/jquery.metisMenu.js"></script>
+        <script src="UI/vendors/slimScroll/jquery.slimscroll.js"></script>
+        <script src="UI/js/fileupload/angular-file-upload-shim.js"></script>
+        <script src="UI/js/fileupload/ng-file-upload-shim.js"></script>
+        <script src="UI/vendors/jquery-cookie/jquery.cookie.js"></script>
+        <script src="UI/vendors/iCheck/icheck.min.js"></script>
+        <script src="UI/vendors/iCheck/custom.min.js"></script>
+        <script src="UI/vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
     
-                                    <script src="UI/js/jquery.menu.js"></script>
-                                    <script src="UI/vendors/jquery-pace/pace.min.js"></script>
-                                    <script src="UI/vendors/holder/holder.js"></script>
-                                    <script src="UI/vendors/responsive-tabs/responsive-tabs.js"></script>
+        <script src="UI/js/jquery.menu.js"></script>
+        <script src="UI/vendors/jquery-pace/pace.min.js"></script>
+        <script src="UI/vendors/holder/holder.js"></script>
+        <script src="UI/vendors/responsive-tabs/responsive-tabs.js"></script>
                                     <!--LOADING SCRIPTS FOR PAGE-->
     
     <!--<script src="UI/js/FileSaver.js"></script>-->
@@ -577,16 +625,12 @@
     
     <!--<script src="UI/js/fileupload/Upload.js"></script>-->
                                     
-                                    <script src='UI/js/angular-animate.js'></script>
-                                    <script src="UI/js/ngStorage.js"></script>
-                                    <!--<script src='UI/js/treasure-overlay-spinner.js'></script>-->
-                                    <script src="UI/js/ui-bootstrap-tpls-1.3.3.js"></script>
+    <script src='UI/js/angular-animate.js'></script>
+    <script src="UI/js/ngStorage.js"></script>
+    <!--<script src='UI/js/treasure-overlay-spinner.js'></script>-->
+    <script src="UI/js/ui-bootstrap-tpls-1.3.3.js"></script>
     
-                                    <script src="UI/js/testing.js"></script>
-                               
-  
-  
-
+    <script src="UI/js/testing.js"></script>        
 
 </body>
 </html>

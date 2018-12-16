@@ -310,6 +310,138 @@ namespace ERPSystem.Controllers
             return Tbl;
         }
 
+        // for Send Suppliers
+        [HttpPost]
+        [Route("api/ERPAsse/SendSampleSupplierQuote")]
+        public void SendSampleSupplierQuote(List<Equip> list)
+        {
+
+            #region send email with details
+
+            try
+            {
+                string emailaddress = list[0].Email;
+                string customer = list[0].customerid;
+
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Price quote from supplier:" + customer;
+                mail.IsBodyHtml = true;
+
+                StringBuilder itemsList = new StringBuilder();
+                DateTime dtime = DateTime.Now;
+                dtime.AddDays(5);
+                
+                int cnt = 1;
+                foreach (Equip m in list)
+                {
+                    itemsList.Append("<tr>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(cnt++);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.ItemName);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.Description);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.qty);
+                    itemsList.Append("</td>");
+
+                    int subtotal = m.qty * m.perunit;
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.perunit);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(subtotal);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.tax);
+                    itemsList.Append("</td>");                   
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.dis);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.qty);
+                    itemsList.Append("</td>");
+
+                    int total = subtotal + m.tax + m.dis;
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(total);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("</tr>");
+                }
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4>Supplier Pricing quote</h4>
+                                                <span>Please check the pricing quotes for below items</span>
+                                                <table border=" + 1 + @">
+                                                    <tr>
+                                                        <td>
+                                                            S.No
+                                                        </td>
+                                                        <td>Item name</td>
+                                                        <td>Item description</td>
+                                                        <td>No.Of Units</td>
+                                                        <td>Perunit price</td>
+                                                        <td>Sub Total</td>
+                                                        <td>Tax</td>
+                                                        <td>Discount</td>
+                                                        <td>Total</td>                                                        
+                                                    </tr>" + itemsList.ToString() + @"</table>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+
+            }
+
+            //update if email is sent
+
+            #endregion send email with details
+
+        }
 
         // for Send Suppliers
         [HttpPost]
@@ -1241,6 +1373,73 @@ namespace ERPSystem.Controllers
                                             </tr>
                                         </table>";
 
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+
+            }
+
+            //update if email is sent
+
+            #endregion send email with details
+
+        }
+
+        // for Send Suppliers
+        [HttpPost]
+        [Route("api/ERPAsse/SendCustomerConfirmationEmail")]
+        public void SendCustomerConfirmationEmail(Equip list)
+        {
+
+            #region send email with details
+
+            try
+            {
+                string emailaddress = list.Email;
+                string customer = list.customerid;
+
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Order confirmation from customer:" + customer;
+                mail.IsBodyHtml = true;
+
+                StringBuilder itemsList = new StringBuilder();
+                DateTime dtime = DateTime.Now;
+                dtime.AddDays(5);
+
+                int cnt = 1;
+                
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4>Customer order confirmation</h4>
+                                                <span>"+ list.body+ "</span>";
 
 
                 mail.Body = verifcodeMail;

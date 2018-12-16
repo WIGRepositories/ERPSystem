@@ -206,6 +206,7 @@
     <Content Include="UI\Content\DeliverTicket1.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
+    <Content Include="UI\Content\PurchaseOrder.html" />
     <Content Include="UI\Content\WorkOrder.html" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
