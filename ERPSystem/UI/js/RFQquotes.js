@@ -39,12 +39,19 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.rfqlist = res.data;
             $scope.l = $scope.rfqlist[0];
         });
-        $http.get('/api/Users/GetUsers').then(function (res, data) {
+        $http.get('/api/Suppliers/getSuppliers').then(function (res, data) {
             $scope.Suppliers = res.data;
         });
-        $http.get('/api/InventoryItem/Getitems').then(function (res, data) {
-            $scope.itemslist = res.data;
+
+        //$http.get('/api/Users/GetUsers').then(function (res, data) {
+        //    $scope.Suppliers = res.data;
+        //});
+        $http.get('/api/InventoryItem/GetInventoryItem?subCatId=-1').then(function (response, data) {
+            $scope.itemslist = response.data;
         });
+        //$http.get('/api/InventoryItem/Getitems').then(function (res, data) {
+        //    $scope.itemslist = res.data;
+        //});
        
        
 
@@ -59,18 +66,22 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $scope.suppliename = '';
         if (emaildata != null)
         {
+            $scope.suppliermail = emaildata.Email;
+
             for (var i = 0; i < $scope.itemslist.length; i++) {
-                if (emaildata.ItemId ==$scope.itemslist[i].ID) {
+                if (emaildata.ItemId ==$scope.itemslist[i].Id) {
                     $scope.selectedItem = $scope.itemslist[i];
+                    $scope.qty = parseInt($scope.itemslist[i].InitialQuantity, 10);
                     break;
                 }
             }
             for (var i = 0; i < $scope.Suppliers.length; i++) {
-                if (emaildata.Name ==$scope.Suppliers[i].FirstName) {
+                if (emaildata.Name ==$scope.Suppliers[i].Name) {
                     $scope.suppliename = $scope.Suppliers[i];
                     break;
                 }
             }
+
 
         }
     }
@@ -89,14 +100,11 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     }
     // for sending the email for suppliers
     $scope.Sendsupplier1 = function (supe) {
-        if (supe.Email == null) {
-            alert("Plese Enter Email Id.");
-            return;
-        }
+       
         $scope.ses[0] = {
-                Email: supe.Email,
-                Suppiername: $scope.suppliename.DUserName   ,
-                Name: $scope.selectedItem.Name,
+            Email: $scope.suppliermail,
+                Suppiername: $scope.suppliename.Name   ,
+                Name: $scope.selectedItem.ItemName,
                 qty: $scope.qty
             }
             
@@ -163,6 +171,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 //$scope.initdata = res.data;
                 //$scope.showlocimportdata(res.data);
                 alert("Saved Sucessfully");
+                $scope.init();
             });
         }
 

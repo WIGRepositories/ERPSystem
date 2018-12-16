@@ -355,7 +355,7 @@
                                                                     <div class="col-md-3">
                                                                         <label for="Description" class="control-label" style="color:red;">Sales Manager:<span class='require'>*</span></label>
                                                                         <div>
-                                                                            <select ng-options="user.FirstName for user in salemanagers track by user.Id" ng-model="currJob.user" style="width:100%">
+                                                                            <select ng-options="user.Username for user in salemanagers track by user.Id" ng-model="currJob.user" style="width:100%">
                                                                                 <option value="">Select</option>
                                                                             </select>
                                                                         </div>
@@ -386,12 +386,12 @@
                                                                 </div>
 
                                                             </div>
-                                            </div>
-                                        </div>
-
+                                                        </div>
+                                                    </div>
                                         <div class="row">
-                                            <div id="accordion-example" class="panel-group col-md-11" style="padding-right:20px;width:100%">
 
+
+                                            <div id="accordion-example" class="panel-group col-md-11" style="padding-right:20px;width:100%">
                                                 <div class="col-lg-6" style="padding-left: 5px; padding-right: 5px">
                                                     <div class="portlet box portlet-grey" style="margin-bottom:10px">
 
@@ -448,7 +448,7 @@
 
                                                         <div class="portlet-header" style="background-color: #f5f5f5; border: 1px solid #e5e5e5; color: #b8adb7">
                                                             <div class="caption"><a href=""> RFQ Personnel</a></div>
-                                                            <div class="tools"><span class="badge badge-green">{{rfqpersonals.length}}</span><i class="fa fa-chevron-down"></i></div>
+                                                            <div class="tools"><span class="badge badge-green">{{rfqusers.length}}</span><i class="fa fa-chevron-down"></i></div>
                                                         </div>
 
 
@@ -469,7 +469,7 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr ng-repeat="T in rfqpersonals" class="gradeA">
+                                                                            <tr ng-repeat="T in rfqusers" class="gradeA">
                                                                                 <td>{{T.Username}}</td>
                                                                                 <td>{{T.FromDate | date:'MM-dd-yyyy'}}</td>
                                                                                 <td>{{T.ToDate | date:'MM-dd-yyyy'}}</td>
@@ -481,7 +481,7 @@
                                                                                     </button>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="AddUser(0,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a>
+                                                                                    <button ng-disabled="isSuperUser == 0 && CanEdit == 0" ng-click="AddUser(1,T)" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button></a>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
@@ -521,7 +521,7 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr ng-repeat="T in jobdocs" class="gradeA">
-                                                                                <td><a href="#" ng-click="GetFileContent(T)"><font color="blue">{{T.DocID}}</font></a></td>
+                                                                                <td><a href="#" ng-click="GetFileContent(T)"><font color="blue">{{T.Extension}}</font></a></td>
                                                                                 <td>{{T.DocType}}</td>
                                                                                 <td>{{T.ExpiryDate | date:'MM-dd-yyyy'}}</td>
                                                                                 <!--<td>{{T.DueDate | date:'MM-dd-yyyy'}}</td>-->
@@ -677,44 +677,59 @@
                         <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
                         <h4 id="modal-header-primary-label" class="modal-title">Add Item</h4>
                     </div>
-                    <div class="modal-body" ng-model="JobUsers">
+                    <div class="modal-body" ng-model="items1">
 
                         <div class="row">
                             <div class="col-md-4" style="text-align:right">
-                                <label for="Description" class="control-label">Select User:</label>
+                                <label for="Description" class="control-label">Select Item:</label>
                             </div>
                             <div class="col-md-8">
-                                <select ng-options="item.ItemName for item in InventoryItems track by Item.Id" ng-model="item" style="width:100%">
-                                    <option value="">Select User</option>
+                                <select ng-options="item.ItemName for item in InventoryItems track by item.Id" ng-model="items1.item" style="width:100%" class="form-control">
+                                    <option value="">Select Item</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="row" style="margin-top:10px;">
+                        <div class="row mbm">
                             <div class="col-md-4" style="text-align:right">
-                                <label for="Description" class="control-label">From:</label>
+                                <label for="Description" class="control-label">Select Category:</label>
                             </div>
                             <div class="col-md-8">
-                                <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="JobUsers.fromDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top:10px;">
-                            <div class="col-md-4" style="text-align:right">
-                                <label for="Description" class="control-label">To:</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="JobUsers.toDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
-                            </div>
-                        </div>
+                                <select ng-model="items1.s" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="1">Category1</option>
+                                    <option value="2">Category2</option>
+                                    <option value="3">Category3</option>
 
-                        <div class="row">
-                            <div class="form-actions">
-                                <div style="text-align:center">
-                                    <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="AddUser(1);">Add</button>
-                                    <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="cancelJobUser()">Cancel</button>
+                                </select>
+                            </div>
+                        </div>
+                       
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-md-4" style="text-align:right">
+                                    <label for="Description" class="control-label">From:</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="items1.fromDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-md-4" style="text-align:right">
+                                    <label for="Description" class="control-label">To:</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div data-date-format="mm/dd/yyyy" style="width:100%" class="input-group date datepicker-filter mbs col-md-6"><input type="text" placeholder="mm/dd/yyyy" class="form-control" ng-model="items1.toDt" /><span class="input-group-addon"><i class="fa fa-calendar"></i></span></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-actions">
+                                    <div style="text-align:center">
+                                        <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="AddRFQresources(1,items1)">Add</button>
+                                        <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="cancelJobUser()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+</div>
                 </div>
 
             </div>
@@ -932,7 +947,7 @@
                             <label for="Description" class="control-label">User:</label>
                         </div>
                         <div class="col-md-8">
-                            <select ng-options="ju.FirstName for ju in salerepresentives|filter:{Active:1} track by ju.Id" ng-model="ju" style="width:100%">
+                            <select ng-options="ju.Username for ju in salerepresentives|filter:{Active:1} track by ju.Id" ng-model="JobUsers.ju" style="width:100%">
                                 <option value="">Select User</option>
                             </select>
                         </div>
@@ -962,7 +977,7 @@
                     <div class="row">
                         <div class="form-actions">
                             <div style="text-align:center">
-                                <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="AddUser(1);">Add</button>
+                                <button class="btn btn-primary" type="button" data-dismiss="modal" ng-click="AddRFQUser(1,JobUsers);">Add</button>
                                 <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="cancelJobUser()">Cancel</button>
                             </div>
                         </div>

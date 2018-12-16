@@ -11,7 +11,7 @@ namespace ERPSystem.Models
 
         public string Client { get;set;}
         public int ItemId { get; set; }
-        public string RFQID { get; set; }
+        public int RFQID { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
         public string flag { get; set; }
@@ -19,7 +19,9 @@ namespace ERPSystem.Models
         public int unitprice { get; set; }
         public int subtotal { get; set; }
         public string Suppliername { get; set; }
+        public int supid { get; set; }
         public int Itemname { get; set; }
+       
     }
     public class PaySupplier
     {
@@ -1418,7 +1420,7 @@ namespace ERPSystem.Models
         public string flag { get; set; }
         public string Email { get; set; }
         public int Active { get; set; }
-        public string flag { get; set; }
+       
     }
 
 }

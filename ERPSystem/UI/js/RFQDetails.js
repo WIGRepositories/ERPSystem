@@ -317,16 +317,18 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $http.get('/api/RFQ/GetRFQDetails?rfqId=' + jobid).then(function (res, data) {
             $scope.currJob = res.data.Table[0];
             $scope.itemlist = res.data.Table1;
-            $scope.rfqpersonals = res.data.Table2;
+            $scope.rfqusers = res.data.Table2;
             $scope.jobdocs = res.data.Table3;
+            //$scope.rfqusers = res.data.Table4;
             //$scope.currJob = res.data.Table[0];
             //$scope.currJob = res.data.Table[0];
             //$scope.
-
+            $scope.selJobId = jobid;
             $scope.jl = $scope.currJob.RFQComType;
 
             //$scope.getRFQDocuments($scope.selJobId);
 
+            // for populating rfqlist
             if ($scope.currJob != null && $scope.rfqlist!=null) {
                 for (var manfCount = 0 ; manfCount < $scope.rfqlist.length; manfCount++) {
                     if ($scope.currJob.ID == $scope.rfqlist[manfCount].ID) {
@@ -336,6 +338,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 }
             }
             
+            // for populating customer list
             if ($scope.currJob != null && $scope.Customers!=null) {
                 for (var manfCount = 0 ; manfCount < $scope.Customers.length; manfCount++) {
                     if ($scope.currJob.CustomerId == $scope.Customers[manfCount].Id) {
@@ -346,6 +349,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                     }
                 }
             }
+            // for populating job status list
             if ($scope.currJob != null && $scope.jobStatus!=null) {
                 for (var manfCount = 0 ; manfCount < $scope.jobStatus.length; manfCount++) {
                     if ($scope.currJob.StatusId == $scope.jobStatus[manfCount].Id) {
@@ -357,6 +361,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 }
             }
 
+            // for populating  Sales Managers list
             if ($scope.currJob != null && $scope.Suppliers!=null) {
                 for (var manfCount = 0 ; manfCount < $scope.Suppliers.length; manfCount++) {
                     if ($scope.currJob.SmanagerId == $scope.Suppliers[manfCount].Id) {
@@ -385,6 +390,214 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             $scope.Changejobtype();
         });
     }
+    $scope.AddRFQUser = function (addUser, selU) {
+        $scope.currUser = null;
+        switch (addUser) {
+            //insertion
+            case 1:
+                if (selU == null) {
+                    alert('Please select a user to add.');
+                    //$event.stopPropagation();
+                    //$event.preventDefault();
+                    return;
+                }
+                //var idx = IsExists($scope.ju.Id, $scope.jobusers);
+                //if (idx == -1) {
+                    var nuser = {
+                        "Name": selU.ju.Username
+                        , "RFQId": $scope.selJobId
+                         , "UserId": selU.ju.Id
+                         , "CreatedById": 1//($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                         , "UpdatedById": 1//($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                         , "Sequence": 1//$scope.jp
+                         , "FromDate": (selU.fromDt == null) ? null : getdateFormat(selU.fromDt)
+                         , "ToDate": (selU.toDt == null) ? null : getdateFormat(selU.toDt)
+                         , "insupddelflag": "I"
+                    };
+                    // $scope.jobusers.push(nuser);
+               // }
+                $scope.currUser = nuser;
+                break;
+                //updation
+            case 2:
+                // selU.insupddelflag = 'U';
+                var idx = IsExists(selU.UserId, $scope.jobusers);
+                if (idx > -1) {
+                    selU.CreatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.UpdatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.JobId = $scope.currJob.ID;
+                    $scope.currUser = selU;
+                    $scope.currUser.insupddelflag = 'U';
+                }
+
+                // $scope.currUser = null;
+
+                break;
+                //deletion
+            case 0:
+                var idx = IsExists(selU.UserId, $scope.jobusers);
+                if (idx > -1) {
+                    selU.CreatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.UpdatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.JobId = $scope.currJob.ID;
+                    $scope.currUser = selU;
+                    $scope.currUser.insupddelflag = 'D';
+                }
+                break;
+        }
+
+        if ($scope.currUser != null) {
+            var req = {
+                method: 'POST',
+                url: '/api/RFQ/SaveRFQUsers',
+                data: $scope.currUser
+            }
+            $http(req).then(function (response) {
+                alert(response);
+                $scope.getRFQDetails($scope.selJobId);
+                //$scope.GetUsersForJobUss();
+
+                //$scope.jobusers = response.data.Table;
+                //$scope.assetHistory = response.data.Table1;
+                //$scope.DeliveryTicketList($scope.currJob.ID);
+
+                //if ($scope.jobusers) {
+                //    if ($scope.jobusers.length > 0) {
+                //        for (i = 0; i < $scope.jobusers.length; i++) {
+                //            $scope.jobusers[i].expiryDate = getdateFormat($scope.jobusers[i].expiryDate);
+
+                //        }
+                //    }
+                //}
+
+                //$scope.currUser = null;
+                //$scope.jp = null;
+                $scope.JobUsers.FromDate = '';
+                $scope.JobUsers.ToDate = '';
+            }, function (errres) {
+                var errdata = errres.data;
+                var errmssg = "";
+                errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+                $scope.currUser = null;
+                $scope.jp = null;
+                $scope.showDialog1(errmssg);
+            });
+        }
+    }
+
+    $scope.AddRFQresources = function (addres, selU) {
+
+        //var fromdate = null;
+        //var todate = null;
+        //if ($scope.JobResources && $scope.JobResources.fromDt) {
+        //    fromdate = GetFormattedDate($scope.JobResources.fromDt);
+        //}
+
+        //if ($scope.JobResources && $scope.JobResources.toDt) {
+        //    todate = GetFormattedDate($scope.JobResources.toDt);
+        //}
+
+        if (selU.item==null) {
+            alert('Please select Item');
+            return;
+
+        }
+       var nuser = null;
+        switch (addres) {
+            //insertion
+            case 1:
+                //var idx = IsExists($scope.jr.ID, $scope.resources);
+                //if (idx == -1) {
+                    nuser = {
+                        "Name": selU.item.ItemName
+                        , "RFQId": $scope.selJobId
+                        , "ItemModel": selU.item.ItemModel
+                        , "ItemId": selU.item.Id
+                        , "CreatedById": 1//($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                        , "UpdatedById": 1//($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                        , "FromDate": (selU.fromDt == null) ? null : getdateFormat(selU.fromDt)
+                         , "ToDate": (selU.toDt == null) ? null : getdateFormat(selU.toDt)
+                        , "Sequence": 1//$scope.Sequence
+                        , "insupddelflag": "I"
+                    };
+
+                    $scope.JobResources = nuser;
+
+                //}
+                //$scope.JobEquip = null;
+                break;
+                //updation
+            case 2:
+                selU.insupddelflag = 'U';
+                var idx = IsAExists(selU.AssetId, $scope.resources);
+                if (idx > -1) {
+                    selU.CreatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.UpdatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    //selU.SequenceNo = $scope.Sequence;
+                    selU.JobId = $scope.currJob.ID;
+                    $scope.JobResources = selU;
+                }
+
+                //$scope.JobEquip = null;
+
+                break;
+                //deletion
+            case 0:
+                var idx = IsAExists(selU.AssetId, $scope.resources);
+                if (idx > -1) {
+                    selU.CreatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.UpdatedById = ($scope.userdetails.Id == null) ? 1 : $scope.userdetails.Id
+                    selU.JobId = $scope.currJob.ID;
+                    $scope.JobResources = selU;
+                    $scope.JobResources.insupddelflag = "D";
+                }
+                break;
+        }
+
+        if ($scope.JobResources != null) {
+            var req = {
+                method: 'POST',
+                url: '/api/RFQ/SaveRFQItem',
+                data: $scope.JobResources
+            }
+            $http(req).then(function (response) {
+
+                
+                //$scope.GetDeliveryTicketEquipment();
+                //$scope.showDialog("Saved successfully!");
+                //$scope.getJobDetails($scope.modifiedJob.JobId);
+                $scope.getRFQDetails($scope.selJobId);
+
+                alert("Successfully Item Added")
+                //$scope.resources = response.data.Table;
+                //$scope.assetHistory = response.data.Table1;
+
+                //if ($scope.resources) {
+                //    if ($scope.resources.length > 0) {
+                //        for (i = 0; i < $scope.resources.length; i++) {
+                //            $scope.resources[i].expiryDate = getdateFormat($scope.resources[i].expiryDate);
+
+                //        }
+                //    }
+                //}
+                //$scope.amid.id = '';
+                //$scope.Assets = [];
+                //$scope.JobResources = null;
+                //$scope.jr = null;
+                //$scope.Sequence = null;
+
+            }, function (errres) {
+                var errdata = errres.data;
+                var errmssg = "";
+                errmssg = (errdata && errdata.ExceptionMessage) ? errdata.ExceptionMessage : errdata.Message;
+                $scope.JobResources = null;
+                $scope.jr = null;
+                $scope.showDialog1(errmssg);
+            });
+        }
+    }
+
+
     $scope.saveNewItem = function (Item) {
         if (Item == null) {
             alert('Please enter Item Name.');
@@ -479,7 +692,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
             alert("Saved successfully!");
             //$scope.getJobsListByStatus();
-            $scope.currJob = null;
+            $scope.getRFQDetails($scope.selJobId);
             //$scope.jbty = '';
            //$('#Modal-header-new').modal('hide');
 

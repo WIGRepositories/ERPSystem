@@ -293,8 +293,8 @@
                                                                     <thead>
                                                                         <tr ng-hide="JobEquipment.length == 0">
                                                                             <th>RFQ</th>
-                                                                            <th>Unit</th>
-                                                                            <th>Unit Price</th>
+                                                                            <th>Units</th>
+                                                                            <th>Email</th>
                                                                             <th>Tax</th>
                                                                             <th>Discount</th>
                                                                             <th>Total</th>
@@ -315,11 +315,11 @@
                                                                                 <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
                                                                        
                                                                             </td>
-                                                                            <td>{{a.eType}}</td>
-                                                                            <td>{{a.location}}</td>
+                                                                            <td>{{a.InitialQuantity}}</td>
+                                                                            <td>{{a.Email}}</td>
                                                                             <td>{{a.Customer}}</td>
-                                                                            <td><span ng-if="a.isDoc == 1">{{a.fromdate | date:'MM-dd-yyyy'}}</span></td>
-                                                                            <td><span ng-if="a.isDoc == 1">{{a.todate | date:'MM-dd-yyyy'}}</span></td>
+                                                                            <td><!--<span ng-if="a.isDoc == 1">{{a.fromdate | date:'MM-dd-yyyy'}}</span>--></td>
+                                                                            <td><!--<span ng-if="a.isDoc == 1">{{a.todate | date:'MM-dd-yyyy'}}</span>--></td>
                                                                             
                                                                             <td>
                                                                       <button type="button" data-target="#Modal-header-supemail" data-toggle="modal" class="btn btn-info btn-sm" ng-model="sadd" ng-click="setemaildata(a)"   style="width:80px;" ng-if="a.LEVEL == 2">
@@ -384,7 +384,7 @@
                                                             <tr ng-repeat="a in Suppliers">
                                                                 <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)"/></td>
                                                                 <td style="text-align:center;">
-                                                                    {{a.FirstName}}
+                                                                    {{a.Name}}
                                                                 </td>
                                                             </tr>
                                                         </tbody>                                                        
@@ -418,10 +418,10 @@
                                             <div class="col-md-12">
                                                 <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
                                                 <div class="row">
-                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supe.Email" style="width:100%"></div>
+                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="suppliermail"  style="width:100%"></div>
                                                     <div class="col-md-6">
                                                         Supplier:
-                                                        <input type="text" ng-model="sup" value="{{suppliename.DUserName}}" ng-disabled="true" style="width:100%">
+                                                        <input type="text" ng-model="sup" value="{{suppliename.Name}}" ng-disabled="true" style="width:100%">
                                                         <!--Supplier:<select ng-options="spl.DUserName forspl in suppliename track by spl.Id" ng-model="spl" style="width:60%">
                                                             <option value="">All</option>
                                                         </select>-->
@@ -441,7 +441,7 @@
                                                             <tr>
                                                                 <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1"  /></td>
                                                                 <td style="text-align:center;">
-                                                                    {{selectedItem.Name}}
+                                                                    {{selectedItem.ItemName}}
                                                                 </td>
                                                                 <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="qty" min="0" /></td>
                                                             </tr>
