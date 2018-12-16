@@ -552,6 +552,7 @@ namespace ERPSystem.Models
         public string CPhoneNo { get; set; }
         public string CEmail { get; set; }
         public string CFax { get; set; }
+        public string RFQId { get; set;}
     }
 
     public class AssetHierarchy

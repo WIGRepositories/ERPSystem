@@ -715,6 +715,7 @@
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
+    <Compile Include="Controllers\InventoryStatusController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />

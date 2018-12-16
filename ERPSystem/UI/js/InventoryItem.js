@@ -132,12 +132,24 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
 
     //$scope.dashboardDS = $localStorage.dashboardDS;
 
-    //$scope.GetSubCategories = function () {
+    $scope.GetSubCategories = function () {
 
-    //    $http.get('/api/SubCategory/getsubcategory?catid=6').then(function (response, req) {
-    //        $scope.SubCategory = response.data;
-    //    });
-    //}
+        //$http.get('/api/SubCategory/getsubcategory?catid=6').then(function (response, req) {
+        //    $scope.SubCategory = response.data;
+        //});
+
+       
+        var date = new Date();
+        var components = [
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+        ];
+
+        var id = components.join("");
+        $scope.newItemCode = 'ITEM' + id;
+      
+    }
 
     $scope.GetInventoryItems = function () {
 
@@ -175,10 +187,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             alert('Please enter Item Name.');
             return;
         }
-        if (Item.Code == null) {
-            alert('please enter Code');
-            return;
-        }
+       
         //if (Item.SubCategory == null) {
         //    alert('please select subcategory');
         //    return;
@@ -187,7 +196,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             Id: -1,
             ItemName: Item.ItemName,
             ItemImage: $scope.imageSrc,
-            Code: Item.Code,
+            Code: $scope.newItemCode,
             Description: Item.Description,
             Category: 6,// Item.Category.Id,
             SubCategory: 1,//Item.SubCategory.Id,
