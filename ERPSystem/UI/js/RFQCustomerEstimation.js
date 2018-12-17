@@ -35,12 +35,18 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $http.get('/api/RFQ/GetRFQDraftEstimation').then(function (res, data) {
             $scope.drafestimation= res.data;
         });
-        $http.get('/api/Users/GetUsers').then(function (res, data) {
+        $http.get('/api/Suppliers/getSuppliers').then(function (res, data) {
             $scope.Suppliers = res.data;
         });
-        $http.get('/api/InventoryItem/Getitems').then(function (res, data) {
+        $http.get('/api/InventoryItem/GetInventoryItem?subCatId=-1').then(function (res , data) {
             $scope.itemslist = res.data;
         });
+        //$http.get('/api/Users/GetUsers').then(function (res, data) {
+        //    $scope.Suppliers = res.data;
+        //});
+        //$http.get('/api/InventoryItem/Getitems').then(function (res, data) {
+        //    $scope.itemslist = res.data;
+        //});
 
         $scope.GetJobEquipment();
     }    
@@ -67,32 +73,33 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $scope.DealerUnitPrice1 = sdf.DealerUnitPrice;
         $scope.selectedItem = '';
         $scope.suppliename = '';
+        $scope.supeEmail = sdf.Email;
         if (sdf != null) {
             for (var i = 0; i < $scope.itemslist.length; i++) {
-                if (sdf.ItemId == $scope.itemslist[i].ID) {
+                if (sdf.ItemId == $scope.itemslist[i].Id) {
                     $scope.selectedItem = $scope.itemslist[i];
                     break;
                 }
             }
             for (var i = 0; i < $scope.Suppliers.length; i++) {
-                if (sdf.Name == $scope.Suppliers[i].FirstName) {
+                if (sdf.Name == $scope.Suppliers[i].Name) {
                     $scope.suppliename = $scope.Suppliers[i];
                     break;
-                }68
+                }
             }
 
         }
     }
     $scope.SendCustomer = function (supe) {
-        if (supe.Email == null) {
-            alert("Plese Enter Email Id.");
-            return;
-        }
+        //if (supe.Email == null) {
+        //    alert("Plese Enter Email Id.");
+        //    return;
+        //}
         $scope.ses[0] = {
             qty: $scope.NoOfUnits1,
             Subtotal:   $scope.Subtotal1 ,
             perunit: $scope.DealerUnitPrice1,
-            Email: supe.Email,
+            Email: $scope.supeEmail,
             customerid: $scope.suppliename.DUserName,
             Name: $scope.selectedItem.Name,
         }

@@ -12,6 +12,16 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     $scope.CInit = function () {
         $scope.Customeract = 1;
+        var date = new Date();
+        var components = [
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+           
+        ];
+
+        var id = components.join("");
+        $scope.CustomerCode = 'CUST' + id;
     }
     $rootScope.spinner = {
         active: false,
@@ -183,7 +193,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var SelCustomer = {
             Name: customer.Name,
-            CustomerCode: customer.CustomerCode,
+            CustomerCode: $scope.CustomerCode,
             Address: customer.Address,
             ContactNo: customer.ContactNo,
             ContactNo1: customer.ContactNo1,

@@ -77,8 +77,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             dis:(de.unit==0)?null:de.dis,
             subtotal:(de.unit==0)?null:de.subtotal,
             ItemId: de.ItemId,
-            Suppliername: de.Name,
-            RFQID:de.RFQID,
+            supid: de.custId,
+            RFQID: de.RFQid2,
             flag:'I'
         }
         var req = {
@@ -87,7 +87,9 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             data: $scope.esarray
         }
         $http(req).then(function (res) {
-            alert("Successfully Email has sent");
+            alert("Successfully Saved the Draft Estimation");
+
+            //window.location.href = "RFQCustomerEstimation.html";
             //$('#Modal-header-supemail').modal('hide');
         });
 

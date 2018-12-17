@@ -238,11 +238,17 @@
                                                                     <thead>
                                                                         <tr ng-hide="JobEquipment.length == 0">
                                                                             <th>RFQ</th>
-                                                                            <th>Final Unit</th>
+                                                                            <!--<th>Final Unit</th>
                                                                             <th>Final Discount</th>
                                                                             <th>Final Charges</th>
-                                                                            <th>Final SubTotal</th>
-                                                                            <th>Sub Total</th>
+                                                                            <th>Final SubTotal</th>-->
+                                                                            <th>Dealer Unit</th>
+                                                                            <th>Dealer Unit Price</th>
+                                                                            <th>Dealer Discount</th>
+                                                                            <th>Dealer Charges</th>
+                                                                            <th>Dealer SubTotal</th>
+
+                                                                            <th>Total</th>
                                                                             <th>Save</th>
                                                                             <th>Email</th>
                                                                             <!--<th>Update</th>-->
@@ -262,9 +268,14 @@
                                                                             </td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="unit=0" ng-model="a.NoOfUnits" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.DealerUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.DealerDiscount" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.DealerCharges" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.DealerSubTotal" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.DealerSubTotal" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <!--<td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.DealerUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.tax" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.dis" min="0" ng-if="a.LEVEL == 2" /></td>
-                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.Subtotal" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.Subtotal" min="0" ng-if="a.LEVEL == 2" /></td>-->
                                                                             <td>
                                                                                 <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.LEVEL == 2" ng-click="SaveDraftEstimation(a)">
                                                                                     Save
@@ -306,10 +317,10 @@
                                             <div class="col-md-12">
                                                 <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
                                                 <div class="row">
-                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supe.Email" style="width:100%"></div>
+                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supeEmail" style="width:100%"></div>
                                                     <div class="col-md-6">
                                                         Supplier:
-                                                        <input type="text" ng-model="sup" value="{{suppliename.DUserName}}" ng-disabled="true" style="width:100%">
+                                                        <input type="text" ng-model="sup" value="{{suppliename.Name}}" ng-disabled="true" style="width:100%">
                                                         <!--Supplier:<select ng-options="spl.DUserName forspl in suppliename track by spl.Id" ng-model="spl" style="width:60%">
                                         <option value="">All</option>
                                     </select>-->
@@ -331,7 +342,7 @@
                                                             <tr>
                                                                 <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1" /></td>
                                                                 <td style="text-align:center;">
-                                                                    {{selectedItem.Name}}
+                                                                    {{selectedItem.ItemName}}
                                                                 </td>
                                                                 <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="NoOfUnits1" readonly/></td>
                                                                 <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="DealerUnitPrice1" readonly /></td>

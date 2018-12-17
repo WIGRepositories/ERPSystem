@@ -204,9 +204,7 @@ namespace ERPSystem.Controllers
                 newdr["RFQID"] = dr["RFQID"];
                 newdr["Name"] = dr["Name"];
                 newdr["ParentId"] = dr["ParentId"];
-                newdr["isDoc"] = dr["isDoc"];
-                newdr["fromdate"] = dr["fromdate"];
-                newdr["todate"] = dr["todate"];
+                newdr["isDoc"] = dr["isDoc"];              
                 newdr["custId"] = dr["custId"];
                 newdr["Client"] = dr["Client"];
                 newdr["RowID"] = dr["RowID"];
@@ -214,7 +212,12 @@ namespace ERPSystem.Controllers
                 newdr["LEVEL"] = dr["LEVEL"];
                 newdr["NoOfUnits"] = dr["NoOfUnits"];
                 newdr["DealerUnitPrice"] = dr["DealerUnitPrice"];
-                newdr["Subtotal"] = dr["Subtotal"];
+                newdr["Email"] = dr["Email"];
+                newdr["draftId"] = dr["draftId"];
+                newdr["DealerDiscount"] = dr["DealerDiscount"];
+                newdr["DealerCharges"] = dr["DealerCharges"];
+                newdr["DealerSubTotal"] = dr["DealerSubTotal"];
+               
                 finalTable.Rows.Add(newdr);
                 FillDataTable1(finalTable, ds, (dr["ID"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["ID"]));
             }
@@ -364,6 +367,10 @@ namespace ERPSystem.Controllers
                 //  @name varchar(50),@desc varchar(250)=null,@assettypeid int,@parentid int=null
                 //  ,@rootassetid int=-1,@change char(1),@id int=null,@assetModelId int
 
+                SqlParameter RFQId = new SqlParameter("@RFQId", SqlDbType.VarChar, 15);
+                RFQId.Value = a.RFQId;
+                cmd.Parameters.Add(RFQId);
+
                 SqlParameter Gid = new SqlParameter("@flag", SqlDbType.VarChar, 50);
                 Gid.Value = a.flag;
                 cmd.Parameters.Add(Gid);
@@ -424,6 +431,7 @@ namespace ERPSystem.Controllers
         }
 
         [HttpGet]
+        [Route("api/RFQ/GetRFQDetails")]
         public DataSet GetRFQDetails(int rfqId)
         {
             try
@@ -439,7 +447,7 @@ namespace ERPSystem.Controllers
                 cmd.Connection = conn;
 
                 SqlParameter Gim = new SqlParameter("@id", SqlDbType.Int);
-                Gim.Value = Convert.ToString(rfqId);
+                Gim.Value =rfqId;
                 cmd.Parameters.Add(Gim);
 
                 DataSet ds = new DataSet();
@@ -517,7 +525,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetRFQItems_wip";
+                cmd.CommandText = "GetRFQItems_wip2";
                 cmd.Connection = conn;
 
                 SqlParameter mid = new SqlParameter("@modelId", SqlDbType.Int);
@@ -567,10 +575,12 @@ namespace ERPSystem.Controllers
                 newdr["custId"] = dr["custId"];
                 newdr["Client"] = dr["Client"];
                 newdr["RowID"] = dr["RowID"];
-                newdr["ItemId"] = dr["ItemId"];
-                newdr["LEVEL"] = dr["LEVEL"];
+                newdr["ItemId"] = dr["ItemId"]; 
+                 newdr["LEVEL"] = dr["LEVEL"];
+                newdr["RFQid2"] = dr["RFQid2"];
+                newdr["Email"] = dr["Email"];
+                newdr["InitialQuantity"] = dr["InitialQuantity"];
 
-               
                 finalTable.Rows.Add(newdr);
                 FillDataTable(finalTable, ds, (dr["ID"] == DBNull.Value)? 0 : Convert.ToInt32(dr["ID"]));
                     }
@@ -771,9 +781,9 @@ namespace ERPSystem.Controllers
                 insupdflag.Value = (u.insupddelflag == null) ? "" : u.insupddelflag;
                 cmd.Parameters.Add(insupdflag);
 
-                SqlParameter loggedinUserId1 = new SqlParameter("@loggedinUserId", SqlDbType.Int);
-                loggedinUserId1.Value = u.UpdatedById;
-                cmd.Parameters.Add(loggedinUserId1);
+                //SqlParameter loggedinUserId1 = new SqlParameter("@loggedinUserId", SqlDbType.Int);
+                //loggedinUserId1.Value = u.UpdatedById;
+                //cmd.Parameters.Add(loggedinUserId1);
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -906,11 +916,11 @@ namespace ERPSystem.Controllers
                     st.Value = m.subtotal;
                     cmd.Parameters.Add(st);
 
-                    SqlParameter sn = new SqlParameter("@sname", SqlDbType.VarChar,50);
-                    sn.Value = m.Suppliername;
+                    SqlParameter sn = new SqlParameter("@supid", SqlDbType.Int);
+                    sn.Value = m.supid;
                     cmd.Parameters.Add(sn);
                     
-                    SqlParameter rcode = new SqlParameter("@rfqcode", SqlDbType.VarChar, 50);
+                    SqlParameter rcode = new SqlParameter("@rfqid", SqlDbType.Int);
                     rcode.Value = m.RFQID;
                     cmd.Parameters.Add(rcode);
 

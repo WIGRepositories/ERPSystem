@@ -59,7 +59,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
 
         var req = {
             method: 'POST',
-            url: '/api/LOGIN/ValidateCredentials/',
+            url: '/api/LOGIN/ValidateCredentials',
             data: inputcred
         }
         $rootScope.spinner.on();

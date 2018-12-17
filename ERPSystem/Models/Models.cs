@@ -11,7 +11,7 @@ namespace ERPSystem.Models
 
         public string Client { get;set;}
         public int ItemId { get; set; }
-        public string RFQID { get; set; }
+        public int RFQID { get; set; }
         public string Name { get; set; }
         public int Id { get; set; }
         public string flag { get; set; }
@@ -19,7 +19,9 @@ namespace ERPSystem.Models
         public int unitprice { get; set; }
         public int subtotal { get; set; }
         public string Suppliername { get; set; }
+        public int supid { get; set; }
         public int Itemname { get; set; }
+       
     }
     public class PaySupplier
     {
@@ -33,12 +35,18 @@ namespace ERPSystem.Models
     {
         public string customerid { get; set; }
         public string Email { get; set; }
-        public string Name { get; set; }
+        public string ItemName { get; set; }
         public int qty { get; set; }
-        public string des { get; set; }
+        public string Description { get; set; }
         public int perunit { get; set; }
         public string Suppiername { get; set; }
         public int Subtotal { get; set; }
+        public string body { get; set; }
+
+        public int tax { get; set; }
+        public int dis { get; set; }
+
+
     }
     public class DeliveryTicket
     {
@@ -552,6 +560,7 @@ namespace ERPSystem.Models
         public string CPhoneNo { get; set; }
         public string CEmail { get; set; }
         public string CFax { get; set; }
+        public string RFQId { get; set;}
     }
 
     public class AssetHierarchy
@@ -821,9 +830,7 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string CustomerCode { get; set; }
 
-        public string shippingaddress { get; set; }
-
-        public string billingaddress { get; set; }
+        public string Address { get; set; }
 
         public string ContactNo { get; set; }
 
@@ -831,7 +838,8 @@ namespace ERPSystem.Models
         public string Email { get; set; }
         public int Active { get; set; }
         public string flag { get; set; }
-      
+
+
     }
     public class PPDocument
     {
@@ -1356,7 +1364,7 @@ namespace ERPSystem.Models
         public decimal price { get; set; }
         public string Itemmodel { get; set; }
         public string features { get; set; }
-
+        public int rfqid { get; set; }
         public decimal InitialQuantity { get; set; }
     }
     public class ConfigData
@@ -1416,10 +1424,10 @@ namespace ERPSystem.Models
 
         public string ContactNo1 { get; set; }
 
-
+        public string flag { get; set; }
         public string Email { get; set; }
         public int Active { get; set; }
-        public string flag { get; set; }
+       
     }
 
 }

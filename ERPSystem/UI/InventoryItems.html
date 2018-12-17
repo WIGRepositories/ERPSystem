@@ -283,7 +283,7 @@
                                                         <tr ng-repeat="G in InventoryItems">
                                                             <td>{{G.ItemName}}</td>
                                                             <td>{{G.InitialQuantity}}</td>
-                                                            <td> <img ng-src="{{G.ItemImage}}" style="width:150px;height:100px" /></td>
+                                                            <td> <img ng-src="{{G.ItemImage}}" style="width:100px;height:70px" /></td>
                                                             <td>{{G.Code}}</td>
                                                             <td>{{G.Description}}</td>
                                                             <td>{{G.Category}}</td>
@@ -512,7 +512,7 @@
                                                         <label class="col-md-4 control-label">Code: <span class='require'>*</span></label>
 
                                                         <div class="col-md-6">
-                                                            <input id="itemcode" type="text" placeholder="Item Code" class="form-control" ng-model="Item.Code" /><span class="help-block"></span>
+                                                            <input id="itemcode" type="text" placeholder="Item Code" class="form-control" ng-model="newItemCode" readonly/><span class="help-block"></span>
                                                         </div>
                                                     </div>
 
@@ -615,7 +615,7 @@
                                     </div>
                                     <!--END CONTENT--><!--BEGIN FOOTER-->
                                     <div id="footer">
-                                        <div class="copyright">2016 © Interbus - Smart Ticketing Dashboard portal</div>
+                                        <div class="copyright">2018 © ERP System - Tender Management Portal</div>
                                     </div>
                                     <!--END FOOTER-->
                                 </div>

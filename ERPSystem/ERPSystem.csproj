@@ -194,7 +194,6 @@
     <Content Include="DBScripts\County.sql" />
     <Content Include="DBScripts\Customers.sql" />
     <Content Include="DBScripts\DBScripts_SP.sql" />
-    <Content Include="DBScripts\DBScripts_Sprocs.sql" />
     <Content Include="DBScripts\DBScripts_Tables.sql" />
     <Content Include="DBScripts\States.sql" />
     <Content Include="DBScripts\users.sql" />
@@ -210,8 +209,8 @@
     <Content Include="UI\Content\DeliverTicket1.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
+    <Content Include="UI\Content\PurchaseOrder.html" />
     <Content Include="UI\Content\WorkOrder.html" />
-    <Content Include="UI\css\Custom.css" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
     <Content Include="UI\DataLoad.html" />
@@ -262,6 +261,7 @@
     <Content Include="UI\js\Assets.js" />
     <Content Include="UI\js\AssetsView.js" />
     <Content Include="UI\js\charts-highchart-line.js" />
+    <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryStatus.js" />
@@ -327,8 +327,8 @@
     <Content Include="UI\ThirdParty.html" />
     <Content Include="UI\UserDetails.html" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\wa-scus-emp-ees-prod-DEV - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ERPSystemPortal.pubxml" />
+    <None Include="Properties\PublishProfiles\ERPSystemTesting.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -720,6 +720,7 @@
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
+    <Compile Include="Controllers\InventoryStatusController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />

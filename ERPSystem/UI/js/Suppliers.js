@@ -12,6 +12,18 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     $scope.CInit = function () {
         $scope.Supplieract = 1;
+        //$scope.imageSrc = null;
+        //document.getElementById('cmpLogo').src = "";
+
+        var date = new Date();
+        var components = [
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds()
+        ];
+
+        var id = components.join("");
+        $scope.SupplierCode = 'SUPC' + id;
     }
     $rootScope.spinner = {
         active: false,
@@ -39,6 +51,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
     }
 
+    
     $scope.save = function (Supplier) {
 
         if (Supplier == null) {
@@ -183,7 +196,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var SelSupplier = {
             Name: Supplier.Name,
-            SupplierCode: Supplier.SupplierCode,
+            SupplierCode: $scope.SupplierCode,
             Address: Supplier.Address,
             ContactNo: Supplier.ContactNo,
             ContactNo1: Supplier.ContactNo1,
