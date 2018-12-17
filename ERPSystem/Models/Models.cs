@@ -45,7 +45,7 @@ namespace ERPSystem.Models
 
         public int tax { get; set; }
         public int dis { get; set; }
-
+        public string Name { get; set; }
 
     }
     public class DeliveryTicket
@@ -838,6 +838,9 @@ namespace ERPSystem.Models
         public string Email { get; set; }
         public int Active { get; set; }
         public string flag { get; set; }
+        
+        public string shippingaddress { get; set; }
+        public string billingaddress { get; set; }
 
 
     }

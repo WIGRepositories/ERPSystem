@@ -206,10 +206,14 @@
     <Content Include="Testing.html" />
     <Content Include="UI\Accounts.html" />
     <Content Include="UI\BalanceSheet.html" />
+    <Content Include="UI\Content\CustomerQuote.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
+    <Content Include="UI\Content\DeliveryNote.html" />
+    <Content Include="UI\Content\Invoice.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
     <Content Include="UI\Content\PurchaseOrder.html" />
+    <Content Include="UI\Content\PurchaseOrder1.html" />
     <Content Include="UI\Content\WorkOrder.html" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
@@ -218,6 +222,7 @@
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
     <Content Include="UI\DeliveryNote.html" />
+    
     <Content Include="UI\images\ERPSystem.jpg" />
     <Content Include="UI\images\ERPSystemBG.jpg" />
     <Content Include="UI\images\logo.png" />
@@ -716,7 +721,6 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
-    <Compile Include="DBScripts\InventoryStatusController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />

@@ -95,18 +95,46 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         //    alert("Plese Enter Email Id.");
         //    return;
         //}
+
+        //if ($scope.Email == null) {
+        //    alert("Plese Enter Email Id.");
+        //    return;
+        //}
+        //if ($scope.Cust == null) {
+        //    alert("Plese Select Customer.");
+        //    return;
+        //}
+        //for (var i = 0; i < $scope.selArr.length; i++) {
+        //    $scope.selArr[i].Email = $scope.Email;
+        //    $scope.selArr[i].customerid = $scope.Cust.Name;
+        //}
+
+        //var req = {
+        //    method: 'POST',
+        //    url: '/api/ERPAsset/PaySupplierInvoicePdftest',
+        //    data: $scope.selArr
+        //}
+        //$http(req).then(function (res) {
+        //    //$scope.initdata = res.data;
+        //    //$scope.showlocimportdata(res.data);
+        //    $('#Modal-header-paysuppliers').modal('hide');
+        //    alert("Enquiry Sucessfully Sent");
+
+        //});
+
         $scope.ses[0] = {
             qty: $scope.NoOfUnits1,
             Subtotal:   $scope.Subtotal1 ,
             perunit: $scope.DealerUnitPrice1,
             Email: $scope.supeEmail,
-            customerid: $scope.suppliename.DUserName,
-            Name: $scope.selectedItem.Name,
+            customerid: $scope.suppliename.Name,
+            ItemName: $scope.selectedItem.ItemName,
+            Description: $scope.selectedItem.Description
         }
 
         var req = {
             method: 'POST',
-            url: '/api/ERPAsset/RFQtoCustomer',
+            url: '/api/ERPAsset/PaySupplierInvoicePdftest',
             data: $scope.ses
         }
         $http(req).then(function (res) {
