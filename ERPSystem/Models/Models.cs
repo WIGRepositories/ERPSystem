@@ -21,7 +21,11 @@ namespace ERPSystem.Models
         public string Suppliername { get; set; }
         public int supid { get; set; }
         public int Itemname { get; set; }
-       
+        public int NoofUnits { get; set; }
+        public int FinaUnitPrice { get; set; }
+        public int FinalDiscount { get; set; }
+        public int FinalCharges { get; set; }
+        public int FinalSubTotal { get; set; }
     }
     public class PaySupplier
     {

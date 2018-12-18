@@ -15,6 +15,7 @@ myapp1.directive('onFinishRender', function ($timeout) {
 
 var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal,  $rootScope) {
     $scope.selArr = new Array();
+    $scope.finaquote = new Array();
     var tt;
     $scope.ses = new Array();
     $scope.init = function () {
@@ -25,11 +26,23 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         $http.get('/api/Types/TypesByGroupId?groupid=3').then(function (res, data) {
             $scope.jobStatus = res.data;
+            if ($scope.jobStatus != -null && $scope.rfqlist != null) {
+                for (var i = 0; i < $scope.jobStatus.length; i++) {
+                    if ($scope.rfqlist[0].StatusId = $scope.jobStatus[i].Id) {
+                        $scope.s = $scope.jobStatus[i];
+                        break;
+                    }
+
+                }
+            }
         });
 
-        $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQwithoutstatus').then(function (res, data) {
             $scope.rfqlist = res.data;
-            $scope.l = $scope.rfqlist[0];
+            if ($scope.rfqlist != null) {
+                $scope.l = $scope.rfqlist[0];
+                $scope.GetJobEquipment();
+            }
         });
 
         $http.get('/api/RFQ/GetRFQDraftEstimation').then(function (res, data) {
@@ -49,15 +62,19 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         //});
 
         $scope.GetJobEquipment();
-    }    
+    }
+
     $scope.GetJobEquipment = function () {
+        var lid = ($scope.l == null) ? -1 : $scope.l.ID;
+        //var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
         var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
-        $http.get('/api/RFQ/GetRFQDraftEstimation?modelId=-1&rfqId=-1').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQDraftEstimation?modelId=' + modelId + '&rfqId=' + lid).then(function (res, data) {
             $scope.JobEquipment = res.data;
             //$rootScope.spinner.off();
             $("#jobequipment-content").show();
         });
     }
+
     $scope.GetRFQPersonnal = function (cc) {
         var custId = (cc == null) ? -1 : cc.ID;      
 
@@ -90,38 +107,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         }
     }
+
     $scope.SendCustomer = function (supe) {
-        //if (supe.Email == null) {
-        //    alert("Plese Enter Email Id.");
-        //    return;
-        //}
-
-        //if ($scope.Email == null) {
-        //    alert("Plese Enter Email Id.");
-        //    return;
-        //}
-        //if ($scope.Cust == null) {
-        //    alert("Plese Select Customer.");
-        //    return;
-        //}
-        //for (var i = 0; i < $scope.selArr.length; i++) {
-        //    $scope.selArr[i].Email = $scope.Email;
-        //    $scope.selArr[i].customerid = $scope.Cust.Name;
-        //}
-
-        //var req = {
-        //    method: 'POST',
-        //    url: '/api/ERPAsset/PaySupplierInvoicePdftest',
-        //    data: $scope.selArr
-        //}
-        //$http(req).then(function (res) {
-        //    //$scope.initdata = res.data;
-        //    //$scope.showlocimportdata(res.data);
-        //    $('#Modal-header-paysuppliers').modal('hide');
-        //    alert("Enquiry Sucessfully Sent");
-
-        //});
-
         $scope.ses[0] = {
             qty: $scope.NoOfUnits1,
             Subtotal:   $scope.Subtotal1 ,
@@ -149,9 +136,6 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
 
     }
-   
-
-
     $scope.checkedArr = new Array();
     $scope.uncheckedArr = new Array();
     $scope.setupsupplier = function (iname) {
@@ -160,7 +144,33 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.SetData = function (b) {
         $scope.selArr.push(b);
     }
+    $scope.SaveDraftEstimation = function (final) {
+        $scope.finaquote[0] = {
+            RFQID: final.RFQAUTOID,
+            ItemId: final.ItemId,
+            supid: final.custId,
+            NoofUnits: final.NoOfUnits,
+            FinaUnitPrice: final.DealerUnitPrice,
+            FinalDiscount: final.DealerDiscount,
+            FinalCharges: final.DealerCharges,
+            FinalSubTotal: final.DealerSubTotal,
+            flag: 'I'
+        };
+        var req = {
+            method: 'POST',
+            url: '/api/RFQ/SaveCustomerEstimation',
+            data: $scope.finaquote
+        }
+        $http(req).then(function (res) {
+            $('#Modal-header-suppliers').modal('hide');
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Saved Sucessfully");
+            $scope.finaquote = '';
+        });
 
+
+    }
     $scope.SetCustlist = function () {
         $scope.selArr.push($scope.custlist);
     }
