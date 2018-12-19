@@ -830,7 +830,8 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string CustomerCode { get; set; }
 
-        public string Address { get; set; }
+        public string shippingaddress { get; set;}
+        public string billingaddress { get; set; }
 
         public string ContactNo { get; set; }
 
@@ -1418,7 +1419,8 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string SupplierCode { get; set; }
 
-        public string Address { get; set; }
+        public string shippingaddress { get; set; }
+        public string billingaddress { get; set; }
 
         public string ContactNo { get; set; }
 
@@ -1429,5 +1431,56 @@ namespace ERPSystem.Models
         public int Active { get; set; }
        
     }
+    public class InvoiceDetails
+    {
 
+        public int Id { get; set; }
+        public int POId { get; set; }
+        public int RFQItemId { get; set; }
+
+        public int NoOfUnits { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal charges { get; set; }
+
+        public decimal discounts { get; set; }
+        public decimal subtotal { get; set; }
+        public decimal Total { get; set; }
+        public string flag { get; set; }
+
+    }
+    public class DeliveryNote
+    {
+
+        public int RFQId { get; set; }
+        public int POId { get; set; }
+        public int DeliveryNoteNo { get; set; }
+
+        public int SupplierId { get; set; }
+
+        public DateTime ?DispatchDate { get; set; }
+
+        public string Deliverymethod { get; set; }
+
+        public string IsDelivered { get; set; }
+        public DateTime ?DeliveredOn { get; set; }
+        public int TotalItems { get; set; }
+        public string InvoiceAddress { get; set; }
+        public string CustomerAddress { get; set; }
+        public string flag { get; set; }
+
+
+    }
+
+    public class DeliveryNoteDetails
+    {
+        public string flag { set; get; }
+        public int Id { set; get; }
+
+        public int DeliveryNoteId { set; get; }
+        public int RFQItemId { set; get; }
+        public int NoOfUnitsOrdered { set; get; }
+        public int NoOfUnitsDelivered { set; get; }
+    }
 }

@@ -10,11 +10,11 @@ using System.Web.Http;
 
 namespace ERPSystem.Controllers
 {
-    public class SuppliersController : ApiController
+    public class InvoiceDetailsController : ApiController
     {
-        [Route("api/Suppliers/getSuppliers")]
         [HttpGet]
-        public DataTable getSuppliers()
+        [Route("api/InvoiceDetails/getInvoiceDetails")]
+        public DataTable getInvoiceDetails()
         {
             DataTable dt = new DataTable();
             try
@@ -27,7 +27,7 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "getSupplier";
+                cmd.CommandText = "getInvoiceDetails";
                 cmd.Connection = conn;
 
                 SqlDataAdapter db = new SqlDataAdapter(cmd);
@@ -46,8 +46,8 @@ namespace ERPSystem.Controllers
 
 
         [HttpPost]
-        [Route("api/Suppliers/SaveSuppliers")]
-        public DataTable SaveSuppliers(Suppliers cus)
+        [Route("api/InvoiceDetails/saveInvoiceDetails")]
+        public DataTable saveInvoiceDetails(InvoiceDetails cus)
         {
 
             DataTable dt = new DataTable();
@@ -60,48 +60,46 @@ namespace ERPSystem.Controllers
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "insupdSupplier";
+                cmd.CommandText = "InsUpdInvoiceDetails";
                 cmd.Connection = conn;
                 conn.Open();
 
 
-                SqlParameter Gid = new SqlParameter("@Name", SqlDbType.VarChar, 50);
-                Gid.Value = cus.Name;
+                SqlParameter Gid = new SqlParameter("@POId", SqlDbType.Int);
+                Gid.Value = cus.POId;
                 cmd.Parameters.Add(Gid);
 
-                SqlParameter Gid1 = new SqlParameter("@SupplierCode", SqlDbType.VarChar, 50);
-                Gid1.Value = cus.SupplierCode;
+                SqlParameter Gid1 = new SqlParameter("@RFQItemId", SqlDbType.Int);
+                Gid1.Value = cus.RFQItemId;
                 cmd.Parameters.Add(Gid1);
 
-                SqlParameter add1 = new SqlParameter("@shippingaddress", SqlDbType.VarChar, 250);
-                add1.Value = cus.shippingaddress;
-                cmd.Parameters.Add(add1);
+                SqlParameter Add1 = new SqlParameter("@NoOfUnits", SqlDbType.Int);
+                Add1.Value = cus.NoOfUnits;
+                cmd.Parameters.Add(Add1);
+                SqlParameter Add2 = new SqlParameter("@UnitPrice", SqlDbType.Decimal);
+                Add2.Value = cus.UnitPrice;
+                cmd.Parameters.Add(Add2);
 
-                SqlParameter Gid2 = new SqlParameter("@billingaddress", SqlDbType.VarChar,250);
-                Gid2.Value = cus.billingaddress;
-                cmd.Parameters.Add(Gid2);
-
-
-                SqlParameter phone = new SqlParameter("@ContactNo", SqlDbType.VarChar, 50);
-                phone.Value = cus.ContactNo;
+                SqlParameter phone = new SqlParameter("@charges", SqlDbType.Decimal);
+                phone.Value = cus.charges;
                 cmd.Parameters.Add(phone);
 
-                SqlParameter llid = new SqlParameter("@ContactNo1", SqlDbType.VarChar, 50);
-                llid.Value = cus.ContactNo1;
+                SqlParameter llid = new SqlParameter("@discounts", SqlDbType.Decimal);
+                llid.Value = cus.discounts;
                 cmd.Parameters.Add(llid);
 
-                SqlParameter Gid3 = new SqlParameter("@Email", SqlDbType.VarChar,250);
-                Gid3.Value = cus.Email;
+                SqlParameter Gid3 = new SqlParameter("@subtotal", SqlDbType.Decimal);
+                Gid3.Value = cus.subtotal;
                 cmd.Parameters.Add(Gid3);
 
-                SqlParameter Gid4 = new SqlParameter("@Active", SqlDbType.Int);
-                Gid4.Value = cus.Active;
+                SqlParameter Gid4 = new SqlParameter("@Total", SqlDbType.Decimal);
+                Gid4.Value = cus.Total;
                 cmd.Parameters.Add(Gid4);
 
-                SqlParameter Gid5 = new SqlParameter("@flag", SqlDbType.VarChar);
+
+                SqlParameter Gid5 = new SqlParameter("@flag", SqlDbType.VarChar,50);
                 Gid5.Value = cus.flag;
                 cmd.Parameters.Add(Gid5);
-
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -120,4 +118,6 @@ namespace ERPSystem.Controllers
     }
 }
 
+   
 
+      
