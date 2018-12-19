@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <title>ERPSystem | Dashboard</title>
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" href="images/icons/favicon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icons/favicon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/icons/favicon-114x114.png">
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
+    <!--LOADING STYLESHEET FOR PAGE-->
+    <!--Loading style vendors-->
+    <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">
+    <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">
+    <link rel="stylesheet" type="text/css" href="css/treasure-overlay-spinner.css">
+    <!--Loading style-->
+    <link type="text/css" rel="stylesheet" href="css/themes/style2/iliad-custom.css" id="theme-change" class="style-change color-change">
+    <link type="text/css" rel="stylesheet" href="css/style-responsive.css">
+    <style>
+        Backlogged {
+            color: red;
+        }
+
+        Active {
+            color: green;
+        }
+
+        Pending {
+            color: #FCF8E3;
+        }
+
+        Completed {
+            color: grey;
+        }
+
+        Approved {
+            color: lightblue;
+        }
+    </style>
+</head>
+<body ng-init="getFRQlist()" ng-controller="myCtrl">
+    <div>
+        <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text"></span><span style="display: none" class="logo-text-icon">µ</span></a>
+                </div>
+                <div class="topbar-main">
+                    <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+                    <ul class="nav navbar navbar-top-links navbar-right mbn">
+                        <li class="dropdown topbar-user">
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-user pull-right">
+                                <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
+                                <li class="divider"></li>-->
+                                <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+        <!--END TOPBAR-->
+        <div id="wrapper">
+            <!--BEGIN SIDEBAR MENU-->
+            <nav id="sidebar" role="navigation" data-step="2" data-position="right" class="navbar-default navbar-static-side">
+                <div class="sidebar-collapse menu-scroll">
+                    <ul id="side-menu" class="nav">
+                        <li class="user-panel">
+                            <div class="thumb"><img src="images/user.jpg" alt="" class="img-circle" /></div>
+                            <div class="info">
+                                <p>{{uname}}</p>
+                                <ul class="list-inline list-unstyled">
+                                    <!--<li><a href="Users.html" data-hover="tooltip" title="Profile"><i class="fa fa-user"></i></a></li>-->
+                                    <li><a href="../login.html" data-hover="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+
+                        <li class="active">
+                            <a href="index.html" data-toggle="tooltip" data-placement="right" title="Application Dashboard for Equipment, Types, and RFQs">
+                                <i class="fa fa-tachometer fa-fw">
+                                    <div class="icon-bg bg-orange"></div>
+                                </i><span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <!--2.Items-->
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-cubes fa-fw">
+                                    <div class="icon-bg bg-pink"></div>
+                                </i><span class="menu-title">Inventory & Stock</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <!--<li ng-hide="isSuperUser == 0">
+                                                        <a href="ItemType.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type"><i class="fa fa-align-left"></i><span class="submenu-title">Item Type</span></a>
+                                                    </li>
+                                                    <!-- <li ng-hide="isSuperUser == 0">
+                                    <a href="AssetModelDetails.html" data-toggle="tooltip" data-placement="right" title="Manage Equipment Type model details"><i class="fa fa-cubes"></i><span class="submenu-title">Type Details</span></a>
+                                </li> -->
+                                <!--<li><a href="ItemsList.html" data-toggle="tooltip" data-placement="right" title="Manage list of inventory items"><i class="fa fa-align-left"></i><span class="submenu-title">Item List</span></a></li>
+                                <li><a href="AssetsView.html" data-toggle="tooltip" data-placement="right" title="Equipment Tree Views by location and asset type"><i class="fa fa-align-left"></i><span class="submenu-title">Equipments View</span></a></li>
+                                <li><a href="ItemDetails.html" data-toggle="tooltip" data-placement="right" title="Manage equipment details and documents"><i class="fa fa<!---cubes"></i>-->
+                                <!--<span class="submenu-title">Item Details</span></a></li>-->
+
+                                <li><a href="InventoryItems.html" data-toggle="tooltip" data-placement="right-->" title="Details of InventoryItems"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Items</span></a></li>
+                                <li><a href="InventoryStatus.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryStatus"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Status</span></a></li>
+                                <li><a href="InventorySales.html" data-toggle="tooltip" data-placement="right" title="Details of InventorySales"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Sales</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Purchases</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Reciept Returned</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">purchase Returned</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Stock Register</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Shipping Order</span></a></li>
+                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note</span></a></li>
+
+                            </ul>
+
+                        </li>
+
+                        <!--3.jobs-->
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-list fa-fw">
+                                    <div class="icon-bg bg-violet"></div>
+                                </i><span class="menu-title">RFQs</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="RFQList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending RFQs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">RFQ List</span></a></li>
+                                <li><a href="RFQDetails.html" data-toggle="tooltip" data-placement="right" title="RFQ specific details: Equipment, Personnel, 3rd Party, and RFQ Documents"><i class=" fa fa-file-text-o"></i><span class="submenu-title">RFQ Details</span></a></li>
+                                <li><a href="CompletedRFQsList.html" data-toggle="tooltip" data-placement="right" title="RFQs marked as completed"><i class=" fa fa-list fa-fw"></i><span class="submenu-title">Completed RFQs</span></a></li>
+                                <li><a href="RFQPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all RFQs, by location, customer status"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>RFQ Personnel</a></li>
+                                <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
+                                <li><a href="RFQDocuments.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>RFQ Documents</a></li>
+                                <!--<li><a href="Jobs.html"><i class="fa fa-exclamation"></i><span class="submenu-title"></span>Job Alerts</a></li>-->
+                                <!--<li><a href="Jobs.html"><i class="fa fa-upload"></i><span class="submenu-title">Job Notifications</span></a></li>-->
+                                <!--<li><a href="Jobs.html"><i class="fa fa-cloud-upload"></i><span class="submenu-title">Job Reports</span></a></li>-->
+                            </ul>
+                        </li>
+
+                        <!--4.Reports-->
+                        <li ng-hide="hidereports=1">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o fa-fw">
+                                    <div class="icon-bg bg-violet"></div>
+                                </i><span class="menu-title">Reports</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="ReportsList.html" data-toggle="tooltip" data-placement="right" title="List of reports for the application"><i class=" fa fa-file-text-o"></i><span class="submenu-title"></span>Reports List</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        <!--6.Procedure Document-->
+                        <li>
+                            <a href="PPDocuments.html" data-toggle="tooltip" data-placement="right" title="Common document repository for documents across company.">
+                                <i class="fa fa-file-text-o">
+                                    <div class="icon-bg bg-orange"></div>
+                                </i><span class="menu-title">RFQ Documents</span>
+                            </a>
+                        </li>
+                        <!--5.user roles-->
+                        <li ng-hide="isSuperUser == 0">
+                            <a href="#">
+                                <i class="fa fa-group fa-fw">
+                                    <div class="icon-bg bg-red"></div>
+                                </i><span class="menu-title">Users & Roles</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="UserDetails.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">User Details</span></a></li>
+                                <li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class=" fa fa-user"></i><span class="submenu-title">Users List</span></a></li>
+                                <li><a href="UserRoles.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all roles assigned to users in the application"><i class=" fa fa-sitemap fa-fw"></i><span class="submenu-title">User Roles</span></a></li>
+                            </ul>
+                        </li>
+                        <!--7.administration-->
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-edit fa-fw">
+                                    <div class="icon-bg bg-violet"></div>
+                                </i><span class="menu-title">Administration</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="TypeGroups.html" data-toggle="tooltip" data-placement="right" title="Common groups used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data Groups</a></li>
+                                <!--<li><a href="ObjectTypes.html" data-toggle="tooltip" data-placement="right" title="Common objects used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Object Types</a></li>-->
+                                <!--<li><a href="Locations.html" data-toggle="tooltip" data-placement="right" title="List of operational locations"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Locations</a></li>-->
+                                <li><a href="Types.html" data-toggle="tooltip" data-placement="right" title="Common data used across application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Master Data</a></li>
+                                <!--<li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Roles for the application"><i class=" fa fa-cubes"></i><span class="submenu-title"></span>Roles</a></li>-->
+                                <!--<li><a href="ThirdParty.html"><i class="fa fa-cubes"></i><span class="submenu-title"></span>Third Party Resources</a></li>-->
+                                <!--<li><a href="Company.html" data-toggle="tooltip" data-placement="right" title="Company specific details"><i class=" fa fa-file-text-o"></i><span class="submenu-title">Company Details</span></a></li>-->
+                                <!--<li><a href="CompanyRoles.html"><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Company Roles</span></a></li>-->
+                                <!--<li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="List of all customers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Customers</span></a></li>
+                                <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="List of all Suppliers"><i class=" fa fa-group fa-fw"></i><span class="submenu-title">Suppliers</span></a></li>-->
+                                <li><a href="Roles.html" data-toggle="tooltip" data-placement="right" title="Details of Roles"><i class="fa fa-angle-double-right"></i><span class="submenu-title">Roles</span></a></li>
+                                <!--<li><a href="DataLoad.html" data-toggle="tooltip" data-placement="right" title="List of all Loading Data"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Data Load</span></a></li>
+                                <li><a href="Manufacturer.html" data-toggle="tooltip" data-placement="right" title="List of all Manufacturer"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Manufacturer</span></a></li>
+                                <li><a href="MaintenanceVendors.html" data-toggle="tooltip" data-placement="right" title="List of all Maintenance Vendors"><i class=" fa fa-tachometer fa-fw"></i><span class="submenu-title">Maintenance Vendor</span></a></li>-->
+                            </ul>
+                        </li>
+
+                        <li ng-hide="isSuperUser == 0">
+                            <a href="#">
+                                <i class="fa fa-group fa-fw">
+                                    <div class="icon-bg bg-red"></div>
+                                </i><span class="menu-title">Customers</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="Customers.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">Customers List</span></a></li>
+
+                            </ul>
+                        </li>
+
+                        <li ng-hide="isSuperUser == 0">
+                            <a href="#">
+                                <i class="fa fa-group fa-fw">
+                                    <div class="icon-bg bg-red"></div>
+                                </i><span class="menu-title">Suppliers</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="Suppliers.html" data-toggle="tooltip" data-placement="right" title="User details for application"><i class=" fa fa-user"></i><span class="submenu-title">Suppliers List</span></a></li>
+
+                            </ul>
+
+                        </li>
+                        <!--5.user roles-->
+                        <li ng-hide="isSuperUser == 0">
+                            <a href="#">
+                                <i class="fa fa-file-text-o">
+                                    <div class="icon-bg bg-red"></div>
+                                </i><span class="menu-title">Accounting</span><span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="Accounts.html" data-toggle="tooltip" data-placement="right" title="Account details for applicationt"><i class=" fa fa-user"></i><span class="submenu-title">Accounts</span></a></li>
+                                <li><a href="SalesRegister.html" data-toggle="tooltip" data-placement="right" title="SalesRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">SalesRegister</span></a></li>
+                                <li><a href="PurchaseRegister.html" data-toggle="tooltip" data-placement="right" title="PurchaseRegister details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">PurchaseRegister</span></a></li>
+                                <li><a href="Receivables.html" data-toggle="tooltip" data-placement="right" title="Receivable details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Receivables</span></a></li>
+                                <li><a href="Payables.html" data-toggle="tooltip" data-placement="right" title="Payables details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">Payables</span></a></li>
+                                <li><a href="BalanceSheet.html" data-toggle="tooltip" data-placement="right" title="BalanceSheet details "><i class="fa fa-sitemap fa-fw"></i><span class="submenu-title">BalanceSheet</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!--END SIDEBAR MENU--><!--BEGIN CHAT FORM-->
+            <!--END CHAT FORM--><!--BEGIN PAGE WRAPPER-->
+            <treasure-overlay-spinner active='spinner.active'>
+                <div id="page-wrapper">
+                    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                        <div class="page-header pull-left">
+                            <div class="page-title">Customer PO Details</div>
+                        </div>
+                        <ol class="breadcrumb page-breadcrumb pull-right">
+                            <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                            <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                            <li>Dashboard</li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
+                    <div class="page-content" id="jobslist-content">
+                        <div id="table-action" class="row">
+                            <div class="col-lg-12">
+                                <div id="tableactionTabContent" class="tab-content">
+                                    <div id="table-table-tab" class="tab-pane fade in active">
+                                        <!--<div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-container">
+                                                    <div class="row mbm">
+                                                        <div class="col-md-2" style="text-align:left">
+                                                            Search RFQ#:<input type="text" ng-model="rfqno" style="width:80%" />
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align:left">
+                                                            RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:80%">
+                                                                <option value="">All</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3" style="text-align:left">
+                                                            Customer: <select ng-options="c.Name  for c in Customers track by c.Id" ng-model="c" style="width:80%">
+                                                                <option value="">All</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-3" style="text-align:right">
+                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add New RFQ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+                                        <div class="row">
+                                            <div class="col-lg-12">
+
+                                                <div class="container-fliud">
+
+
+
+                                                    <table class="table table-bordered table-advanced tablesorter">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>PO ID</th>
+                                                                <th>RFQ Item ID</th>
+                                                                <th>No of Units</th>
+                                                                <th>Dealer Unit Price</th>
+                                                                <th>Dealer Charges</th>
+                                                                <th>Dealer Discounts</th>
+                                                                <th>SubTotal</th>
+                                                                <th>Supplier Unit Price</th>
+                                                                <th>Supplier Discount</th>
+                                                                <th>Supplier Charges</th>
+                                                                <th>Other Charges</th>
+                                                                <th>Total</th>
+                                                                
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="J in rfqlist|filter:{RFQID:rfqno}">
+                                                                <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
+                                                                <td>{{J.ID}}</td>
+                                                                <td>{{J.POID}}</td>
+                                                                <td>{{J.RFQItemID}}</td>
+                                                                <td>{{J.NoofUnits}}</td>
+                                                                <td>{{J.DealerUnitPrice}}</td>
+                                                                <td>{{J.DealerCharges}}</td>
+                                                                <td>{{J.DealerDiscounts}}</td>
+                                                                <td>{{J.SubTotal}}</td>
+                                                                <td>{{J.SupplierUnitPrice}}</td>
+                                                                <td>{{J.SupplierDiscount}}</td>
+                                                                <td>{{J.SupplierCharges}}</td>
+                                                                <td>{{J.OtherCharges}}</td>
+                                                                <td>{{J.Total}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--END CONTENT-->
+                    <!--END CONTENT--><!--BEGIN FOOTER-->
+                    <div id="footer">
+                        <div class="copyright">2018 © ERPSystem</div>
+                    </div>
+                    <!--END FOOTER-->
+                </div>
+            </treasure-overlay-spinner>
+        </div>
+    </div>
+    <!--END PAGE WRAPPER-->
+    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Add New Customer PO Details</h4>
+                </div>
+                <div class="modal-body" ng-model="newRFQ">
+
+                    <div class="row ">
+
+                        <label class="col-md-4 control-label">ID <span class='require'>*</span></label>
+                        <div class="col-md-6">
+                            <input id="ID" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.Id" readonly /><span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <label class="col-md-4 control-label">PO ID <span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="POID" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.POId" /><span class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-md-4 control-label">RFQ Item ID</label>
+
+
+                        <div class="col-md-6">
+                            <input id="RFQItemID" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.RFQItemId" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <label for="selCountry" class="col-md-4 control-label">No of Units</label>
+
+
+                        <div class="col-md-6">
+                            <input id="NoofUnits" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.NoofUnits" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <label for="selCountry" class="col-md-4 control-label">Dealer Unit Price</label>
+
+                        <div class="col-md-6">
+                            <input id="DealerUnitPrice" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.DealerUnitPrice" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Dealer Charges<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="DealerCharges" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.DealerCharges" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Dealer Discounts<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="DealerDiscounts" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.DealerDiscounts" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">SubTotal<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="SubTotal" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SubTotal" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Supplier Unit Price<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+    <input id="SupplierUnitPrice" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SupplierUnitPrice" /><span class="help-block"></span>
+</div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Supplier Discount<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="SupplierDiscount" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SupplierDiscount" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Supplier Charges<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="SupplierCharges" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SupplierCharges" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Other Charges<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="OtherCharges" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.OtherCharges" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="row ">
+
+                        <label for="" class="col-md-4 control-label">Total<span class='require'>*</span></label>
+
+                        <div class="col-md-6">
+                            <input id="Total" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.Total" /><span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div style="text-align:center">
+                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1049">
+        <div class="modal-header">
+            <h3 class="modal-title">Save confirmation!</h3>
+        </div>
+        <div class="modal-body">
+            <!--<ul>
+                <li ng-repeat="item in items">
+                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ selected.item }}</b>-->
+            {{mssg}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <!--END PAGE WRAPPER-->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <!--loading bootstrap js-->
+    <script src="vendors/bootstrap/js/bootstrap.js"></script>
+    <script src="vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <script src="vendors/metisMenu/jquery.metisMenu.js"></script>
+    <script src="vendors/slimScroll/jquery.slimscroll.js"></script>
+    <script src="vendors/jquery-cookie/jquery.cookie.js"></script>
+    <script src="vendors/iCheck/icheck.min.js"></script>
+    <script src="vendors/iCheck/custom.min.js"></script>
+    <script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
+    <script src="js/jquery.menu.js"></script>
+    <script src="vendors/jquery-pace/pace.min.js"></script>
+    <script src="vendors/holder/holder.js"></script>
+    <script src="vendors/responsive-tabs/responsive-tabs.js"></script>
+    <!--LOADING SCRIPTS FOR PAGE-->
+    <script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $('.datepicker-filter').datepicker({
+            autoclose: true
+        });
+    </script>
+    <script src="js/index.js"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="js/main.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
+    <script src="js/ngStorage.js"></script>
+    <script src="js/CustomerPODetails.js"></script>
+    <!--<script src="js/adal.js"></script>
+    <script src="js/adal-angular.js"></script>-->
+    <!--<script src="js/AdalCommon.js"></script>-->
+    <script src="js/angular-animate.js"></script>
+    <script src="js/treasure-overlay-spinner.js"></script>
+    <!-- AI CORE JAVASCRIPT -->
+    <script src="/scripts/cloud.common.js"></script>
+</body>
+</html>

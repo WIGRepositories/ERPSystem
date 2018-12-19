@@ -204,12 +204,14 @@
     <Content Include="UI\Accounts.html" />
     <Content Include="UI\BalanceSheet.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
+    
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
-    <Content Include="UI\Content\PurchaseOrder.html" />
     <Content Include="UI\Content\WorkOrder.html" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
+    <Content Include="UI\CustomerPODetails.html" />
+    <Content Include="UI\CustomerPurchaseOrder.html" />
     <Content Include="UI\DataLoad.html" />
     <Content Include="UI\DataUploadTemplates\Assets.csv" />
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
@@ -260,6 +262,8 @@
     <Content Include="UI\js\charts-highchart-line.js" />
     <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
+    <Content Include="UI\js\CustomerPODetails.js" />
+    <Content Include="UI\js\CustomerPurchaseOrder.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryStatus.js" />
     <Content Include="UI\js\ItemDetails.js" />
@@ -711,6 +715,8 @@
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerPODetailsController.cs" />
+    <Compile Include="Controllers\CustomerPurchaseOrderController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />

@@ -9,7 +9,7 @@ namespace ERPSystem.Models
     public class RFQSupplier
     {
 
-        public string Client { get;set;}
+        public string Client { get; set; }
         public int ItemId { get; set; }
         public int RFQID { get; set; }
         public string Name { get; set; }
@@ -21,7 +21,7 @@ namespace ERPSystem.Models
         public string Suppliername { get; set; }
         public int supid { get; set; }
         public int Itemname { get; set; }
-       
+
     }
     public class PaySupplier
     {
@@ -29,7 +29,7 @@ namespace ERPSystem.Models
         public string email { get; set; }
         public string customername { get; set; }
         public string doc { get; set; }
-        public string des { get; set;}
+        public string des { get; set; }
     }
     public class Equip
     {
@@ -560,7 +560,7 @@ namespace ERPSystem.Models
         public string CPhoneNo { get; set; }
         public string CEmail { get; set; }
         public string CFax { get; set; }
-        public string RFQId { get; set;}
+        public string RFQId { get; set; }
     }
 
     public class AssetHierarchy
@@ -1223,8 +1223,8 @@ namespace ERPSystem.Models
 
         public int OrderConfirmationID { set; get; }
         public int DocID { set; get; }
-     }
-    
+    }
+
     public class PurchaseOrder
     {
         public string flag { set; get; }
@@ -1234,15 +1234,15 @@ namespace ERPSystem.Models
 
         public int RFQDetailID { set; get; }
 
-        
+
 
         public int SupplierID { set; get; }
 
 
         public string RFQEstimation { set; get; }
 
-        public DateTime ?Date { set; get; }
-        public DateTime ?Time { set; get; }
+        public DateTime? Date { set; get; }
+        public DateTime? Time { set; get; }
 
         public DateTime EstimatedStart { set; get; }
 
@@ -1259,17 +1259,17 @@ namespace ERPSystem.Models
         public int SupplierInvoiceID { set; get; }
         public int RFQID { set; get; }
         public int RFQDetailID { set; get; }
-        
+
         public int SupplierID { set; get; }
-        public DateTime ?Date { set; get; }
-        public DateTime ?Time { set; get; }
+        public DateTime? Date { set; get; }
+        public DateTime? Time { set; get; }
         public string CommType { set; get; }
         public int DocID { set; get; }
     }
-    
+
     public class ShippingOrder
     {
-   
+
         public string flag { set; get; }
         public int ShippingOrderID { set; get; }
 
@@ -1279,13 +1279,13 @@ namespace ERPSystem.Models
 
         public string ToAddress { set; get; }
 
-        public DateTime ?Date { set; get; }
+        public DateTime? Date { set; get; }
 
-        public DateTime ?Time { set; get; }
+        public DateTime? Time { set; get; }
 
-        public DateTime ?ArrivedOn { set; get; }
+        public DateTime? ArrivedOn { set; get; }
 
-        public DateTime ?DeliveredOn { set; get; }
+        public DateTime? DeliveredOn { set; get; }
         public int RFQID { set; get; }
 
         public int Active { set; get; }
@@ -1304,12 +1304,12 @@ namespace ERPSystem.Models
         public string RFQDetail { set; get; }
         public int RFQID { set; get; }
         public int Active { set; get; }
-        }
+    }
 
     public class Payment
 
     {
-   
+
         public string flag { set; get; }
         public int PaymentID { set; get; }
 
@@ -1319,13 +1319,13 @@ namespace ERPSystem.Models
 
         public double Amount { set; get; }
         public string ModeofPayment { set; get; }
-        public DateTime ?Date { set; get; }
-        public DateTime ?Time { set; get; }
+        public DateTime? Date { set; get; }
+        public DateTime? Time { set; get; }
         public string ReceiptDoc { set; get; }
         public string PaymentVoucher { set; get; }
         public string Status { set; get; }
     }
-    
+
     public class QuoteRequest
 
     {
@@ -1337,7 +1337,7 @@ namespace ERPSystem.Models
         public string SentTo { set; get; }
 
         public string IsReplyReceived { set; get; }
-        public DateTime  ?ReceivedOn { set; get; }
+        public DateTime? ReceivedOn { set; get; }
         public int RFQID { set; get; }
         public int SupplierID { set; get; }
         public double UnitPrice { set; get; }
@@ -1427,7 +1427,63 @@ namespace ERPSystem.Models
         public string flag { get; set; }
         public string Email { get; set; }
         public int Active { get; set; }
-       
+
     }
 
+
+    public class CustmoerPurchase
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int RFQId { get; set; }
+        public int RFQConfirmationId { get; set; }
+
+        public int PONum { get; set; }
+
+        public DateTime? PODate { get; set; }
+
+        public int SupplierId { get; set; }
+
+        public DateTime? PoSenton { get; set; }
+        public DateTime? isPOSent { get; set; }
+        public int PODocId { get; set; }
+
+        public int ShippingMethod { get; set; }
+
+        public int ShippingTerms { get; set; }
+
+        public DateTime? DeliveryDate { get; set; }
+
+        public decimal POSubTotal { get; set; }
+
+        public decimal POCharges { get; set; }
+        public decimal PODiscounts { get; set; }
+        public decimal POTotal { get; set; }
+
+    }
+    public class CustomerPODetails
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int POId { get; set; }
+        public int RFQItemId { get; set; }
+
+        public int NoOfUnits { get; set; }
+
+        public decimal DealerUnitPrice { get; set; }
+
+        public decimal Dealercharges { get; set; }
+
+        public decimal Dealerdiscounts { get; set; }
+        public decimal subtotal { get; set; }
+        public decimal SupplierUnitPrice { get; set; }
+
+        public decimal SupplierDiscount { get; set; }
+
+        public decimal SupplierCharges { get; set; }
+
+        public decimal Othercharges { get; set; }
+
+        public decimal total { get; set; }
+    }
 }
