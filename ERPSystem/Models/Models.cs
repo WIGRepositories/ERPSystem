@@ -21,7 +21,11 @@ namespace ERPSystem.Models
         public string Suppliername { get; set; }
         public int supid { get; set; }
         public int Itemname { get; set; }
-       
+        public int NoofUnits { get; set; }
+        public int FinaUnitPrice { get; set; }
+        public int FinalDiscount { get; set; }
+        public int FinalCharges { get; set; }
+        public int FinalSubTotal { get; set; }
     }
     public class PaySupplier
     {
@@ -45,7 +49,7 @@ namespace ERPSystem.Models
 
         public int tax { get; set; }
         public int dis { get; set; }
-
+        public string Name { get; set; }
 
     }
     public class DeliveryTicket
@@ -838,6 +842,9 @@ namespace ERPSystem.Models
         public string Email { get; set; }
         public int Active { get; set; }
         public string flag { get; set; }
+        
+        public string shippingaddress { get; set; }
+        public string billingaddress { get; set; }
 
 
     }

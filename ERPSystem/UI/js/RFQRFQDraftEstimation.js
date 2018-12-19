@@ -33,11 +33,24 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         $http.get('/api/Types/TypesByGroupId?groupid=3').then(function (res, data) {
             $scope.jobStatus = res.data;
+            if ($scope.jobStatus != -null && $scope.rfqlist != null) {
+                for (var i = 0; i < $scope.jobStatus.length; i++) {
+                    if ($scope.rfqlist[0].StatusId = $scope.jobStatus[i].Id) {
+                        $scope.s = $scope.jobStatus[i];
+                        break;
+                    }
+
+                }
+            }
         });
 
-        $http.get('/api/RFQ/GetRFQ?statusid=1&custid=1').then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQwithoutstatus').then(function (res, data) {
             $scope.rfqlist = res.data;
-            $scope.l = $scope.rfqlist[0];
+            if ($scope.rfqlist != null) {
+                $scope.l = $scope.rfqlist[0];
+                $scope.GetJobEquipment();
+            }
+
         });
 
         //$http.get('/api/AssetModel/GetAssetModels?locId=-1').then(function (res, data) {
@@ -47,13 +60,11 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         $scope.GetJobEquipment();
     }    
     $scope.GetJobEquipment = function () {
-        //var mid = ($scope.s == null) ? -1 : $scope.s.Id;
-        //var lid = ($scope.l == null) ? -1 : $scope.l.id;
+
+        var lid = ($scope.l == null) ? -1 : $scope.l.ID;
         //var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
-
         var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
-
-        $http.get('/api/RFQ/GetItemsForRFQ?modelId=-1&rfqId=-1').then(function (res, data) {
+        $http.get('/api/RFQ/GetItemsForRFQ?modelId=' + modelId + '&rfqId=' + lid).then(function (res, data) {
             $scope.JobEquipment = res.data;
             //$rootScope.spinner.off();
             $("#jobequipment-content").show();

@@ -217,7 +217,8 @@ namespace ERPSystem.Controllers
                 newdr["DealerDiscount"] = dr["DealerDiscount"];
                 newdr["DealerCharges"] = dr["DealerCharges"];
                 newdr["DealerSubTotal"] = dr["DealerSubTotal"];
-               
+                newdr["RFQAUTOID"] = dr["RFQAUTOID"];
+
                 finalTable.Rows.Add(newdr);
                 FillDataTable1(finalTable, ds, (dr["ID"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["ID"]));
             }
@@ -841,16 +842,16 @@ namespace ERPSystem.Controllers
                 foreach (RFQSupplier m in list)
                 {
 
-                    SqlParameter sid = new SqlParameter("@Sname", SqlDbType.Int);
+                    SqlParameter sid = new SqlParameter("@SId", SqlDbType.Int);
                     sid.Value = m.Id;
                     cmd.Parameters.Add(sid);
 
 
-                    SqlParameter bb = new SqlParameter("@rfqcode", SqlDbType.VarChar,50);
+                    SqlParameter bb = new SqlParameter("@RFQID", SqlDbType.Int);
                     bb.Value = m.RFQID;
                     cmd.Parameters.Add(bb);
 
-                    SqlParameter b = new SqlParameter("@Itemname", SqlDbType.Int);
+                    SqlParameter b = new SqlParameter("@ItemId", SqlDbType.Int);
                     b.Value = m.ItemId;
                     cmd.Parameters.Add(b);
 
@@ -883,6 +884,7 @@ namespace ERPSystem.Controllers
             }
            
         }
+
 
         [HttpPost]
         [Route("api/RFQ/SaveRFQDrafEstimation")]
@@ -951,6 +953,47 @@ namespace ERPSystem.Controllers
                 string str = ex.Message;
                 //Logger.Error(ex, LogCategory.WebApp, "An error occured in SaveCustomers() procedure", LogLevel.Error, null);
                 // return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            }
+
+        }
+
+        [HttpPost]
+        [Route("api/RFQ/SaveCustomerEstimation")]
+        public void SaveCustomerEstimation(List<RFQSupplier> list)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsUpdDelCustomerEstimation";
+                cmd.Connection = conn;
+                conn.Open();
+                foreach (RFQSupplier m in list)
+                {
+                    cmd.Parameters.Add(new SqlParameter("@RFQId", SqlDbType.Int)).Value=m.RFQID;
+                    cmd.Parameters.Add(new SqlParameter("@RFQItemId", SqlDbType.Int)).Value =m.ItemId;
+                    cmd.Parameters.Add(new SqlParameter("@RFQSupplierId", SqlDbType.Int)).Value =m.supid;
+                    cmd.Parameters.Add(new SqlParameter("@NoOfUnits", SqlDbType.Int)).Value =m.NoofUnits;
+                    cmd.Parameters.Add(new SqlParameter("@FinaUnitPrice", SqlDbType.Int)).Value =m.FinaUnitPrice;
+                    cmd.Parameters.Add(new SqlParameter("@FinalDiscount", SqlDbType.Int)).Value =m.FinalDiscount;
+                    cmd.Parameters.Add(new SqlParameter("@FinalCharges", SqlDbType.Int)).Value =m.FinalCharges;
+                    cmd.Parameters.Add(new SqlParameter("@FinalSubTotal", SqlDbType.Int)).Value =m.FinalSubTotal;
+                    cmd.Parameters.Add(new SqlParameter("@Subtotal", SqlDbType.Int)).Value =(m.NoofUnits* m.FinaUnitPrice);
+                    cmd.Parameters.Add(new SqlParameter("@flag", SqlDbType.VarChar)).Value =m.flag;
+                    cmd.ExecuteScalar();
+                    cmd.Parameters.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (conn != null && conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                string str = ex.Message;
             }
 
         }

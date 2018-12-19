@@ -17,6 +17,7 @@ using System.Web.Http;
 using System.IO;
 using HtmlAgilityPack;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ERPSystem.Controllers
 {
@@ -125,7 +126,7 @@ namespace ERPSystem.Controllers
                 cellj1.AddElement(new Paragraph("" + tt));
 
                 PdfPCell cellj2 = new PdfPCell();
-                cellj2.AddElement(new Paragraph(m.ItemName));
+                cellj2.AddElement(new Paragraph(m.Name));
 
                 PdfPCell cellj3 = new PdfPCell();
                 cellj3.AddElement(new Paragraph("" + m.qty));
@@ -214,11 +215,11 @@ namespace ERPSystem.Controllers
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.ItemName);
+                //    itemsList.Append(m.Name);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
-                //    itemsList.Append(m.Description);
+                //    itemsList.Append(m.des);
                 //    itemsList.Append("</td>");
 
                 //    itemsList.Append("<td>");
@@ -276,6 +277,147 @@ namespace ERPSystem.Controllers
             #endregion send email with details
 
         }
+
+
+        //        table2.AddCell(cellj1);
+        //        Table.AddCell(cellj2);
+        //        table2.AddCell(cellj3);
+        //        table2.AddCell(cellj4);
+        //        table2.AddCell(cellj5);
+
+        //        itemscost1= m.Subtotal;
+        //        j++;
+        //        tt++;
+        //    }
+
+        //    PdfPCell cell2A = new PdfPCell(table2);
+        //    cell2A.Colspan = 2;
+
+        //    table1.AddCell(cell2A);
+
+        //    PdfPCell cell41 = new PdfPCell();
+        //    cell41.Border = 0;
+
+        //    //cell41.AddElement(new Paragraph("Name : " + "ABC"));
+
+        //    //cell41.AddElement(new Paragraph("Advance : " + "advance"));
+
+        //    cell41.VerticalAlignment = Element.ALIGN_LEFT;
+
+        //    PdfPCell cell42 = new PdfPCell();
+        //    cell42.AddElement(new Paragraph("Total = " + itemscost1));
+
+        //    //cell42.AddElement(new Paragraph("Balance : " + "3993"));
+
+        //    cell42.HorizontalAlignment = Element.ALIGN_RIGHT;
+
+
+        //    table1.AddCell(cell41);
+
+        //    table1.AddCell(cell42);
+
+
+        //    doc.Add(table8);
+        //    doc.Add(table1);
+
+        //    doc.Close();
+
+        //    #region send email with details
+
+        //    try
+        //    {
+
+
+        //        MailMessage mail = new MailMessage();
+        //        string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+        //        string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+        //        string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+        //        string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+        //        string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+        //        SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+        //        mail.From = new MailAddress(fromaddress);
+        //        mail.To.Add(emailaddress);
+        //        mail.Subject = "Payment Invoice:" + customer;
+        //        mail.IsBodyHtml = true;
+        //        mail.Attachments.Add(new Attachment("C:\\Program Files (x86)\\IIS Express\\" + r + ".pdf"));
+        //        StringBuilder itemsList = new StringBuilder();
+
+        //        //int cnt = 1;int itemscost=0;
+
+
+        //        //foreach (Equip m in list)
+        //        //{
+        //        //    itemsList.Append("<tr>");
+        //        //    itemsList.Append("<td>");
+        //        //    itemsList.Append(cnt++);
+        //        //    itemsList.Append("</td>");
+
+        //        //    itemsList.Append("<td>");
+        //        //    itemsList.Append(m.ItemName);
+        //        //    itemsList.Append("</td>");
+
+        //        //    itemsList.Append("<td>");
+        //        //    itemsList.Append(m.Description);
+        //        //    itemsList.Append("</td>");
+
+        //        //    itemsList.Append("<td>");
+        //        //    itemsList.Append(m.qty);
+        //        //    itemsList.Append("</td>");
+
+        //        //    itemsList.Append("<td>");
+        //        //    itemsList.Append(m.perunit);
+        //        //    itemsList.Append("</td>");
+        //        //    itemsList.Append("</tr>");
+
+        //        //    itemsList.Append("<td>");
+        //        //    itemsList.Append((m.qty * m.perunit));
+        //        //    itemsList.Append("</td>");
+        //        //    itemsList.Append("</tr>");
+
+        //        //    itemscost += (m.qty * m.perunit);
+        //        //}
+
+        //        string verifcodeMail = @"<table>
+        //                                <tr>
+        //                                    <td>
+        //                                        <h3>Tender & sales order management demo</h3>
+        //                                        <h4> Payment Invoice</h4>
+        //                                        <span>Please find the attachment of Payment Invoice</span>
+        //                                           <p> Thank You,</p>
+        //                                            <p> Sales Manager of  TSOM,</p>
+        //                                        </td>
+        //                                    </tr>
+        //                                </table>";
+
+
+
+        //        mail.Body = verifcodeMail;
+        //        //SmtpServer.Port = 465;
+        //        //SmtpServer.Port = 587;
+        //        SmtpServer.Port = Convert.ToInt32(port);
+        //        SmtpServer.UseDefaultCredentials = false;
+
+        //        SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+        //        SmtpServer.EnableSsl = true;
+
+        //        SmtpServer.Send(mail);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw ex;
+
+        //    }
+
+        //    //update if email is sent
+
+        //    #endregion send email with details
+
+        //}
 
 
         [HttpGet]
@@ -824,6 +966,8 @@ namespace ERPSystem.Controllers
         public void InvoicePdf(List<Equip> list)
         {
             List<Equip> dd = new List<Equip>();
+
+            //GeneratePDF(list);
             string emailaddress = list[0].Email;
             string customer = list[0].customerid;
             var r = DateTime.Now.ToString("yyyyMMddTHHmmss");
@@ -998,6 +1142,7 @@ namespace ERPSystem.Controllers
                 mail.Subject = "Payment Invoice:" + customer;
                 mail.IsBodyHtml = true;
                 mail.Attachments.Add(new Attachment("C:\\Program Files (x86)\\IIS Express\\" + r + ".pdf"));
+              
                 StringBuilder itemsList = new StringBuilder();
 
                 //int cnt = 1;int itemscost=0;
@@ -1400,6 +1545,7 @@ namespace ERPSystem.Controllers
 
         }
 
+
         // for Send Suppliers
         [HttpPost]
         [Route("api/ERPAsse/SendCustomerConfirmationEmail")]
@@ -1455,6 +1601,522 @@ namespace ERPSystem.Controllers
                 SmtpServer.Send(mail);
 
             }
+            catch (Exception ex)
+            {
+                //throw ex;
+
+            }
+
+            //update if email is sent
+
+            #endregion send email with details
+
+        }
+
+
+
+        // for final Quote of Customer
+        [HttpPost]
+        [Route("api/ERPAsset/PaySupplierInvoicePdftest")]
+        public void PaySupplierInvoicePdftest(List<Equip> list)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                StringBuilder sb = new StringBuilder();
+                HtmlDocument htmlDocument = new HtmlDocument();
+                byte[] bytes = null;
+                htmlDocument.Load(@"" + HttpContext.Current.Server.MapPath("/UI/Content/CustomerQuote.html"));
+                //relplace all column values
+
+             
+                    HtmlNode tblBody = htmlDocument.GetElementbyId("items");
+
+                int stotal = 0;
+                foreach (Equip m in list)
+                {
+                    tblBody.InnerHtml += "<tr style=\"font-family:Arial;font-size:12px;\"><td >" + m.qty+ "</td><td>" + m.ItemName + "</td><td>" + m.Description + "</td><td>" + m.perunit + "</td><td>" + (m.qty*m.perunit) + "</td >";
+                    stotal += (m.qty*m.perunit);
+                }
+                var r = DateTime.Now.ToString("dd-MM-yyyy");
+                if (stotal != 0) {
+               
+                    string pattern = @"\{\{subtotal\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{total\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{taxes\}\}";
+                    
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern,  "Nill");
+                    pattern = @"\{\{discounts\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{dateofissue\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, r+"");
+                }
+
+
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 15f, 10f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+
+              //  writer.PageEvent = new ityextEvents();
+                // open the document for writing  
+                pdfDoc.Open();
+                // read html data to StringReader  
+                using (var html = new StringReader(htmlDocument.DocumentNode.InnerHtml.ToString()))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, html);
+                }
+
+                // close document  
+                pdfDoc.Close();
+
+                bytes = memoryStream.ToArray();
+                memoryStream.Close();
+                string emailaddress = list[0].Email;
+                string customer = list[0].customerid;
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Confirmation Receipt:" + customer;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment(new MemoryStream(bytes), "Confirmation Receipt.pdf"));
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4> Confirmation Receipt</h4>
+                                                <span>Please find the attachment of Items Confirmation Receipt</span>
+                                                   <p> Thank You,</p>
+                                                    <p> Sales Admin,</p>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+        }
+
+
+        // for Supplier Purchase Order 
+        [HttpPost]
+        [Route("api/ERPAsset/PurchaseOrderPdf")]
+        public void PurchaseOrderPdf(List<Equip> list)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                StringBuilder sb = new StringBuilder();
+                HtmlDocument htmlDocument = new HtmlDocument();
+                byte[] bytes = null;
+                htmlDocument.Load(@"" + HttpContext.Current.Server.MapPath("/UI/Content/PurchaseOrder1.html"));
+                //relplace all column values
+
+
+                HtmlNode tblBody = htmlDocument.GetElementbyId("items");
+
+                int stotal = 0;
+                foreach (Equip m in list)
+                {
+                    tblBody.InnerHtml += "<tr style=\"font-family:Arial;font-size:12px;\"><td >" + m.qty + "</td><td>" + m.ItemName + "</td><td>" + m.Description + "</td><td>" + m.perunit + "</td><td>" + (m.qty * m.perunit) + "</td >";
+                    stotal += (m.qty * m.perunit);
+                }
+                var r = DateTime.Now.ToString("dd-MM-yyyy");
+                if (stotal != 0)
+                {
+
+                    string pattern = @"\{\{subtotal\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{total\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{taxes\}\}";
+
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{discounts\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{dateofissue\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, r + "");
+                }
+
+
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 15f, 10f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+
+                //  writer.PageEvent = new ityextEvents();
+                // open the document for writing  
+                pdfDoc.Open();
+                // read html data to StringReader  
+                using (var html = new StringReader(htmlDocument.DocumentNode.InnerHtml.ToString()))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, html);
+                }
+
+                // close document  
+                pdfDoc.Close();
+
+                bytes = memoryStream.ToArray();
+                memoryStream.Close();
+                string emailaddress = list[0].Email;
+                string customer = list[0].customerid;
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Purchase Order Receipt:" + customer;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment(new MemoryStream(bytes), "Purchase Order.pdf"));
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4>Hi,</h4>
+                                                <span>Please find the attachment of Items Purchase Order.</span>
+                                                   <p> Thank You,</p>
+                                                    <p> Sales Admin,</p>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+        }
+
+        // send Delivery note to customer 
+        [HttpPost]
+        [Route("api/ERPAsset/DeliveryNoteCustomer")]
+        public void DeliveryNoteCustomer(List<Equip> list)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                StringBuilder sb = new StringBuilder();
+                HtmlDocument htmlDocument = new HtmlDocument();
+                byte[] bytes = null;
+                htmlDocument.Load(@"" + HttpContext.Current.Server.MapPath("/UI/Content/DeliveryNote.html"));
+                //relplace all column values
+
+
+                HtmlNode tblBody = htmlDocument.GetElementbyId("items");
+
+                int stotal = 0;
+                foreach (Equip m in list)
+                {
+                    tblBody.InnerHtml += "<tr style=\"font-family:Arial;font-size:12px;\"><td>" + m.ItemName + "</td><td>" + m.Description + "</td><td>" + m.qty + "</td><td>" +"Nill"+ "</td><td>" + (m.qty * m.perunit) + "</td >";
+                    stotal += (m.qty * m.perunit);
+                }
+                var r = DateTime.Now.ToString("dd-MM-yyyy");
+                if (stotal != 0)
+                {
+
+                    string pattern = @"\{\{subtotal\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{total\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{taxes\}\}";
+
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{discounts\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{dateofissue\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, r + "");
+                }
+
+
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 15f, 10f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+
+                //  writer.PageEvent = new ityextEvents();
+                // open the document for writing  
+                pdfDoc.Open();
+                // read html data to StringReader  
+                using (var html = new StringReader(htmlDocument.DocumentNode.InnerHtml.ToString()))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, html);
+                }
+
+                // close document  
+                pdfDoc.Close();
+
+                bytes = memoryStream.ToArray();
+                memoryStream.Close();
+                string emailaddress = list[0].Email;
+                string customer = list[0].customerid;
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Delivery Note :" + customer;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment(new MemoryStream(bytes), "Delivery Note.pdf"));
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4>Hi,</h4>
+                                                <span>Please find the attachment of Items Deliverty Note.</span>
+                                                   <p> Thank You,</p>
+                                                    <p> Sales Admin,</p>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+        }
+
+
+        // for final Quote of Customer
+        [HttpPost]
+        [Route("api/ERPAsse/sendInvoiceCustomerTest")]
+        public void sendInvoiceCustomerTest(List<Equip> list)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                StringBuilder sb = new StringBuilder();
+                HtmlDocument htmlDocument = new HtmlDocument();
+                byte[] bytes = null;
+                htmlDocument.Load(@"" + HttpContext.Current.Server.MapPath("/UI/Content/Invoice.html"));
+                //relplace all column values
+
+
+                HtmlNode tblBody = htmlDocument.GetElementbyId("items");
+
+                int stotal = 0;
+                foreach (Equip m in list)
+                {
+                    tblBody.InnerHtml += "<tr style=\"font-family:Arial;font-size:12px;\"><td >" + m.qty + "</td><td>" + m.ItemName + "</td><td>" + m.Description + "</td><td>" + m.perunit + "</td><td>" + (m.qty * m.perunit) + "</td >";
+                    stotal += (m.qty * m.perunit);
+                }
+                var r = DateTime.Now.ToString("dd-MM-yyyy");
+                if (stotal != 0)
+                {
+
+                    string pattern = @"\{\{subtotal\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{total\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, stotal + "");
+                    pattern = @"\{\{taxes\}\}";
+
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{discounts\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, "Nill");
+                    pattern = @"\{\{dateofissue\}\}";
+                    htmlDocument.DocumentNode.InnerHtml = Regex.Replace(htmlDocument.DocumentNode.InnerHtml, pattern, r + "");
+                }
+
+
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 15f, 10f);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, memoryStream);
+
+                //  writer.PageEvent = new ityextEvents();
+                // open the document for writing  
+                pdfDoc.Open();
+                // read html data to StringReader  
+                using (var html = new StringReader(htmlDocument.DocumentNode.InnerHtml.ToString()))
+                {
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, html);
+                }
+
+                // close document  
+                pdfDoc.Close();
+
+                bytes = memoryStream.ToArray();
+                memoryStream.Close();
+                string emailaddress = list[0].Email;
+                string customer = list[0].customerid;
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Payment Invoice" + customer;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment(new MemoryStream(bytes), "Confirmation Receipt.pdf"));
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4>Invoice</h4>
+                                                <span>Please find the attachment of Invoice Receipt</span>
+                                                   <p> Thank You,</p>
+                                                    <p> Sales Admin,</p>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+            }
+        }
+
+
+        [HttpPost]
+        [Route("api/ERPAsset/MultipleSupplierListsend")]
+        public void MultipleSupplierListsend(List<Equip> list)
+        {
+
+            #region send email with details
+            
+                try
+            {
+                foreach (Equip m in list)
+                {
+                    string emailaddress = m.Email;
+                string customer = m.Suppiername;
+
+                MailMessage mail = new MailMessage();
+                string emailserver = System.Configuration.ConfigurationManager.AppSettings["emailserver"].ToString();
+
+                string eusername = System.Configuration.ConfigurationManager.AppSettings["username"].ToString();
+                string pwd = System.Configuration.ConfigurationManager.AppSettings["password"].ToString();
+                string fromaddress = System.Configuration.ConfigurationManager.AppSettings["fromaddress"].ToString();
+                string port = System.Configuration.ConfigurationManager.AppSettings["port"].ToString();
+
+                SmtpClient SmtpServer = new SmtpClient(emailserver);
+
+                mail.From = new MailAddress(fromaddress);
+                mail.To.Add(emailaddress);
+                mail.Subject = "Pricing Enquiry from customer:" + customer;
+                mail.IsBodyHtml = true;
+
+                StringBuilder itemsList = new StringBuilder();
+                DateTime dtime = DateTime.Now;
+                dtime.AddDays(5);
+
+                    int cnt = 1;
+                
+                    itemsList.Append("<tr>");
+                    itemsList.Append("<td>");
+                    itemsList.Append(cnt++);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.ItemName);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.Description);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(m.qty);
+                    itemsList.Append("</td>");
+
+                    itemsList.Append("<td>");
+                    itemsList.Append(dtime.ToShortDateString());
+                    itemsList.Append("</td>");
+                    itemsList.Append("</tr>");
+                
+                string verifcodeMail = @"<table>
+                                        <tr>
+                                            <td>
+                                                <h3>Tender & sales order management demo</h3>
+                                                <h4> Pricing Enquiry</h4>
+                                                <span>Please get back to us with the pricing quotes for below items</span>
+                                                <table border=" + 1 + @">
+                                                    <tr>
+                                                        <td>
+                                                            S.No
+                                                        </td>
+                                                        <td>Item name</td>
+                                                        <td>Item description</td>
+                                                        <td>No.Of Units</td>
+                                                        <td>Delivery Date</td>
+                                                    </tr>" + itemsList.ToString() + @"</table>
+                                                </td>
+                                            </tr>
+                                        </table>";
+
+
+                mail.Body = verifcodeMail;
+                //SmtpServer.Port = 465;
+                //SmtpServer.Port = 587;
+                SmtpServer.Port = Convert.ToInt32(port);
+                SmtpServer.UseDefaultCredentials = false;
+
+                SmtpServer.Credentials = new System.Net.NetworkCredential(eusername, pwd);
+
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                }
+            }
+               
             catch (Exception ex)
             {
                 //throw ex;

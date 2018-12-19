@@ -78,7 +78,7 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 6: Invoice request to Supplier</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Invoice Request to Supplier</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-cutomerinvoice" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Invoice Request to Supplier</button></div>
                         </div>
                     </div>
 
@@ -92,14 +92,14 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 8: Send Suppliers PO</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers PO</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-purchaseorder" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers PO</button></div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 9: Generate Delivery Note</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Generate Delivery Note</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-Deliverynote" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Generate Delivery Note</button></div>
                         </div>
                     </div>
 
@@ -286,7 +286,7 @@
                             </div>
 
                             <div class="row col-md-12" style="margin-top:10px;">
-                                <textarea ng-model="emailcontent" ng-init="Please consider the confirmation and proceed with the order" rows="3" style="width:100%;"></textarea>
+                                <textarea ng-model="emailcontent" rows="3" style="width:100%;"></textarea>
                             </div>
                             <div class="row" style="margin-top:10px;">
                                 <button class="btn btn-primary form-control" style="width:100%;height:40px;margin-top:10px;" ng-click="SendCustomerConfirmationEmail()">Send Customer Confirmation Email</button>
@@ -512,7 +512,7 @@
                                         <tr ng-repeat="a in Equipement">
                                             <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)" /></td>
                                             <td style="text-align:center;">
-                                                {{a.Name}}
+                                                {{a.ItemName}}
                                             </td>
                                             <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>
                                             <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="perunit=0" ng-model="a.perunit" min="0" /></td>
@@ -596,6 +596,210 @@
         </div>
     </div>
 
+
+    <!--Generate and send supplier purchar order-->
+    <div id="Modal-header-purchaseorder" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Send Suppliers Purchase Order</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                            Supplier:<select ng-options="sup.Name for sup in Suppliers track by sup.id" ng-model="Cust" style="width:60%" ng-change="setemail(Cust);">
+                                                            <option value="">All</option>
+                                                        </select>
+                                </div>
+                            </div>
+
+                            <!--<div class="row" style="margin-top:5px;">
+
+                                <input type="file" file-reader="fileContent" style="width:100%" />
+                            </div>-->
+                            <div class="row" style="margin-top:10px;">
+
+                                <table class="table table-bordered" style="background-color: white;">
+                                    <thead>
+                                        <tr style="height:50px">
+                                            <th style="text-align:center;">Selected Item</th>
+                                            <th style="text-align:center;">Item</th>
+                                            <th style="text-align:center;">Quantity</th>
+                                            <th style="text-align:center;">Per Unit Price</th>
+                                            <th style="text-align:center;">Discounts</th>
+                                            <th style="text-align:center;">Sub Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="a in Equipement">
+                                            <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)" /></td>
+                                            <td style="text-align:center;">
+                                                {{a.ItemName}}
+                                            </td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="perunit=0" ng-model="a.perunit" min="0" /></td>
+                                            <td style="text-align:center;"></td>
+                                            <td style="text-align:center;">{{a.qty*a.perunit}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr style="height:50px">
+
+                                            <td colspan="6" align="center"><button class="btn btn-primary form-control" style="width:100%;height:40px;" ng-click="SendPurchaseOrder();">Send Enquiry</button></td>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Generate and send Delivery Note-->
+    <div id="Modal-header-Deliverynote" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Send Delivery Note</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                    Customer:<select ng-options="Cust1.Name for Cust1 in Customers track by Cust1.id" ng-model="Cust" style="width:60%" ng-change="setemail(Cust);">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--<div class="row" style="margin-top:5px;">
+
+                                <input type="file" file-reader="fileContent" style="width:100%" />
+                            </div>-->
+                            <div class="row" style="margin-top:10px;">
+
+                                <table class="table table-bordered" style="background-color: white;">
+                                    <thead>
+                                        <tr style="height:50px">
+                                            <th style="text-align:center;">Selected Item</th>
+                                            <th style="text-align:center;">Item</th>
+                                            <th style="text-align:center;">ORDERED</th>
+                                            <th style="text-align:center;">Delivered</th>
+                                            <th style="text-align:center;">Out Standing</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="a in Equipement">
+                                            <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)" /></td>
+                                            <td style="text-align:center;">
+                                                {{a.ItemName}}
+                                            </td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="perunit=0" ng-model="a.perunit" min="0" /></td>
+                                            <!--<td style="text-align:center;"></td>-->
+                                            <td style="text-align:center;"></td>
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr style="height:50px">
+
+                                            <td colspan="6" align="center"><button class="btn btn-primary form-control" style="width:100%;height:40px;" ng-click="sendDeliveryNote();">Send Delivery Note</button></td>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--send invoice to customer-->
+    <div id="Modal-header-cutomerinvoice" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Send Suppliers Invoice</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                    Supplier:<select ng-options="sup.Name for sup in Suppliers track by sup.id" ng-model="Cust" style="width:60%" ng-change="setemail(Cust);">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!--<div class="row" style="margin-top:5px;">
+
+                                <input type="file" file-reader="fileContent" style="width:100%" />
+                            </div>-->
+                            <div class="row" style="margin-top:10px;">
+
+                                <table class="table table-bordered" style="background-color: white;">
+                                    <thead>
+                                        <tr style="height:50px">
+                                            <th style="text-align:center;">Selected Item</th>
+                                            <th style="text-align:center;">Item</th>
+                                            <th style="text-align:center;">Quantity</th>
+                                            <th style="text-align:center;">Per Unit Price</th>
+                                            <th style="text-align:center;">Discounts</th>
+                                            <th style="text-align:center;">Sub Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="a in Equipement">
+                                            <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="SetData(a)" /></td>
+                                            <td style="text-align:center;">
+                                                {{a.ItemName}}
+                                            </td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0" /></td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="perunit=0" ng-model="a.perunit" min="0" /></td>
+                                            <td style="text-align:center;"></td>
+                                            <td style="text-align:center;">{{a.qty*a.perunit}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr style="height:50px">
+
+                                            <td colspan="6" align="center"><button class="btn btn-primary form-control" style="width:100%;height:40px;" ng-click="sendInvoicustomer();">Send Invoice</button></td>
+
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <script src="UI/js/jquery-1.10.2.min.js"></script>
         <script src="UI/js/jquery-migrate-1.2.1.min.js"></script>
         <script src="UI/js/jquery-ui.js"></script>

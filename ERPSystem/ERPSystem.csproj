@@ -200,13 +200,20 @@
     <Content Include="Login.html" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="scripts\DBScripts_SP.sql" />
+    <Content Include="scripts\DBScripts_Tables.sql" />
+    <Content Include="scripts\Init.sql" />
     <Content Include="Testing.html" />
     <Content Include="UI\Accounts.html" />
     <Content Include="UI\BalanceSheet.html" />
+    <Content Include="UI\Content\CustomerQuote.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
+    <Content Include="UI\Content\DeliveryNote.html" />
+    <Content Include="UI\Content\Invoice.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
     <Content Include="UI\Content\PurchaseOrder.html" />
+    <Content Include="UI\Content\PurchaseOrder1.html" />
     <Content Include="UI\Content\WorkOrder.html" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
@@ -215,6 +222,7 @@
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
     <Content Include="UI\DeliveryNote.html" />
+    
     <Content Include="UI\images\ERPSystem.jpg" />
     <Content Include="UI\images\ERPSystemBG.jpg" />
     <Content Include="UI\images\logo.png" />
