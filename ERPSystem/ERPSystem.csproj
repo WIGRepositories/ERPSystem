@@ -737,6 +737,7 @@
     <Compile Include="Controllers\DeliveryNoteController.cs" />
     <Compile Include="Controllers\DeliveryNoteDetailsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InventoryStatusController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -803,7 +804,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58081</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
