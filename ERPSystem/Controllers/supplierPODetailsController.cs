@@ -8,13 +8,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using ERPSystem.Models;
+
 namespace ERPSystem.Controllers
 {
-    public class CustomerPODetailsController : ApiController
+    public class supplierPODetailsController : ApiController
     {
         [HttpGet]
-        [Route("api/CustomerPODetail/getdata")]
-        public DataTable CustomerPOD()
+        [Route("api/supplierPODetails/getdata")]
+        public DataTable supplierPODetails()
         {
 
             DataTable dt = new DataTable();
@@ -25,7 +26,7 @@ namespace ERPSystem.Controllers
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "GetCustomerPODetails";
+                cmd.CommandText = "GetsupplierPODetails";
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
@@ -39,9 +40,10 @@ namespace ERPSystem.Controllers
 
         }
 
+
         [HttpPost]
-        [Route("api/CustomerPODetails/savedetails")]
-        public DataTable CustomerPODetails(CustomerPODetails A)
+        [Route("api/supplierPODetails/savedetails")]
+        public DataTable supplierPODetails(supplierPODetails A)
         {
             DataTable dt = new DataTable();
 
@@ -53,7 +55,7 @@ namespace ERPSystem.Controllers
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "InsUpdDelCustomerPODetails";
+                cmd.CommandText = "InsUpdDelsupplierPODetails";
 
 
 
@@ -73,17 +75,17 @@ namespace ERPSystem.Controllers
                 sd.Value = A.NoOfUnits;
                 cmd.Parameters.Add(sd);
 
-                SqlParameter dam = new SqlParameter("@DealerUnitPrice", SqlDbType.Decimal);
-                dam.Value = A.DealerUnitPrice;
+                SqlParameter dam = new SqlParameter("@UnitPrice", SqlDbType.Decimal);
+                dam.Value = A.UnitPrice;
                 cmd.Parameters.Add(dam);
 
-                SqlParameter ti = new SqlParameter("@Dealercharges", SqlDbType.Decimal);
-                ti.Value = A.Dealercharges;
+                SqlParameter ti = new SqlParameter("@charges", SqlDbType.Decimal);
+                ti.Value = A.charges;
                 cmd.Parameters.Add(ti);
 
 
-                SqlParameter es = new SqlParameter("@Dealerdiscounts", SqlDbType.Decimal);
-                es.Value = A.Dealerdiscounts;
+                SqlParameter es = new SqlParameter("@discounts", SqlDbType.Decimal);
+                es.Value = A.discounts;
                 cmd.Parameters.Add(es);
 
 
@@ -92,29 +94,29 @@ namespace ERPSystem.Controllers
                 ac.Value = A.subtotal;
                 cmd.Parameters.Add(ac);
 
-                SqlParameter qi = new SqlParameter("@SupplierUnitPrice", SqlDbType.Decimal);
-                qi.Value = A.SupplierUnitPrice;
+                SqlParameter qi = new SqlParameter("@Total", SqlDbType.Decimal);
+                qi.Value = A.Total;
                 cmd.Parameters.Add(qi);
 
 
 
-                SqlParameter fl = new SqlParameter("@SupplierDiscount", SqlDbType.Decimal);
-                fl.Value = A.SupplierDiscount;
+                SqlParameter fl = new SqlParameter("@flag", SqlDbType.VarChar);
+                fl.Value = A.flag;
                 cmd.Parameters.Add(fl);
 
-                SqlParameter ship = new SqlParameter("@SupplierCharges", SqlDbType.Decimal);
-                ship.Value = A.SupplierCharges;
-                cmd.Parameters.Add(ship);
+                //SqlParameter ship = new SqlParameter("@ShippingTerms", SqlDbType.Int);
+                //ship.Value = A.ShippingTerms;
+                //cmd.Parameters.Add(ship);
 
 
 
-                SqlParameter de = new SqlParameter("@Othercharges", SqlDbType.Decimal);
-                de.Value = A.Othercharges;
-                cmd.Parameters.Add(de);
+                //SqlParameter de = new SqlParameter("@DeliveryDate", SqlDbType.Date);
+                //de.Value = A.DeliveryDate;
+                //cmd.Parameters.Add(de);
 
-                SqlParameter qipo = new SqlParameter("@total", SqlDbType.Decimal);
-                qipo.Value = A.total;
-                cmd.Parameters.Add(qipo);
+                //SqlParameter qipo = new SqlParameter("@POSubTotal", SqlDbType.Decimal);
+                //qipo.Value = A.POSubTotal;
+                //cmd.Parameters.Add(qipo);
 
 
 
@@ -131,9 +133,9 @@ namespace ERPSystem.Controllers
                 //pot.Value = A.POTotal;
                 //cmd.Parameters.Add(pot);
 
-                SqlParameter fla = new SqlParameter("@flag", SqlDbType.VarChar);
-                fla.Value = A.flag;
-                cmd.Parameters.Add(fla);
+                //SqlParameter fl = new SqlParameter("@flag", SqlDbType.VarChar);
+                //fl.Value = A.flag;
+                //cmd.Parameters.Add(fl);
 
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -150,5 +152,19 @@ namespace ERPSystem.Controllers
             return dt;
         }
 
+
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

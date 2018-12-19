@@ -75,9 +75,13 @@ namespace ERPSystem.Controllers
                 Gid1.Value = cus.CustomerCode;
                 cmd.Parameters.Add(Gid1);
 
-                SqlParameter Gid2 = new SqlParameter("@Address", SqlDbType.VarChar, 50);
-                Gid2.Value = cus.Address;
-                cmd.Parameters.Add(Gid2);
+                SqlParameter Add1 = new SqlParameter("@shippingaddress", SqlDbType.VarChar,250);
+                Add1.Value = cus.shippingaddress;
+                cmd.Parameters.Add(Add1);
+
+                SqlParameter Add2 = new SqlParameter("@billingaddress", SqlDbType.VarChar,250);
+                Add2.Value = cus.billingaddress;
+                cmd.Parameters.Add(Add2);
 
                 SqlParameter phone = new SqlParameter("@ContactNo", SqlDbType.VarChar, 50);
                 phone.Value = cus.ContactNo;

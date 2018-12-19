@@ -185,12 +185,12 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">RFQ Quotes</div>
+                            <div class="page-title">RFQ Customer Estimation</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                             <li class="active"><a href="#">RFQs</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="active">RFQ Quotes</li>
+                            <li class="active">RFQCustomerEstimation</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -237,7 +237,7 @@
                                                                     <!--<caption class="mbl mtl"><a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>&nbsp; | &nbsp;<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a></caption>-->
                                                                     <thead>
                                                                         <tr ng-hide="JobEquipment.length == 0">
-                                                                            <th>RFQ</th>
+                                                                            <th width="35%">RFQ</th>
                                                                             <!--<th>Final Unit</th>
                                                                             <th>Final Discount</th>
                                                                             <th>Final Charges</th>
@@ -259,12 +259,10 @@
                                                                         <tr ng-repeat="a in JobEquipment" data-tt-id="{{a.ID}}" data-tt-parent-id="{{a.ParentId}}" on-finish-render
                                                                             ng-style="(a.IsExpired == '1') ? {'background-color':'#F2DEDE'}:(a.IsExpired == '2') ?{'background-color':'#FCF8E3'}:''">
                                                                             <td>
-                                                                                <span ng-if="a.isDoc == 0"  class="folder">
-                                                                                    <a href="#" ><font color="blue"> <u ng-model="a.t"> {{a.Name}}</u></font></a>
-                                                                                </span>
-                                                                                <span ng-if="a.isDoc == 1" class="folder"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 0"  class="fa fa-file-text-o"><a href="#" ><font color="blue"> <u ng-model="a.t"> {{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 1" class="fa fa-cubes"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 2"> <input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0"/> <span  class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span></span>
                                                                                 <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
-                                                                       
                                                                             </td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="unit=0" ng-model="a.NoOfUnits" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.DealerUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
@@ -289,12 +287,16 @@
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
-                                                                <div class="form-actions">
-                                                                    <div style="text-align:center">
+                                                                <div class="form-actions" >
+                                                                    <div style="text-align:center" ng-hide="JobEquipment.length == 0" >
                                                                         <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddCust();">Save</button>
                                                                         <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                                                                     </div>
+                                                                    <div ng-show="JobEquipment.length == 0" style="text-align:center;color:rebeccapurple;">
+                                                                         <h4>No Customer Estimations Items</h4>
+                                                                    </div>
                                                                 </div>
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>

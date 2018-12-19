@@ -185,12 +185,12 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">RFQ Quotes</div>
+                            <div class="page-title">RFQ Draft Estimation</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                             <li class="active"><a href="#">RFQs</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="active">RFQ Quotes</li>
+                            <li class="active">RFQDrafEstimation</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -253,10 +253,11 @@
                                                                         <tr ng-repeat="a in JobEquipment" data-tt-id="{{a.ID}}" data-tt-parent-id="{{a.ParentId}}" on-finish-render
                                                                             ng-style="(a.IsExpired == '1') ? {'background-color':'#F2DEDE'}:(a.IsExpired == '2') ?{'background-color':'#FCF8E3'}:''">
                                                                             <td>
-                                                                                <span ng-if="a.isDoc == 0"  class="folder">
+                                                                                <span ng-if="a.isDoc == 0"  class="fa fa-file-text-o">
                                                                                     <a href="#" ><font color="blue"> <u ng-model="a.t"> {{a.Name}}</u></font></a>
                                                                                 </span>
-                                                                                <span ng-if="a.isDoc == 1" class="folder"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 1" class="fa fa-cubes"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
                                                                                 <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
                                                                        
                                                                             </td>

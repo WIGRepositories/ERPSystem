@@ -21,7 +21,11 @@ namespace ERPSystem.Models
         public string Suppliername { get; set; }
         public int supid { get; set; }
         public int Itemname { get; set; }
-
+        public int NoofUnits { get; set; }
+        public int FinaUnitPrice { get; set; }
+        public int FinalDiscount { get; set; }
+        public int FinalCharges { get; set; }
+        public int FinalSubTotal { get; set; }
     }
     public class PaySupplier
     {
@@ -45,7 +49,7 @@ namespace ERPSystem.Models
 
         public int tax { get; set; }
         public int dis { get; set; }
-
+        public string Name { get; set; }
 
     }
     public class DeliveryTicket
@@ -838,6 +842,9 @@ namespace ERPSystem.Models
         public string Email { get; set; }
         public int Active { get; set; }
         public string flag { get; set; }
+        
+        public string shippingaddress { get; set; }
+        public string billingaddress { get; set; }
 
 
     }
@@ -1461,6 +1468,96 @@ namespace ERPSystem.Models
         public decimal POTotal { get; set; }
 
     }
+    public class supplierPurchaseOrder
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int RFQId { get; set; }
+        public int RFQConfirmationId { get; set; }
+
+        public int PONum { get; set; }
+
+        public DateTime ?PODate { get; set; }
+
+        public int SupplierId { get; set; }
+
+        public DateTime ?PoSenton { get; set; }
+        public DateTime ?isPOSent { get; set; }
+        public int PODocId { get; set; }
+        public int ShippingMethod { get; set; }
+
+        public int ShippingTerms { get; set; }
+
+        public DateTime   ?DeliveryDate { get; set; }
+
+        public decimal POSubTotal { get; set; }
+
+        public decimal POCharges { get; set; }
+        public decimal PODiscounts { get; set; }
+        public decimal POTotal { get; set; }
+
+    }
+    public class supplierPODetails
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int POId { get; set; }
+        public int RFQItemId { get; set; }
+
+        public int NoOfUnits { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal charges { get; set; }
+
+        public decimal discounts { get; set; }
+        public decimal subtotal { get; set; }
+        public decimal Total { get; set; }
+
+        //public int ShippingMethod { get; set; }
+
+        //public int ShippingTerms { get; set; }
+
+        //public DateTime? DeliveryDate { get; set; }
+
+        //public decimal POSubTotal { get; set; }
+
+        //public decimal POCharges { get; set; }
+        //public decimal PODiscounts { get; set; }
+        //public decimal POTotal { get; set; }
+
+    }
+    public class CustmoerPurchase
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int RFQId { get; set; }
+        public int RFQConfirmationId { get; set; }
+
+        public int PONum { get; set; }
+
+        public DateTime ?PODate { get; set; }
+
+        public int SupplierId { get; set; }
+
+        public DateTime ?PoSenton { get; set; }
+        public DateTime ?isPOSent { get; set; }
+        public int PODocId { get; set; }
+
+        public int ShippingMethod { get; set; }
+
+        public int ShippingTerms { get; set; }
+
+        public DateTime? DeliveryDate { get; set; }
+
+        public decimal POSubTotal { get; set; }
+
+        public decimal POCharges { get; set; }
+        public decimal PODiscounts { get; set; }
+        public decimal POTotal { get; set; }
+
+    }
+
     public class CustomerPODetails
     {
         public string flag { set; get; }
@@ -1485,5 +1582,86 @@ namespace ERPSystem.Models
         public decimal Othercharges { get; set; }
 
         public decimal total { get; set; }
+    }
+
+
+    public class Invoice 
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int InvoiceNo { get; set; }
+        public int POId { get; set; }
+
+        public int PONum { get; set; }
+
+        public DateTime ?invoicedate { get; set; }
+
+        public int paymentmodeid { get; set; }
+
+        public int supplierid { get; set; }
+
+        public DateTime ?receivedon { get; set; }
+        public string isapproved { get; set; }
+
+        public string ispaid { get; set; }
+
+        public DateTime ?paidOn { get; set; }
+
+        public int OrderconfirmationId { get; set; }
+
+        public int RFQId { get; set; }
+        public decimal InvoiceSubTotal { get; set; }
+
+        public decimal InvoiceCharges { get; set; }
+
+        public decimal InvoiceDiscounts { get; set; }
+
+        public decimal InvoiceTotal { get; set; }
+
+        
+    }
+    public class OrderConfi
+    {
+        public string flag { set; get; }
+        public int Id { get; set; }
+        public int RFQId { get; set; }
+        public int CustomerId { get; set; }
+
+        public DateTime ?confirmedon { get; set; }
+
+        public int commtypeid { get; set; }
+
+        public int active { get; set; }
+
+        public DateTime ?isPOSent { get; set; }
+
+        public DateTime  ?Posenton { get; set; }
+        public int RFQConfirmationId { get; set; }
+
+        //public string ispaid { get; set; }
+
+        //public DateTime? paidOn { get; set; }
+
+        //public int OrderconfirmationId { get; set; }
+
+        //public int RFQId { get; set; }
+        //public decimal InvoiceSubTotal { get; set; }
+    }
+    public class supplierPurchase
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SupplierCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
+        public string flag { get; set; }
+        public string Email { get; set; }
+        public int Active { get; set; }
+
     }
 }
