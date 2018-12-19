@@ -47,7 +47,7 @@ namespace ERPSystem.Controllers
 
         [HttpPost]
         [Route("api/Suppliers/SaveSuppliers")]
-        public DataTable SaveSuppliers(Suppliers cus)
+        public DataTable SaveSuppliers(supplierPurchase cus)
         {
 
             DataTable dt = new DataTable();

@@ -78,6 +78,7 @@ namespace ERPSystem.Controllers
                 SqlParameter Add1 = new SqlParameter("@shippingaddress", SqlDbType.VarChar,250);
                 Add1.Value = cus.shippingaddress;
                 cmd.Parameters.Add(Add1);
+
                 SqlParameter Add2 = new SqlParameter("@billingaddress", SqlDbType.VarChar,250);
                 Add2.Value = cus.billingaddress;
                 cmd.Parameters.Add(Add2);

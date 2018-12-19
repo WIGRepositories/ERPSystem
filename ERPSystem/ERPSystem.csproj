@@ -206,13 +206,19 @@
     <Content Include="Testing.html" />
     <Content Include="UI\Accounts.html" />
     <Content Include="UI\BalanceSheet.html" />
+    <Content Include="UI\Content\CustomerQuote.html" />
     <Content Include="UI\Content\DeliverTicket1.html" />
+    <Content Include="UI\Content\DeliveryNote.html" />
+    <Content Include="UI\Content\Invoice.html" />
     <Content Include="UI\Content\JobPersonnel.html" />
     <Content Include="UI\Content\PrintCheckIn.html" />
     <Content Include="UI\Content\PurchaseOrder.html" />
+    <Content Include="UI\Content\PurchaseOrder1.html" />
     <Content Include="UI\Content\WorkOrder.html" />
     <Content Include="UI\css\themes\Custom.css" />
     <Content Include="UI\css\themes\style2\iliad-custom.css" />
+    <Content Include="UI\CustomerPODetails.html" />
+    <Content Include="UI\CustomerPurchaseOrder.html" />
     <Content Include="UI\DataLoad.html" />
     <Content Include="UI\DataUploadTemplates\Assets.csv" />
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
@@ -266,6 +272,8 @@
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\DeliveryNote.js" />
     <Content Include="UI\js\DeliveryNoteDetails.js" />
+    <Content Include="UI\js\CustomerPODetails.js" />
+    <Content Include="UI\js\CustomerPurchaseOrder.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryPurchases.js" />
     <Content Include="UI\js\InventoryStatus.js" />
@@ -273,10 +281,12 @@
     <Content Include="UI\js\ItemsList.js" />
     <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\login.js" />
+    <Content Include="UI\js\Orderconfirmation.js" />
     <Content Include="UI\js\RFQCustomerEstimation.js" />
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
+    <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
     <Content Include="UI\js\DataLoad.js" />
@@ -310,6 +320,7 @@
     <Content Include="UI\Manufacturer.html" />
     <Content Include="UI\ObjectHierarchy.html" />
     <Content Include="UI\ObjectTypes.html" />
+    <Content Include="UI\Orderconfirmation.html" />
     <Content Include="UI\Payables.html" />
     <Content Include="UI\PPDocuments.html" />
     <Content Include="UI\PurchaseRegister.html" />
@@ -327,6 +338,7 @@
     <Content Include="UI\ShippingOrder.html" />
     <Content Include="UI\StockRegister.html" />
     <Content Include="UI\SalesRegister.html" />
+    <Content Include="UI\supplierPurchaseOrder.html" />
     <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
     <Content Include="UI\UserDetails.html" />
@@ -718,6 +730,8 @@
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerPODetailsController.cs" />
+    <Compile Include="Controllers\CustomerPurchaseOrderController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
     <Compile Include="Controllers\DeliveryNoteController.cs" />
@@ -725,6 +739,7 @@
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InventoryStatusController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\InvoiceDetailsController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -732,6 +747,7 @@
     <Compile Include="Controllers\MaintenanceVendorController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ObjectTypesController.cs" />
+    <Compile Include="Controllers\OrderconfirmationController.cs" />
     <Compile Include="Controllers\OrderConfirmationDocsController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
@@ -740,6 +756,8 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShippingOrderController.cs" />
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
+    <Compile Include="Controllers\supplierPODetailsController.cs" />
+    <Compile Include="Controllers\supplierPurchaseOrderController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
