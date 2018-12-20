@@ -224,6 +224,7 @@
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
     <Content Include="UI\DeliveryNote.html" />
+    <Content Include="UI\DeliveryNoteDetails.html" />
     <Content Include="UI\images\ERPSystem.jpg" />
     <Content Include="UI\images\ERPSystemBG.jpg" />
     <Content Include="UI\images\logo.png" />
@@ -269,11 +270,14 @@
     <Content Include="UI\js\charts-highchart-line.js" />
     <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
+    <Content Include="UI\js\DeliveryNote.js" />
+    <Content Include="UI\js\DeliveryNoteDetails.js" />
     <Content Include="UI\js\CustomerPODetails.js" />
     <Content Include="UI\js\CustomerPODetails1.js" />
     <Content Include="UI\js\CustomerPurchaseOrder.js" />
     <Content Include="UI\js\CustomerPurchaseOrder1.js" />
     <Content Include="UI\js\InventoryItem.js" />
+    <Content Include="UI\js\InventoryPurchases.js" />
     <Content Include="UI\js\InventoryStatus.js" />
     <Content Include="UI\js\ItemDetails.js" />
     <Content Include="UI\js\ItemsList.js" />
@@ -284,6 +288,7 @@
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
+    <Content Include="UI\js\RFQSupplierPO.js" />
     <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
@@ -326,6 +331,7 @@
     <Content Include="UI\PurchaseReturned.html" />
     <Content Include="UI\ReceiptReturned.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQSupplierPO.html" />
     <Content Include="UI\RFQCustomerEstimation.html" />
     <Content Include="UI\RFQDetails.html" />
     <Content Include="UI\RFQDraftEstimation.html" />
@@ -732,11 +738,14 @@
     <Compile Include="Controllers\CustomerPurchaseOrderController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DataLoadController.cs" />
+    <Compile Include="Controllers\DeliveryNoteController.cs" />
+    <Compile Include="Controllers\DeliveryNoteDetailsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InventoryStatusController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\InvoiceDetailsController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LOGINController.cs" />
@@ -798,7 +807,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58081</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

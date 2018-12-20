@@ -834,7 +834,8 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string CustomerCode { get; set; }
 
-        public string Address { get; set; }
+        public string shippingaddress { get; set;}
+        public string billingaddress { get; set; }
 
         public string ContactNo { get; set; }
 
@@ -843,10 +844,6 @@ namespace ERPSystem.Models
         public int Active { get; set; }
         public string flag { get; set; }
         
-        public string shippingaddress { get; set; }
-        public string billingaddress { get; set; }
-
-
     }
     public class PPDocument
     {
@@ -1425,7 +1422,8 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string SupplierCode { get; set; }
 
-        public string Address { get; set; }
+        public string shippingaddress { get; set; }
+        public string billingaddress { get; set; }
 
         public string ContactNo { get; set; }
 
@@ -1527,16 +1525,33 @@ namespace ERPSystem.Models
         //public decimal POTotal { get; set; }
 
     }
+    
+    public class InvoiceDetails
     public class CustomerPurchaseOrder
     {
-        public string flag { set; get; }
+
         public int Id { get; set; }
+        public int POId { get; set; }
+        public int RFQItemId { get; set; }
+
+        public int NoOfUnits { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal charges { get; set; }
+
+        public decimal discounts { get; set; }
+        public decimal subtotal { get; set; }
+        public decimal Total { get; set; }
+        public string flag { get; set; }
+
+    }
+    public class DeliveryNote
+    {
+
         public int RFQId { get; set; }
-        public int RFQConfirmationId { get; set; }
-
-        public int PONum { get; set; }
-
-        public DateTime? PODate { get; set; }
+        public int POId { get; set; }
+        public int DeliveryNoteNo { get; set; }
 
         public int SupplierId { get; set; }
 
@@ -1544,20 +1559,28 @@ namespace ERPSystem.Models
         public int isPOSent { get; set; }
         public int PODocId { get; set; }
 
-        public int ShippingMethod { get; set; }
+        public string Deliverymethod { get; set; }
 
-        public int ShippingTerms { get; set; }
+        public string IsDelivered { get; set; }
+        public DateTime ?DeliveredOn { get; set; }
+        public int TotalItems { get; set; }
+        public string InvoiceAddress { get; set; }
+        public string CustomerAddress { get; set; }
+        public string flag { get; set; }
 
-        public DateTime? DeliveryDate { get; set; }
-
-        public decimal POSubTotal { get; set; }
-
-        public decimal POCharges { get; set; }
-        public decimal PODiscounts { get; set; }
-        public decimal POTotal { get; set; }
 
     }
 
+    public class DeliveryNoteDetails
+    {
+        public string flag { set; get; }
+        public int Id { set; get; }
+
+        public int DeliveryNoteId { set; get; }
+        public int RFQItemId { set; get; }
+        public int NoOfUnitsOrdered { set; get; }
+        public int NoOfUnitsDelivered { set; get; }
+    }
     public class CustomerPODetails
     {
         public string flag { set; get; }
@@ -1647,4 +1670,23 @@ namespace ERPSystem.Models
         //public int RFQId { get; set; }
         //public decimal InvoiceSubTotal { get; set; }
     }
+    public class supplierPurchase
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string SupplierCode { get; set; }
+
+        public string Address { get; set; }
+
+        public string ContactNo { get; set; }
+
+        public string ContactNo1 { get; set; }
+
+        public string flag { get; set; }
+        public string Email { get; set; }
+        public int Active { get; set; }
+        public string shippingaddress { get; set; }
+        public string billingaddress { get; set; }
+
     }
+}

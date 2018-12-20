@@ -13,6 +13,85 @@ namespace ERPSystem.Controllers
     public class RFQController : ApiController
     {
 
+        [HttpGet]
+        [Route("api/RFQ/GetRFQSupplierPO")]
+        public DataTable GetRFQSupplierPO(int modelId, int rfqId)
+        {
+            DataTable ds = new DataTable();
+            try
+            {
+                SqlConnection conn = new SqlConnection();
+                conn.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["EES_DB_ConnectionString"].ToString();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "GetRFQSupplierPO";
+                cmd.Connection = conn;
+
+                SqlParameter mid = new SqlParameter("@modelId", SqlDbType.Int);
+                mid.Value = modelId;
+                cmd.Parameters.Add(mid);
+
+                SqlParameter jid = new SqlParameter("@rfqId", SqlDbType.Int);
+                jid.Value = rfqId;
+                cmd.Parameters.Add(jid);
+
+
+                SqlDataAdapter db = new SqlDataAdapter(cmd);
+                db.Fill(ds);
+                //Logger.Trace(LogCategory.WebApp, "DataTable in GetEquipmentForJob() procedure is loaded", LogLevel.Information, null);
+
+                DataTable finalTable = ds.Clone();
+
+                FillDataTablePO(finalTable, ds, 0);
+
+                return finalTable;
+            }
+            catch (Exception ex)
+            {
+                throw ex;//Logger.Error(ex, LogCategory.WebApp, "An error occured in GetAssets() procedure", LogLevel.Error, null);
+            }
+
+        }
+
+        private DataTable FillDataTablePO(DataTable finalTable, DataTable ds, int? parentid)
+        {
+            DataRow[] rows = null;
+            if (parentid == 0)
+            {
+                rows = ds.Select("ParentId is null");
+            }
+            else
+            {
+                rows = ds.Select("ParentId=" + parentid);
+            }
+            foreach (DataRow dr in rows)
+            {
+                DataRow newdr = finalTable.NewRow();
+
+                newdr["ID"] = dr["ID"];
+                newdr["RFQID"] = dr["RFQID"];
+                newdr["Name"] = dr["Name"];
+                newdr["ParentId"] = dr["ParentId"];
+                newdr["isDoc"] = dr["isDoc"];
+                newdr["custId"] = dr["custId"];
+                newdr["Client"] = dr["Client"];
+                newdr["RowID"] = dr["RowID"];
+                newdr["ItemId"] = dr["ItemId"];
+                newdr["LEVEL"] = dr["LEVEL"];
+                newdr["NoOfUnits"] = dr["NoOfUnits"];
+                //newdr["DealerUnitPrice"] = dr["DealerUnitPrice"];
+                newdr["Email"] = dr["Email"];
+                newdr["draftId"] = dr["draftId"];
+                newdr["FinaUnitPrice"] = dr["FinaUnitPrice"];
+                newdr["FinalDiscount"] = dr["FinalDiscount"];
+                newdr["FinalCharges"] = dr["FinalCharges"];
+                newdr["RFQAUTOID"] = dr["RFQAUTOID"];
+     
+                finalTable.Rows.Add(newdr);
+                FillDataTablePO(finalTable, ds, (dr["ID"] == DBNull.Value) ? 0 : Convert.ToInt32(dr["ID"]));
+            }
+            return finalTable;
+        }
 
         [HttpPost]
         [Route("api/RFQ/RFQDoc")]

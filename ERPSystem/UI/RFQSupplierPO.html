@@ -1,8 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" ng-controller="myCtrl">
 <head>
-    <title>ERPSystem | Dashboard</title>
+    <title>ERPSystem | RFQ Quotes</title>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/icons/favicon.ico">
     <link rel="apple-touch-icon" href="images/icons/favicon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/icons/favicon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/icons/favicon-114x114.png">
@@ -11,35 +14,17 @@
     <link type="text/css" rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css">
     <!--LOADING STYLESHEET FOR PAGE-->
     <!--Loading style vendors-->
-    <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">    
-    <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">    
+    <link type="text/css" rel="stylesheet" href="vendors/animate.css/animate.css">
+    <link type="text/css" rel="stylesheet" href="vendors/iCheck/skins/all.css">
     <link rel="stylesheet" type="text/css" href="css/treasure-overlay-spinner.css">
+    <link type="text/css" rel="stylesheet" href="vendors/jstree/dist/themes/default/style.min.css">
+    <link type="text/css" rel="stylesheet" href="vendors/jquery-treetable/stylesheets/jquery.treetable.css">
+    <link type="text/css" rel="stylesheet" href="vendors/jquery-treetable/stylesheets/jquery.treetable.theme.custom.css">
     <!--Loading style-->
     <link type="text/css" rel="stylesheet" href="css/themes/style2/iliad-custom.css" id="theme-change" class="style-change color-change">
     <link type="text/css" rel="stylesheet" href="css/style-responsive.css">
-    <style>
-        Backlogged {
-            color: red;
-        }
-
-        Active {
-            color: green;
-        }
-
-        Pending {
-            color: #FCF8E3;
-        }
-
-        Completed {
-            color: grey;
-        }
-
-        Approved {
-            color: lightblue;
-        }        
-    </style>
 </head>
-<body ng-init="getFRQlist()" ng-controller="myCtrl">
+<body ng-init="init();">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -55,15 +40,14 @@
                             <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
-                        <li class="divider"></li>-->
+                                <li class="divider"></li>-->
                                 <li><a href="#" ng-click="Logout();"><i class="fa fa-sign-out"></i>Log Out</a></li>
-                                <li><a href="https://account.activedirectory.windowsazure.com/ChangePassword.aspx"><i class="fa fa-key"></i>Change Password</a></li>
+                                <li><a href=#"><i class="fa fa-key"></i>Change Password</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </nav>
-
         </div>
         <!--END TOPBAR-->
         <div id="wrapper">
@@ -131,11 +115,12 @@
                                 </i><span class="menu-title">RFQs</span><span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li class="active"><a href="RFQList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending RFQs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">RFQ List</span></a></li>
+                                <li><a href="RFQList.html" data-toggle="tooltip" data-placement="right" title="List of all active and pending RFQs by location, status, or customer"><i class="fa fa-list fa-fw"></i><span class="submenu-title">RFQ List</span></a></li>
                                 <li><a href="RFQDetails.html" data-toggle="tooltip" data-placement="right" title="RFQ specific details: Equipment, Personnel, 3rd Party, and RFQ Documents"><i class="fa fa-file-text-o"></i><span class="submenu-title">RFQ Details</span></a></li>
                                 <li><a href="CompletedRFQsList.html" data-toggle="tooltip" data-placement="right" title="RFQs marked as completed"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Completed RFQs</span></a></li>
                                 <li><a href="RFQPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all RFQs, by location, customer status"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>RFQ Personnel</a></li>
                                 <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
+                                <li class="active"><a href="RFQSupplierPO.html" data-toggle="tooltip" data-placement="right" title="RFQ Suppliers Purchase Order"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQSupplier Purchase Order</a></li>
                                 <li><a href="RFQCustomerEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ CustomerEstimation</a></li>
                                 <li><a href="RFQDraftEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ DraftEstimation</a></li>
                                 <li><a href="RFQquotes.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQquotes</a></li>
@@ -256,17 +241,17 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">RFQs List</div>
+                            <div class="page-title">RFQ Purchase Order</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li>Dashboard</li>
+                            <li class="active"><a href="#">RFQs</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                            <li class="active">RFQPurchaseOrder</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                     <!--END TITLE & BREADCRUMB PAGE--><!--BEGIN CONTENT-->
-                    <div class="page-content" id="jobslist-content">
+                    <div class="page-content" id="jobequipment-content">
                         <div id="table-action" class="row">
                             <div class="col-lg-12">
                                 <div id="tableactionTabContent" class="tab-content">
@@ -274,172 +259,242 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="table-container">
-                                                    <div class="row mbm">
-                                                        <div class="col-md-2" style="text-align:left">
-                                                            Search RFQ#:<input type="text" ng-model="rfqno" style="width:80%"/>
-                                                        </div>
-                                                        <div class="col-md-3" style="text-align:left">
-                                                            RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:80%">
+                                                    <div class="row">
+                                                        <!--<div class="col-md-2 pull-left" style="text-align:left">
+                                            <button ng-disabled="isSuperUser == 0" type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" ng-click="setLocation();">New Equipment</button>
+                                        </div>-->
+                                                        <div class="col-md-2">
+                                                            RFQ: <select ng-options="l.RFQID for l in rfqlist track by l.ID" ng-model="l" ng-change="GetJobEquipment()" style="width:60%">
                                                                 <option value="">All</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-md-3" style="text-align:left">
-                                                            Customer: <select ng-options="c.Name  for c in Customers track by c.Id" ng-model="c" style="width:80%">
+                                                        <div class="col-md-2">
+                                                            Status: <select ng-options="s.Name for s in jobStatus track by s.Id" ng-model="s" ng-change="GetJobEquipment()" style="width:50%">
                                                                 <option value="">All</option>
                                                             </select>
                                                         </div>
+                                                        <div class="col-md-2" style="margin-left:-30px;">
+                                                            From Date: <input id="inputActStartDt" type="date" ng-model="fromdate" class="form-control" style="width:160px;"/>
+                                                        </div>
+                                                       
+                                                        <div class="col-md-1" style="margin-left:-30px;">
+                                                            To Date:                                                               
+                                                            <input id="inputActStartDt" type="date" ng-model="todate" class="form-control" style="width:160px;"/>
+                                                        </div>
+                                                       
+                                                            <button type="button" style="float: right; margin: 25px; width:80px;" class="btn btn-info btn-sm" >Search</button>
+                                                       
+                                                    </div>
+                                                    <div id="treetable-tab" class="tab-pane fade in active">
+                                                        <div class="row mbl">
+                                                            <div class="col-lg-12">
+                                                                <h4>List of all Products and their Suppliers </h4><button type="button" data-target="#Modal-header-Multiplies" data-toggle="modal" class="btn btn-info btn-sm pull-right" ng-model="sadd" ng-click="setfinalmaildata()" style="width:80px;margin-top:10px;" ng-show="multipledata.length!=0">
+    Send
+</button>
+                                                                <table id="example-advanced">
+                                                                    <!--<caption class="mbl mtl"><a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>&nbsp; | &nbsp;<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a></caption>-->
+                                                                    <thead>
+                                                                        <tr ng-hide="JobEquipment.length == 0">
+                                                                            <th width="35%">RFQ</th>
+                                                                            <!--<th>Final Unit</th>
+                                                                            <th>Final Discount</th>
+                                                                            <th>Final Charges</th>
+                                                                            <th>Final SubTotal</th>-->
+                                                                            <th>Quantity</th>
+                                                                            <th>Per Unit Price</th>
+                                                                            <!--<th>Dealer Discount</th>
+                                                                            <th>Dealer Charges</th>
+                                                                            <th>Dealer SubTotal</th>-->
 
-                                                        <div class="col-md-3" style="text-align:right">
-                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add New RFQ</button>
+                                                                            <th>Total</th>
+                                                                            <th>Save</th>
+                                                                            <th>Email</th>
+                                                                            <!--<th>Update</th>-->
+                                                                            <!--<th>Delete</th>-->
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="a in JobEquipment" data-tt-id="{{a.ID}}" data-tt-parent-id="{{a.ParentId}}" on-finish-render
+                                                                            ng-style="(a.IsExpired == '1') ? {'background-color':'#F2DEDE'}:(a.IsExpired == '2') ?{'background-color':'#FCF8E3'}:''">
+                                                                            <td>
+                                                                                <span ng-if="a.isDoc == 0"  class="fa fa-file-text-o"><a href="#" ><font color="blue"> <u ng-model="a.t"> {{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 1" class="fa fa-cubes"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
+                                                                                <span ng-if="a.isDoc == 2"> <input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="checkdata(a)" /> <span  class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span></span>
+                                                                                <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
+                                                                            </td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="unit=0" ng-model="a.NoOfUnits" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.FinaUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <!--<td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.DealerDiscount" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.DealerCharges" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.DealerSubTotal" min="0" ng-if="a.LEVEL == 2" /></td>-->
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.NoOfUnits*a.FinaUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <!--<td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.DealerUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.tax" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.dis" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.Subtotal" min="0" ng-if="a.LEVEL == 2" /></td>-->
+                                                                            <td>
+                                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.LEVEL == 2" >
+                                                                                    Save
+                                                                                </button>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" data-target="#Modal-header-supemail"  data-toggle="modal" class="btn btn-info btn-sm" ng-model="sadd"  style="width:80px;" ng-if="a.LEVEL == 2" ng-click="SetUpEmailData(a);">
+                                                                                    Send
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="form-actions" >
+                                                                    <div style="text-align:center" ng-hide="JobEquipment.length == 0" >
+                                                                        <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddCust();">Save</button>
+                                                                        <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                                                                    </div>
+                                                                    <div ng-show="JobEquipment.length == 0" style="text-align:center;color:rebeccapurple;">
+                                                                         <h4>No Customer Estimations Items</h4>
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                               
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-
-                                                        <div class="container-fliud">
-
-
-
-                                                            <table class="table table-bordered table-advanced tablesorter">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>RFQ #</th>
-                                                                        <th>RFQ Name</th>
-                                                                        <th>Communication Type</th>
-                                                                        <th>Customer</th>
-                                                                        <th>Phone no</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="J in rfqlist|filter:{RFQID:rfqno}">
-                                                                        <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
-                                                                        <td>{{J.Name}}</td>
-                                                                        <td>{{J.RFQComType}}</td>
-                                                                        <td>{{J.Customer}}</td>
-                                                                        <td>{{J.CustomerPhoneno}}</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-
-                                                          
-
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
-                    </div>
-                    <!--END CONTENT-->
-                    <!--END CONTENT--><!--BEGIN FOOTER-->
-                    <div id="footer">
-                        <div class="copyright">2018 © ERPSystem</div>
-                    </div>
-                    <!--END FOOTER-->
-                </div>
-            </treasure-overlay-spinner>
-            </div>
-        </div>
-        <!--END PAGE WRAPPER-->
-   
+                        <div id="Modal-header-supemail" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header modal-header-primary">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Purchase Order</h4>
+                                    </div>
+                                    <div class="modal-body" ng-model="supe">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                                                <div class="row">
+                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supeEmail" style="width:100%"></div>
+                                                    <div class="col-md-6">
+                                                        Supplier:
+                                                        <input type="text" ng-model="sup" value="{{suppliename.Name}}" ng-disabled="true" style="width:100%">
+                                                        <!--Supplier:<select ng-options="spl.DUserName forspl in suppliename track by spl.Id" ng-model="spl" style="width:60%">
+                                        <option value="">All</option>
+                                    </select>-->
+                                                    </div>
+                                                </div>
 
+                                                <div class="row" style="margin-top:10px;">
+                                                    <table class="table table-bordered" style="background-color: white;">
+                                                        <thead>
+                                                            <tr style="height:50px">
+                                                                <th style="text-align:center;">Selected Item</th>
+                                                                <th style="text-align:center;">Item</th>
+                                                                <th style="text-align:center;">No. of Units</th>
+                                                                <th style="text-align:center;">Unit Price</th>
+                                                                <th style="text-align:center;">Sub Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1" /></td>
+                                                                <td style="text-align:center;">
+                                                                    {{selectedItem.ItemName}}
+                                                                </td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{NoOfUnits1}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="FinaUnitPrice">{{FinaUnitPrice}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="Subtotal1">{{NoOfUnits1*FinaUnitPrice}}</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr style="height:50px">
+                                                                <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="SendSuppliers(supe)">Send Mail</button></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
 
-    <div id="Modal-header-new" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-header-primary">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Add New RFQ</h4>
-                </div>
-                <div class="modal-body" ng-model="newRFQ">
-
-                    <div class="row ">
-
-                        <label class="col-md-4 control-label">RFQ# <span class='require'>*</span></label>
-                        <div class="col-md-6">
-                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQId" readonly /><span class="help-block"></span>
-                        </div>
-                    </div>
-
-                    <div class="row ">
-                        <label class="col-md-4 control-label">RFQ Status <span class='require'>*</span></label>
-
-                        <div class="col-md-6">
-                            <select ng-options="js.Name for js in jobStatus track by js.Id" ng-model="newRFQ.js" style="width:100%">
-                                <option value="">Select</option>
-                            </select><span class="help-block"></span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label class="col-md-4 control-label">Customer</label>
-
-
-                        <div class="col-md-6">
-
-                            <select ng-options="jc.Name for jc in Customers track by jc.Id" ng-model="newRFQ.jc" style="width:100%">
-                                <option value="">Select</option>
-                            </select>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <label for="selCountry" class="col-md-4 control-label">Communication Type</label>
-
-
-                        <div class="col-md-6">
-                            <select ng-model="newRFQ.jl" style="width:100%">
-                                <option value="">Select</option>
-                                <option value="1">Mobile Phone</option>
-                                <option value="2">FAX</option>
-                                <option value="3">E-Mail</option>
-                            </select><span class="help-block"></span>
-                        </div>
-                    </div>
-                    <div class="row ">
-                        <label for="selCountry" class="col-md-4 control-label">Sales Manager</label>
-
-                        <div class="col-md-6">
-                            <select ng-options="user.FirstName+' '+user.LastName for user in salemanagers track by user.Id" ng-model="newRFQ.sm" style="width:100%">
-                                <option value="">Select</option>
-
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class="row ">
-
-                        <label for="" class="col-md-4 control-label">Description:<span class='require'>*</span></label>
-
-                        <div class="col-md-6">
-                            <div style="text-align:left;padding-left:0">
-                                <textarea id="inputDescription" rows="2" ng-model="newRFQ.modelDescription" class="form-control"></textarea>
-                                <!--<input id="reorderpoint" rows="2" type="text" class="form-control" ng-model="newRFQ.modelDescription" /><span class="help-block"></span>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-actions">
-                        <div style="text-align:center">
-                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
-                            <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                        <!--Multiple sends-->
+                        <div id="Modal-header-Multiplies" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header modal-header-primary">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Purchase Order</h4>
+                                    </div>
+                                    <div class="modal-body" ng-model="supe">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                                                <!--<div class="row">
+                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supeEmail" style="width:100%"></div>
+                                                    <div class="col-md-6">
+                                                        Supplier:
+                                                        <input type="text" ng-model="sup" value="{{suppliename.Name}}" ng-disabled="true" style="width:100%">
+                                                    </div>
+                                                </div>-->
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <table class="table table-bordered" style="background-color: white;">
+                                                        <thead>
+                                                            <tr style="height:50px">
+                                                                <th style="text-align:center;">Selected Item</th>
+                                                                <th style="text-align:center;">Item</th>
+                                                                <th style="text-align:center;">Email</th>
+                                                                <th style="text-align:center;">Supplier Name</th>
+                                                                <th style="text-align:center;">No. of Units</th>
+                                                                <th style="text-align:center;">Unit Price</th>
+                                                                <th style="text-align:center;">Sub Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="r in multipledata">
+                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1" disabled /></td>
+                                                                <td style="text-align:center;">
+                                                                    {{r.ItemName}}
+                                                                </td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{r.Email}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{r.customerid}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{r.NoOfUnits}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="FinaUnitPrice">{{r.FinaUnitPrice}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="Subtotal1">{{r.NoOfUnits*r.FinaUnitPrice}}</span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr style="height:50px">
+                                                                <td colspan="7" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="multiplesendmail()">Send Mail</button></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <!--END CONTENT--><!--BEGIN FOOTER-->
+                        <div id="footer">
+                            <div class="copyright">2018 © EES Equipment Management Portal</div>
+                        </div>
+                        <!--END FOOTER-->
                     </div>
-
+                    <!--END PAGE WRAPPER-->
                 </div>
-
+            </treasure-overlay-spinner>
         </div>
     </div>
-    </div>
-        <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1049">
+    <script type="text/ng-template" id="myModalContent.html" data-backdrop="static" style="z-index:1055">
         <div class="modal-header">
             <h3 class="modal-title">Save confirmation!</h3>
         </div>
@@ -457,13 +512,11 @@
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
-
-    <!--END PAGE WRAPPER-->
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <!--loading bootstrap js-->
-    <script src="vendors/bootstrap/js/bootstrap.js"></script>
+    <script src="vendors/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -477,26 +530,39 @@
     <script src="vendors/jquery-pace/pace.min.js"></script>
     <script src="vendors/holder/holder.js"></script>
     <script src="vendors/responsive-tabs/responsive-tabs.js"></script>
+    <script src="vendors/jstree/dist/jstree.min.js"></script>
+    <script src="vendors/jquery-treetable/javascripts/src/jquery.treetable.js"></script>   
+    <script>
+        $("#example-advanced tbody").on("mousedown", "tr", function () {
+            $(".selected").not(this).removeClass("selected");
+            $(this).toggleClass("selected");
+        });
+    </script>
     <!--LOADING SCRIPTS FOR PAGE-->
+    <script src="js/index.js"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="js/main.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
+    <script src="js/ngStorage.js"></script>
+    <!--<script src="js/TreeView/nd.js"></script>
+    <script src="js/TreeView/nd.js"></script>-->
+    <!--<script src="js/JobEquipment.js"></script>-->
+
+    <script src="js/RFQSupplierPO.js"></script>
+
+    <!--<script src="js/adal.js"></script>
+    <script src="js/adal-angular.js"></script>
+    <script src="js/AdalCommon.js"></script>-->
+    <script src="js/angular-animate.js"></script>
+    <script src="js/treasure-overlay-spinner.js"></script>
     <script src="vendors/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script>
         $('.datepicker-filter').datepicker({
             autoclose: true
         });
     </script>
-    <script src="js/index.js"></script>
-    <!--CORE JAVASCRIPT-->
-    <script src="js/main.js"></script>
-    <script src="js/angular.js"></script>
-    <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
-    <script src="js/ngStorage.js"></script>        
-    <script src="js/RFQList.js"></script>
-    <!--<script src="js/adal.js"></script>
-    <script src="js/adal-angular.js"></script>-->
-    <!--<script src="js/AdalCommon.js"></script>-->
-    <script src="js/angular-animate.js"></script>
-    <script src="js/treasure-overlay-spinner.js"></script>
-    <!-- AI CORE JAVASCRIPT -->
+     <!--AI CORE JAVASCRIPT-->
     <script src="/scripts/cloud.common.js"></script>
 </body>
 </html>

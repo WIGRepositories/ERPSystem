@@ -77,24 +77,26 @@
 
                     <div class="col-lg-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Step 6: Invoice request to Supplier</h4></div>
+                            <div class="panel-heading"><h4>Step 6: Send Suppliers PO</h4></div>
+                            <div class="panel-body"> this will done through portal <!--<button type="button" data-target="#Modal-header-purchaseorder" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers PO</button>--></div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 7: Invoice request to Supplier</h4></div>
                             <div class="panel-body"><button type="button" data-target="#Modal-header-cutomerinvoice" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Invoice Request to Supplier</button></div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Step 7: Get Suppliers invoice </h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Get Suppliers Invoice</button></div>
+                            <div class="panel-heading"><h4>Step 8: Get Suppliers invoice </h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-Suppliergetinvoice" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Get Suppliers Invoice</button></div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Step 8: Send Suppliers PO</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-purchaseorder" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Suppliers PO</button></div>
-                        </div>
-                    </div>
+                   
 
                     <div class="col-lg-4">
                         <div class="panel panel-default">
@@ -106,17 +108,29 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 10: Customer payment confirmation</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-suppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Confirm Customer Payment</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-custpayconfig" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Confirm Customer Payment</button></div>
                         </div>
                     </div>
-
+                    
                     <div class="col-lg-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Step 11: Payment to suppliers</h4></div>
+                            <div class="panel-heading"><h4>Step 11: Send Payment Voucher to Account Dept</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Voucher to Account Dept</button></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 12: Payment to suppliers</h4></div>
                             <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Payment to Suppliers</button></div>
                         </div>
                     </div>
-
+                    <div class="col-lg-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><h4>Step 13: Payment Confirmation Mail from Account Dept</h4></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Payment Confirmation Mail from Account Dept</button></div>
+                        </div>
+                    </div>
+                   
                     <!--<div class="row">
                       
                         
@@ -794,6 +808,73 @@
                                 </table>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Get Suppliers invoice-->
+    <div id="Modal-header-Suppliergetinvoice" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Get Supplier Invoice</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Cust.Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                    Customer:<select ng-options="Cust1.Name for Cust1 in Customers track by Cust1.id" ng-model="Cust" style="width:60%">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row col-md-12" style="margin-top:10px;">
+                                <textarea ng-model="emailcontent" rows="3" style="width:100%;"></textarea>
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <button class="btn btn-primary form-control" style="width:100%;height:40px;margin-top:10px;" ng-click="sendsupplierinvoceemail()">Request Supplier Invoice Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Customer Paymetn Confirmation-->
+    <div id="Modal-header-custpayconfig" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">customer Payment Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Cust.Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                    Customer:<select ng-options="Cust1.Name for Cust1 in Customers track by Cust1.id" ng-model="Cust" style="width:60%">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row col-md-12" style="margin-top:10px;">
+                                <textarea ng-model="emailcontent" rows="3" style="width:100%;"></textarea>
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <button class="btn btn-primary form-control" style="width:100%;height:40px;margin-top:10px;" ng-click="Customerpaymentconfirmation()">Customer Payment Confirmation Email</button>
+                            </div>
                         </div>
                     </div>
                 </div>

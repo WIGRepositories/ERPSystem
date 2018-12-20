@@ -78,7 +78,46 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             $scope.Cust = null;
         });
     }
+    $scope.sendsupplierinvoceemail = function () {
 
+        var mail = {
+            customerid: $scope.Cust.Name,
+            Email: $scope.Cust.Email,
+            body: $scope.emailcontent
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/RequestSupplierInvoice',
+            data: mail
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Email Sucessfully Sent");
+            $('#Modal-header-Suppliergetinvoice').modal('hide');
+            $scope.Cust = null;
+        });
+    }
+    $scope.Customerpaymentconfirmation = function () {
+
+        var mail = {
+            customerid: $scope.Cust.Name,
+            Email: $scope.Cust.Email,
+            body: $scope.emailcontent
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/Customerpaymentconfirmation',
+            data: mail
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Email Sucessfully Sent");
+            $('#Modal-header-custpayconfig').modal('hide');
+            $scope.Cust = null;
+        });
+    }
     //get supplier quote
     //acustomers
     $scope.GetSupplierQuote = function () {

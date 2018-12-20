@@ -102,7 +102,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         var SelCustomer = {
             Name: customer.Name,
             CustomerCode: customer.CustomerCode,
-            Address: customer.Address,
+            shippingaddress: customer.shippingaddress,
+            billingaddress: customer.billingaddress,
             ContactNo: customer.ContactNo,
             ContactNo1: customer.ContactNo1,
             Email: customer.Email,
@@ -194,7 +195,8 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         var SelCustomer = {
             Name: customer.Name,
             CustomerCode: $scope.CustomerCode,
-            Address: customer.Address,
+            shippingaddress: customer.shippingaddress,
+            billingaddress: customer.billingaddress,
             ContactNo: customer.ContactNo,
             ContactNo1: customer.ContactNo1,
             Email: customer.Email,
