@@ -90,7 +90,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             for (var i = 0; i < $scope.itemslist.length; i++) {
                 if (emaildata.ItemId ==$scope.itemslist[i].Id) {
                     $scope.selectedItem = $scope.itemslist[i];
-                    $scope.qty = parseInt($scope.itemslist[i].InitialQuantity, 10);
+                    $scope.qty = emaildata.qty;//1parseInt($scope.itemslist[i].InitialQuantity, 10);
                     break;
                 }
             }
@@ -178,7 +178,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
                         $scope.multipledata[i].ItemName = $scope.itemslist[j].ItemName;
                         $scope.multipledata[i].Suppiername = $scope.multipledata[i].Name;
-                        $scope.multipledata[i].qty = $scope.multipledata[i].InitialQuantity;
+                        $scope.multipledata[i].qty = $scope.multipledata[i].qty;
                         //$scope.multipledata[i].ItemId = $scope.multipledata[i].ItemId;
                         $scope.multipledata[i].flag = 'I'
                         break;
@@ -202,7 +202,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 //$scope.initdata = res.data;
                 //$scope.showlocimportdata(res.data);
                 alert("Saved Sucessfully");
-               
+                $scope.multipledata = '';
             });
         }
         $scope.AddCust = function () {

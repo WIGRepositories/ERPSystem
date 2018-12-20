@@ -97,11 +97,12 @@
                                 <li><a href="InventoryStatus.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryStatus"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Status</span></a></li>
                                 <li><a href="InventorySales.html" data-toggle="tooltip" data-placement="right" title="Details of InventorySales"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Sales</span></a></li>
                                 <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Purchases</span></a></li>
-                                <li><a href="ReceiptReturned.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Reciept Returned</span></a></li>
-                                <li><a href="PurchaseReturned.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">purchase Returned</span></a></li>
-                                <li><a href="StockRegister.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Stock Register</span></a></li>
-                                <li><a href="ShippingOrder.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Shipping Order</span></a></li>
-                                <li><a href="DeliveryNote.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note</span></a></li>
+                                <li><a href="ReceiptReturned.html" data-toggle="tooltip" data-placement="right" title="Details of ReceiptReturned"><i class="fa fa-angle-right"></i><span class="submenu-title">Reciept Returned</span></a></li>
+                                <li><a href="PurchaseReturned.html" data-toggle="tooltip" data-placement="right" title="Details of PurchaseReturned"><i class="fa fa-angle-right"></i><span class="submenu-title">purchase Returned</span></a></li>
+                                <li><a href="StockRegister.html" data-toggle="tooltip" data-placement="right" title="Details of StockRegister"><i class="fa fa-angle-right"></i><span class="submenu-title">Stock Register</span></a></li>
+                                <li><a href="ShippingOrder.html" data-toggle="tooltip" data-placement="right" title="Details of ShippingOrder"><i class="fa fa-angle-right"></i><span class="submenu-title">Shipping Order</span></a></li>
+                                <li><a href="DeliveryNote.html" data-toggle="tooltip" data-placement="right" title="Details of DeliveryNote"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note</span></a></li>
+                                <li><a href="DeliveryNoteDetails.html" data-toggle="tooltip" data-placement="right" title="Details of DeliveryNoteDetails"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note Deatails</span></a></li>
 
                             </ul>
 
@@ -287,7 +288,7 @@
                                                     <div id="treetable-tab" class="tab-pane fade in active">
                                                         <div class="row mbl">
                                                             <div class="col-lg-12">
-                                                                <h4>List of all Products and their Suppliers </h4>
+                                                                <h4>List of all Products and their Suppliers </h4><button type="button" data-target="#Modal-header-Multiplies" data-toggle="modal" class="btn btn-info btn-sm pull-right" ng-model="sadd" ng-click="setfinalmaildata()" style="width:80px;margin-top:10px;" ng-show="multipledata.length!=0">Send</button>
                                                                 <table id="example-advanced">
                                                                     <!--<caption class="mbl mtl"><a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>&nbsp; | &nbsp;<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a></caption>-->
                                                                     <thead>
@@ -316,7 +317,7 @@
                                                                             <td>
                                                                                 <span ng-if="a.isDoc == 0"  class="fa fa-file-text-o"><a href="#" ><font color="blue"> <u ng-model="a.t"> {{a.Name}}</u></font></a></span>
                                                                                 <span ng-if="a.isDoc == 1" class="fa fa-cubes"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span>
-                                                                                <span ng-if="a.isDoc == 2"> <input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0"/> <span  class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span></span>
+                                                                                <span ng-if="a.isDoc == 2"> <input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-click="checkdata(a)" /> <span  class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.Name}}</u></font></a></span></span>
                                                                                 <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
                                                                             </td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="unit=0" ng-model="a.NoOfUnits" min="0" ng-if="a.LEVEL == 2" /></td>
@@ -367,7 +368,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header modal-header-primary">
                                         <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Enquiry</h4>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Customer Quote</h4>
                                     </div>
                                     <div class="modal-body" ng-model="supe">
                                         <div class="row">
@@ -403,12 +404,71 @@
                                                                 </td>
                                                                 <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="NoOfUnits1" readonly/></td>
                                                                 <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="DealerUnitPrice1" readonly /></td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="Subtotal1" readonly/></td>
+                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="NoOfUnits1 * DealerUnitPrice1" readonly/></td>
                                                             </tr>
                                                         </tbody>
                                                         <tfoot>
                                                             <tr style="height:50px">
                                                                 <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="SendCustomer(supe)">Send</button></td>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Multiples mail send-->
+                        <div id="Modal-header-Multiplies" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header modal-header-primary">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Customer Quote</h4>
+                                    </div>
+                                    <div class="modal-body" ng-model="supe">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                                                <!--<div class="row">
+                                                    <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="supeEmail" style="width:100%"></div>
+                                                    <div class="col-md-6">
+                                                        Supplier:
+                                                        <input type="text" ng-model="sup" value="{{suppliename.Name}}" ng-disabled="true" style="width:100%">
+                                                    </div>
+                                                </div>-->
+
+                                                <div class="row" style="margin-top:10px;">
+                                                    <table class="table table-bordered" style="background-color: white;">
+                                                        <thead>
+                                                            <tr style="height:50px">
+                                                                <th style="text-align:center;">Selected Item</th>
+                                                                <th style="text-align:center;">Item</th>
+                                                                <th style="text-align:center;">No. of Units</th>
+                                                                <th style="text-align:center;">final Unit Price</th>
+                                                                <th style="text-align:center;">Final Sub Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="r in multipledata">
+                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" disabled ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1" /></td>
+                                                                <td style="text-align:center;">
+                                                                    {{r.ItemName}}
+                                                                </td>
+                                                                <td style="text-align:center;"><span ng-model="r.NoOfUnits">{{r.NoOfUnits}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="r.DealerUnitPrice">{{r.DealerUnitPrice}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="r.Subtotal">{{r.Subtotal}}</span></td>
+                                                                <!--<td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="r.NoOfUnits" readonly /></td>
+                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="r.DealerUnitPrice" readonly /></td>
+                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="r.Subtotal" readonly /></td>-->
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr style="height:50px">
+                                                                <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="multiplesendmail()">Send</button></td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>

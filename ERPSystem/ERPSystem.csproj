@@ -236,6 +236,7 @@
     <Content Include="UI\InventoryPurchases.html" />
     <Content Include="UI\InventorySales.html" />
     <Content Include="UI\InventoryStatus.html" />
+    <Content Include="UI\InvoiceDetails.html" />
     <Content Include="UI\Invoice.html" />
     <Content Include="UI\ItemDetails.html" />
     <Content Include="UI\ItemsList.html" />
@@ -274,20 +275,25 @@
     <Content Include="UI\js\DeliveryNote.js" />
     <Content Include="UI\js\DeliveryNoteDetails.js" />
     <Content Include="UI\js\CustomerPODetails.js" />
+    <Content Include="UI\js\CustomerPODetails1.js" />
     <Content Include="UI\js\CustomerPurchaseOrder.js" />
+    <Content Include="UI\js\CustomerPurchaseOrder1.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryPurchases.js" />
     <Content Include="UI\js\InventoryStatus.js" />
     <Content Include="UI\js\Invoice.js" />
+    <Content Include="UI\js\InvoiceDetails.js" />
     <Content Include="UI\js\ItemDetails.js" />
     <Content Include="UI\js\ItemsList.js" />
     <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\login.js" />
     <Content Include="UI\js\Orderconfirmation.js" />
+    <Content Include="UI\js\Recieptreturn.js" />
     <Content Include="UI\js\RFQCustomerEstimation.js" />
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
+    <Content Include="UI\js\RFQSupplierPO.js" />
     <Content Include="UI\js\supplierPODetails.js" />
     <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
@@ -331,6 +337,7 @@
     <Content Include="UI\PurchaseReturned.html" />
     <Content Include="UI\ReceiptReturned.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQSupplierPO.html" />
     <Content Include="UI\RFQCustomerEstimation.html" />
     <Content Include="UI\RFQDetails.html" />
     <Content Include="UI\RFQDraftEstimation.html" />
@@ -757,13 +764,13 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
     <Compile Include="Controllers\QuoteRequestController.cs" />
+    <Compile Include="Controllers\RecieptreturnController.cs" />
     <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ShippingOrderController.cs" />
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\supplierPODetailsController.cs" />
     <Compile Include="Controllers\supplierPurchaseOrderController.cs" />
-    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
@@ -808,7 +815,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58081</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
