@@ -844,8 +844,7 @@ namespace ERPSystem.Models
         public int Active { get; set; }
         public string flag { get; set; }
         
-        public string shippingaddress { get; set; }
-        public string billingaddress { get; set; }
+       
 
 
     }
@@ -1529,36 +1528,7 @@ namespace ERPSystem.Models
         //public decimal POTotal { get; set; }
 
     }
-    public class CustmoerPurchase
-    {
-        public string flag { set; get; }
-        public int Id { get; set; }
-        public int RFQId { get; set; }
-        public int RFQConfirmationId { get; set; }
-
-        public int PONum { get; set; }
-
-        public DateTime ?PODate { get; set; }
-
-        public int SupplierId { get; set; }
-
-        public DateTime ?PoSenton { get; set; }
-        public DateTime ?isPOSent { get; set; }
-        public int PODocId { get; set; }
-
-        public int ShippingMethod { get; set; }
-
-        public int ShippingTerms { get; set; }
-
-        public DateTime? DeliveryDate { get; set; }
-
-        public decimal POSubTotal { get; set; }
-
-        public decimal POCharges { get; set; }
-        public decimal PODiscounts { get; set; }
-        public decimal POTotal { get; set; }
-
-    }
+ 
     public class InvoiceDetails
     {
 
@@ -1706,7 +1676,9 @@ namespace ERPSystem.Models
         public string Name { get; set; }
         public string SupplierCode { get; set; }
 
-        public string Address { get; set; }
+        public string shippingaddress { get; set; }
+
+        public string billingaddress { get; set; }
 
         public string ContactNo { get; set; }
 
@@ -1715,6 +1687,23 @@ namespace ERPSystem.Models
         public string flag { get; set; }
         public string Email { get; set; }
         public int Active { get; set; }
+
+    }
+    public class Recieptreturn
+    {
+        public int PurchaseOrderId { get; set; }
+        public string item { get; set; }
+
+        public int noofUnits { get; set; }
+
+        public DateTime ?returnedon { get; set; }
+
+        public string returnedBy { get; set; }
+
+        public string comment { get; set; }
+
+        public string flag { get; set; }
+       
 
     }
 }
