@@ -236,6 +236,7 @@
     <Content Include="UI\InventoryPurchases.html" />
     <Content Include="UI\InventorySales.html" />
     <Content Include="UI\InventoryStatus.html" />
+    <Content Include="UI\Invoice.html" />
     <Content Include="UI\ItemDetails.html" />
     <Content Include="UI\ItemsList.html" />
     <Content Include="UI\ItemTypes.html" />
@@ -277,6 +278,7 @@
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryPurchases.js" />
     <Content Include="UI\js\InventoryStatus.js" />
+    <Content Include="UI\js\Invoice.js" />
     <Content Include="UI\js\ItemDetails.js" />
     <Content Include="UI\js\ItemsList.js" />
     <Content Include="UI\js\ItemType.js" />
@@ -286,6 +288,7 @@
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
+    <Content Include="UI\js\supplierPODetails.js" />
     <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
@@ -338,6 +341,7 @@
     <Content Include="UI\ShippingOrder.html" />
     <Content Include="UI\StockRegister.html" />
     <Content Include="UI\SalesRegister.html" />
+    <Content Include="UI\supplierPODetails.html" />
     <Content Include="UI\supplierPurchaseOrder.html" />
     <Content Include="UI\Suppliers.html" />
     <Content Include="UI\ThirdParty.html" />
@@ -737,6 +741,7 @@
     <Compile Include="Controllers\DeliveryNoteController.cs" />
     <Compile Include="Controllers\DeliveryNoteDetailsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InventoryStatusController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
