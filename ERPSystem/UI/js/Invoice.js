@@ -76,7 +76,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
 
     $scope.save = function (Group) {
 
-        var Group = {
+        var iGroup = {
             InvoiceNo: Group.POId,
             POId: Group.DeliveryNoteNo,
             PONum: Group.SupplierId,
@@ -93,7 +93,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         var req = {
             method: 'POST',
             url: '/api/invoice/savedetails',
-            data: Group
+            data: iGroup
         }
         $http(req).then(function (response) {
 

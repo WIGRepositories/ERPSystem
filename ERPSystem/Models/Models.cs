@@ -1709,9 +1709,7 @@ namespace ERPSystem.Models
 
         public string flag { get; set; }
         public string Email { get; set; }
-        public int Active { get; set; }
-        public string shippingaddress { get; set; }
-        public string billingaddress { get; set; }
+        public int Active { get; set; }       
 
     }
     public class Recieptreturn
