@@ -39,7 +39,7 @@
         }
     </style>
 </head>
-<body ng-init="getFRQlist()" ng-controller="myCtrl">
+<body ng-init="GetDeliveryNote()" ng-controller="myCtrl">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -52,7 +52,7 @@
                     <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                     <ul class="nav navbar navbar-top-links navbar-right mbn">
                         <li class="dropdown topbar-user">
-                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak></span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
                                 <li class="divider"></li>-->
@@ -268,14 +268,14 @@
                             <div class="col-lg-12">
                                 <div id="tableactionTabContent" class="tab-content">
                                     <div id="table-table-tab" class="tab-pane fade in active">
-                                        <!--<div class="row">
+                                        <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="table-container">
                                                     <div class="row mbm">
                                                         <div class="col-md-2" style="text-align:left">
-                                                            Search RFQ#:<input type="text" ng-model="rfqno" style="width:80%" />
+                                                            Search Customer PO Details:<input type="text" ng-model="POId" style="width:80%" />
                                                         </div>
-                                                        <div class="col-md-3" style="text-align:left">
+                                                        <!--<div class="col-md-3" style="text-align:left">
                                                             RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:80%">
                                                                 <option value="">All</option>
                                                             </select>
@@ -284,15 +284,15 @@
                                                             Customer: <select ng-options="c.Name  for c in Customers track by c.Id" ng-model="c" style="width:80%">
                                                                 <option value="">All</option>
                                                             </select>
-                                                        </div>
+                                                        </div>-->
 
-                                                        <div class="col-md-3" style="text-align:right">
-                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add New RFQ</button>
+                                                        <div class="col-md-3" style="text-align:right;margin-left:500px;">
+                                                            <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add New Customer PO Details</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>-->
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-lg-12">
@@ -304,7 +304,7 @@
                                                     <table class="table table-bordered table-advanced tablesorter">
                                                         <thead>
                                                             <tr>
-                                                                <th>ID</th>
+                                                                
                                                                 <th>PO ID</th>
                                                                 <th>RFQ Item ID</th>
                                                                 <th>No of Units</th>
@@ -322,21 +322,20 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="J in rfqlist|filter:{RFQID:rfqno}">
-                                                                <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
-                                                                <td>{{J.ID}}</td>
-                                                                <td>{{J.POID}}</td>
-                                                                <td>{{J.RFQItemID}}</td>
-                                                                <td>{{J.NoofUnits}}</td>
+                                                            <tr ng-repeat="J in Group">
+                                                                
+                                                                <td>{{J.POId}}</td>
+                                                                <td>{{J.RFQItemId}}</td>
+                                                                <td>{{J.NoOfUnits}}</td>
                                                                 <td>{{J.DealerUnitPrice}}</td>
-                                                                <td>{{J.DealerCharges}}</td>
-                                                                <td>{{J.DealerDiscounts}}</td>
-                                                                <td>{{J.SubTotal}}</td>
+                                                                <td>{{J.Dealercharges}}</td>
+                                                                <td>{{J.Dealerdiscounts}}</td>
+                                                                <td>{{J.subtotal}}</td>
                                                                 <td>{{J.SupplierUnitPrice}}</td>
                                                                 <td>{{J.SupplierDiscount}}</td>
                                                                 <td>{{J.SupplierCharges}}</td>
-                                                                <td>{{J.OtherCharges}}</td>
-                                                                <td>{{J.Total}}</td>
+                                                                <td>{{J.Othercharges}}</td>
+                                                                <td>{{J.total}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -373,21 +372,14 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Add New Customer PO Details</h4>
                 </div>
-                <div class="modal-body" ng-model="newRFQ">
-
-                    <div class="row ">
-
-                        <label class="col-md-4 control-label">ID <span class='require'>*</span></label>
-                        <div class="col-md-6">
-                            <input id="ID" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.Id" readonly /><span class="help-block"></span>
-                        </div>
-                    </div>
+                <div class="modal-body" ng-model="Group">
+                    
 
                     <div class="row ">
                         <label class="col-md-4 control-label">PO ID <span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="POID" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.POId" /><span class="help-block"></span>
+                            <input id="POID" type="text"  class="form-control" ng-model="Group.POId" /><span class="help-block"></span>
                         </div>
                     </div>
 
@@ -396,7 +388,7 @@
 
 
                         <div class="col-md-6">
-                            <input id="RFQItemID" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.RFQItemId" /><span class="help-block"></span>
+                            <input id="RFQItemID" type="text"  class="form-control" ng-model="Group.RFQItemId" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -404,14 +396,14 @@
 
 
                         <div class="col-md-6">
-                            <input id="NoofUnits" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.NoofUnits" /><span class="help-block"></span>
+                            <input id="NoofUnits" type="text"  class="form-control" ng-model="Group.NoOfUnits" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
                         <label for="selCountry" class="col-md-4 control-label">Dealer Unit Price</label>
 
                         <div class="col-md-6">
-                            <input id="DealerUnitPrice" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.DealerUnitPrice" /><span class="help-block"></span>
+                            <input id="DealerUnitPrice" type="text"  class="form-control" ng-model="Group.DealerUnitPrice" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -419,7 +411,7 @@
                         <label for="" class="col-md-4 control-label">Dealer Charges<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="DealerCharges" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.DealerCharges" /><span class="help-block"></span>
+                            <input id="DealerCharges" type="text"  class="form-control" ng-model="Group.Dealercharges" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -427,7 +419,7 @@
                         <label for="" class="col-md-4 control-label">Dealer Discounts<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="DealerDiscounts" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.DealerDiscounts" /><span class="help-block"></span>
+                            <input id="DealerDiscounts" type="text"  class="form-control" ng-model="Group.Dealerdiscounts" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -435,7 +427,7 @@
                         <label for="" class="col-md-4 control-label">SubTotal<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="SubTotal" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SubTotal" /><span class="help-block"></span>
+                            <input id="SubTotal" type="text"  class="form-control" ng-model="Group.subtotal" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -443,7 +435,7 @@
                         <label for="" class="col-md-4 control-label">Supplier Unit Price<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-    <input id="SupplierUnitPrice" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SupplierUnitPrice" /><span class="help-block"></span>
+    <input id="SupplierUnitPrice" type="text"  class="form-control" ng-model="Group.SupplierUnitPrice" /><span class="help-block"></span>
 </div>
                     </div>
                     <div class="row ">
@@ -451,7 +443,7 @@
                         <label for="" class="col-md-4 control-label">Supplier Discount<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="SupplierDiscount" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SupplierDiscount" /><span class="help-block"></span>
+                            <input id="SupplierDiscount" type="text"  class="form-control" ng-model="Group.SupplierDiscount" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -459,7 +451,7 @@
                         <label for="" class="col-md-4 control-label">Supplier Charges<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="SupplierCharges" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.SupplierCharges" /><span class="help-block"></span>
+                            <input id="SupplierCharges" type="text"  class="form-control" ng-model="Group.SupplierCharges" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -467,7 +459,7 @@
                         <label for="" class="col-md-4 control-label">Other Charges<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="OtherCharges" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.OtherCharges" /><span class="help-block"></span>
+                            <input id="OtherCharges" type="text" class="form-control" ng-model="Group.Othercharges" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="row ">
@@ -475,12 +467,12 @@
                         <label for="" class="col-md-4 control-label">Total<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="Total" type="text" placeholder="RFQ#" class="form-control" ng-model="newPOD.Total" /><span class="help-block"></span>
+                            <input id="Total" type="text"  class="form-control" ng-model="Group.total" /><span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-actions">
                         <div style="text-align:center">
-                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
+                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="save(Group)">Save</button>
                             <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                         </div>
                     </div>
@@ -523,7 +515,7 @@
     <script src="vendors/jquery-cookie/jquery.cookie.js"></script>
     <script src="vendors/iCheck/icheck.min.js"></script>
     <script src="vendors/iCheck/custom.min.js"></script>
-    <script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
+    <!--<script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>-->
     <script src="js/jquery.menu.js"></script>
     <script src="vendors/jquery-pace/pace.min.js"></script>
     <script src="vendors/holder/holder.js"></script>
@@ -540,8 +532,9 @@
     <script src="js/main.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
-    <script src="js/ngStorage.js"></script>
     <script src="js/CustomerPODetails.js"></script>
+    <script src="js/ngStorage.js"></script>
+   
     <!--<script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>-->
     <!--<script src="js/AdalCommon.js"></script>-->

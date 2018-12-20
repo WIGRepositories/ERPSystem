@@ -42,7 +42,7 @@ namespace ERPSystem.Controllers
 
         [HttpPost]
         [Route("api/CustomerPurchase/savedetails")]
-        public DataTable CustomerpurchaseOrder(CustmoerPurchase A)
+        public DataTable CustomerpurchaseOrder(CustomerPurchaseOrder A)
         {
             DataTable dt = new DataTable();
 
@@ -89,7 +89,7 @@ namespace ERPSystem.Controllers
 
 
 
-                SqlParameter ac = new SqlParameter("@isPOSent", SqlDbType.DateTime);
+                SqlParameter ac = new SqlParameter("@isPOSent", SqlDbType.Int);
                 ac.Value = A.isPOSent;
                 cmd.Parameters.Add(ac);
 

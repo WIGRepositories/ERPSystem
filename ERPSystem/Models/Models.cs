@@ -1527,7 +1527,7 @@ namespace ERPSystem.Models
         //public decimal POTotal { get; set; }
 
     }
-    public class CustmoerPurchase
+    public class CustomerPurchaseOrder
     {
         public string flag { set; get; }
         public int Id { get; set; }
@@ -1536,12 +1536,12 @@ namespace ERPSystem.Models
 
         public int PONum { get; set; }
 
-        public DateTime ?PODate { get; set; }
+        public DateTime? PODate { get; set; }
 
         public int SupplierId { get; set; }
 
-        public DateTime ?PoSenton { get; set; }
-        public DateTime ?isPOSent { get; set; }
+        public DateTime? PoSenton { get; set; }
+        public int isPOSent { get; set; }
         public int PODocId { get; set; }
 
         public int ShippingMethod { get; set; }
@@ -1647,21 +1647,4 @@ namespace ERPSystem.Models
         //public int RFQId { get; set; }
         //public decimal InvoiceSubTotal { get; set; }
     }
-    public class supplierPurchase
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string SupplierCode { get; set; }
-
-        public string Address { get; set; }
-
-        public string ContactNo { get; set; }
-
-        public string ContactNo1 { get; set; }
-
-        public string flag { get; set; }
-        public string Email { get; set; }
-        public int Active { get; set; }
-
     }
-}

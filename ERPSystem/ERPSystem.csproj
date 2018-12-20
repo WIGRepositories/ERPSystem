@@ -224,7 +224,6 @@
     <Content Include="UI\DataUploadTemplates\AssetsTypes.csv" />
     <Content Include="UI\DataUploadTemplates\ObjectTypes.csv" />
     <Content Include="UI\DeliveryNote.html" />
-    
     <Content Include="UI\images\ERPSystem.jpg" />
     <Content Include="UI\images\ERPSystemBG.jpg" />
     <Content Include="UI\images\logo.png" />
@@ -271,7 +270,9 @@
     <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
     <Content Include="UI\js\CustomerPODetails.js" />
+    <Content Include="UI\js\CustomerPODetails1.js" />
     <Content Include="UI\js\CustomerPurchaseOrder.js" />
+    <Content Include="UI\js\CustomerPurchaseOrder1.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryStatus.js" />
     <Content Include="UI\js\ItemDetails.js" />
@@ -753,7 +754,6 @@
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\supplierPODetailsController.cs" />
     <Compile Include="Controllers\supplierPurchaseOrderController.cs" />
-    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
