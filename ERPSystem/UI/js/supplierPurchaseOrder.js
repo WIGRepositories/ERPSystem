@@ -96,8 +96,10 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             data: Group
         }
         $http(req).then(function (response) {
+            $('#Modal-header-new').modal('hide');
 
             $scope.showDialog("Saved successfully!");
+            $scope.GetDeliveryNote();
 
             $scope.Group = null;
 

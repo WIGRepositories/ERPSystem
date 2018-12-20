@@ -1591,6 +1591,7 @@ namespace ERPSystem.Models
         public string InvoiceAddress { get; set; }
         public string CustomerAddress { get; set; }
         public string flag { get; set; }
+        public DateTime? DispatchDate { get; set; }
 
 
     }
