@@ -120,7 +120,8 @@
                                 <li><a href="CompletedRFQsList.html" data-toggle="tooltip" data-placement="right" title="RFQs marked as completed"><i class="fa fa-list fa-fw"></i><span class="submenu-title">Completed RFQs</span></a></li>
                                 <li><a href="RFQPersonnel.html" data-toggle="tooltip" data-placement="right" title="Tree view of all people assigned to all RFQs, by location, customer status"><i class="fa fa-file-text-o"></i><span class="submenu-title"></span>RFQ Personnel</a></li>
                                 <li><a href="RFQItem.html" data-toggle="tooltip" data-placement="right" title="Tree view of all equipment assigned to all RFQs, by location, customer status"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ Items</a></li>
-                                <li class="active"><a href="RFQCustomerEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ CustomerEstimation</a></li>
+                                <li class="active"><a href="RFQSupplierPO.html" data-toggle="tooltip" data-placement="right" title="RFQ Suppliers Purchase Order"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQSupplier Purchase Order</a></li>
+                                <li><a href="RFQCustomerEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ CustomerEstimation</a></li>
                                 <li><a href="RFQDraftEstimation.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQ DraftEstimation</a></li>
                                 <li><a href="RFQquotes.html" data-toggle="tooltip" data-placement="right" title="RFQ specific documents"><i class="fa fa-cubes"></i><span class="submenu-title"></span>RFQquotes</a></li>
 
@@ -240,12 +241,12 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">RFQ Customer Estimation</div>
+                            <div class="page-title">RFQ Purchase Order</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                             <li class="active"><a href="#">RFQs</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-                            <li class="active">RFQCustomerEstimation</li>
+                            <li class="active">RFQPurchaseOrder</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -287,7 +288,9 @@
                                                     <div id="treetable-tab" class="tab-pane fade in active">
                                                         <div class="row mbl">
                                                             <div class="col-lg-12">
-                                                                <h4>List of all Products and their Suppliers </h4><button type="button" data-target="#Modal-header-Multiplies" data-toggle="modal" class="btn btn-info btn-sm pull-right" ng-model="sadd" ng-click="setfinalmaildata()" style="width:80px;margin-top:10px;" ng-show="multipledata.length!=0">Send</button>
+                                                                <h4>List of all Products and their Suppliers </h4><button type="button" data-target="#Modal-header-Multiplies" data-toggle="modal" class="btn btn-info btn-sm pull-right" ng-model="sadd" ng-click="setfinalmaildata()" style="width:80px;margin-top:10px;" ng-show="multipledata.length!=0">
+    Send
+</button>
                                                                 <table id="example-advanced">
                                                                     <!--<caption class="mbl mtl"><a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>&nbsp; | &nbsp;<a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a></caption>-->
                                                                     <thead>
@@ -297,11 +300,11 @@
                                                                             <th>Final Discount</th>
                                                                             <th>Final Charges</th>
                                                                             <th>Final SubTotal</th>-->
-                                                                            <th>Dealer Unit</th>
-                                                                            <th>Dealer Unit Price</th>
-                                                                            <th>Dealer Discount</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Per Unit Price</th>
+                                                                            <!--<th>Dealer Discount</th>
                                                                             <th>Dealer Charges</th>
-                                                                            <th>Dealer SubTotal</th>
+                                                                            <th>Dealer SubTotal</th>-->
 
                                                                             <th>Total</th>
                                                                             <th>Save</th>
@@ -320,17 +323,17 @@
                                                                                 <!--<span ng-if="a.isDoc == 2" class="fa fa-user"><a href="#"><font color="blue"> <u>{{a.UserName}}</u></font></a></span>-->-->
                                                                             </td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="unit=0" ng-model="a.NoOfUnits" min="0" ng-if="a.LEVEL == 2" /></td>
-                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.DealerUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
-                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.DealerDiscount" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.FinaUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <!--<td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.DealerDiscount" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.DealerCharges" min="0" ng-if="a.LEVEL == 2" /></td>
-                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.DealerSubTotal" min="0" ng-if="a.LEVEL == 2" /></td>
-                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.DealerSubTotal" min="0" ng-if="a.LEVEL == 2" /></td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.DealerSubTotal" min="0" ng-if="a.LEVEL == 2" /></td>-->
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.NoOfUnits*a.FinaUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <!--<td><input type="number" placeholder="0" style="width:45px;" ng-init="unitprice=0" ng-model="a.DealerUnitPrice" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="tax=0" ng-model="a.tax" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="dis=0" ng-model="a.dis" min="0" ng-if="a.LEVEL == 2" /></td>
                                                                             <td><input type="number" placeholder="0" style="width:45px;" ng-init="subtotal=0" ng-model="a.Subtotal" min="0" ng-if="a.LEVEL == 2" /></td>-->
                                                                             <td>
-                                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.LEVEL == 2" ng-click="SaveDraftEstimation(a)">
+                                                                                <button type="button" data-toggle="modal" class="btn btn-info btn-sm" style="width:80px;" ng-if="a.LEVEL == 2" >
                                                                                     Save
                                                                                 </button>
                                                                             </td>
@@ -367,7 +370,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header modal-header-primary">
                                         <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                                        <h4 id="modal-header-primary-label" class="modal-title">Customer Quote</h4>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Purchase Order</h4>
                                     </div>
                                     <div class="modal-body" ng-model="supe">
                                         <div class="row">
@@ -391,8 +394,8 @@
                                                                 <th style="text-align:center;">Selected Item</th>
                                                                 <th style="text-align:center;">Item</th>
                                                                 <th style="text-align:center;">No. of Units</th>
-                                                                <th style="text-align:center;">final Unit Price</th>
-                                                                <th style="text-align:center;">Final Sub Total</th>
+                                                                <th style="text-align:center;">Unit Price</th>
+                                                                <th style="text-align:center;">Sub Total</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -401,14 +404,14 @@
                                                                 <td style="text-align:center;">
                                                                     {{selectedItem.ItemName}}
                                                                 </td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="NoOfUnits1" readonly/></td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="DealerUnitPrice1" readonly /></td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="NoOfUnits1 * DealerUnitPrice1" readonly/></td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{NoOfUnits1}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="FinaUnitPrice">{{FinaUnitPrice}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="Subtotal1">{{NoOfUnits1*FinaUnitPrice}}</span></td>
                                                             </tr>
                                                         </tbody>
                                                         <tfoot>
                                                             <tr style="height:50px">
-                                                                <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="SendCustomer(supe)">Send</button></td>
+                                                                <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="SendSuppliers(supe)">Send Mail</button></td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -420,13 +423,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Multiples mail send-->
+                        <!--Multiple sends-->
                         <div id="Modal-header-Multiplies" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header modal-header-primary">
                                         <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                                        <h4 id="modal-header-primary-label" class="modal-title">Customer Quote</h4>
+                                        <h4 id="modal-header-primary-label" class="modal-title">Suppliers Purchase Order</h4>
                                     </div>
                                     <div class="modal-body" ng-model="supe">
                                         <div class="row">
@@ -446,28 +449,29 @@
                                                             <tr style="height:50px">
                                                                 <th style="text-align:center;">Selected Item</th>
                                                                 <th style="text-align:center;">Item</th>
+                                                                <th style="text-align:center;">Email</th>
+                                                                <th style="text-align:center;">Supplier Name</th>
                                                                 <th style="text-align:center;">No. of Units</th>
-                                                                <th style="text-align:center;">final Unit Price</th>
-                                                                <th style="text-align:center;">Final Sub Total</th>
+                                                                <th style="text-align:center;">Unit Price</th>
+                                                                <th style="text-align:center;">Sub Total</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr ng-repeat="r in multipledata">
-                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" disabled ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1" /></td>
+                                                                <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="a.active" ng-true-value="1" ng-false-value="0" ng-checked="1" disabled /></td>
                                                                 <td style="text-align:center;">
                                                                     {{r.ItemName}}
                                                                 </td>
-                                                                <td style="text-align:center;"><span ng-model="r.NoOfUnits">{{r.NoOfUnits}}</span></td>
-                                                                <td style="text-align:center;"><span ng-model="r.DealerUnitPrice">{{r.DealerUnitPrice}}</span></td>
-                                                                <td style="text-align:center;"><span ng-model="r.Subtotal">{{r.Subtotal}}</span></td>
-                                                                <!--<td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="r.NoOfUnits" readonly /></td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="r.DealerUnitPrice" readonly /></td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-model="r.Subtotal" readonly /></td>-->
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{r.Email}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{r.customerid}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="NoOfUnits1">{{r.NoOfUnits}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="FinaUnitPrice">{{r.FinaUnitPrice}}</span></td>
+                                                                <td style="text-align:center;"><span ng-model="Subtotal1">{{r.NoOfUnits*r.FinaUnitPrice}}</span></td>
                                                             </tr>
                                                         </tbody>
                                                         <tfoot>
                                                             <tr style="height:50px">
-                                                                <td colspan="5" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="multiplesendmail()">Send</button></td>
+                                                                <td colspan="7" align="center"><button class="btn-primary form-control" style="height:40px;width:100%;font-size:12px;border-radius:10px;" ng-click="multiplesendmail()">Send Mail</button></td>
                                                             </tr>
                                                         </tfoot>
                                                     </table>
@@ -545,7 +549,7 @@
     <script src="js/TreeView/nd.js"></script>-->
     <!--<script src="js/JobEquipment.js"></script>-->
 
-    <script src="js/RFQCustomerEstimation.js"></script>
+    <script src="js/RFQSupplierPO.js"></script>
 
     <!--<script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>

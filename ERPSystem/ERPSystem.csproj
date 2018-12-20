@@ -286,6 +286,7 @@
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
+    <Content Include="UI\js\RFQSupplierPO.js" />
     <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
@@ -328,6 +329,7 @@
     <Content Include="UI\PurchaseReturned.html" />
     <Content Include="UI\ReceiptReturned.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQSupplierPO.html" />
     <Content Include="UI\RFQCustomerEstimation.html" />
     <Content Include="UI\RFQDetails.html" />
     <Content Include="UI\RFQDraftEstimation.html" />

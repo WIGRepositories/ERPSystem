@@ -18,6 +18,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.finaquote = new Array();
     var tt;
     $scope.ses = new Array();
+    $scope.multipledata = new Array();
     $scope.init = function () {
 
         $http.get('/api/Customers/getCustomers').then(function (res, data) {
@@ -68,7 +69,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
         var lid = ($scope.l == null) ? -1 : $scope.l.ID;
         //var custId = ($scope.c == null || $scope.c.Id == null) ? -1 : $scope.c.Id;
         var modelId = ($scope.e == null || $scope.e.id == null) ? -1 : $scope.e.id;
-        $http.get('/api/RFQ/GetRFQDraftEstimation?modelId=' + modelId + '&rfqId=' + lid).then(function (res, data) {
+        $http.get('/api/RFQ/GetRFQSupplierPO?modelId=' + modelId + '&rfqId=' + lid).then(function (res, data) {
             $scope.JobEquipment = res.data;
             //$rootScope.spinner.off();
             $("#jobequipment-content").show();
@@ -87,7 +88,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.SetUpEmailData = function (sdf) {
         $scope.NoOfUnits1 = sdf.NoOfUnits;
         $scope.Subtotal1 = sdf.Subtotal;
-        $scope.DealerUnitPrice1 = sdf.DealerUnitPrice;
+        $scope.FinaUnitPrice = sdf.FinaUnitPrice;
         $scope.selectedItem = '';
         $scope.suppliename = '';
         $scope.supeEmail = sdf.Email;
@@ -107,12 +108,35 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         }
     }
+    $scope.setfinalmaildata = function () {
 
-    $scope.SendCustomer = function (supe) {
+        if ($scope.multipledata != null) {
+            for (var i = 0; i < $scope.multipledata.length; i++) {
+                for (var j = 0; j < $scope.itemslist.length; j++) {
+                    if ($scope.multipledata[i].ItemId == $scope.itemslist[j].Id) {
+
+                        $scope.multipledata[i].ItemName = $scope.itemslist[j].ItemName;
+                        $scope.multipledata[i].Suppiername = $scope.multipledata[i].Name;
+                        $scope.multipledata[i].qty = $scope.multipledata[i].NoOfUnits;
+                        $scope.multipledata[i].perunit = $scope.multipledata[i].FinaUnitPrice;
+                        $scope.multipledata[i].customerid = $scope.multipledata[i].Name;
+                        //$scope.multipledata[i].ItemId = $scope.multipledata[i].ItemId;
+                        $scope.multipledata[i].flag = 'I'
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    $scope.checkdata = function (a) {
+        $scope.multipledata.push(a);
+    }
+    $scope.SendSuppliers= function (supe) {
+
         $scope.ses[0] = {
             qty: $scope.NoOfUnits1,
-            Subtotal:   $scope.Subtotal1 ,
-            perunit: $scope.DealerUnitPrice1,
+            Subtotal:   0,//$scope.Subtotal1 ,
+            perunit: $scope.FinaUnitPrice,
             Email: $scope.supeEmail,
             customerid: $scope.suppliename.Name,
             ItemName: $scope.selectedItem.ItemName,
@@ -121,7 +145,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
 
         var req = {
             method: 'POST',
-            url: '/api/ERPAsset/PaySupplierInvoicePdftest',
+            url: '/api/ERPAsset/PurchaseOrderPdf',
             data: $scope.ses
         }
         $http(req).then(function (res) {
@@ -138,7 +162,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     $scope.multiplesendmail = function () {
         var req = {
             method: 'POST',
-            url: '/api/ERPAsset/CustomerQuoteMultiples',
+            url: '/api/ERPAsset/MultiplePOlistsend',
             data: $scope.multipledata
         }
         $http(req).then(function (res) {
@@ -151,46 +175,11 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
     }
     $scope.checkedArr = new Array();
     $scope.uncheckedArr = new Array();
-    $scope.multipledata = new Array();
     $scope.setupsupplier = function (iname) {
         tt = iname;
     }
     $scope.SetData = function (b) {
         $scope.selArr.push(b);
-    }
-    $scope.checkdata = function (a) {
-        $scope.multipledata.push(a);
-    }
-    $scope.setfinalmaildata = function () {
-
-        //$scope.ses[0] = {
-        //    qty: $scope.NoOfUnits1,
-        //    Subtotal: $scope.Subtotal1,
-        //    perunit: $scope.DealerUnitPrice1,
-        //    Email: $scope.supeEmail,
-        //    customerid: $scope.suppliename.Name,
-        //    ItemName: $scope.selectedItem.ItemName,
-        //    Description: $scope.selectedItem.Description
-        //}
-
-        if ($scope.multipledata != null) {
-            for (var i = 0; i < $scope.multipledata.length; i++) {
-                for (var j = 0; j < $scope.itemslist.length; j++) {
-                    if ($scope.multipledata[i].ItemId == $scope.itemslist[j].Id) {
-
-                        $scope.multipledata[i].ItemName = $scope.itemslist[j].ItemName;
-                        $scope.multipledata[i].Suppiername = $scope.multipledata[i].Name;
-                        $scope.multipledata[i].Subtotal = ($scope.multipledata[i].NoOfUnits * $scope.multipledata[i].DealerUnitPrice);
-                        $scope.multipledata[i].qty = $scope.multipledata[i].NoOfUnits;
-                        $scope.multipledata[i].perunit = $scope.multipledata[i].DealerUnitPrice;
-                        $scope.multipledata[i].customerid = $scope.multipledata[i].Name;
-                        //$scope.multipledata[i].ItemId = $scope.multipledata[i].ItemId;
-                        $scope.multipledata[i].flag = 'I'
-                        break;
-                    }
-                }
-            }
-        }
     }
     $scope.SaveDraftEstimation = function (final) {
         $scope.finaquote[0] = {
