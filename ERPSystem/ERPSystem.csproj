@@ -274,7 +274,9 @@
     <Content Include="UI\js\DeliveryNote.js" />
     <Content Include="UI\js\DeliveryNoteDetails.js" />
     <Content Include="UI\js\CustomerPODetails.js" />
+    <Content Include="UI\js\CustomerPODetails1.js" />
     <Content Include="UI\js\CustomerPurchaseOrder.js" />
+    <Content Include="UI\js\CustomerPurchaseOrder1.js" />
     <Content Include="UI\js\InventoryItem.js" />
     <Content Include="UI\js\InventoryPurchases.js" />
     <Content Include="UI\js\InventoryStatus.js" />
@@ -289,6 +291,7 @@
     <Content Include="UI\js\RFQDetails.js" />
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
+    <Content Include="UI\js\RFQSupplierPO.js" />
     <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
     <Content Include="UI\js\Customers.js" />
@@ -331,6 +334,7 @@
     <Content Include="UI\PurchaseReturned.html" />
     <Content Include="UI\ReceiptReturned.html" />
     <Content Include="UI\ReportsList.html" />
+    <Content Include="UI\RFQSupplierPO.html" />
     <Content Include="UI\RFQCustomerEstimation.html" />
     <Content Include="UI\RFQDetails.html" />
     <Content Include="UI\RFQDraftEstimation.html" />
@@ -740,6 +744,7 @@
     <Compile Include="Controllers\DeliveryNoteController.cs" />
     <Compile Include="Controllers\DeliveryNoteDetailsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ERPAssetController.cs" />
     <Compile Include="Controllers\InventoryItemController.cs" />
     <Compile Include="Controllers\InventoryStatusController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -762,7 +767,6 @@
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\supplierPODetailsController.cs" />
     <Compile Include="Controllers\supplierPurchaseOrderController.cs" />
-    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
@@ -807,7 +811,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58081</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

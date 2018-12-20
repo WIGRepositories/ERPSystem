@@ -286,7 +286,7 @@
                                                     <div id="treetable-tab" class="tab-pane fade in active">
                                                         <div class="row mbl">
                                                             <div class="col-lg-12">
-                                                                <h4>List of all Products and their Suppliers </h4><button type="button" data-target="#Modal-header-Multiplies" data-toggle="modal" class="btn btn-info btn-sm pull-right"  ng-model="sadd" ng-click="setfinalmaildata()" style="width:80px;margin-top:10px;" >
+                                                                <h4>List of all Products and their Suppliers </h4><button type="button" data-target="#Modal-header-Multiplies" data-toggle="modal" class="btn btn-info btn-sm pull-right"  ng-model="sadd" ng-click="setfinalmaildata()" style="width:80px;margin-top:10px;"  ng-show="multipledata.length!=0">
     Send
 </button>
                                                                 <table id="example-advanced">
@@ -296,7 +296,7 @@
                                                                             <th>RFQ</th>
                                                                             <th>Units</th>
                                                                             <th>Email</th>
-                                                                            <th>Tax</th>
+                                                                            <th>Units</th>
                                                                             <th>Discount</th>
                                                                             <th>Total</th>
                                                                             <th>Send Email</th>
@@ -322,7 +322,7 @@
 </td>
                                                                             <td>{{a.InitialQuantity}}</td>
                                                                             <td>{{a.Email}}</td>
-                                                                            <td>{{a.Customer}}</td>
+                                                                            <td><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="a.qty" min="0"  ng-if="a.LEVEL == 2"/></td>
                                                                             <td><!--<span ng-if="a.isDoc == 1">{{a.fromdate | date:'MM-dd-yyyy'}}</span>--></td>
                                                                             <td><!--<span ng-if="a.isDoc == 1">{{a.todate | date:'MM-dd-yyyy'}}</span>--></td>
                                                                             
@@ -448,7 +448,7 @@
                                                                 <td style="text-align:center;">
                                                                     {{selectedItem.ItemName}}
                                                                 </td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="qty" min="0" /></td>
+                                                                <td style="text-align:center;"><span ng-model="qty">{{qty}} </span></td>
                                                             </tr>
                                                         </tbody>
                                                         <tfoot>
@@ -508,7 +508,7 @@
                                                                 <td style="text-align:center;">
                                                                     {{r.Name}}
                                                                 </td>
-                                                                <td style="text-align:center;"><input type="number" placeholder="0" style="width:45px;" ng-init="qty=0" ng-model="qty" min="0" /></td>
+                                                                <td style="text-align:center;"><span ng-model="r.qty">{{r.qty}} </span></td>
                                                             </tr>
                                                         </tbody>
                                                         <tfoot>

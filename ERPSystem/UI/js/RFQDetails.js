@@ -453,7 +453,7 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
                 data: $scope.currUser
             }
             $http(req).then(function (response) {
-                alert(response);
+                alert('Sucessfully Person Added');
                 $scope.getRFQDetails($scope.selJobId);
                 //$scope.GetUsersForJobUss();
 
