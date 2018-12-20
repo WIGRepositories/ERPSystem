@@ -12,15 +12,15 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
 
     $scope.dashboardDS = $localStorage.dashboardDS;
 
-//    $scope.GetDeliveryNote = function () {
+    //    $scope.GetDeliveryNote = function () {
 
-//        $http.get('/api/supplierPurchaseOrder/getdata').then(function (response, req) {
-//            $scope.getDeliveryNote = response.data;
+    //        $http.get('/api/supplierPurchaseOrder/getdata').then(function (response, req) {
+    //            $scope.getDeliveryNote = response.data;
 
-//        }   );
-//}
+    //        }   );
+    //}
     $scope.GetDeliveryNote = function () {
-        $http.get('/api/supplierPurchaseOrder/getdata').then(function (res, data) {
+        $http.get('/api/supplierPODetails/getdata').then(function (res, data) {
             $scope.Group = res.data;
         });
     }
@@ -33,32 +33,32 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
     //}
     //$scope.saveDeliveryNote = function (Group) {
     //    //if (Group == null) {
-        //    alert('please select note')
-        //}
-        //if (Group.ItemName == null) {
-        //    alert('please enter Itemname')
-        //}
+    //    alert('please select note')
+    //}
+    //if (Group.ItemName == null) {
+    //    alert('please enter Itemname')
+    //}
 
-        //var Group = {
+    //var Group = {
 
-        //    RFQId: Group.RFQId,
-        //    RFQConfirmationId: Group.POId,
-        //    PONum: Group.DeliveryNoteNo,
-        //    SupplierId: Group.SupplierId,
-        //    PODocId: Group.DispatchDate,
-        //    Deliverymethod: Group.Deliverymethod,
-        //    ShippingMethod: Group.IsDelivered,
-        //    ShippingTerms: Group.DeliveredOn,
-        //    DeliveryDate: Group.TotalItems,
-            //InvoiceAddress: Group.InvoiceAddress,
-            //CustomerAddress: Group.CustomerAddress
-        //}
+    //    RFQId: Group.RFQId,
+    //    RFQConfirmationId: Group.POId,
+    //    PONum: Group.DeliveryNoteNo,
+    //    SupplierId: Group.SupplierId,
+    //    PODocId: Group.DispatchDate,
+    //    Deliverymethod: Group.Deliverymethod,
+    //    ShippingMethod: Group.IsDelivered,
+    //    ShippingTerms: Group.DeliveredOn,
+    //    DeliveryDate: Group.TotalItems,
+    //InvoiceAddress: Group.InvoiceAddress,
+    //CustomerAddress: Group.CustomerAddress
+    //}
 
-        //var req = {
-        //    method: 'POST',
-        //    url: '/api/supplierPurchaseOrder/savedetails',
-        //    data: Group
-        //}
+    //var req = {
+    //    method: 'POST',
+    //    url: '/api/supplierPurchaseOrder/savedetails',
+    //    data: Group
+    //}
     //    $http(req).then(function (response) {
 
     //        $scope.showDialog("Saved successfully!");
@@ -77,25 +77,26 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
     $scope.save = function (Group) {
 
         var Group = {
-            RFQId: Group.RFQId,
-            RFQConfirmationId: Group.POId,
-            PONum: Group.DeliveryNoteNo,
-            SupplierId: Group.SupplierId,
-            PODocId: Group.DispatchDate,
-            Deliverymethod: Group.Deliverymethod,
-            ShippingMethod: Group.IsDelivered,
-            ShippingTerms: Group.DeliveredOn,
-            DeliveryDate: Group.TotalItems,
+            POId: Group.POId,
+            RFQItemId: Group.DeliveryNoteNo,
+            NoOfUnits: Group.SupplierId,
+            UnitPrice: Group.DispatchDate,
+            subtotal: Group.Deliverymethod,
+            Total: Group.IsDelivered,
+            //ShippingMethod: Group.IsDelivered,
+            //ShippingTerms: Group.DeliveredOn,
+            //DeliveryDate: Group.TotalItems,
             flag: 'I'
 
         }
 
         var req = {
             method: 'POST',
-            url: '/api/supplierPurchaseOrder/savedetails',
+            url: '/api/supplierPODetails/savedetails',
             data: Group
         }
         $http(req).then(function (response) {
+
             $('#Modal-header-new').modal('hide');
 
             $scope.showDialog("Saved successfully!");

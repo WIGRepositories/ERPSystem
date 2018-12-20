@@ -39,7 +39,7 @@
         }
     </style>
 </head>
-<body ng-init="getFRQlist()" ng-controller="myCtrl">
+<body ng-init="GetDeliveryNote()" ng-controller="myCtrl">
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
         <div id="header-topbar-option-demo" class="page-header-topbar">
@@ -52,7 +52,7 @@
                     <a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
                     <ul class="nav navbar navbar-top-links navbar-right mbn">
                         <li class="dropdown topbar-user">
-                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak>{{uname}}</span>&nbsp;<span class="caret"></span></a>
+                            <a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="images/user.jpg" alt="" class="img-responsive img-circle" />&nbsp;<span class="hidden-xs" ng-cloak></span>&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-user pull-right">
                                 <!--<li><a href="Users.html" data-toggle="tooltip" data-placement="right" title="Configurable list of all users in the application"><i class="fa fa-user"></i>My Profile</a></li>
                                 <li class="divider"></li>-->
@@ -113,11 +113,12 @@
                                 <li><a href="InventoryStatus.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryStatus"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Status</span></a></li>
                                 <li><a href="InventorySales.html" data-toggle="tooltip" data-placement="right" title="Details of InventorySales"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Sales</span></a></li>
                                 <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Inventory Purchases</span></a></li>
-                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Reciept Returned</span></a></li>
-                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">purchase Returned</span></a></li>
-                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Stock Register</span></a></li>
-                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Shipping Order</span></a></li>
-                                <li><a href="InventoryPurchases.html" data-toggle="tooltip" data-placement="right" title="Details of InventoryPurchases"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note</span></a></li>
+                                <li><a href="ReceiptReturned.html" data-toggle="tooltip" data-placement="right" title="Details of ReceiptReturned"><i class="fa fa-angle-right"></i><span class="submenu-title">Reciept Returned</span></a></li>
+                                <li><a href="PurchaseReturned.html" data-toggle="tooltip" data-placement="right" title="Details of PurchaseReturned"><i class="fa fa-angle-right"></i><span class="submenu-title">purchase Returned</span></a></li>
+                                <li><a href="StockRegister.html" data-toggle="tooltip" data-placement="right" title="Details of StockRegister"><i class="fa fa-angle-right"></i><span class="submenu-title">Stock Register</span></a></li>
+                                <li><a href="ShippingOrder.html" data-toggle="tooltip" data-placement="right" title="Details of ShippingOrder"><i class="fa fa-angle-right"></i><span class="submenu-title">Shipping Order</span></a></li>
+                                <li><a href="DeliveryNote.html" data-toggle="tooltip" data-placement="right" title="Details of DeliveryNote"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note</span></a></li>
+                                <li><a href="DeliveryNoteDetails.html" data-toggle="tooltip" data-placement="right" title="Details of DeliveryNoteDetails"><i class="fa fa-angle-right"></i><span class="submenu-title">Delivery Note Deatails</span></a></li>
 
                             </ul>
 
@@ -272,10 +273,10 @@
                                             <div class="col-lg-12">
                                                 <div class="table-container">
                                                     <div class="row mbm">
-                                                        <!--<div class="col-md-2" style="text-align:left">
-                                                            Search RFQ#:<input type="text" ng-model="rfqno" style="width:80%" />
+                                                        <div class="col-md-2" style="text-align:left">
+                                                            Search Customer PO:<input type="text" ng-model="rfqno" style="width:80%" />
                                                         </div>
-                                                        <div class="col-md-3" style="text-align:left">
+                                                        <!--<div class="col-md-3" style="text-align:left">
                                                             RFQ Status: <select ng-options="js.Name for js in jobStatus|filter:{Id:'!9'}:true track by js.Id" ng-model="a" style="width:80%">
                                                                 <option value="">All</option>
                                                             </select>
@@ -286,7 +287,7 @@
                                                             </select>
                                                         </div>-->
 
-                                                        <div class="col-md-3" style="text-align:right">
+                                                        <div class="col-md-3" style="text-align:right; margin-left:500px;">
                                                             <button type="button" data-target="#Modal-header-new" data-toggle="modal" class="btn btn-info btn-sm" style="float: right; margin: 10px;" ng-click="CInit()">Add New Customer PO</button>
                                                         </div>
                                                     </div>
@@ -305,14 +306,14 @@
                                                         <thead>
                                                             <tr>
                                                                 <!--<th>ID</th>-->
-                                                                <th>RFQ ID</th>
-                                                                <th>RFQ Communication ID</th>
+                                                                <th>RFQ#</th>
+                                                                <th>RFQ Confirmation</th>
                                                                 <th>PO Num</th>
                                                                 <th>PO Date</th>
-                                                                <th>Supplier ID</th>
+                                                                <th>Supplier</th>
                                                                 <th>PO Senton</th>
                                                                 <th>Is PO Sent</th>
-                                                                <th>PO DocID</th>
+                                                                <th>PO Docs</th>
                                                                 <th>Shipping Method</th>
                                                                 <th>Shipping Terms</th>
                                                                 <th>Delivery Date</th>
@@ -324,17 +325,15 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr ng-repeat="J in newRFQ">
-                                                                <td><a href="RFQDetails.html?RFQId={{J.ID}}" ng-click="GoToJobDetails(J.ID)"><font color="blue"> <u> {{J.RFQID}}</u></font></a></td>
-                                                                
-                                                                <td>{{J.RFQID}}</td>
-                                                                <td>{{J.RFQCommunicationID}}</td>
+                                                            <tr ng-repeat="J in Group">
+                                                                <td>{{J.RFQId}}</td>
+                                                                <td>{{J.RFQConfirmationId}}</td>
                                                                 <td>{{J.PONum}}</td>
                                                                 <td>{{J.PODate}}</td>
-                                                                <td>{{J.SupplierID}}</td>
-                                                                <td>{{J.POSenton}}</td>
-                                                                <td>{{J.IsPOSent}}</td>
-                                                                <td>{{J.PODocID}}</td>
+                                                                <td>{{J.SupplierId}}</td>
+                                                                <td>{{J.PoSenton}}</td>
+                                                                <td>{{J.isPOSent}}</td>
+                                                                <td>{{J.PODocId}}</td>
                                                                 <td>{{J.ShippingMethod}}</td>
                                                                 <td>{{J.ShippingTerms}}</td>
                                                                 <td>{{J.DeliveryDate}}</td>
@@ -382,31 +381,31 @@
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
                     <h4 id="modal-header-primary-label" class="modal-title">Add New Customer PO</h4>
                 </div>
-                <div class="modal-body" ng-model="newRFQ">
+                <div class="modal-body" ng-model="Group">
 
                     <!--<div class="row ">
 
                         <label class="col-md-4 control-label">ID <span class='require'>*</span></label>
                         <div class="col-md-6">
-                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="newRFQId" readonly /><span class="help-block"></span>
+                            <input id="inputRFQID" type="text" placeholder="RFQ#" class="form-control" ng-model="GroupId" readonly /><span class="help-block"></span>
                         </div>
                     </div>-->
 
                     <div class="row ">
-                        <label class="col-md-4 control-label">RFQ ID <span class='require'>*</span></label>
+                        <label class="col-md-4 control-label">RFQ# <span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="RFQID" type="text" class="form-control" ng-model="newRFQ.Id" /><span class="help-block"></span>
+                            <input id="RFQID" type="text" class="form-control" ng-model="Group.RFQId" /><span class="help-block"></span>
 
                         </div>
                     </div>
 
                     <div class="row">
-                        <label class="col-md-4 control-label">RFQ Confirmation ID</label>
+                        <label class="col-md-4 control-label">RFQ Confirmation</label>
 
 
                         <div class="col-md-6">
-                            <input id="RFQConfirmationID" type="text" class="form-control" ng-model="newRFQ.RFQCommunicationId" /><span class="help-block"></span>
+                            <input id="RFQConfirmationID" type="text" class="form-control" ng-model="Group.RFQConfirmationId" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -415,7 +414,7 @@
 
 
                         <div class="col-md-6">
-                            <input id="PONum" type="text" class="form-control" ng-model="newRFQ.PONum" /><span class="help-block"></span>
+                            <input id="PONum" type="text" class="form-control" ng-model="Group.PONum" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -423,16 +422,16 @@
                         <label for="selCountry" class="col-md-4 control-label">PO Date</label>
 
                         <div class="col-md-6">
-                            <input id="PODate" type="text" class="form-control" ng-model="newRFQ.PODate" /><span class="help-block"></span>
+                            <input id="PODate" type="date" class="form-control" ng-model="Group.PODate" /><span class="help-block"></span>
 
                         </div>
                     </div>
                     <div class="row ">
 
-                        <label for="" class="col-md-4 control-label">Supplier ID<span class='require'>*</span></label>
+                        <label for="" class="col-md-4 control-label">Supplier<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="SupplierID" type="text" class="form-control" ng-model="newRFQ.SupplierId" /><span class="help-block"></span>
+                            <input id="SupplierID" type="text" class="form-control" ng-model="Group.SupplierId" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -441,7 +440,7 @@
                         <label for="" class="col-md-4 control-label">PO Sent on<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="POSenton" type="text" class="form-control" ng-model="newRFQ.POSenton" /><span class="help-block"></span>
+                            <input id="POSenton" type="date" class="form-control" ng-model="Group.PoSenton" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -450,19 +449,19 @@
                         <label for="" class="col-md-4 control-label">Is PO Sent<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="IsPOSent" type="text" class="form-control" ng-model="newRFQ.IsPOSent" /><span class="help-block"></span>
+                            <input id="IsPOSent" type="text" class="form-control" ng-model="Group.isPOSent" /><span class="help-block"></span>
 
                         </div>
                     </div>
                     <div class="row ">
 
-                        <label for="" class="col-md-4 control-label">PO DocID<span class='require'>*</span></label>
+                        <label for="" class="col-md-4 control-label">PO Docs<span class='require'>*</span></label>
 
                         <div class="col-md-6">
                             <!--div style="text-align:left;padding-left:0">
-                                <textarea id="inputDescription" rows="2" ng-model="newRFQ.PODocID" class="form-control"></textarea>-->
-                                <input id="PODocID" type="text" class="form-control" ng-model="newRFQ.PODocID" /><span class="help-block"></span>
-                                <!--<input id="reorderpoint" rows="2" type="text" class="form-control" ng-model="newRFQ.modelDescription" /><span class="help-block"></span>-->
+                                <textarea id="inputDescription" rows="2" ng-model="Group.PODocID" class="form-control"></textarea>-->
+                                <input id="PODocID" type="text" class="form-control" ng-model="Group.PODocID" /><span class="help-block"></span>
+                                <!--<input id="reorderpoint" rows="2" type="text" class="form-control" ng-model="Group.modelDescription" /><span class="help-block"></span>-->
                             </div>
                         </div>
                     <!--</div>-->
@@ -472,7 +471,7 @@
                         <label for="" class="col-md-4 control-label">Shipping Method<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="ShippingMethod" type="text" class="form-control" ng-model="newRFQ.ShippingMethod" /><span class="help-block"></span>
+                            <input id="ShippingMethod" type="text" class="form-control" ng-model="Group.ShippingMethod" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -481,7 +480,7 @@
                         <label for="" class="col-md-4 control-label">Shipping Terms<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="ShippingTerms" type="text" class="form-control" ng-model="newRFQ.ShippingTerms" /><span class="help-block"></span>
+                            <input id="ShippingTerms" type="text" class="form-control" ng-model="Group.ShippingTerms" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -490,7 +489,7 @@
                         <label for="" class="col-md-4 control-label">Delivery Date<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                     <input id="DeliveryDate" type="text" class="form-control" ng-model="newRFQ.DeliveryDate" /><span class="help-block"></span>
+                     <input id="DeliveryDate" type="date" class="form-control" ng-model="Group.DeliveryDate" /><span class="help-block"></span>
 
                      </div>
                     </div>
@@ -499,7 +498,7 @@
                         <label for="" class="col-md-4 control-label">PO SubTotal<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="POSubtotal" type="text" class="form-control" ng-model="newRFQ.POSubTotal" /><span class="help-block"></span>
+                            <input id="POSubtotal" type="text" class="form-control" ng-model="Group.POSubTotal" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -508,7 +507,7 @@
                         <label for="" class="col-md-4 control-label">PO Charges<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="POCharges" type="text" class="form-control" ng-model="newRFQ.POCharges" /><span class="help-block"></span>
+                            <input id="POCharges" type="text" class="form-control" ng-model="Group.POCharges" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -517,7 +516,7 @@
                         <label for="" class="col-md-4 control-label">PO Discounts<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="PODiscounts" type="text" class="form-control" ng-model="newRFQ.PODiscounts" /><span class="help-block"></span>
+                            <input id="PODiscounts" type="text" class="form-control" ng-model="Group.PODiscounts" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -526,7 +525,7 @@
                         <label for="" class="col-md-4 control-label">PO Total<span class='require'>*</span></label>
 
                         <div class="col-md-6">
-                            <input id="POTotal" type="text" class="form-control" ng-model="newRFQ.POTotal" /><span class="help-block"></span>
+                            <input id="POTotal" type="text" class="form-control" ng-model="Group.POTotal" /><span class="help-block"></span>
 
                         </div>
                     </div>
@@ -536,7 +535,7 @@
                     
                     <div class="form-actions">
                         <div style="text-align:center">
-                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="AddNewRFQ();">Save</button>
+                            <button class="btn btn-green" ng-disabled="isSuperUser == 0 && CanCreate == 0" ng-click="save(Group)">Save</button>
                             <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
                         </div>
                     </div>
@@ -579,7 +578,7 @@
     <script src="vendors/jquery-cookie/jquery.cookie.js"></script>
     <script src="vendors/iCheck/icheck.min.js"></script>
     <script src="vendors/iCheck/custom.min.js"></script>
-    <script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>
+    <!--<script src="vendors/jquery-news-ticker/jquery.news-ticker.js"></script>-->
     <script src="js/jquery.menu.js"></script>
     <script src="vendors/jquery-pace/pace.min.js"></script>
     <script src="vendors/holder/holder.js"></script>
@@ -597,6 +596,7 @@
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
     <script src="js/ngStorage.js"></script>
+    <!--<script src="js/CustomerPurchaseOrder.js"></script>-->
     <script src="js/CustomerPurchaseOrder.js"></script>
     <!--<script src="js/adal.js"></script>
     <script src="js/adal-angular.js"></script>-->
