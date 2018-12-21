@@ -1591,7 +1591,7 @@ namespace ERPSystem.Models
         public string InvoiceAddress { get; set; }
         public string CustomerAddress { get; set; }
         public string flag { get; set; }
-        public DateTime? DispatchDate { get; set; }
+        public DateTime ?DispatchDate { get; set; }
 
 
     }
@@ -1710,7 +1710,8 @@ namespace ERPSystem.Models
 
         public string flag { get; set; }
         public string Email { get; set; }
-        public int Active { get; set; }       
+        public int Active { get; set; }
+       
 
     }
     public class Recieptreturn
@@ -1725,6 +1726,46 @@ namespace ERPSystem.Models
         public string returnedBy { get; set; }
 
         public string comment { get; set; }
+
+        public string flag { get; set; }
+
+
+    }
+    public class PurchaseRegister
+    {
+        public string ItemName { get; set; }
+        public int NoofUnits { get; set; }
+
+        public DateTime? PurchasedOn { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal Charges { get; set; }
+
+        public decimal Discount { get; set; }
+
+        public decimal SubTotal { get; set; }
+        public decimal Total { get; set; }
+
+        public string flag { get; set; }
+
+
+    }
+    public class SalesRegister
+    {
+        public string ItemName { get; set; }
+        public int NoofUnits { get; set; }
+
+        public DateTime? SoldOn { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal Charges { get; set; }
+
+        public decimal Discount { get; set; }
+
+        public decimal SubTotal { get; set; }
+        public decimal Total { get; set; }
 
         public string flag { get; set; }
 
