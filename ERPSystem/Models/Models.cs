@@ -1731,4 +1731,41 @@ namespace ERPSystem.Models
        
 
     }
+    public class Receivable 
+    {
+        public string RFQId { get; set; }
+        public string Name { get; set; }
+
+        public string AccountCode { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public DateTime ?ReceivedByDate { get; set; }
+        public DateTime ?ActualReceivedDate { get; set; }
+
+        public string Status { get; set; }
+
+        public string flag { get; set; }
+
+
+    }
+    public class Payable
+    {
+        public string RFQId { get; set; }
+        public string Name { get; set; }
+
+        public string AccountCode { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public DateTime ?Paiddate { get; set; }
+        public DateTime ?ActualReceivedDate { get; set; }
+
+        public string Status { get; set; }
+
+        public string flag { get; set; }
+
+
+    }
+
 }

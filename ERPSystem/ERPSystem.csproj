@@ -288,6 +288,8 @@
     <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\login.js" />
     <Content Include="UI\js\Orderconfirmation.js" />
+    <Content Include="UI\js\Payable.js" />
+    <Content Include="UI\js\Receivable.js" />
     <Content Include="UI\js\Recieptreturn.js" />
     <Content Include="UI\js\RFQCustomerEstimation.js" />
     <Content Include="UI\js\RFQDetails.js" />
@@ -761,9 +763,11 @@
     <Compile Include="Controllers\ObjectTypesController.cs" />
     <Compile Include="Controllers\OrderconfirmationController.cs" />
     <Compile Include="Controllers\OrderConfirmationDocsController.cs" />
+    <Compile Include="Controllers\PayableController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
     <Compile Include="Controllers\QuoteRequestController.cs" />
+    <Compile Include="Controllers\ReceivableController.cs" />
     <Compile Include="Controllers\RecieptreturnController.cs" />
     <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
