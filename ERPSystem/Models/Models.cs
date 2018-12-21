@@ -1591,7 +1591,7 @@ namespace ERPSystem.Models
         public string InvoiceAddress { get; set; }
         public string CustomerAddress { get; set; }
         public string flag { get; set; }
-        public DateTime? DispatchDate { get; set; }
+        public DateTime ?DispatchDate { get; set; }
 
 
     }
@@ -1710,7 +1710,8 @@ namespace ERPSystem.Models
 
         public string flag { get; set; }
         public string Email { get; set; }
-        public int Active { get; set; }       
+        public int Active { get; set; }
+       
 
     }
     public class Recieptreturn

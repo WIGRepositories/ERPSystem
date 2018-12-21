@@ -115,21 +115,21 @@
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 11: Send Payment Voucher to Account Dept</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Voucher to Account Dept</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-sendvouchertoaccdept" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Send Voucher to Account Dept</button></div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 12: Payment to suppliers</h4></div>
-                            <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Payment to Suppliers</button></div>
+                            <div class="panel-body"><button type="button" data-target="#Modal-header-payconfigfromown" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Payment to Suppliers</button></div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <!--<div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Step 13: Payment Confirmation Mail from Account Dept</h4></div>
                             <div class="panel-body"><button type="button" data-target="#Modal-header-paysuppliers" data-toggle="modal" class="btn btn-primary" style="width:140px;height:30px;">Payment Confirmation Mail from Account Dept</button></div>
                         </div>
-                    </div>
+                    </div>-->
                    
                     <!--<div class="row">
                       
@@ -854,7 +854,7 @@
             <div class="modal-content">
                 <div class="modal-header modal-header-primary">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">customer Payment Confirmation</h4>
+                    <h4 id="modal-header-primary-label" class="modal-title">Customer Payment Confirmation</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -881,6 +881,100 @@
             </div>
         </div>
     </div>
+
+    <!--Payment Suppliers Confirmation-->
+    <div id="Modal-header-payconfigfromown" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Payment to Suppliers Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <div class="row">
+                                <div class="col-md-6">EmailID:<input type="text" placeholder="Plese Enter Email Address" ng-model="Cust.Email" style="width:100%"></div>
+                                <div class="col-md-6">
+                                    Customer:<select ng-options="Cust1.Name for Cust1 in Customers track by Cust1.id" ng-model="Cust" style="width:60%">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row col-md-12" style="margin-top:10px;">
+                                <textarea ng-model="emailcontent" rows="3" style="width:100%;"></textarea>
+                            </div>
+                            <div class="row" style="margin-top:10px;">
+                                <button class="btn btn-primary form-control" style="width:100%;height:40px;margin-top:10px;" ng-click="paymentconfirmationfromown()">Customer Payment Confirmation Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Send Payment Voucher to Account Dept-->
+    <div id="Modal-header-sendvouchertoaccdept" tabindex="-1" role="dialog" aria-labelledby="modal-header-primary-label" aria-hidden="true" class="modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Payment to Suppliers(Account Department)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<button class="btn btn-primary" style="height:45px;width:100px;font-size:16px;">Primary</button>-->
+                            <!--<div class="row">
+
+                                <div class="col-md-6">
+                                    Supplier Name:<select ng-options="Cust.Client for Cust in Customers track by Cust.ID" ng-model="cc" style="width:60%" ng-change="GetRFQPersonnal(cc)">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+                            </div>-->
+
+                            <div class="row" style="margin-top:10px;">
+                                <table class="table table-bordered" style="background-color: white;">
+                                    <thead>
+                                        <tr style="height:50px">
+                                            <th style="text-align:center;">
+                                                <!--<input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetCustlist()"/>-->
+                                                Select Supplier
+                                            </th>
+                                            <th style="text-align:center;">Supplier List</th>
+                                            <th>Amount to Pay</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="a in Suppliers">
+                                            <td style="text-align:center;"><input type="checkbox" style="border:1px grey;" class="icheckbox_minimal-grey activeCheckbox" ng-model="active" ng-true-value="1" ng-false-value="0" ng-click="SetDatattt(a)" /></td>
+                                            <td style="text-align:center;">
+                                                {{a.Name}}
+                                            </td>
+                                            <td style="text-align:center;"><input type="number" placeholder="0" style="width:85px;" ng-init="qty=0" ng-model="a.qty" min="0"  /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-actions">
+                                    <div style="text-align:center">
+                                        <button class="btn btn-green" ng-click="Sendmailtoaccdep();">Send</button>
+                                        <!--<button class="btn btn-green">Save</button>-->
+                                        <button type="button" data-dismiss="modal" class="btn btn-default" ng-click="clearGroup()">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
         <script src="UI/js/jquery-1.10.2.min.js"></script>
         <script src="UI/js/jquery-migrate-1.2.1.min.js"></script>
         <script src="UI/js/jquery-ui.js"></script>

@@ -23,12 +23,31 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
         $scope.Suppliers = res.data;       
     });
     }
-
+    $scope.SetDatattt = function (b) {
+        $scope.selArr.push(b);
+    }
     // to  fill the selected the items
     $scope.SetData = function (b) {
         $scope.selArr.push(b);
     }
        
+    // send mail to account department
+    $scope.Sendmailtoaccdep = function () {
+       
+        
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/sendmailaccdept',
+            data: $scope.selArr
+        }
+        $http(req).then(function (res) {
+            alert("Payment Detials send to acccount dept....");
+            $('#Modal-header-new').modal('hide');
+            $scope.Cust = null;
+        });
+    }
+
+
     //acustomers
     $scope.SendMail = function () {
         if ($scope.Cust == null) {
@@ -98,6 +117,7 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             $scope.Cust = null;
         });
     }
+    
     $scope.Customerpaymentconfirmation = function () {
 
         var mail = {
@@ -118,7 +138,28 @@ var myCtrl = myapp1.controller('myCtrl', function ($scope, $http, $localStorage,
             $scope.Cust = null;
         });
     }
+    $scope.paymentconfirmationfromown = function () {
+
+        var mail = {
+            customerid: $scope.Cust.Name,
+            Email: $scope.Cust.Email,
+            body: $scope.emailcontent
+        }
+        var req = {
+            method: 'POST',
+            url: '/api/ERPAsse/paymentconfirmationfromown',
+            data: mail
+        }
+        $http(req).then(function (res) {
+            //$scope.initdata = res.data;
+            //$scope.showlocimportdata(res.data);
+            alert("Email Sucessfully Sent");
+            $('#Modal-header-payconfigfromown').modal('hide');
+            $scope.Cust = null;
+        });
+    }
     //get supplier quote
+
     //acustomers
     $scope.GetSupplierQuote = function () {
         if ($scope.Sup == null) {

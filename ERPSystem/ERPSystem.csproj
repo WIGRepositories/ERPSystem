@@ -775,6 +775,7 @@
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\supplierPODetailsController.cs" />
     <Compile Include="Controllers\supplierPurchaseOrderController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />
