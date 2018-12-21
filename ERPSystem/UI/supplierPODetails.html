@@ -251,7 +251,7 @@
                     <!--BEGIN TITLE & BREADCRUMB PAGE-->
                     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
                         <div class="page-header pull-left">
-                            <div class="page-title">supplierPurchaseOrder</div>
+                            <div class="page-title">supplierPODetails</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
@@ -373,30 +373,30 @@
                                                                 </div>
                                                                 <div class="modal-body" ng-model="Group">
 
-                                                                    <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label">RFQId</label>
+                                                                    <!--<div class="row">
+                                                                        <label for="Name" class="col-md-3 control-label">POId</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.RFQId" class="form-control" /><span class="help-block"></span></div>
-                                                                    </div>
+                                                                    </div>-->
 
 
 
 
                                                                     <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label">RFQConfirmationId</label>
+                                                                        <label for="Name" class="col-md-3 control-label">POId</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.POId" class="form-control" /><span class="help-block"></span></div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label">PONum</label>
+                                                                        <label for="Name" class="col-md-3 control-label">RFQItemId</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.DeliveryNoteNo" class="form-control" /><span class="help-block"></span></div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label">SupplierId</label>
+                                                                        <label for="Name" class="col-md-3 control-label">NoOfUnits</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.SupplierId" class="form-control" /><span class="help-block"></span></div>
@@ -404,28 +404,28 @@
 
 
                                                                     <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label"> PODocId</label>
+                                                                        <label for="Name" class="col-md-3 control-label"> UnitPrice</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.DispatchDate" class="form-control" /><span class="help-block"></span></div>
                                                                     </div>
 
-                                                                    <!--<div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label"> Deliverymethod</label>
+                                                                    <div class="row">
+                                                                        <label for="Name" class="col-md-3 control-label"> subtotal</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.Deliverymethod" class="form-control" /><span class="help-block"></span></div>
-                                                                    </div>-->
+                                                                    </div>
 
                                                                     <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label">ShippingMethod</label>
+                                                                        <label for="Name" class="col-md-3 control-label">Total</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.IsDelivered" class="form-control" /><span class="help-block"></span></div>
                                                                     </div>
 
-                                                                    <div class="row">
-                                                                        <label for="Name" class="col-md-3 control-label"> ShippingTerms</label>
+                                                                    <!--<div class="row">
+                                                                        <label for="Name" class="col-md-3 control-label"> DeliveredOn</label>
 
 
                                                                         <div class="col-md-6"><input id="Description" type="text" ng-model="Group.DeliveredOn" class="form-control" /><span class="help-block"></span></div>
@@ -433,11 +433,11 @@
 
                                                                     <div class="row">
 
-                                                                        <label for="PhoneNo" class="col-md-3 control-label">DeliveryDate</label>
+                                                                        <label for="PhoneNo" class="col-md-3 control-label">TotalItems</label>
 
                                                                         <div class="col-md-6"><input id="inputFirstName" type="text" ng-model="Group.TotalItems" class="form-control" /><span class="help-block"></span></div>
                                                                     </div>
-                                                                    <!--<div class="row">
+                                                                    <div class="row">
                                                                         <label for="Name" class="col-md-3 control-label"> InvoiceAddress</label>
 
 
@@ -548,6 +548,8 @@
 
                                                             </div>
 
+
+
                                                         </div>
 
                                                     </div>
@@ -555,30 +557,31 @@
                                                 <table class="table table-hover table-striped table-bordered table-advanced tablesorter">
                                                     <thead>
                                                         <tr>
-                                                            <th>RFQId</th>
-                                                            <th>RFQConfirmationId</th>
-                                                            <th>PONum </th>
-                                                            <th>SupplierId</th>
-                                                            <th>PODocId</th>
-                                                            <th>ShippingMethod</th>
-                                                            <th>ShippingTerms</th>
-                                                            <th>DeliveryDate</th>
-                                                            <!--<th>InvoiceAddress</th>
+                                                            <th>POId</th>
+                                                            <th>RFQItemId</th>
+                                                            <th>NoOfUnits</th>
+                                                            <th>UnitPrice</th>
+                                                            <th>subtotal</th>
+                                                            <th>Total</th>
+                                                            <!--<th>IsDelivered</th>
+                                                            <th>DeliveredOn</th>
+                                                            <th>InvoiceAddress</th>
                                                             <th>CustomerAddress</th>-->
+
                                                         </tr>
 
                                                     <tbody>
                                                         <tr ng-repeat="G in Group">
 
-                                                            <td>{{G.RFQId}}</td>
-                                                            <td>{{G.RFQConfirmationId}}</td>
-                                                            <td>{{G.PONum}}</td>
-                                                            <td>{{G.SupplierId}}</td>
-                                                            <td>{{G.PODocId}}</td>
-                                                            <td>{{G.ShippingMethod}}</td>
-                                                            <td>{{G.ShippingTerms}}</td>
-                                                            <td>{{G.DeliveryDate}}</td>
-                                                            <!--<td>{{G.InvoiceAddress}}</td>
+                                                            <td>{{G.POId}}</td>
+                                                            <td>{{G.RFQItemId}}</td>
+                                                            <td>{{G.NoOfUnits}}</td>
+                                                            <td>{{G.UnitPrice}}</td>
+                                                            <td>{{G.subtotal}}</td>
+                                                            <td>{{G.Total}}</td>
+                                                            <!--<td>{{G.IsDelivered}}</td>
+                                                            <td>{{G.DeliveredOn}}</td>
+                                                            <td>{{G.InvoiceAddress}}</td>
                                                             <td>{{G.CustomerAddress}}</td>-->
 
                                                             <!--<td>
@@ -672,8 +675,8 @@
     <script src="js/angular.js"></script>
     <script src="js/ui-bootstrap-tpls-1.3.3.js"></script>
     <script src="js/ngStorage.js"></script>
-    <script src="js/supplierPurchaseOrder.js"></script>
-
+ 
+    <script src="js/supplierPODetails.js"></script>
 
 </body>
 </html>

@@ -844,6 +844,10 @@ namespace ERPSystem.Models
         public int Active { get; set; }
         public string flag { get; set; }
         
+        //public string shippingaddress { get; set; }
+        //public string billingaddress { get; set; }
+
+
     }
     public class PPDocument
     {
@@ -1589,6 +1593,7 @@ namespace ERPSystem.Models
         public string flag { get; set; }
         public DateTime ?DispatchDate { get; set; }
 
+
     }
 
     public class DeliveryNoteDetails
@@ -1695,10 +1700,9 @@ namespace ERPSystem.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string SupplierCode { get; set; }
-
         public string shippingaddress { get; set; }
-
         public string billingaddress { get; set; }
+        public string Address { get; set; }
 
         public string ContactNo { get; set; }
 

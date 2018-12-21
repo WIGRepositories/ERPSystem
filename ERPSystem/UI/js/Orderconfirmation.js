@@ -1,15 +1,15 @@
 ﻿
 // JavaScript source code
-var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'angularFileUpload'])
+var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap'])
   
 
-var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $upload, $timeout, fileReader, $filter) {
+var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $timeout, $filter) {
 
-    $http.get('/api/Orderconfirmation/getdata').then(function (res, data) {
-        $scope.RFQId = res.data;
-    });
-    var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $upload, $timeout, fileReader, $filter) {
-        //if ($localStorage.uname == null) {
+    //$http.get('/api/Orderconfirmation/getdata').then(function (res, data) {
+    //    $scope.RFQId = res.data;
+    //});
+    //var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uibModal, $upload, $timeout, fileReader, $filter) {
+    //    //if ($localStorage.uname == null) {
         //    //window.location.href = "login.html";
         //}
         //$scope.uname = $localStorage.uname;
@@ -18,83 +18,69 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         //$scope.userCmpId = $scope.userdetails[0].CompanyId;
         //$scope.UserCmp = $scope.userdetails[0].companyName;
 
-        $scope.dashboardDS = $localStorage.dashboardDS;
-        $scope.checkedArr = new Array();
-        $scope.uncheckedArr = new Array();
-        $scope.userRoles = [];
+        //$scope.dashboardDS = $localStorage.dashboardDS;
+        //$scope.checkedArr = new Array();
+        //$scope.uncheckedArr = new Array();
+        //$scope.userRoles = [];
 
-        $http.get('/api/Users/GetUserRoles').then(function (res, data) {
-            $scope.userRoles = res.data;
-            $scope.checkedArr = res.data;
-            // $scope.uncheckedArr = $filter('filter')($scope.userRoles, { assigned: "0" });
+        //$http.get('/api/Users/GetUserRoles').then(function (res, data) {
+        //    $scope.userRoles = res.data;
+        //    $scope.checkedArr = res.data;
+        //    // $scope.uncheckedArr = $filter('filter')($scope.userRoles, { assigned: "0" });
 
-        });
+        //});
         /* user details functions */
-        $scope.GetCountry = function () {
-            $http.get('/api/Users/GetCountry?active=1').then(function (response, req) {
-                $scope.Countries = response.data;
-                if ($scope.Countries.length > 0) {
-                    $scope.ctry = $scope.Countries[0];
-                    $scope.GetCountry($scope.ctry);
-                }
-            });
-        }
+        //$scope.GetCountry = function () {
+        //    $http.get('/api/Users/GetCountry?active=1').then(function (response, req) {
+        //        $scope.Countries = response.data;
+        //        if ($scope.Countries.length > 0) {
+        //            $scope.ctry = $scope.Countries[0];
+        //            $scope.GetCountry($scope.ctry);
+        //        }
+        //    });
+        //}
 
-        var parseLocation = function (location) {
-            var pairs = location.substring(1).split("&");
-            var obj = {};
-            var pair;
-            var i;
+        //var parseLocation = function (location) {
+        //    var pairs = location.substring(1).split("&");
+        //    var obj = {};
+        //    var pair;
+        //    var i;
 
-            for (i in pairs) {
-                if (pairs[i] === "") continue;
+        //    for (i in pairs) {
+        //        if (pairs[i] === "") continue;
 
-                pair = pairs[i].split("=");
-                obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-            }
+        //        pair = pairs[i].split("=");
+        //        obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+        //    }
 
-            return obj;
-        };
-
-
-        $scope.GetUserDetails = function () {
+        //    return obj;
+        //};
 
 
-            $scope.selectedUser = parseLocation(window.location.search)['UId'];
+        //$scope.GetUserDetails = function () {
 
-            $http.get('/api/Users/GetUserDetails?UId=' + $scope.selectedUser).then(function (res, data) {
-                $scope.U = res.data[0];
-                //$scope.imageSrc = $scope.U.photo;            
 
-            });
+        //    $scope.selectedUser = parseLocation(window.location.search)['UId'];
 
-        }
-        $scope.GetCompanies = function () {
-            $http.get('/api/GetCompanyGroups?userid=-1').then(function (response, data) {
-                $scope.Companies = response.data;
+        //    $http.get('/api/Users/GetUserDetails?UId=' + $scope.selectedUser).then(function (res, data) {
+        //        $scope.U = res.data[0];
+        //        //$scope.imageSrc = $scope.U.photo;            
 
-                //    if ($scope.userCmpId != 1) {
-                //        //loop throug the companies and identify the correct one
-                //        for (i = 0; i < response.data.length; i++) {
-                //            if (response.data[i].Id == $scope.userCmpId) {
-                //                $scope.cmp = response.data[i];
-                //                document.getElementById('test').disabled = true;
-                //                break
-                //            }
-                //        }
-                //    }
-                //    else {
-                //        document.getElementById('test').disabled =false;
-                //    }
+        //    });
 
-                //    $scope.getUserRolesForCompany($scope.cmp);
+        //}
+        //$scope.GetCompanies = function () {
+        //    $http.get('/api/Orderconfirmation/getdata').then(function (response, data) {
+        //        $scope.Group = response.data;
 
-            });
+             
 
-            //if ($scope.Roleid != 1) { $scope.cmpId = $scope.UserCmpid;}
-        }
+        //    });
 
-        $scope.GetUsersForCmp = function () {
+         
+        //}
+
+        //$scope.GetUsersForCmp = function () {
 
             //if ($scope.cmp == null) {
             //    $scope.User = null;
@@ -103,8 +89,8 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             //    return;
             //}
 
-            $http.get('/api/Users/GetUsers').then(function (res, data) {
-                $scope.User = res.data;
+    $http.get('/api/Orderconfirmation/getdata').then(function (res, data) {
+                $scope.Group = res.data;
                 // $scope.MgrUsers = res.data;
             });
 
@@ -113,7 +99,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
 
 
             //});
-        }
+        //}
 
         $scope.GetConfigData = function () {
 
@@ -132,74 +118,81 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
             });
         }
 
-        $scope.save = function (User, flag, role) {
-            if (User == null) {
-                alert('Please enter Email.');
-                return;
-            }
-
-            if (User.FirstName == null) {
-                alert('Please enter first name.');
-                return;
-            }
-
-            if (User.LastName == null) {
-                alert('Please enter last name.');
-                return;
-            }
-
-            if (User.EmailId == null) {
-                //alert('Please enter Email.');
-                return;
-            }
-
-            //if ($scope.EmpNo == null) {
-            //    alert('Please enter employee no.');
+        $scope.save = function (Group) {
+            //if (User == null) {
+            //    alert('Please enter Email.');
             //    return;
-            //}       
+            //}
 
-            if ($scope.cmp == null) {
-                alert('Please select a company.');
-                return;
-            }
+            //if (User.FirstName == null) {
+            //    alert('Please enter first name.');
+            //    return;
+            //}
+
+            //if (User.LastName == null) {
+            //    alert('Please enter last name.');
+            //    return;
+            //}
+
+            //if (User.EmailId == null) {
+            //    //alert('Please enter Email.');
+            //    return;
+            //}
+
+            ////if ($scope.EmpNo == null) {
+            ////    alert('Please enter employee no.');
+            ////    return;
+            ////}       
+
+            //if ($scope.cmp == null) {
+            //    alert('Please select a company.');
+            //    return;
+            //}
 
             var U = {
-                Id: ((flag == 'U') ? User.Id : -1),
-                FirstName: User.FirstName,
-                LastName: User.LastName,
-                MiddleName: User.MiddleName,
-                EmpNo: (flag == 'U') ? User.EmpNo : $scope.EmpNo,
-                Email: User.EmailId,
-                Country: (flag == 'U') ? User.Country : $scope.Country,
-                ContactNo1: User.ContactNo1,
-                ContactNo2: User.ContactNo2,
-                mgrId: User.ManagerId,//($scope.mgr == null) ? null : $scope.mgr.Id,  
+                RFQId: Group.RFQId,
+                CustomerId: Group.POId,
+                commtypeid: Group.DeliveryNoteNo,
+                RFQConfirmationId: Group.SupplierId,
+                flag:'I'
 
-                StateId: User.State,
-                GenderId: User.Gender,
-                Address: User.Address,
-                AltAdress: User.AlternateAddress,
-                ZipCode: User.ZipCode,
-                RoleId: User.RoleId,
-                RFromDate: User.RFromDate,
-                RToDate: User.RToDate,
-                companyId: $scope.cmp.Id,
-                Active: 1,
+                //RFQConfirmationId: User.FirstName,
+                //Id: ((flag == 'U') ? User.Id : - 1),
+                //FirstName: User.FirstName,
+                //LastName: User.LastName,
+                //MiddleName: User.MiddleName,
+                //EmpNo: (flag == 'U') ? User.EmpNo : $scope.EmpNo,
+                //Email: User.EmailId,
+                //Country: (flag == 'U') ? User.Country : $scope.Country,
+                //ContactNo1: User.ContactNo1,
+                //ContactNo2: User.ContactNo2,
+                //mgrId: User.ManagerId,//($scope.mgr == null) ? null : $scope.mgr.Id,  
 
-                DUserName: User.DUserName,
-                DPassword: User.DPassword,
+                //StateId: User.State,
+                //GenderId: User.Gender,
+                //Address: User.Address,
+                //AltAdress: User.AlternateAddress,
+                //ZipCode: User.ZipCode,
+                //RoleId: User.RoleId,
+                //RFromDate: User.RFromDate,
+                //RToDate: User.RToDate,
+                //companyId: $scope.cmp.Id,
+                //Active: 1,
+
+                //DUserName: User.DUserName,
+                //DPassword: User.DPassword,
 
                 // WUserName: User.DUserName,
                 //  WPassword: User.DPassword,
 
-                Photo: $scope.imageSrc,
+                //Photo: $scope.imageSrc,
 
-                insupdflag: flag
+                //insupdflag: flag
             }
 
             var req = {
                 method: 'POST',
-                url: '/api/users/saveusers',
+                url: '/api/OrderConfirmation/savedetails',
                 data: U
             }
             $http(req).then(function (response) {
@@ -544,16 +537,6 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
         };
 
 
-        $scope.UploadImg = function () {
-            var fileinput = document.getElementById('fileInput');
-            fileinput.click();
-
-            //  
-            //if ($scope.file == null)
-            //{ $scope.file = fileinput.files[0]; }
-            //fileReader.readAsDataUrl($scope.file, $scope).then(function (result) { $scope.imageSrc = result; });
-            //fileReader.onLoad($scope.file, $scope).then(function (result) { $scope.imageSrc = result; });
-        };
 
         $scope.onFileSelect = function () {
             fileReader.readAsDataUrl($scope.file, $scope).then(function (result) { $scope.imageSrc = result; });
@@ -584,131 +567,7 @@ var ctrl = app.controller('myCtrl', function ($scope, $http, $localStorage, $uib
     });
 
 
-    //// JavaScript source code
-    //var app = angular.module('myApp', ['ngStorage', 'ui.bootstrap', 'angularFileUpload'])
-
-    //app.directive('file-input', function ($parse) {
-    //    return {
-    //        restrict: "EA",
-    //        template: "<input type='file' />",
-    //        replace: true,
-    //        link: function (scope, element, attrs) {
-
-    //            var modelGet = $parse(attrs.fileInput);
-    //            var modelSet = modelGet.assign;
-    //            var onChange = $parse(attrs.onChange);
-
-    //            var updateModel = function () {
-    //                scope.$apply(function () {
-    //                    modelSet(scope, element[0].files[0]);
-    //                    onChange(scope);
-    //                });
-    //            };
-
-    //            element.bind('change', updateModel);
-    //        }
-    //    };
-    //});
-
-    //app.directive("ngFileSelect", function () {
-
-    //    return {
-
-    //        link: function ($scope, el) {
-
-    //            el.on('click', function () {
-
-    //                this.value = '';
-
-    //            });
-
-    //            el.bind("change", function (e) {
-
-    //                $scope.file = (e.srcElement || e.target).files[0];
-
-
-
-    //                var allowed = ["jpeg", "png", "gif", "jpg"];
-
-    //                var found = false;
-
-    //                var img;
-
-    //                img = new Image();
-
-    //                allowed.forEach(function (extension) {
-
-    //                    if ($scope.file.type.match('image/' + extension)) {
-
-    //                        found = true;
-
-    //                    }
-
-    //                });
-
-    //                if (!found) {
-
-    //                    alert('file type should be .jpeg, .png, .jpg, .gif');
-
-    //                    return;
-
-    //                }
-
-    //                img.onload = function () {
-
-    //                    var dimension = $scope.selectedImageOption.split(" ");
-
-    //                    if (dimension[0] == this.width && dimension[2] == this.height) {
-
-    //                        allowed.forEach(function (extension) {
-
-    //                            if ($scope.file.type.match('image/' + extension)) {
-
-    //                                found = true;
-
-    //                            }
-
-    //                        });
-
-    //                        if (found) {
-
-    //                            if ($scope.file.size <= 1048576) {
-
-    //                                $scope.getFile();
-
-    //                            } else {
-
-    //                                alert('file size should not be grater then 1 mb.');
-
-    //                            }
-
-    //                        } else {
-
-    //                            alert('file type should be .jpeg, .png, .jpg, .gif');
-
-    //                        }
-
-    //                    } else {
-
-    //                        alert('selected image dimension is not equal to size drop down.');
-
-    //                    }
-
-    //                };
-
-    //                //  img.src = _URL.createObjectURL($scope.file);
-
-
-
-    //            });
-
-    //        }
-
-    //    };
-
-    //});
-
-    //   });
+   
 
 
 
