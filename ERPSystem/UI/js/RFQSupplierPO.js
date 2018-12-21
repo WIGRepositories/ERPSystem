@@ -46,9 +46,9 @@ var mycrtl1 = myapp1.controller('myCtrl', function ($scope, $http, $localStorage
             }
         });
 
-        $http.get('/api/RFQ/GetRFQDraftEstimation').then(function (res, data) {
-            $scope.drafestimation= res.data;
-        });
+        //$http.get('/api/RFQ/GetRFQDraftEstimation').then(function (res, data) {
+        //    $scope.drafestimation= res.data;
+        //});
         $http.get('/api/Suppliers/getSuppliers').then(function (res, data) {
             $scope.Suppliers = res.data;
         });
