@@ -288,6 +288,7 @@
     <Content Include="UI\js\ItemType.js" />
     <Content Include="UI\js\login.js" />
     <Content Include="UI\js\Orderconfirmation.js" />
+    <Content Include="UI\js\PurchaseRegister.js" />
     <Content Include="UI\js\Payable.js" />
     <Content Include="UI\js\Receivable.js" />
     <Content Include="UI\js\Recieptreturn.js" />
@@ -296,6 +297,7 @@
     <Content Include="UI\js\RFQquotes.js" />
     <Content Include="UI\js\RFQRFQDraftEstimation.js" />
     <Content Include="UI\js\RFQSupplierPO.js" />
+    <Content Include="UI\js\SalesRegister.js" />
     <Content Include="UI\js\supplierPODetails.js" />
     <Content Include="UI\js\supplierPurchaseOrder.js" />
     <Content Include="UI\js\Suppliers.js" />
@@ -766,15 +768,18 @@
     <Compile Include="Controllers\PayableController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PurchaseOrderControllerController.cs" />
+    <Compile Include="Controllers\PurchaseRegisterController.cs" />
     <Compile Include="Controllers\QuoteRequestController.cs" />
     <Compile Include="Controllers\ReceivableController.cs" />
     <Compile Include="Controllers\RecieptreturnController.cs" />
     <Compile Include="Controllers\RFQController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SalesRegisterController.cs" />
     <Compile Include="Controllers\ShippingOrderController.cs" />
     <Compile Include="Controllers\SupplierInvoiceController.cs" />
     <Compile Include="Controllers\supplierPODetailsController.cs" />
     <Compile Include="Controllers\supplierPurchaseOrderController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\TransactionMasterController.cs" />
     <Compile Include="Controllers\TypeGroupsController.cs" />

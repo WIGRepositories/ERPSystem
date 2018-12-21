@@ -1731,6 +1731,46 @@ namespace ERPSystem.Models
        
 
     }
+    public class PurchaseRegister
+    {
+        public string ItemName { get; set; }
+        public int NoofUnits { get; set; }
+
+        public DateTime? PurchasedOn { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal Charges { get; set; }
+
+        public decimal Discount { get; set; }
+
+        public decimal SubTotal { get; set; }
+        public decimal Total { get; set; }
+
+        public string flag { get; set; }
+
+
+    }
+    public class SalesRegister
+    {
+        public string ItemName { get; set; }
+        public int NoofUnits { get; set; }
+
+        public DateTime? SoldOn { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal Charges { get; set; }
+
+        public decimal Discount { get; set; }
+
+        public decimal SubTotal { get; set; }
+        public decimal Total { get; set; }
+
+        public string flag { get; set; }
+
+
+    }
     public class Receivable 
     {
         public string RFQId { get; set; }
