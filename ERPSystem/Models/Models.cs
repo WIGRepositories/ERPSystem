@@ -298,7 +298,7 @@ namespace ERPSystem.Models
 
     public class Users
     {
-        public int Id { set; get; }
+       public int Id { set; get; }
         //public string UserName { set; get; }
         public string FirstName { set; get; }
         public string LastName { set; get; }
@@ -1728,7 +1728,7 @@ namespace ERPSystem.Models
         public string comment { get; set; }
 
         public string flag { get; set; }
-       
+
 
     }
     public class PurchaseRegister

@@ -262,6 +262,7 @@
     <Content Include="UI\Jobs.html" />
     <Content Include="UI\JobsList.html" />
     <Content Include="UI\JobsView.html" />
+    <Content Include="UI\js\Acounts.js" />
     <Content Include="UI\js\angular-route.js" />
     <Content Include="UI\js\angular-sanitize.js" />
     <Content Include="UI\js\AssetDetails.js" />
@@ -269,6 +270,7 @@
     <Content Include="UI\js\AssetModelDetails.js" />
     <Content Include="UI\js\Assets.js" />
     <Content Include="UI\js\AssetsView.js" />
+    <Content Include="UI\js\BalanceSheet.js" />
     <Content Include="UI\js\charts-highchart-line.js" />
     <Content Include="UI\js\CompanyGroups.js" />
     <Content Include="UI\js\CompletedJobList.js" />
@@ -741,9 +743,11 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\Trace.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\AssetDetailsController.cs" />
     <Compile Include="Controllers\AssetModelController.cs" />
+    <Compile Include="Controllers\BalanceSheetController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerPODetailsController.cs" />
     <Compile Include="Controllers\CustomerPurchaseOrderController.cs" />
