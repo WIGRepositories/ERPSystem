@@ -1808,4 +1808,22 @@ namespace ERPSystem.Models
 
     }
 
+    public class Accountdetails
+
+    {
+        public int Id { get; set; }
+        public string AccountName { get; set; }
+
+        public string AccountNumber { get; set; }
+
+        public string Description { get; set; }
+
+        public string AccountCode { get; set; }
+
+        public string Active { get; set; }
+
+        public string flag { set; get; }
+
+    }
+
 }
